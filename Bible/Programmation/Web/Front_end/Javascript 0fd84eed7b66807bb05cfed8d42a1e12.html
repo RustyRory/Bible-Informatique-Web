@@ -1,0 +1,4352 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Javascript</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="0fd84eed-7b66-807b-b05c-fed8d42a1e12" class="page sans">
+      <header>
+        <h1 class="page-title">Javascript</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            1. Fondamentaux du langage
+          </summary>
+          <div class="indented">
+            <h2 id="e9ae63ef-2782-4a6b-a251-c71d8e75a235" class="">
+              1.1. Types de données et variables
+            </h2>
+            <p id="7c6c8940-5348-458a-855f-5aec503a7c48" class="">
+              Voici un résumé plus détaillé des types de données et variables en
+              JavaScript :
+            </p>
+            <h3 id="1b39256b-94d9-4374-bdcd-c158af999184" class="">
+              1.1.1. Types de données primitifs
+            </h3>
+            <h3 id="e07fd825-cbbb-462f-8df7-f468e4249170" class="">
+              1.1.1.1 Number
+            </h3>
+            <p id="fb8f0d70-0024-4eda-b6d0-387048fa0fa7" class="">
+              Le type Number en JavaScript représente à la fois les nombres
+              entiers et à virgule flottante.
+            </p>
+            <ul id="b95c116e-13b8-425e-bdf0-a218c35e12a7" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Entiers : <code>let age = 25;</code>
+              </li>
+            </ul>
+            <ul id="6cba6b76-8bdb-4191-aa31-dd7fbedafe0d" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Flottants : <code>let pi = 3.14159;</code>
+              </li>
+            </ul>
+            <ul id="b3823fb4-11f3-4a2b-a2bc-cf4aa3763401" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Notation scientifique : <code>let avogadro = 6.022e23;</code>
+              </li>
+            </ul>
+            <ul id="30bc4614-cee7-474b-bad6-3767215ec80a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Valeurs spéciales : <code>Infinity</code>,
+                <code>-Infinity</code>, et <code>NaN</code> (Not a Number)
+              </li>
+            </ul>
+            <p id="294617fa-8a18-4f85-be24-177852b39cab" class="">
+              JavaScript utilise le standard IEEE 754 pour représenter les
+              nombres, ce qui peut parfois conduire à des imprécisions dans les
+              calculs avec des décimales.
+            </p>
+            <h3 id="4b8dd3bd-1f31-4ab2-928d-4c1774141622" class="">
+              1.1.1.2. String
+            </h3>
+            <p id="02c4036c-ee5d-428e-83f2-981c1cacb7ea" class="">
+              Les chaînes de caractères peuvent être déclarées avec des
+              guillemets simples, doubles ou backticks (template literals).
+            </p>
+            <ul id="4853c88e-463d-4b88-9ada-b82e595f9d23" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Guillemets simples :
+                <code>let prenom = &#x27;Alice&#x27;;</code>
+              </li>
+            </ul>
+            <ul id="cf626b2c-0e9e-40f3-867b-d99d7b99699a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Guillemets doubles : <code>let nom = &quot;Dupont&quot;;</code>
+              </li>
+            </ul>
+            <ul id="b4729f80-03e2-4d23-abb5-99741d692604" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Backticks (ES6+) :
+                <code>let message = `Bonjour ${prenom}`;</code>
+              </li>
+            </ul>
+            <p id="4fdb1550-f47e-4040-967e-87e8a941ac99" class="">
+              Les template literals permettent l&#x27;interpolation de variables
+              et les chaînes multi-lignes.
+            </p>
+            <h3 id="ae21504b-143f-425c-9ed9-598d25244431" class="">
+              1.1.1.3. Boolean
+            </h3>
+            <p id="70738c2b-0aad-4185-bed9-914d8c724487" class="">
+              Le type Boolean ne peut avoir que deux valeurs : true ou false.
+            </p>
+            <ul id="6ce2e187-c578-4672-9918-53998a8d3461" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>let estMajeur = true;</code>
+              </li>
+            </ul>
+            <ul id="41dc2211-eede-4497-b94c-bb0bda45e195" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>let aDesEnfants = false;</code>
+              </li>
+            </ul>
+            <p id="0b605ca4-b6fb-4256-b824-b6dcf7e6037e" class="">
+              Les opérations de comparaison renvoient des booléens :
+              <code>let estPlusGrand = 5 &gt; 3; // true</code>
+            </p>
+            <h3 id="557d96c9-195c-47d0-92fa-bd09a4e6fcdf" class="">
+              1.1.1.4. Undefined
+            </h3>
+            <p id="3a89e7fb-9e09-4594-9863-08bbe8229e84" class="">
+              Une variable déclarée mais non initialisée a la valeur undefined.
+            </p>
+            <ul id="00ef1f5c-dbe5-493c-8e8d-6b9309ccfe8f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>let maVariable;</code>
+              </li>
+            </ul>
+            <p id="4a532138-643c-41d4-bffc-abec131550cf" class="">
+              On peut aussi assigner explicitement undefined :
+              <code>let x = undefined;</code>
+            </p>
+            <h3 id="c20488c2-4648-4b46-b966-e02b10457ff5" class="">
+              1.1.1.5. Null
+            </h3>
+            <p id="5a18dad2-7956-4201-b5ca-16622e890bca" class="">
+              Null représente l&#x27;absence intentionnelle de toute valeur
+              d&#x27;objet.
+            </p>
+            <ul id="b44e88a8-af35-4893-9036-fe220d31ac96" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>let donnees = null;</code>
+              </li>
+            </ul>
+            <p id="4b82f939-c8c5-40b8-bba2-edf244e7388d" class="">
+              Null est souvent utilisé pour réinitialiser une variable ou
+              indiquer qu&#x27;un objet n&#x27;existe pas.
+            </p>
+            <h3 id="3911427b-3c45-4caf-8a27-80ee55699a15" class="">
+              1.1.1.6. Symbol (ES6+)
+            </h3>
+            <p id="68ed9526-70cc-4bb2-a81d-0f775641fcc6" class="">
+              Les symboles sont des identifiants uniques, principalement
+              utilisés comme clés d&#x27;objets.
+            </p>
+            <ul id="4a7c595f-ec8c-482e-a6d3-4183a6d148eb" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>const monSymbole = Symbol(&#x27;description&#x27;);</code>
+              </li>
+            </ul>
+            <ul id="10d83927-58c6-4fab-a277-cf735a22df94" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code
+                  >const autreSymbole = Symbol(&#x27;description&#x27;);</code
+                >
+              </li>
+            </ul>
+            <p id="7e6ff039-83e7-4c16-b492-134548d4896f" class="">
+              Même avec la même description, deux symboles sont toujours
+              différents : <code>monSymbole !== autreSymbole</code>
+            </p>
+            <h3 id="2cc9abe7-efc4-4273-a738-e1777066dbad" class="">
+              1.1.1.7. BigInt (ES11+)
+            </h3>
+            <p id="016f0778-d516-4fbe-8c80-59b2ab5c0b59" class="">
+              BigInt permet de représenter des entiers de taille arbitraire.
+            </p>
+            <ul id="f86c3ef4-8a8b-490b-8654-1555d0a8ee4e" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code
+                  >const grandNombre =
+                  1234567890123456789012345678901234567890n;</code
+                >
+              </li>
+            </ul>
+            <p id="a8f20a49-250f-4eae-93b6-b1403eae9a78" class="">
+              On peut aussi créer un BigInt avec la fonction BigInt() :
+              <code>const autreBigInt = BigInt(&quot;1234567890&quot;);</code>
+            </p>
+            <h3 id="70dc8c12-5933-4036-b7d7-5facc8215555" class="">
+              1.1.2. Types de données complexes
+            </h3>
+            <h3 id="72bd12a9-4862-46ca-bba4-2a190adbdb1a" class="">
+              1.1.2.1. Object
+            </h3>
+            <p id="f0db41df-1b89-4f47-8ec3-b7b0ec1d689e" class="">
+              Les objets sont des collections de paires clé-valeur.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="bb1af4a9-d210-489e-a01e-3f648600b8d5"
+              class="code"
+            ><code class="language-JavaScript">let personne = {
+  nom: &quot;Dupont&quot;,
+  age: 30,
+  adresse: {
+    rue: &quot;123 Rue Principale&quot;,
+    ville: &quot;Paris&quot;
+  }
+};</code></pre>
+            <p id="834de65d-430a-4743-b758-be6e82d1e0a8" class="">
+              On accède aux propriétés avec la notation point ou crochet :
+              <code>personne.nom</code> ou
+              <code>personne[&quot;nom&quot;]</code>
+            </p>
+            <h3 id="d8832952-3155-45d9-aa9a-134aa7349f60" class="">
+              1.1.2.2. Array
+            </h3>
+            <p id="79359b32-0f10-4e76-85e2-8f568d5af7d0" class="">
+              Les tableaux sont des objets spéciaux pour stocker des listes
+              ordonnées de valeurs.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="f06b64b0-c865-423c-9b55-9f0f2d6c9854"
+              class="code"
+            ><code class="language-JavaScript">let fruits = [&quot;pomme&quot;, &quot;banane&quot;, &quot;orange&quot;];
+let mixte = [1, &quot;deux&quot;, { trois: 3 }, [4, 5]];</code></pre>
+            <p id="18394593-b856-46b7-9a80-ab2bc145cae5" class="">
+              On accède aux éléments par leur index :
+              <code>fruits[0]</code> (les index commencent à 0)
+            </p>
+            <h3 id="a337b699-1754-4bda-a87d-5923e039bd17" class="">
+              1.1.2.3. Function
+            </h3>
+            <p id="e6b90d18-09e4-4748-b38a-8fbc1be37551" class="">
+              Les fonctions sont des objets de première classe en JavaScript.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="3b0f15b5-b735-450f-9d19-a74e217b38d1"
+              class="code"
+            ><code class="language-JavaScript">function direBonjour(nom) {
+  return `Bonjour ${nom}!`;
+}
+
+let saluer = function(nom) {
+  console.log(`Salut ${nom}!`);
+};
+
+const flechee = (x) =&gt; x * 2;</code></pre>
+            <p id="9a18f403-a6f5-4c94-8440-3e15fdc1c76a" class="">
+              Les fonctions peuvent être assignées à des variables, passées
+              comme arguments, et retournées par d&#x27;autres fonctions.
+            </p>
+            <h3 id="5acb083d-6b01-4d26-8b6b-d46d5ee49791" class="">
+              1.1.3. Déclaration de variables
+            </h3>
+            <h3 id="4569f035-3be9-4c4a-ad93-337ea3e31fd0" class="">
+              1.1.3.1. var
+            </h3>
+            <p id="4709f101-9822-47f7-b25f-f28e43892f94" class="">
+              Déclaration de variable avec une portée de fonction ou globale.
+            </p>
+            <ul id="a98c9374-4970-4b60-9f3f-e8e2d0557cbf" class="bulleted-list">
+              <li style="list-style-type: disc"><code>var x = 5;</code></li>
+            </ul>
+            <p id="600fc24c-bba9-4326-bd49-bfe90a096c5b" class="">
+              Les variables déclarées avec var sont hissées (hoisted) au début
+              de leur portée.
+            </p>
+            <h3 id="4c61a902-8b7d-4648-a3c6-1c929f8494a8" class="">
+              1.1.3.2. let (ES6+)
+            </h3>
+            <p id="a27e57ec-8439-40da-919f-4737c604bb09" class="">
+              Déclaration de variable avec une portée de bloc.
+            </p>
+            <ul id="f3877771-30d5-4593-bd32-8b79b0b247f4" class="bulleted-list">
+              <li style="list-style-type: disc"><code>let y = 10;</code></li>
+            </ul>
+            <p id="7cbc8e93-af79-45eb-9750-f6550cf4a3b8" class="">
+              let permet une meilleure gestion de la portée et évite les
+              problèmes liés au hoisting.
+            </p>
+            <h3 id="4bfed7fd-ae56-4356-aee1-d6a972d13e8b" class="">
+              1.1.3.3. const (ES6+)
+            </h3>
+            <p id="f47bfb7d-9c02-4a03-bf3e-1c8564d8a2d3" class="">
+              Déclaration de constante (ne peut pas être réassignée).
+            </p>
+            <ul id="f0ef05e0-a419-414a-9b90-73753fa68a29" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>const PI = 3.14159;</code>
+              </li>
+            </ul>
+            <p id="145189e3-86a4-4b3a-bfbe-53b2b3724586" class="">
+              Pour les objets et tableaux, const empêche la réassignation de la
+              variable, mais pas la modification de son contenu.
+            </p>
+            <p id="d57dac92-a4cd-4564-8fe2-3acca70f2c8c" class="">
+              Il est important de noter que JavaScript est un langage à typage
+              dynamique et faible. Cela signifie que les variables peuvent
+              changer de type au cours de l&#x27;exécution du programme, et que
+              JavaScript effectue des conversions de type implicites dans
+              certaines situations.
+            </p>
+            <p id="7c57f06e-f915-417a-9250-a48eccba252d" class="">
+              Exemple de typage dynamique :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="bfe5f170-c177-4dc3-a1e9-a76d2023b4d6"
+              class="code"
+            ><code class="language-JavaScript">let x = 5;       // x est un nombre
+x = &quot;cinq&quot;;      // x est maintenant une chaîne de caractères
+x = true;        // x est maintenant un booléen</code></pre>
+            <p id="72276797-8e84-406f-9e7f-ff42d23dfc5b" class="">
+              Exemple de conversion de type implicite :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="af6ebe8f-e4f1-4ed9-9c15-b8f0617c4160"
+              class="code"
+            ><code class="language-JavaScript">console.log(&quot;5&quot; + 3);     // Affiche &quot;53&quot; (3 est converti en chaîne)
+console.log(&quot;5&quot; - 3);     // Affiche 2 (&quot;5&quot; est converti en nombre)
+console.log(&quot;5&quot; == 5);    // Affiche true (comparaison avec conversion de type)
+console.log(&quot;5&quot; === 5);   // Affiche false (comparaison stricte sans conversion)</code></pre>
+            <p id="f0947f63-bd52-43a8-bcc9-7afda81dab48" class="">
+              En conclusion, une bonne compréhension des types de données et des
+              variables en JavaScript est essentielle pour écrire du code
+              efficace et éviter les erreurs courantes liées au typage
+              dynamique.
+            </p>
+            <h2 id="29ed613f-c0df-4642-ba83-1477d3b88b6c" class="">
+              1.2. Structures de contrôle (if, else, switch, boucles)
+            </h2>
+            <p id="c486124b-26aa-4d74-add7-2eb229e7f34d" class="">
+              Les structures de contrôle en JavaScript permettent de gérer le
+              flux d&#x27;exécution du code. Voici un résumé détaillé des
+              principales structures de contrôle :
+            </p>
+            <h3 id="8cda7d82-c899-45e2-8f53-35326e1dfc13" class="">
+              1.2.1. Structures conditionnelles
+            </h3>
+            <h3 id="d1139f38-abe5-4333-8962-3a5063f3608b" class="">
+              1.2.1.1. if...else
+            </h3>
+            <p id="47819ef3-33f7-4c7e-baa4-ac5e756e2fa4" class="">
+              La structure if...else permet d&#x27;exécuter du code en fonction
+              d&#x27;une condition.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="4b9ded59-de64-4431-896e-5d5b59cd4432"
+              class="code"
+            ><code class="language-JavaScript">let age = 18;
+if (age &gt;= 18) {
+    console.log(&quot;Vous êtes majeur&quot;);
+} else {
+    console.log(&quot;Vous êtes mineur&quot;);
+}</code></pre>
+            <h3 id="2c82d9ed-60f1-45ff-93b7-f1fd7b13a94e" class="">
+              1.2.1.2. else if
+            </h3>
+            <p id="84e5e476-7d1e-4eef-9a2a-e1a899b05762" class="">
+              On peut ajouter des conditions supplémentaires avec else if.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="43b64ec8-66de-42ab-94d0-f984d07b431f"
+              class="code"
+            ><code class="language-JavaScript">let note = 75;
+if (note &gt;= 90) {
+    console.log(&quot;Excellent&quot;);
+} else if (note &gt;= 70) {
+    console.log(&quot;Bien&quot;);
+} else if (note &gt;= 50) {
+    console.log(&quot;Passable&quot;);
+} else {
+    console.log(&quot;Échec&quot;);
+}</code></pre>
+            <h3 id="1f8c89a5-e4b3-4534-9c8d-61334b03b4a8" class="">
+              1.2.1.3. switch
+            </h3>
+            <p id="16a266e7-170a-4136-805d-4fdcf4556ec7" class="">
+              La structure switch est utile pour comparer une valeur à plusieurs
+              cas possibles.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="3e973706-4aec-4baf-942c-ef9137421d71"
+              class="code"
+            ><code class="language-JavaScript">let jour = &quot;Lundi&quot;;
+switch (jour) {
+    case &quot;Lundi&quot;:
+        console.log(&quot;Début de semaine&quot;);
+        break;
+    case &quot;Vendredi&quot;:
+        console.log(&quot;Fin de semaine&quot;);
+        break;
+    default:
+        console.log(&quot;Milieu de semaine&quot;);
+}</code></pre>
+            <h3 id="707fb34a-ad0f-4df4-b400-ce5f8ef6e029" class="">
+              1.2.2. Boucles
+            </h3>
+            <h3 id="14fb3b65-1280-4f5c-8433-de0c248efb10" class="">
+              1.2.2.1. for
+            </h3>
+            <p id="6e26d0ab-7d3a-4e6b-89f7-bef24c7328c4" class="">
+              La boucle for est utilisée pour répéter une action un nombre
+              défini de fois.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="2bfff934-1837-4548-ae5d-14440590eca2"
+              class="code"
+            ><code class="language-JavaScript">for (let i = 0; i &lt; 5; i++) {
+    console.log(i);
+}</code></pre>
+            <h3 id="193869c7-94a1-4a24-b4d3-c5db05134959" class="">
+              1.2.2.2. while
+            </h3>
+            <p id="108eece3-0e96-43f3-a740-c09c06fb8cd9" class="">
+              La boucle while répète une action tant qu&#x27;une condition est
+              vraie.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="9bb62d8a-0d51-4fba-b6e4-0ad088cc0876"
+              class="code"
+            ><code class="language-JavaScript">let i = 0;
+while (i &lt; 5) {
+    console.log(i);
+    i++;
+}</code></pre>
+            <h3 id="587cc531-cd82-4233-8d6e-12e1d4122316" class="">
+              1.2.2.3. do...while
+            </h3>
+            <p id="eb29fb08-f90b-4f96-af0c-b2935f8169a5" class="">
+              Similaire à while, mais garantit que le code s&#x27;exécute au
+              moins une fois.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="80253f20-c5a9-46f0-93fd-299a1f43d6e3"
+              class="code"
+            ><code class="language-JavaScript">let i = 0;
+do {
+    console.log(i);
+    i++;
+} while (i &lt; 5);</code></pre>
+            <h3 id="e7b04920-0ddd-4e59-8b9f-ca452f860bee" class="">
+              1.2.2.4. for...in
+            </h3>
+            <p id="3a383cb4-7b33-4f63-aff7-2d61781c7eb2" class="">
+              Utilisée pour itérer sur les propriétés énumérables d&#x27;un
+              objet.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c856ac09-cf3f-4bfb-ad42-3ce780d64901"
+              class="code"
+            ><code class="language-JavaScript">let personne = {nom: &quot;Dupont&quot;, age: 30, ville: &quot;Paris&quot;};
+for (let prop in personne) {
+    console.log(prop + &quot;: &quot; + personne[prop]);
+}</code></pre>
+            <h3 id="f0e22a14-d27d-4bb6-b31f-16d2708b69e9" class="">
+              1.2.2.5. for...of (ES6+)
+            </h3>
+            <p id="3758c0c1-354b-4891-81cc-27c6fc636ce1" class="">
+              Utilisée pour itérer sur les éléments d&#x27;une collection
+              itérable (comme un tableau ou une chaîne).
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="f8185c29-a352-4696-ac97-674852f69839"
+              class="code"
+            ><code class="language-JavaScript">let fruits = [&quot;pomme&quot;, &quot;banane&quot;, &quot;orange&quot;];
+for (let fruit of fruits) {
+    console.log(fruit);
+}</code></pre>
+            <h3 id="fc0de14d-1575-4d2c-a494-aa41f715194f" class="">
+              1.2.3. Contrôle de boucle
+            </h3>
+            <h3 id="6d6ec52b-9ab2-4ffb-b460-8c18b1ae7caf" class="">
+              1.2.3.1. break
+            </h3>
+            <p id="7e49727e-aeba-4fd0-8daa-0ba583fd4520" class="">
+              L&#x27;instruction break permet de sortir immédiatement d&#x27;une
+              boucle ou d&#x27;un switch.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="7d162a4e-faf3-4c1b-98e9-01a5d22ad7d6"
+              class="code"
+            ><code class="language-JavaScript">for (let i = 0; i &lt; 10; i++) {
+    if (i === 5) break;
+    console.log(i);
+}</code></pre>
+            <h3 id="c8c7c14e-128c-49c8-8cfa-df5b16d1f874" class="">
+              1.2.3.2. continue
+            </h3>
+            <p id="8a4a2818-226e-4b60-b938-6809ca290142" class="">
+              L&#x27;instruction continue passe à l&#x27;itération suivante de
+              la boucle.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="dd774d40-e992-45a5-a510-b8b761344e61"
+              class="code"
+            ><code class="language-JavaScript">for (let i = 0; i &lt; 5; i++) {
+    if (i === 2) continue;
+    console.log(i);
+}</code></pre>
+            <p id="2609542a-abc4-4faa-bdf8-71a4477c55c9" class="">
+              Ces structures de contrôle sont essentielles pour créer des
+              programmes JavaScript dynamiques et réactifs. Elles permettent de
+              gérer efficacement le flux d&#x27;exécution du code en fonction
+              des conditions et des besoins spécifiques de l&#x27;application.
+            </p>
+            <h2 id="75852a22-f795-44c0-a02c-742ea9b6cf7f" class="">
+              1.3. Fonctions et portée
+            </h2>
+            <p id="29692c4b-8939-4a9d-bc19-80bce35f0363" class="">
+              Les fonctions et la portée sont des concepts fondamentaux en
+              JavaScript. Voici un résumé détaillé :
+            </p>
+            <h3 id="4f820457-0497-4d90-a008-993a0c15fe3f" class="">
+              1.3.1. Définition et déclaration de fonctions
+            </h3>
+            <p id="69063636-d73b-4b9c-afa7-95b7de35e9d2" class="">
+              Il existe plusieurs façons de définir des fonctions en JavaScript
+              :
+            </p>
+            <h3 id="912e6250-14ac-4af8-a4df-c47cfc340b53" class="">
+              1.3.1.1. Déclaration de fonction
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="59d5aceb-8b0a-4464-a02c-f0f6e9733d59"
+              class="code"
+            ><code class="language-JavaScript">function saluer(nom) {
+    return `Bonjour, ${nom}!`;
+}
+console.log(saluer(&quot;Alice&quot;)); // Affiche: Bonjour, Alice!</code></pre>
+            <h3 id="f722730a-7878-44b8-bdfe-e6b75e33e877" class="">
+              1.3.1.2. Expression de fonction
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c35a41d5-46e4-4dad-b06a-1df820c6314f"
+              class="code"
+            ><code class="language-JavaScript">const saluer = function(nom) {
+    return `Bonjour, ${nom}!`;
+};
+console.log(saluer(&quot;Bob&quot;)); // Affiche: Bonjour, Bob!</code></pre>
+            <h3 id="9606da22-94a1-45e4-983d-75f7f03a8b77" class="">
+              1.3.1.3. Fonction fléchée (ES6+)
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="d9b9e44b-3c56-4eee-9ed7-b100aa11ad0d"
+              class="code"
+            ><code class="language-JavaScript">const saluer = (nom) =&gt; `Bonjour, ${nom}!`;
+console.log(saluer(&quot;Charlie&quot;)); // Affiche: Bonjour, Charlie!</code></pre>
+            <h3 id="8142087f-826a-405b-a25f-2528e549402f" class="">
+              1.3.2. Paramètres et arguments
+            </h3>
+            <p id="828e42ae-0439-4ca1-b8bf-3fafcebae0b5" class="">
+              Les fonctions peuvent accepter des paramètres et utiliser des
+              valeurs par défaut :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="2cca0239-998e-4933-806b-59988d56ef83"
+              class="code"
+            ><code class="language-JavaScript">function multiplier(a, b = 1) {
+    return a * b;
+}
+console.log(multiplier(5));    // Affiche: 5
+console.log(multiplier(5, 3)); // Affiche: 15</code></pre>
+            <h3 id="eb94e9cd-3b0c-4d47-9950-a7798591e100" class="">
+              1.3.3. Portée des variables
+            </h3>
+            <p id="595c8767-505d-4306-af26-bbc1122bc9f1" class="">
+              La portée détermine la visibilité et l&#x27;accessibilité des
+              variables dans le code.
+            </p>
+            <h3 id="3bb4e588-4719-4824-97db-e2756fa4e232" class="">
+              1.3.3.1. Portée globale
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="e6ba1a23-d811-42d0-89a4-9ef5ce15947c"
+              class="code"
+            ><code class="language-JavaScript">var globale = &quot;Je suis globale&quot;;
+
+function afficherGlobale() {
+    console.log(globale);
+}
+
+afficherGlobale(); // Affiche: Je suis globale</code></pre>
+            <h3 id="c1749833-97b1-4d6b-85bc-3a045e9168e0" class="">
+              1.3.3.2. Portée locale (fonction)
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="5114fa8f-b090-4083-b310-a8348f05c425"
+              class="code"
+            ><code class="language-JavaScript">function exemple() {
+    var locale = &quot;Je suis locale&quot;;
+    console.log(locale);
+}
+
+exemple(); // Affiche: Je suis locale
+// console.log(locale); // Erreur: locale is not defined</code></pre>
+            <h3 id="eb3939a7-924b-4340-8c3d-5401e26fb8fc" class="">
+              1.3.3.3. Portée de bloc (let et const)
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c488ddef-63b4-4352-8203-e01b1c88fe12"
+              class="code"
+            ><code class="language-JavaScript">if (true) {
+    let blocVariable = &quot;Je suis dans un bloc&quot;;
+    console.log(blocVariable); // Affiche: Je suis dans un bloc
+}
+// console.log(blocVariable); // Erreur: blocVariable is not defined</code></pre>
+            <h3 id="0da9c908-3b7b-4814-beab-998bc79eaf7f" class="">
+              1.3.4. Closure
+            </h3>
+            <p id="34069b93-aebe-4953-845e-c518055445fe" class="">
+              Une closure est une fonction qui a accès aux variables de sa
+              portée extérieure :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="fbaf7cf3-da17-47b1-a70b-673bb307e7f6"
+              class="code"
+            ><code class="language-JavaScript">function creerCompteur() {
+    let compte = 0;
+    return function() {
+        return ++compte;
+    };
+}
+
+const compteur = creerCompteur();
+console.log(compteur()); // Affiche: 1
+console.log(compteur()); // Affiche: 2</code></pre>
+            <h3 id="07b25004-7ecf-4a7d-9d7e-a1259e70b561" class="">
+              1.3.5. This et liaison de contexte
+            </h3>
+            <p id="e7eb1240-4060-4153-9c6d-6e89bb2bb0cb" class="">
+              Le mot-clé &#x27;this&#x27; fait référence au contexte
+              d&#x27;exécution d&#x27;une fonction :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="8797e7af-f572-4efc-a045-91d6b9ebecea"
+              class="code"
+            ><code class="language-JavaScript">const personne = {
+    nom: &quot;Alice&quot;,
+    saluer: function() {
+        console.log(`Bonjour, je m&#x27;appelle ${this.nom}`);
+    }
+};
+
+personne.saluer(); // Affiche: Bonjour, je m&#x27;appelle Alice
+
+const saluerHorsDuContexte = personne.saluer;
+// saluerHorsDuContexte(); // Erreur: this.nom est undefined
+
+const saluerLie = personne.saluer.bind(personne);
+saluerLie(); // Affiche: Bonjour, je m&#x27;appelle Alice</code></pre>
+            <p id="219b77a1-ef1f-4dec-b549-cacd120af835" class="">
+              En comprenant ces concepts, vous pouvez écrire du code JavaScript
+              plus propre, plus modulaire et plus efficace.
+            </p>
+            <h2 id="af3f44ae-0534-4a19-8d74-c51b149699d6" class="">
+              1.4. Objets et tableaux
+            </h2>
+            <p id="8a3f17ff-6187-4270-9182-6c001e5e0e4f" class="">
+              Les objets et les tableaux sont des structures de données
+              fondamentales en JavaScript. Voici un résumé détaillé :
+            </p>
+            <h3 id="fa5175ab-9413-4054-b9a7-a9c54241ff07" class="">
+              1.4.1. Objets
+            </h3>
+            <p id="fa7ded83-94bf-42d9-8ae3-4e4190a71372" class="">
+              Les objets en JavaScript sont des collections de paires
+              clé-valeur.
+            </p>
+            <h3 id="46234d64-ff75-4904-b0e3-2769150b3e49" class="">
+              1.4.1.1. Création d&#x27;objets
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="80fb77f1-914b-46b3-ab06-2a49717f47eb"
+              class="code"
+            ><code class="language-JavaScript">// Notation littérale
+let personne = {
+    nom: &quot;Dupont&quot;,
+    age: 30,
+    ville: &quot;Paris&quot;
+};
+
+// Constructeur Object
+let voiture = new Object();
+voiture.marque = &quot;Renault&quot;;
+voiture.modele = &quot;Clio&quot;;
+
+// Fonction constructeur
+function Animal(espece, nom) {
+    this.espece = espece;
+    this.nom = nom;
+}
+let chien = new Animal(&quot;Canin&quot;, &quot;Rex&quot;);</code></pre>
+            <h3 id="649d1456-d2ca-474f-80b6-34d9fc873459" class="">
+              1.4.1.2. Accès aux propriétés
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="ee343699-26c0-46d6-b6d4-ffd489db8773"
+              class="code"
+            ><code class="language-JavaScript">console.log(personne.nom); // Notation point
+console.log(personne[&quot;age&quot;]); // Notation crochet
+
+// Vérification de l&#x27;existence d&#x27;une propriété
+console.log(&quot;nom&quot; in personne); // true
+console.log(personne.hasOwnProperty(&quot;adresse&quot;)); // false</code></pre>
+            <h3 id="64b35c2a-6d32-49b9-bdc3-465680309584" class="">
+              1.4.1.3. Méthodes d&#x27;objet
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="f51ce019-9898-45dd-8c56-a5dec153f26b"
+              class="code"
+            ><code class="language-JavaScript">let calculatrice = {
+    addition: function(a, b) {
+        return a + b;
+    },
+    soustraction: (a, b) =&gt; a - b // Syntaxe de fonction fléchée
+};
+
+console.log(calculatrice.addition(5, 3)); // 8</code></pre>
+            <h3 id="0778dc19-abb3-414a-88f2-e53975fcc26a" class="">
+              1.4.2. Tableaux
+            </h3>
+            <p id="c9d64643-a8fa-4ee3-a49b-a35bee3ffa38" class="">
+              Les tableaux sont des objets spéciaux utilisés pour stocker des
+              listes ordonnées d&#x27;éléments.
+            </p>
+            <h3 id="4a019b66-461f-48e9-80d7-1424107eb9de" class="">
+              1.4.2.1. Création de tableaux
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="fed92570-7d9a-4fad-9ff6-5fcb03d4eea2"
+              class="code"
+            ><code class="language-JavaScript">// Notation littérale
+let fruits = [&quot;pomme&quot;, &quot;banane&quot;, &quot;orange&quot;];
+
+// Constructeur Array
+let nombres = new Array(1, 2, 3, 4, 5);
+
+// Array.from (ES6+)
+let lettres = Array.from(&quot;ABCDE&quot;);</code></pre>
+            <h3 id="5773b2b1-be9f-431c-a3aa-45b211ee5d73" class="">
+              1.4.2.2. Accès et modification des éléments
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="cfcf4168-7390-48ea-ab27-4afd1cbf718a"
+              class="code"
+            ><code class="language-JavaScript">console.log(fruits[0]); // &quot;pomme&quot;
+fruits[1] = &quot;kiwi&quot;;
+console.log(fruits); // [&quot;pomme&quot;, &quot;kiwi&quot;, &quot;orange&quot;]
+
+// Ajout et suppression d&#x27;éléments
+fruits.push(&quot;mangue&quot;); // Ajoute à la fin
+fruits.unshift(&quot;fraise&quot;); // Ajoute au début
+let dernier = fruits.pop(); // Supprime et retourne le dernier élément
+let premier = fruits.shift(); // Supprime et retourne le premier élément</code></pre>
+            <h3 id="4434f577-ed47-4578-80e0-33c4ce937d0c" class="">
+              1.4.2.3. Méthodes de tableau courantes
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="d425319a-63d8-4eb9-bdb8-9d0029193555"
+              class="code"
+            ><code class="language-JavaScript">// forEach
+fruits.forEach(fruit =&gt; console.log(fruit));
+
+// map
+let longueurs = fruits.map(fruit =&gt; fruit.length);
+
+// filter
+let longsFruits = fruits.filter(fruit =&gt; fruit.length &gt; 5);
+
+// reduce
+let total = nombres.reduce((acc, val) =&gt; acc + val, 0);
+
+// find
+let premierLong = fruits.find(fruit =&gt; fruit.length &gt; 5);
+
+// some et every
+let quelquesLongs = fruits.some(fruit =&gt; fruit.length &gt; 5);
+let tousLongs = fruits.every(fruit =&gt; fruit.length &gt; 5);</code></pre>
+            <h3 id="50c4a7fc-0df7-4403-93c9-b5de5571a96b" class="">
+              1.4.2.4. Spread operator et déstructuration (ES6+)
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="3b60ada1-0b71-4666-a3ef-fed97c79e950"
+              class="code"
+            ><code class="language-JavaScript">// Spread operator
+let plusDeFruits = [...fruits, &quot;papaye&quot;, &quot;ananas&quot;];
+
+// Déstructuration
+let [fruit1, fruit2, ...reste] = fruits;
+console.log(fruit1, fruit2, reste);</code></pre>
+            <p id="e7ed6e6c-0896-466a-a58d-498c2872f793" class="">
+              En maîtrisant ces concepts d&#x27;objets et de tableaux, vous
+              serez capable de manipuler efficacement les données dans vos
+              applications JavaScript.
+            </p>
+            <h2 id="ba7a0534-19cb-4954-975c-9807de2f7920" class="">
+              1.5. Prototypes et héritage
+            </h2>
+            <p id="e1f6d64b-8674-428b-8838-2dc212b001b1" class="">
+              Les prototypes et l&#x27;héritage sont des concepts fondamentaux
+              en JavaScript qui permettent de créer des objets basés sur
+              d&#x27;autres objets. Voici un résumé détaillé :
+            </p>
+            <h3 id="86c7a5cb-0abb-48a8-ad58-7a8437066d6b" class="">
+              1.5.1. Prototypes
+            </h3>
+            <p id="6a280a4c-075a-4668-a8d2-8ba51471a402" class="">
+              En JavaScript, chaque objet a un prototype interne, qui est
+              lui-même un objet. Ce prototype sert de &quot;modèle&quot; pour
+              l&#x27;objet, fournissant des propriétés et des méthodes que
+              l&#x27;objet peut utiliser.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="9626d7d9-1621-4baa-9ebb-00424d35b7fa"
+              class="code"
+            ><code class="language-JavaScript">// Création d&#x27;un objet prototype
+let animalPrototype = {
+    respirer: function() {
+        console.log(&quot;Je respire&quot;);
+    }
+};
+
+// Création d&#x27;un objet basé sur le prototype
+let chien = Object.create(animalPrototype);
+chien.aboyer = function() {
+    console.log(&quot;Woof!&quot;);
+};
+
+chien.respirer(); // Affiche: Je respire
+chien.aboyer();   // Affiche: Woof!</code></pre>
+            <h3 id="402ab249-73b5-4c1d-8d99-0f9eb85769b8" class="">
+              1.5.2. Chaîne de prototypes
+            </h3>
+            <p id="bd81593a-f8a8-4f34-a5c4-8d20190d797e" class="">
+              Les objets en JavaScript forment une chaîne de prototypes. Si une
+              propriété n&#x27;est pas trouvée sur un objet, JavaScript la
+              recherche dans son prototype, puis dans le prototype du prototype,
+              et ainsi de suite.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="7cf36816-1e3c-4ab3-b461-83b35336b272"
+              class="code"
+            ><code class="language-JavaScript">let mammiferePrototype = Object.create(animalPrototype);
+mammiferePrototype.allaiter = function() {
+    console.log(&quot;J&#x27;allaite mes petits&quot;);
+};
+
+let chien = Object.create(mammiferePrototype);
+chien.aboyer = function() {
+    console.log(&quot;Woof!&quot;);
+};
+
+chien.respirer(); // Affiche: Je respire (hérité d&#x27;animalPrototype)
+chien.allaiter(); // Affiche: J&#x27;allaite mes petits (hérité de mammiferePrototype)
+chien.aboyer();   // Affiche: Woof! (propre méthode)</code></pre>
+            <h3 id="fa6087d1-3d0d-482d-b9b1-15d15be1fc43" class="">
+              1.5.3. Constructeurs et l&#x27;opérateur new
+            </h3>
+            <p id="1bd239c0-9097-4584-912b-6c93aa57a87a" class="">
+              Les fonctions constructeurs sont utilisées avec l&#x27;opérateur
+              new pour créer des objets avec un prototype spécifique.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="9dcba831-7bae-406e-a546-b2cf900881f2"
+              class="code"
+            ><code class="language-JavaScript">function Animal(nom) {
+    this.nom = nom;
+}
+
+Animal.prototype.respirer = function() {
+    console.log(this.nom + &quot; respire&quot;);
+};
+
+let chat = new Animal(&quot;Minou&quot;);
+chat.respirer(); // Affiche: Minou respire</code></pre>
+            <h3 id="05f2d10d-e8b4-4617-8de4-8ef56f3ac63e" class="">
+              1.5.4. Héritage
+            </h3>
+            <p id="e5486b8d-5a2e-49b7-b5f2-76580ae48c51" class="">
+              L&#x27;héritage en JavaScript se fait via la chaîne de prototypes.
+              On peut créer une &quot;classe&quot; enfant qui hérite d&#x27;une
+              &quot;classe&quot; parent.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="2678e882-b2c6-4ca9-b1a4-86884e676ca2"
+              class="code"
+            ><code class="language-JavaScript">function Chien(nom, race) {
+    Animal.call(this, nom); // Appel du constructeur parent
+    this.race = race;
+}
+
+// Héritage du prototype
+Chien.prototype = Object.create(Animal.prototype);
+Chien.prototype.constructor = Chien;
+
+Chien.prototype.aboyer = function() {
+    console.log(this.nom + &quot; aboie&quot;);
+};
+
+let rex = new Chien(&quot;Rex&quot;, &quot;Berger Allemand&quot;);
+rex.respirer(); // Affiche: Rex respire
+rex.aboyer();   // Affiche: Rex aboie</code></pre>
+            <h3 id="95859874-d25f-48fe-9400-bed63addfcbb" class="">
+              1.5.5. Classes ES6+
+            </h3>
+            <p id="3c2cc24a-ff2b-44de-8a8b-e94e1864f86e" class="">
+              ES6 a introduit une syntaxe de classe plus familière pour gérer
+              les prototypes et l&#x27;héritage, bien que le mécanisme
+              sous-jacent reste basé sur les prototypes.
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="135704f3-881b-400d-a0e7-1f7e42f2cd3f"
+              class="code"
+            ><code class="language-JavaScript">class Animal {
+    constructor(nom) {
+        this.nom = nom;
+    }
+
+    respirer() {
+        console.log(this.nom + &quot; respire&quot;);
+    }
+}
+
+class Chien extends Animal {
+    constructor(nom, race) {
+        super(nom);
+        this.race = race;
+    }
+
+    aboyer() {
+        console.log(this.nom + &quot; aboie&quot;);
+    }
+}
+
+let max = new Chien(&quot;Max&quot;, &quot;Labrador&quot;);
+max.respirer(); // Affiche: Max respire
+max.aboyer();   // Affiche: Max aboie</code></pre>
+            <p id="ae26efee-b09e-4870-840e-4dd49c70e3b0" class="">
+              En comprenant ces concepts, vous pouvez créer des hiérarchies
+              d&#x27;objets complexes et réutiliser efficacement le code dans
+              vos applications JavaScript.
+            </p>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            2. Concepts avancés
+          </summary>
+          <div class="indented">
+            <h2 id="1b63aba5-88af-4ee9-89fe-3f8cebcc3c34" class="">
+              2.1. Closures
+            </h2>
+            <p id="885a448b-2e80-49bc-bbb6-906fae2576dd" class="">
+              Les closures (fermetures) sont un concept fondamental en
+              JavaScript qui permet à une fonction de &quot;se souvenir&quot; de
+              son environnement lexical, même lorsqu&#x27;elle est exécutée en
+              dehors de cet environnement. Voici un résumé détaillé :
+            </p>
+            <h3 id="98f989f0-1775-4316-a2ea-90a728e5069e" class="">
+              2.1.1. Définition
+            </h3>
+            <p id="ee8c2a78-6852-4335-951b-c633d199b13d" class="">
+              Une closure est créée lorsqu&#x27;une fonction est définie à
+              l&#x27;intérieur d&#x27;une autre fonction. Elle permet à la
+              fonction interne d&#x27;accéder aux variables de la fonction
+              externe, même après que cette dernière ait terminé son exécution.
+            </p>
+            <h3 id="14912867-661a-4c83-88ab-da1055071a45" class="">
+              2.1.2. Caractéristiques principales
+            </h3>
+            <ul id="09724b30-e05f-4f85-a244-46b84d0910a1" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Accès aux variables de la portée parente
+              </li>
+            </ul>
+            <ul id="4d69a430-3e00-45d0-8930-d2a1dc74e59b" class="bulleted-list">
+              <li style="list-style-type: disc">Préservation de l&#x27;état</li>
+            </ul>
+            <ul id="383267d9-c749-40a3-8a91-acbb84fd6203" class="bulleted-list">
+              <li style="list-style-type: disc">Encapsulation des données</li>
+            </ul>
+            <h3 id="dce85898-4cba-420d-ae1d-078920845a6b" class="">
+              2.1.3. Exemples
+            </h3>
+            <h3 id="b3981744-6d08-4ee4-8bb2-7ac10e546217" class="">
+              2.1.3.1. Création d&#x27;une closure simple
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="25d1207f-a9d0-4524-87e7-2deaaf6e5342"
+              class="code"
+            ><code class="language-JavaScript">function creerCompteur() {
+    let count = 0;
+    return function() {
+        count++;
+        console.log(count);
+    };
+}
+
+const compteur = creerCompteur();
+compteur(); // Affiche: 1
+compteur(); // Affiche: 2
+compteur(); // Affiche: 3</code></pre>
+            <p id="6aa0e2df-80f8-4ddd-ae99-cd0faf51bfbf" class="">
+              Dans cet exemple, la fonction interne a accès à la variable
+              &#x27;count&#x27; de la fonction externe, même après que
+              &#x27;creerCompteur&#x27; ait terminé son exécution.
+            </p>
+            <h3 id="cbdcdd9d-3c99-41ef-aa01-ee5f6f672236" class="">
+              2.1.3.2. Utilisation pour créer des fonctions privées
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="2a88713a-3ef6-4a0e-8888-f6c4aac6154b"
+              class="code"
+            ><code class="language-JavaScript">function creerCalculateur() {
+    let total = 0;
+    
+    function ajouter(x) {
+        total += x;
+    }
+    
+    function soustraire(x) {
+        total -= x;
+    }
+    
+    function obtenirTotal() {
+        return total;
+    }
+    
+    return {
+        ajouter,
+        soustraire,
+        obtenirTotal
+    };
+}
+
+const calc = creerCalculateur();
+calc.ajouter(5);
+calc.soustraire(2);
+console.log(calc.obtenirTotal()); // Affiche: 3</code></pre>
+            <p id="04b41c58-31bc-494e-8a3f-8405f10ab352" class="">
+              Ici, &#x27;total&#x27; est une variable privée accessible
+              uniquement via les méthodes exposées.
+            </p>
+            <h3 id="7c3147e8-be1c-4167-8ab6-3662c50ee13b" class="">
+              2.1.3.3. Création de fonctions avec des paramètres prédéfinis
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="15f8f92f-d427-41cf-be19-752d6283bf32"
+              class="code"
+            ><code class="language-JavaScript">function multiplier(x) {
+    return function(y) {
+        return x * y;
+    };
+}
+
+const doubler = multiplier(2);
+const tripler = multiplier(3);
+
+console.log(doubler(5)); // Affiche: 10
+console.log(tripler(5)); // Affiche: 15</code></pre>
+            <p id="dc0417e5-01c2-4fa3-82c6-0974bbd5b3fe" class="">
+              Cette technique, appelée &quot;currying&quot;, utilise les
+              closures pour créer des fonctions spécialisées.
+            </p>
+            <h3 id="9d30d9e6-bf7a-4fe4-9ec8-3b0fd5e84cb3" class="">
+              2.1.4. Avantages des closures
+            </h3>
+            <ul id="9de8a735-7218-4906-b62c-3f4d7c2f7e27" class="bulleted-list">
+              <li style="list-style-type: disc">Encapsulation des données</li>
+            </ul>
+            <ul id="15b2bf99-552f-4d1e-a96f-21a12f345ca8" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Création de fonctions d&#x27;ordre supérieur
+              </li>
+            </ul>
+            <ul id="6cb89080-92f7-4f5d-a0ff-97dfe064dac4" class="bulleted-list">
+              <li style="list-style-type: disc">Implémentation de modules</li>
+            </ul>
+            <h3 id="3fa7ec9f-8955-4dd2-8d4d-60af71475065" class="">
+              2.1.5. Points à considérer
+            </h3>
+            <ul id="55120b77-ad3d-466e-8a4a-fe68a60462d3" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les closures peuvent consommer plus de mémoire car elles
+                maintiennent une référence à leur environnement lexical
+              </li>
+            </ul>
+            <ul id="b9b41ecd-8c06-4c6b-bb87-ddc8fa90b9c3" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Une utilisation excessive peut rendre le code plus difficile à
+                comprendre
+              </li>
+            </ul>
+            <p id="66163793-f352-4db4-ab00-9b2251a37d53" class="">
+              En maîtrisant les closures, vous pouvez écrire un code JavaScript
+              plus propre, plus modulaire et plus puissant.
+            </p>
+            <h2 id="e05b64c2-e9f2-4559-b541-73cf8bfb874a" class="">
+              2.2. Programmation fonctionnelle
+            </h2>
+            <p id="2f302617-5d46-495d-bcf0-0f6f91fd4508" class="">
+              La programmation fonctionnelle est un paradigme de programmation
+              qui traite le calcul comme l&#x27;évaluation de fonctions
+              mathématiques et évite de changer l&#x27;état et les données
+              mutables. Voici un résumé détaillé de la programmation
+              fonctionnelle en JavaScript :
+            </p>
+            <h3 id="338abb0c-61af-4f03-8578-17c5bd336bc3" class="">
+              2.2.1. Principes fondamentaux
+            </h3>
+            <ul id="ccee53af-d40f-4ec5-b1e7-c9c2c419cf2f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Immutabilité :</strong> Les données ne changent pas une
+                fois créées.
+              </li>
+            </ul>
+            <ul id="873ab6b0-a46e-4d8c-ab7d-5482181cb7fa" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Fonctions pures :</strong> Les fonctions produisent
+                toujours le même résultat pour les mêmes entrées, sans effets
+                secondaires.
+              </li>
+            </ul>
+            <ul id="f718fa72-f89b-449c-b1c2-b9decf53cd5a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Récursivité :</strong> Utilisation de la récursion
+                plutôt que des boucles pour des opérations répétitives.
+              </li>
+            </ul>
+            <ul id="634e80be-ca2a-4c19-bda6-28d20eeda1b3" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Fonctions d&#x27;ordre supérieur :</strong> Les
+                fonctions peuvent prendre d&#x27;autres fonctions comme
+                arguments ou les retourner.
+              </li>
+            </ul>
+            <h3 id="807e9017-909d-420f-86df-ab3ae614f99b" class="">
+              2.2.2. Exemples de concepts clés
+            </h3>
+            <h3 id="33a9aae6-d746-43a2-bffb-d22fee6230ef" class="">
+              2.2.2.1. Immutabilité
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="e280e027-b4ff-489d-80b0-1e4f1728de8f"
+              class="code"
+            ><code class="language-JavaScript">// Mauvaise pratique (mutation)
+const arr = [1, 2, 3];
+arr.push(4);
+
+// Bonne pratique (immutabilité)
+const arr = [1, 2, 3];
+const newArr = [...arr, 4];</code></pre>
+            <h3 id="7152e4d1-0d77-40f3-9765-9f250e8d4215" class="">
+              2.2.2.2. Fonctions pures
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="46ed90a5-3e91-4555-a915-549d536de017"
+              class="code"
+            ><code class="language-JavaScript">// Fonction pure
+function add(a, b) {
+    return a + b;
+}
+
+// Fonction impure (dépend d&#x27;un état externe)
+let total = 0;
+function addToTotal(value) {
+    total += value;
+    return total;
+}</code></pre>
+            <h3 id="ec326540-01ba-4d94-ab65-bd2f10537079" class="">
+              2.2.2.3. Fonctions d&#x27;ordre supérieur
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="20fa27d3-07df-46c4-af58-f578a4cf72e5"
+              class="code"
+            ><code class="language-JavaScript">const numbers = [1, 2, 3, 4, 5];
+
+// map est une fonction d&#x27;ordre supérieur
+const doubled = numbers.map(num =&gt; num * 2);
+
+// Création d&#x27;une fonction d&#x27;ordre supérieur
+function multiplyBy(factor) {
+    return function(number) {
+        return number * factor;
+    }
+}
+
+const double = multiplyBy(2);
+console.log(double(5)); // Affiche: 10</code></pre>
+            <h3 id="8b467cf6-1cb5-47cf-8ba7-12890ccd558f" class="">
+              2.2.3. Techniques de programmation fonctionnelle
+            </h3>
+            <h3 id="e25a66f7-3656-486a-a295-5d6a46b64e4b" class="">
+              2.2.3.1. Composition de fonctions
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c949f963-f71f-4a3d-b0c8-fe05a9ab4134"
+              class="code"
+            ><code class="language-JavaScript">const compose = (f, g) =&gt; x =&gt; f(g(x));
+
+const addOne = x =&gt; x + 1;
+const double = x =&gt; x * 2;
+
+const addOneThenDouble = compose(double, addOne);
+
+console.log(addOneThenDouble(3)); // Affiche: 8</code></pre>
+            <h3 id="1503b147-6c2f-49ba-869a-ff6503486a76" class="">
+              2.2.3.2. Currying
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="cd1089c4-a412-4c11-ad18-2a18a26aaf9a"
+              class="code"
+            ><code class="language-JavaScript">const multiply = (a, b) =&gt; a * b;
+const curriedMultiply = a =&gt; b =&gt; a * b;
+
+console.log(multiply(2, 3)); // Affiche: 6
+console.log(curriedMultiply(2)(3)); // Affiche: 6
+
+const double = curriedMultiply(2);
+console.log(double(4)); // Affiche: 8</code></pre>
+            <h3 id="5fa28114-caa2-44ab-b99c-b5d9d0e9a4f8" class="">
+              2.2.3.3. Récursion
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c3a7f85c-32b0-43be-b25e-02cd3bc1001a"
+              class="code"
+            ><code class="language-JavaScript">function factorial(n) {
+    if (n &lt;= 1) return 1;
+    return n * factorial(n - 1);
+}
+
+console.log(factorial(5)); // Affiche: 120</code></pre>
+            <h3 id="73acb812-1d59-4865-97c0-6c4b0b365b94" class="">
+              2.2.4. Avantages de la programmation fonctionnelle
+            </h3>
+            <ul id="67ab4a57-8101-4811-9190-81322f131a4d" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Code plus prévisible et plus facile à tester
+              </li>
+            </ul>
+            <ul id="ec8887d8-7bd3-4bc0-97c3-1ed2b37a782a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Réduction des effets secondaires
+              </li>
+            </ul>
+            <ul id="b72395c8-a6be-4673-a18a-f7dad886db85" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Meilleure modularité et réutilisabilité du code
+              </li>
+            </ul>
+            <ul id="e5ff4602-2019-4076-879f-f33375ee8753" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Facilite le parallélisme et la concurrence
+              </li>
+            </ul>
+            <h3 id="794973a4-a197-4ab9-9f56-5950181d27b3" class="">
+              2.2.5. Bibliothèques pour la programmation fonctionnelle en
+              JavaScript
+            </h3>
+            <ul id="2a457988-823c-435f-8aa4-6f273c115fd6" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Lodash/FP : Version fonctionnelle de Lodash
+              </li>
+            </ul>
+            <ul id="3458ef3f-9bda-4395-8538-cef063e5f42d" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Ramda : Bibliothèque conçue spécifiquement pour la programmation
+                fonctionnelle
+              </li>
+            </ul>
+            <ul id="176a1b8f-76f8-4557-ad00-baf83a37e7b9" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Immutable.js : Pour travailler avec des structures de données
+                immuables
+              </li>
+            </ul>
+            <p id="9de3b00f-da75-4ad7-8fa1-77cc7e8d6989" class="">
+              En adoptant ces principes et techniques de programmation
+              fonctionnelle, vous pouvez écrire un code JavaScript plus robuste,
+              plus maintenable et plus expressif.
+            </p>
+            <h2 id="f1828094-2f26-4dc7-8086-c746791d5c10" class="">
+              2.3. Promesses et asynchronicité
+            </h2>
+            <p id="5e3a1a80-feaf-4243-9be0-c95c5004d49c" class="">
+              Les promesses et l&#x27;asynchronicité sont des concepts
+              fondamentaux en JavaScript pour gérer les opérations non
+              bloquantes. Voici un résumé détaillé :
+            </p>
+            <h3 id="1d65acea-834d-4baf-8156-5306032d2936" class="">
+              2.3.1. Asynchronicité en JavaScript
+            </h3>
+            <p id="bb39d20e-2dcf-43e5-acf7-a2a1a34e4be3" class="">
+              JavaScript est un langage à thread unique, mais il peut gérer des
+              opérations asynchrones grâce à la boucle d&#x27;événements (event
+              loop). Les opérations asynchrones permettent d&#x27;exécuter du
+              code sans bloquer l&#x27;exécution du reste du programme.
+            </p>
+            <h3 id="7ba9e770-381b-4320-b7a1-6f60eaf9309e" class="">
+              2.3.2. Callbacks
+            </h3>
+            <p id="d06c8480-4378-49a0-a7a7-e2206bc80094" class="">
+              Historiquement, les callbacks étaient la principale méthode pour
+              gérer l&#x27;asynchronicité :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="0f454745-2b3e-4c94-9890-2d5337b63c75"
+              class="code"
+            ><code class="language-JavaScript">function fetchData(callback) {
+    setTimeout(() =&gt; {
+        callback(&#x27;Données récupérées&#x27;);
+    }, 2000);
+}
+
+fetchData((data) =&gt; {
+    console.log(data);
+});
+console.log(&#x27;Fin du script&#x27;);
+
+// Affiche:
+// Fin du script
+// Données récupérées (après 2 secondes)</code></pre>
+            <p id="35ea4156-8eda-4f6b-aa6f-400eeb6cc8c6" class="">
+              Cependant, les callbacks peuvent mener à des structures de code
+              complexes, souvent appelées &quot;callback hell&quot;.
+            </p>
+            <h3 id="b0129ccc-528f-455e-bf2d-06ab374f42f3" class="">
+              2.3.3. Promesses
+            </h3>
+            <p id="4c28bb0e-d00a-4ad5-980a-311f4bd5f1f3" class="">
+              Les promesses offrent une meilleure façon de gérer les opérations
+              asynchrones :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="0a5f3d1c-f847-418a-936e-b2a4b959c16e"
+              class="code"
+            ><code class="language-JavaScript">const fetchData = new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+        resolve(&#x27;Données récupérées&#x27;);
+        // En cas d&#x27;erreur : reject(new Error(&#x27;Erreur lors de la récupération&#x27;));
+    }, 2000);
+});
+
+fetchData
+    .then(data =&gt; console.log(data))
+    .catch(error =&gt; console.error(error));
+
+console.log(&#x27;Fin du script&#x27;);
+
+// Affiche:
+// Fin du script
+// Données récupérées (après 2 secondes)</code></pre>
+            <h3 id="20202e92-c585-4ea0-b238-08fd94ed2d18" class="">
+              2.3.4. Chaînage des promesses
+            </h3>
+            <p id="715f04fc-4f20-45ea-98d7-8f10c8a4fb2d" class="">
+              Les promesses peuvent être chaînées pour gérer des séquences
+              d&#x27;opérations asynchrones :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="fb8d8c62-305e-4d75-8ca7-c2c02120fdb9"
+              class="code"
+            ><code class="language-JavaScript">function fetchUser() {
+    return new Promise(resolve =&gt; {
+        setTimeout(() =&gt; resolve({ id: 1, name: &#x27;Alice&#x27; }), 1000);
+    });
+}
+
+function fetchUserPosts(userId) {
+    return new Promise(resolve =&gt; {
+        setTimeout(() =&gt; resolve([&#x27;Post 1&#x27;, &#x27;Post 2&#x27;]), 1000);
+    });
+}
+
+fetchUser()
+    .then(user =&gt; fetchUserPosts(user.id))
+    .then(posts =&gt; console.log(posts))
+    .catch(error =&gt; console.error(error));</code></pre>
+            <h3 id="199306aa-3a70-4ba4-82a3-869950e08719" class="">
+              2.3.5. Async/Await
+            </h3>
+            <p id="4d243cdd-9703-4093-acbf-d3b91520d3ba" class="">
+              ES2017 a introduit async/await, une syntaxe plus intuitive pour
+              travailler avec les promesses :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="3f9e805a-0927-49f5-8d04-eed0196cfc80"
+              class="code"
+            ><code class="language-JavaScript">async function fetchUserAndPosts() {
+    try {
+        const user = await fetchUser();
+        const posts = await fetchUserPosts(user.id);
+        console.log(posts);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+fetchUserAndPosts();</code></pre>
+            <h3 id="6ada4930-f5a7-475b-b382-a1229230b2da" class="">
+              2.3.6. Promesses parallèles
+            </h3>
+            <p id="d347178f-a63b-47aa-a37e-f05081a5e9a0" class="">
+              Pour exécuter plusieurs promesses en parallèle :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c39fe2b1-f64b-4e50-a6b2-2dde5469770b"
+              class="code"
+            ><code class="language-JavaScript">const promise1 = Promise.resolve(&#x27;Résultat 1&#x27;);
+const promise2 = new Promise(resolve =&gt; setTimeout(() =&gt; resolve(&#x27;Résultat 2&#x27;), 2000));
+
+Promise.all([promise1, promise2])
+    .then(results =&gt; console.log(results))
+    .catch(error =&gt; console.error(error));
+
+// Affiche: [&#x27;Résultat 1&#x27;, &#x27;Résultat 2&#x27;] après 2 secondes</code></pre>
+            <h3 id="ce8975b4-2c31-48e3-97e1-77310a5a90d2" class="">
+              2.3.7. Gestion des erreurs
+            </h3>
+            <p id="7b4ed9c3-08ab-4b64-9122-046cd8100bbd" class="">
+              Les promesses et async/await offrent une meilleure gestion des
+              erreurs :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="2c166328-26b1-4ef7-93f2-27bc59239a92"
+              class="code"
+            ><code class="language-JavaScript">function fetchData() {
+    return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; reject(new Error(&#x27;Erreur réseau&#x27;)), 2000);
+    });
+}
+
+async function getData() {
+    try {
+        const data = await fetchData();
+        console.log(data);
+    } catch (error) {
+        console.error(&#x27;Erreur attrapée:&#x27;, error.message);
+    }
+}
+
+getData();
+// Affiche: Erreur attrapée: Erreur réseau (après 2 secondes)</code></pre>
+            <p id="99e308fd-2ed6-4a40-9ab1-15c7b82b5826" class="">
+              En maîtrisant ces concepts, vous pouvez écrire du code asynchrone
+              plus propre, plus lisible et plus facile à maintenir en
+              JavaScript.
+            </p>
+            <h2 id="5b05d3f3-3658-4dc2-9aff-062355b7e98b" class="">
+              2.4. Modules ES6+
+            </h2>
+            <p id="32381f85-62c3-4e02-8ccd-2e31062bc6db" class="">
+              Les modules ES6+ sont une fonctionnalité importante de JavaScript
+              moderne, permettant une meilleure organisation et réutilisation du
+              code. Voici un résumé détaillé :
+            </p>
+            <h3 id="45b8e173-d5d0-4965-b752-4d2d674dec0f" class="">
+              2.4.1. Définition et exportation de modules
+            </h3>
+            <p id="64fafdf0-95ae-4269-a62a-6be541f62bcc" class="">
+              Les modules permettent d&#x27;encapsuler du code et de
+              l&#x27;exporter pour l&#x27;utiliser dans d&#x27;autres fichiers :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="f0d05535-7073-465c-a197-911678fc44c1"
+              class="code"
+            ><code class="language-JavaScript">// math.js
+export const PI = 3.14159;
+
+export function add(a, b) {
+    return a + b;
+}
+
+export default function multiply(a, b) {
+    return a * b;
+}</code></pre>
+            <h3 id="7af68b4f-3dd8-47a3-a9aa-de0339fbef43" class="">
+              2.4.2. Importation de modules
+            </h3>
+            <p id="cde1e38e-5429-476d-85bc-27033f3208d0" class="">
+              Il existe plusieurs façons d&#x27;importer des modules :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="45b7cccf-8c8b-4c2c-ab9b-8ba32e5ed28d"
+              class="code"
+            ><code class="language-JavaScript">// app.js
+import multiply, { PI, add } from &#x27;./math.js&#x27;;
+
+console.log(PI);  // 3.14159
+console.log(add(2, 3));  // 5
+console.log(multiply(4, 5));  // 20</code></pre>
+            <h3 id="21a83107-88b6-422c-a3c5-ac4048050123" class="">
+              2.4.3. Importation avec alias
+            </h3>
+            <p id="ecd0ebd6-fde8-4c5a-ab35-b63c12ce4e06" class="">
+              On peut utiliser des alias pour renommer les imports :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="f8356030-ca2d-48cd-ae56-e3b05fd273f6"
+              class="code"
+            ><code class="language-JavaScript">import { add as addition } from &#x27;./math.js&#x27;;
+console.log(addition(2, 3));  // 5</code></pre>
+            <h3 id="f6cafc1e-779d-4c55-8e9c-bdffe575c8e0" class="">
+              2.4.4. Importation de tous les exports
+            </h3>
+            <p id="b8f9656d-0d87-41c0-baee-8f38097295d0" class="">
+              On peut importer tous les exports d&#x27;un module sous un
+              namespace :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="f3a09ca0-0563-47e1-98f6-64d4845afcce"
+              class="code"
+            ><code class="language-JavaScript">import * as MathModule from &#x27;./math.js&#x27;;
+console.log(MathModule.PI);  // 3.14159
+console.log(MathModule.add(2, 3));  // 5</code></pre>
+            <h3 id="1f0fc86e-d725-4344-9049-dd2d1b585e2f" class="">
+              2.4.5. Réexportation
+            </h3>
+            <p id="5a032bd0-af65-4ba4-a244-acff75854bfe" class="">
+              On peut réexporter des modules importés :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="6e472625-27cf-4632-bd03-cf2bb260f969"
+              class="code"
+            ><code class="language-JavaScript">// utils.js
+export { add, multiply } from &#x27;./math.js&#x27;;
+export { default as fetchData } from &#x27;./api.js&#x27;;</code></pre>
+            <h3 id="9873b815-40a2-4dab-a4e6-90b39a17c25b" class="">
+              2.4.6. Importations dynamiques
+            </h3>
+            <p id="60711a7d-50a6-4621-a2f0-dc8b535c0097" class="">
+              ES2020 a introduit les importations dynamiques pour charger des
+              modules de manière conditionnelle :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="92eb13ca-1fdf-46d9-ad45-8402c42a8de9"
+              class="code"
+            ><code class="language-JavaScript">if (condition) {
+    import(&#x27;./module.js&#x27;)
+        .then(module =&gt; {
+            // Utiliser le module
+        })
+        .catch(error =&gt; {
+            console.error(&#x27;Erreur de chargement du module:&#x27;, error);
+        });
+}</code></pre>
+            <h3 id="00d7b14e-4a71-4f83-9357-1463c8c4c69d" class="">
+              2.4.7. Avantages des modules ES6+
+            </h3>
+            <ul id="41754b07-bbd0-4e68-9898-715e60286c57" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Meilleure organisation du code
+              </li>
+            </ul>
+            <ul id="e7de70d0-6cab-40ee-85bf-526a7c609b32" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Encapsulation et réduction des conflits de noms
+              </li>
+            </ul>
+            <ul id="6736a9c0-d4e8-422e-a0b5-974f7d7fe6c6" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Chargement plus efficace des dépendances
+              </li>
+            </ul>
+            <ul id="d94d0e05-c489-44f7-a0d1-8b29cec3076c" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Support natif dans les navigateurs modernes
+              </li>
+            </ul>
+            <p id="5d737eac-461b-41cc-a638-473ca9986299" class="">
+              Les modules ES6+ offrent une approche puissante et flexible pour
+              structurer les applications JavaScript, améliorant la
+              maintenabilité et la réutilisabilité du code.
+            </p>
+            <h2 id="c2423a3f-5d70-4657-b4a8-526e54552936" class="">
+              2.5. Gestion des erreurs
+            </h2>
+            <p id="b0fb7fb3-c93d-4733-af05-de6b96f18366" class="">
+              La gestion des erreurs est un aspect crucial du développement
+              JavaScript. Voici un résumé détaillé avec des exemples :
+            </p>
+            <h3 id="e7b0c965-8f04-4b5e-b6b5-5a1cac27f47c" class="">
+              2.5.1. Try...catch
+            </h3>
+            <p id="b02552b6-9877-409e-b92d-6e818d125126" class="">
+              La structure try...catch est la base de la gestion des erreurs en
+              JavaScript :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="fe1216b6-fb55-4523-9f0d-0ad915dd7b0a"
+              class="code"
+            ><code class="language-JavaScript">try {
+    // Code susceptible de générer une erreur
+    let x = y + 1; // y n&#x27;est pas défini
+} catch (error) {
+    console.error(&quot;Une erreur s&#x27;est produite :&quot;, error.message);
+}
+// Le programme continue son exécution</code></pre>
+            <h3 id="9e57e1ab-8df4-4a91-823b-6784ff8963e9" class="">
+              2.5.2. Finally
+            </h3>
+            <p id="b3450d57-0179-4893-b1c8-1f9f539276b5" class="">
+              Le bloc finally s&#x27;exécute toujours, qu&#x27;une erreur se
+              produise ou non :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="be8850cc-2dcc-4639-b556-404a50119050"
+              class="code"
+            ><code class="language-JavaScript">try {
+    // Code susceptible de générer une erreur
+} catch (error) {
+    console.error(&quot;Erreur :&quot;, error.message);
+} finally {
+    console.log(&quot;Cette partie s&#x27;exécute toujours&quot;);
+}</code></pre>
+            <h3 id="9631ff2a-ddea-4f14-b530-ea544540b62d" class="">
+              2.5.3. Throw
+            </h3>
+            <p id="626b98be-7eb4-4670-91d7-e60015163f37" class="">
+              L&#x27;instruction throw permet de générer des erreurs
+              personnalisées :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="78e56d67-1ae5-4ebd-9f35-88495d719d21"
+              class="code"
+            ><code class="language-JavaScript">function diviser(a, b) {
+    if (b === 0) {
+        throw new Error(&quot;Division par zéro impossible&quot;);
+    }
+    return a / b;
+}
+
+try {
+    console.log(diviser(10, 0));
+} catch (error) {
+    console.error(&quot;Erreur de division :&quot;, error.message);
+}</code></pre>
+            <h3 id="8fe6f3b6-57c6-4fd6-a3cf-f4f291ed03e1" class="">
+              2.5.4. Types d&#x27;erreurs
+            </h3>
+            <p id="4cc42de9-b185-426a-9dc4-b359e085f1f6" class="">
+              JavaScript possède plusieurs types d&#x27;erreurs prédéfinis :
+            </p>
+            <ul id="28478761-cd28-41b5-abed-6eee8191413b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Error : l&#x27;erreur de base
+              </li>
+            </ul>
+            <ul id="19027f40-1c18-452e-95be-5f805dd3408a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                SyntaxError : erreur de syntaxe
+              </li>
+            </ul>
+            <ul id="cd86500e-3000-4d51-95b5-75a4f442dcd5" class="bulleted-list">
+              <li style="list-style-type: disc">
+                ReferenceError : référence à une variable non définie
+              </li>
+            </ul>
+            <ul id="900ba34b-6a87-466f-95e0-fd8158a68d5f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                TypeError : opération sur un type incorrect
+              </li>
+            </ul>
+            <ul id="8ff2b96c-00b2-4058-b40f-6ffccc4945aa" class="bulleted-list">
+              <li style="list-style-type: disc">
+                RangeError : valeur hors de la plage autorisée
+              </li>
+            </ul>
+            <h3 id="a710f0ca-02f4-4aba-9e8c-3068d7c4eb5b" class="">
+              2.5.5. Gestion des erreurs asynchrones
+            </h3>
+            <p id="daf22270-2665-4172-ae53-af70633bea33" class="">
+              Pour les opérations asynchrones, on peut utiliser .catch() avec
+              les promesses ou try...catch avec async/await :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="263e8a89-944e-42d4-90be-72bbff419099"
+              class="code"
+            ><code class="language-JavaScript">// Avec les promesses
+fetchData()
+    .then(data =&gt; console.log(data))
+    .catch(error =&gt; console.error(&quot;Erreur :&quot;, error));
+
+// Avec async/await
+async function getData() {
+    try {
+        const data = await fetchData();
+        console.log(data);
+    } catch (error) {
+        console.error(&quot;Erreur :&quot;, error);
+    }
+}</code></pre>
+            <h3 id="8b92cd8f-681f-47c3-a761-578912c914ee" class="">
+              2.5.6. Erreurs personnalisées
+            </h3>
+            <p id="33664f34-d3a4-4ff8-aae8-3b49fa0497ab" class="">
+              On peut créer des classes d&#x27;erreurs personnalisées pour une
+              meilleure gestion :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="728bb040-9f52-4d6a-a59b-f751cce3d400"
+              class="code"
+            ><code class="language-JavaScript">class ValidationError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = &quot;ValidationError&quot;;
+    }
+}
+
+function validateUser(user) {
+    if (!user.name) {
+        throw new ValidationError(&quot;Le nom de l&#x27;utilisateur est requis&quot;);
+    }
+}
+
+try {
+    validateUser({});
+} catch (error) {
+    if (error instanceof ValidationError) {
+        console.error(&quot;Erreur de validation :&quot;, error.message);
+    } else {
+        console.error(&quot;Erreur inattendue :&quot;, error);
+    }
+}</code></pre>
+            <h3 id="2ce67fa1-081d-4ea6-a8b6-49d2e6372588" class="">
+              2.5.7. Bonnes pratiques
+            </h3>
+            <ul id="8464e8a5-ed30-4fba-b2af-ef6abd41e1cd" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Toujours inclure la gestion des erreurs dans le code asynchrone
+              </li>
+            </ul>
+            <ul id="32e44307-1d41-406c-b698-0feb8e6afc0a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Utiliser des erreurs spécifiques pour faciliter le débogage
+              </li>
+            </ul>
+            <ul id="b38fc9fc-979f-473a-bd2f-083997356404" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Loguer les erreurs de manière appropriée (console, service de
+                logging)
+              </li>
+            </ul>
+            <ul id="3c3f7b3a-f76b-4d80-8d17-3a07b046d4a4" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Ne pas exposer les détails sensibles des erreurs aux
+                utilisateurs
+              </li>
+            </ul>
+            <ul id="a2501167-ab11-468a-968b-5e4f632ab08b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Tester la gestion des erreurs dans le cadre des tests unitaires
+              </li>
+            </ul>
+            <p id="55115d47-367a-4da3-9faa-ec185540dcb1" class="">
+              Une bonne gestion des erreurs améliore la robustesse et la
+              maintenabilité du code JavaScript.
+            </p>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            3. DOM et manipulation du navigateur
+          </summary>
+          <div class="indented">
+            <h2 id="5c7b1b48-1e5d-4b03-a379-08f098d3ee4d" class="">
+              3.1. Sélection et manipulation des éléments DOM
+            </h2>
+            <p id="332750a7-8cff-443f-9802-ce78598cbced" class="">
+              La sélection et la manipulation des éléments DOM (Document Object
+              Model) sont des compétences essentielles en JavaScript pour
+              interagir avec les pages web. Voici un résumé détaillé :
+            </p>
+            <h3 id="d5175984-a1c5-4f58-800a-fa7c825106dd" class="">
+              3.1.1. Sélection des éléments DOM
+            </h3>
+            <p id="f767211f-0b8e-46e9-a823-1d1fd1099896" class="">
+              Il existe plusieurs méthodes pour sélectionner des éléments DOM :
+            </p>
+            <ul id="717bfbf5-b4dd-4db1-adf8-e8796440851f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>document.getElementById(&#x27;id&#x27;)</code> :
+                Sélectionne un élément par son ID
+              </li>
+            </ul>
+            <ul id="30f18792-f247-415f-bb49-18eb913ebc66" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>document.getElementsByClassName(&#x27;class&#x27;)</code>
+                : Sélectionne des éléments par leur classe
+              </li>
+            </ul>
+            <ul id="b48f72a8-87fb-4423-b173-38222495b89e" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>document.getElementsByTagName(&#x27;tag&#x27;)</code> :
+                Sélectionne des éléments par leur balise
+              </li>
+            </ul>
+            <ul id="ab4f3985-63d5-4d04-8182-ada97d26ae4e" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>document.querySelector(&#x27;selector&#x27;)</code> :
+                Sélectionne le premier élément correspondant au sélecteur CSS
+              </li>
+            </ul>
+            <ul id="a2be1c2d-1912-4734-9f88-ca8cebf398ae" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <code>document.querySelectorAll(&#x27;selector&#x27;)</code> :
+                Sélectionne tous les éléments correspondant au sélecteur CSS
+              </li>
+            </ul>
+            <p id="fd29935f-ac1e-42ff-a457-ae7c9d973b86" class="">Exemples :</p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="996b1814-7b58-49ed-ac86-8783fcbed813"
+              class="code"
+            ><code class="language-JavaScript">// Sélectionner par ID
+const header = document.getElementById(&#x27;main-header&#x27;);
+
+// Sélectionner par classe
+const paragraphs = document.getElementsByClassName(&#x27;content&#x27;);
+
+// Sélectionner par balise
+const buttons = document.getElementsByTagName(&#x27;button&#x27;);
+
+// Utiliser querySelector
+const firstLink = document.querySelector(&#x27;a&#x27;);
+
+// Utiliser querySelectorAll
+const allLinks = document.querySelectorAll(&#x27;a&#x27;);</code></pre>
+            <h3 id="3c5e0b7b-231a-4833-b912-589101af06d1" class="">
+              3.1.2. Manipulation des éléments DOM
+            </h3>
+            <p id="0a4d94ce-a834-45f5-b29a-37d00432f8ab" class="">
+              Une fois les éléments sélectionnés, on peut les manipuler de
+              diverses façons :
+            </p>
+            <h3 id="b2853ece-39d8-461b-a7fe-07f20bc68cbe" class="">
+              3.1.2.1. Modifier le contenu
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="4b631ed7-fc50-4cfc-a674-7bbaee15ad4d"
+              class="code"
+            ><code class="language-JavaScript">// Modifier le texte
+element.textContent = &#x27;Nouveau texte&#x27;;
+
+// Modifier le HTML
+element.innerHTML = &#x27;&lt;strong&gt;Nouveau contenu HTML&lt;/strong&gt;&#x27;;</code></pre>
+            <h3 id="12a0a031-11db-481b-8d27-267fbabb6d62" class="">
+              3.1.2.2. Modifier les attributs
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="76fe7d1e-1901-46f4-8bca-0cb8ff66a2f5"
+              class="code"
+            ><code class="language-JavaScript">// Définir un attribut
+element.setAttribute(&#x27;class&#x27;, &#x27;highlight&#x27;);
+
+// Obtenir un attribut
+const href = element.getAttribute(&#x27;href&#x27;);
+
+// Supprimer un attribut
+element.removeAttribute(&#x27;disabled&#x27;);</code></pre>
+            <h3 id="0302268a-d159-46dd-9a39-cb326e438b56" class="">
+              3.1.2.3. Modifier les styles
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="0ed56471-2147-4338-9353-3a30d34a5c6b"
+              class="code"
+            ><code class="language-JavaScript">// Modifier directement le style
+element.style.color = &#x27;red&#x27;;
+element.style.fontSize = &#x27;16px&#x27;;
+
+// Ajouter ou supprimer des classes
+element.classList.add(&#x27;active&#x27;);
+element.classList.remove(&#x27;hidden&#x27;);
+element.classList.toggle(&#x27;selected&#x27;);</code></pre>
+            <h3 id="80d82671-bddc-43a7-8b2c-a7a1081cd565" class="">
+              3.1.2.4. Créer et supprimer des éléments
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c43d1ccc-25c0-469d-aa5d-b00a19b103c2"
+              class="code"
+            ><code class="language-JavaScript">// Créer un nouvel élément
+const newDiv = document.createElement(&#x27;div&#x27;);
+newDiv.textContent = &#x27;Nouveau div&#x27;;
+
+// Ajouter l&#x27;élément au DOM
+document.body.appendChild(newDiv);
+
+// Supprimer un élément
+const oldElement = document.getElementById(&#x27;old-element&#x27;);
+oldElement.parentNode.removeChild(oldElement);</code></pre>
+            <h3 id="1455022c-feb0-4194-86b7-b3a39b4750e9" class="">
+              3.1.2.5. Parcourir le DOM
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="e1f9b798-0243-442b-9ff0-4a6b1d033b82"
+              class="code"
+            ><code class="language-JavaScript">// Accéder aux éléments parents
+const parent = element.parentNode;
+
+// Accéder aux éléments enfants
+const children = element.children;
+const firstChild = element.firstElementChild;
+const lastChild = element.lastElementChild;
+
+// Accéder aux éléments frères
+const nextSibling = element.nextElementSibling;
+const previousSibling = element.previousElementSibling;</code></pre>
+            <p id="efac146f-36ed-4fc7-a887-49964c8d3160" class="">
+              En maîtrisant ces techniques de sélection et de manipulation du
+              DOM, vous pouvez créer des pages web dynamiques et interactives en
+              JavaScript.
+            </p>
+            <h2 id="55d56e13-97d6-4d37-b6c4-2b39803f678e" class="">
+              3.2. Événements et gestion des événements
+            </h2>
+            <p id="c4e94ea3-a6a7-491b-91a9-a31a1c92b02e" class="">
+              La gestion des événements est un aspect crucial du développement
+              JavaScript, permettant de créer des interfaces utilisateur
+              interactives. Voici un résumé détaillé avec des exemples :
+            </p>
+            <h3 id="b53569fe-928a-4bff-91f7-2ae7e4c0ae5e" class="">
+              3.2.1. Types d&#x27;événements courants
+            </h3>
+            <ul id="0466bd61-3003-4017-b7df-93932dd242da" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Événements de souris : click, dblclick, mouseover, mouseout
+              </li>
+            </ul>
+            <ul id="1afe16ae-aa97-4c8f-b78f-d68353f3c62c" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Événements de clavier : keydown, keyup, keypress
+              </li>
+            </ul>
+            <ul id="faeee68b-8809-40ac-a098-2c1d19b7492c" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Événements de formulaire : submit, change, focus, blur
+              </li>
+            </ul>
+            <ul id="08f063e0-d180-4226-82f1-1468d7c79d0c" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Événements de fenêtre : load, resize, scroll
+              </li>
+            </ul>
+            <h3 id="09e3379c-3981-4b2a-b2dd-33f3a9d55518" class="">
+              3.2.2. Ajout d&#x27;écouteurs d&#x27;événements
+            </h3>
+            <p id="f82832b6-054a-4d20-ae04-d925134d30c4" class="">
+              Il existe plusieurs façons d&#x27;ajouter des écouteurs
+              d&#x27;événements :
+            </p>
+            <h3 id="631d1e33-b7c4-4018-ba6a-31b7cc8d5c96" class="">
+              3.2.2.1. Méthode addEventListener()
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="51cea58b-3692-4d9e-b7a0-623616c5fb58"
+              class="code"
+            ><code class="language-JavaScript">const button = document.querySelector(&#x27;#myButton&#x27;);
+button.addEventListener(&#x27;click&#x27;, function() {
+    console.log(&#x27;Button clicked!&#x27;);
+});</code></pre>
+            <h3 id="526a2046-ccda-4cac-b539-cf5d9fa0bb71" class="">
+              3.2.2.2. Propriétés on-event
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="1cb2857e-a230-45e3-a9b0-f1dc843abab4"
+              class="code"
+            ><code class="language-JavaScript">const button = document.querySelector(&#x27;#myButton&#x27;);
+button.onclick = function() {
+    console.log(&#x27;Button clicked!&#x27;);
+};</code></pre>
+            <h3 id="cede6ac6-98f8-4abb-a18c-c82b4aedc5b0" class="">
+              3.2.3. L&#x27;objet Event
+            </h3>
+            <p id="df489979-c2c6-4431-9576-770e6431e293" class="">
+              Chaque gestionnaire d&#x27;événements reçoit un objet Event
+              contenant des informations sur l&#x27;événement :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="8671d2dd-bfe7-43d2-8fb1-d36f5a0b94a6"
+              class="code"
+            ><code class="language-JavaScript">document.addEventListener(&#x27;click&#x27;, function(event) {
+    console.log(&#x27;Clicked at coordinates: &#x27; + event.clientX + &#x27;, &#x27; + event.clientY);
+});</code></pre>
+            <h3 id="8840113f-1d06-4ec4-866f-21f359cc1310" class="">
+              3.2.4. Propagation des événements
+            </h3>
+            <p id="82071c6a-954b-4866-adde-41b47ca2e409" class="">
+              Les événements se propagent à travers le DOM en deux phases :
+              capture et bouillonnement.
+            </p>
+            <h3 id="6195a1ef-ff96-40b1-a903-5873af4c63da" class="">
+              3.2.4.1. Bouillonnement (Bubbling)
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="6c50a5ac-ff59-4df8-a7bb-09e3901830f1"
+              class="code"
+            ><code class="language-JavaScript">document.querySelector(&#x27;#child&#x27;).addEventListener(&#x27;click&#x27;, function() {
+    console.log(&#x27;Child clicked&#x27;);
+});
+
+document.querySelector(&#x27;#parent&#x27;).addEventListener(&#x27;click&#x27;, function() {
+    console.log(&#x27;Parent clicked&#x27;);
+});</code></pre>
+            <h3 id="0a45319b-e1de-4ec3-b574-1237ff754f1f" class="">
+              3.2.4.2. Capture
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="5d88f6f4-0e8a-4e41-a0a4-ab7860b44af3"
+              class="code"
+            ><code class="language-JavaScript">document.querySelector(&#x27;#parent&#x27;).addEventListener(&#x27;click&#x27;, function() {
+    console.log(&#x27;Parent clicked (capture phase)&#x27;);
+}, true);</code></pre>
+            <h3 id="60f721ed-910e-44aa-a6db-9cc708b1ccb9" class="">
+              3.2.5. Prévention du comportement par défaut
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="9e0223fc-caa0-4934-9ed1-3aa73d54761d"
+              class="code"
+            ><code class="language-JavaScript">document.querySelector(&#x27;form&#x27;).addEventListener(&#x27;submit&#x27;, function(event) {
+    event.preventDefault();
+    console.log(&#x27;Form submission prevented&#x27;);
+});</code></pre>
+            <h3 id="ef94ae2d-1da9-4430-8bb5-a1500bbe26eb" class="">
+              3.2.6. Délégation d&#x27;événements
+            </h3>
+            <p id="ed804f6a-dd6a-4168-8a25-44c8ab615823" class="">
+              Utile pour gérer de nombreux éléments similaires :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="45ccf6b1-36e9-4282-8b2c-fddaaf391246"
+              class="code"
+            ><code class="language-JavaScript">document.querySelector(&#x27;#parent-list&#x27;).addEventListener(&#x27;click&#x27;, function(event) {
+    if (event.target.tagName === &#x27;LI&#x27;) {
+        console.log(&#x27;List item clicked:&#x27;, event.target.textContent);
+    }
+});</code></pre>
+            <h3 id="5d91c5e0-ce17-403d-9174-5901db19888f" class="">
+              3.2.7. Suppression d&#x27;écouteurs d&#x27;événements
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="1f352a33-9e8b-4280-a02e-b493a8adbcd2"
+              class="code"
+            ><code class="language-JavaScript">function handleClick() {
+    console.log(&#x27;Clicked&#x27;);
+}
+
+const button = document.querySelector(&#x27;#myButton&#x27;);
+button.addEventListener(&#x27;click&#x27;, handleClick);
+
+// Plus tard
+button.removeEventListener(&#x27;click&#x27;, handleClick);</code></pre>
+            <h3 id="d3e978ad-c6a0-4c97-96e3-d2f6c05be64e" class="">
+              3.2.8. Événements personnalisés
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="369b2f22-e4a7-4846-a474-345afc3524e9"
+              class="code"
+            ><code class="language-JavaScript">const customEvent = new CustomEvent(&#x27;myCustomEvent&#x27;, {
+    detail: { message: &#x27;Hello Custom Event!&#x27; }
+});
+
+document.addEventListener(&#x27;myCustomEvent&#x27;, function(e) {
+    console.log(e.detail.message);
+});
+
+document.dispatchEvent(customEvent);</code></pre>
+            <p id="70a46fb6-7761-4812-9169-7737bec500a0" class="">
+              La maîtrise de ces concepts de gestion des événements permet de
+              créer des interfaces utilisateur réactives et interactives en
+              JavaScript.
+            </p>
+            <h3 id="b85f0237-790e-4b3c-857c-f7466f5c55b5" class="">
+              3.3. AJAX et Fetch API
+            </h3>
+            <p id="e994340c-b337-4164-b8f7-9450e64bcae7" class="">
+              AJAX (Asynchronous JavaScript and XML) et l&#x27;API Fetch sont
+              des technologies essentielles pour effectuer des requêtes
+              asynchrones en JavaScript. Voici un résumé détaillé de ces deux
+              approches :
+            </p>
+            <h3 id="fe31268e-ae2f-4be7-bdda-c70b28be4285" class="">
+              3.3.1. AJAX (Asynchronous JavaScript and XML)
+            </h3>
+            <p id="7b4c4f8a-caa8-4433-b6e3-926a663be1e4" class="">
+              AJAX permet d&#x27;envoyer et de recevoir des données du serveur
+              de manière asynchrone, sans avoir à recharger la page entière.
+              Bien que son nom contienne &quot;XML&quot;, AJAX peut travailler
+              avec divers formats de données, y compris JSON, HTML, et du texte
+              brut.
+            </p>
+            <h3 id="388905c5-3f8c-4e47-a34d-d1f62c5557f2" class="">
+              Exemple d&#x27;utilisation d&#x27;AJAX avec XMLHttpRequest :
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="bde148e3-663b-46c5-85e0-380723cf7e1b"
+              class="code"
+            ><code class="language-JavaScript">var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 &amp;&amp; xhr.status === 200) {
+        console.log(xhr.responseText);
+    }
+};
+xhr.open(&quot;GET&quot;, &quot;https://api.example.com/data&quot;, true);
+xhr.send();</code></pre>
+            <h3 id="62e7e9bd-6073-4c45-8c2b-1b20c01371af" class="">
+              3.3.2. Fetch API
+            </h3>
+            <p id="37f99ce6-7adf-4714-84de-1b7da69e3966" class="">
+              L&#x27;API Fetch est une interface plus moderne pour faire des
+              requêtes HTTP. Elle utilise les Promesses, ce qui la rend plus
+              facile à utiliser et à comprendre que l&#x27;ancienne API
+              XMLHttpRequest.
+            </p>
+            <h3 id="764be742-5aca-4589-a6ee-1fa2e01c5e77" class="">
+              Exemple d&#x27;utilisation de Fetch :
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="6f0313af-742a-4f24-be61-d90a44a4e304"
+              class="code"
+            ><code class="language-JavaScript">fetch(&#x27;https://api.example.com/data&#x27;)
+    .then(response =&gt; response.json())
+    .then(data =&gt; console.log(data))
+    .catch(error =&gt; console.error(&#x27;Erreur:&#x27;, error));</code></pre>
+            <h3 id="c092ba72-0f96-4b06-b20d-124e6b53d728" class="">
+              Utilisation de Fetch avec async/await :
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="baae6fbd-cc18-4d4a-ae91-a2808bf9887f"
+              class="code"
+            ><code class="language-JavaScript">async function fetchData() {
+    try {
+        const response = await fetch(&#x27;https://api.example.com/data&#x27;);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(&#x27;Erreur:&#x27;, error);
+    }
+}
+
+fetchData();</code></pre>
+            <h3 id="a626a1e1-5ecf-40aa-88c6-6d36158ca0f0" class="">
+              3.3.3. Comparaison entre AJAX et Fetch
+            </h3>
+            <ul id="5e28bde2-707b-4ce5-a8de-a44aedfe7381" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Fetch est basé sur les Promesses, ce qui le rend plus facile à
+                utiliser avec async/await.
+              </li>
+            </ul>
+            <ul id="f6b8273a-d216-41be-a332-75e2f8cbc8fa" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Fetch a une syntaxe plus simple et plus concise que
+                XMLHttpRequest.
+              </li>
+            </ul>
+            <ul id="ae9b1484-3132-41d1-9139-1e8c322a4bb4" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Fetch ne rejette pas la promesse sur les erreurs HTTP (comme 404
+                ou 500), il faut vérifier le statut manuellement.
+              </li>
+            </ul>
+            <ul id="714772e7-9165-4340-909b-d37d4a999ad6" class="bulleted-list">
+              <li style="list-style-type: disc">
+                AJAX via XMLHttpRequest est toujours utile pour la compatibilité
+                avec les anciens navigateurs.
+              </li>
+            </ul>
+            <h3 id="5e3711de-b5cb-40d8-ab0c-e53461531ac9" class="">
+              3.3.4. Envoi de données avec Fetch
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="c5d1f9da-4a6b-4e11-92df-cb26decbcc17"
+              class="code"
+            ><code class="language-JavaScript">fetch(&#x27;https://api.example.com/users&#x27;, {
+    method: &#x27;POST&#x27;,
+    headers: {
+        &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+    },
+    body: JSON.stringify({
+        name: &#x27;John Doe&#x27;,
+        email: &#x27;john@example.com&#x27;
+    })
+})
+.then(response =&gt; response.json())
+.then(data =&gt; console.log(data))
+.catch(error =&gt; console.error(&#x27;Erreur:&#x27;, error));</code></pre>
+            <p id="adfee2e6-4858-45f7-9a32-5a77d7b2ca83" class="">
+              En conclusion, bien qu&#x27;AJAX reste pertinent, notamment pour
+              la compatibilité avec d&#x27;anciens systèmes, l&#x27;API Fetch
+              est généralement préférée pour sa simplicité et son intégration
+              naturelle avec les fonctionnalités modernes de JavaScript comme
+              les Promesses et async/await.
+            </p>
+            <h2 id="f020776e-dce4-44dd-afa5-fe84cc1cb4ac" class="">
+              3.4. Web Storage (localStorage, sessionStorage)
+            </h2>
+            <p id="855056ea-8a2f-4b64-a4d8-ac3b36e0f7cd" class="">
+              Le Web Storage est une API JavaScript qui permet de stocker des
+              données côté client dans le navigateur. Il existe deux mécanismes
+              principaux : localStorage et sessionStorage. Voici un résumé
+              détaillé avec des exemples :
+            </p>
+            <h3 id="9f473321-3319-4748-9ab0-d75431f5566d" class="">
+              3.4.1. localStorage
+            </h3>
+            <p id="a3fd082a-8a8f-4c46-9887-9d45ddba9e95" class="">
+              localStorage permet de stocker des données sans date
+              d&#x27;expiration. Les données persistent même après la fermeture
+              du navigateur.
+            </p>
+            <h3 id="f3346909-d4d9-4829-b0e5-2c6613ec6932" class="">
+              Stocker des données :
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="a0da6a55-32f0-4020-9eb7-4b1def1ad7cc"
+              class="code"
+            ><code class="language-JavaScript">localStorage.setItem(&#x27;username&#x27;, &#x27;John&#x27;);
+localStorage.setItem(&#x27;isLoggedIn&#x27;, true);
+localStorage.setItem(&#x27;userPreferences&#x27;, JSON.stringify({ theme: &#x27;dark&#x27;, fontSize: 14 }));</code></pre>
+            <h3 id="701d8a3e-6b5e-4c16-a14a-8bc01642fbb6" class="">
+              Récupérer des données :
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="51e26911-5939-4922-9e5b-fbb55b472ec9"
+              class="code"
+            ><code class="language-JavaScript">const username = localStorage.getItem(&#x27;username&#x27;);
+const isLoggedIn = localStorage.getItem(&#x27;isLoggedIn&#x27;) === &#x27;true&#x27;;
+const userPreferences = JSON.parse(localStorage.getItem(&#x27;userPreferences&#x27;));</code></pre>
+            <h3 id="dc852be8-6dd1-450d-b53b-56005190b278" class="">
+              Supprimer des données :
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="37a1f9e5-4250-4ea8-a913-d881377bc00e"
+              class="code"
+            ><code class="language-JavaScript">localStorage.removeItem(&#x27;username&#x27;);
+localStorage.clear(); // Supprime toutes les données</code></pre>
+            <h3 id="f304af57-44d0-4076-ac82-d75ae5985c88" class="">
+              3.4.2. sessionStorage
+            </h3>
+            <p id="3df9dd42-210e-47e9-b7e8-2bb3e2e3b2e2" class="">
+              sessionStorage stocke les données pour une seule session. Les
+              données sont effacées lorsque l&#x27;onglet ou la fenêtre du
+              navigateur est fermé.
+            </p>
+            <h3 id="830ff12b-63d0-4698-ac1e-8071b7c1e87b" class="">
+              Utilisation (similaire à localStorage) :
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="4bbf1387-cdcc-4485-8720-e2a5f2a89d86"
+              class="code"
+            ><code class="language-JavaScript">sessionStorage.setItem(&#x27;tempData&#x27;, &#x27;Cette donnée sera perdue à la fermeture&#x27;);
+const tempData = sessionStorage.getItem(&#x27;tempData&#x27;);
+sessionStorage.removeItem(&#x27;tempData&#x27;);
+sessionStorage.clear();</code></pre>
+            <h3 id="9c0d01d5-a7ad-4f00-8c30-242b70772088" class="">
+              3.4.3. Différences clés
+            </h3>
+            <ul id="a9e08c80-7378-4781-bfe0-e34e6569b83b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Persistance : localStorage persiste après la fermeture du
+                navigateur, sessionStorage non.
+              </li>
+            </ul>
+            <ul id="3571c87d-b527-4978-9661-75629725d750" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Portée : localStorage est partagé entre tous les onglets et
+                fenêtres du même origine, sessionStorage est limité à un seul
+                onglet/fenêtre.
+              </li>
+            </ul>
+            <h3 id="216ba2cb-f882-4181-8bfb-607a940c6d57" class="">
+              3.4.4. Limites et considérations
+            </h3>
+            <ul id="7523dd5b-065a-478a-ac8d-69bdb8d68fed" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Capacité de stockage limitée (généralement 5-10 MB)
+              </li>
+            </ul>
+            <ul id="b49bb11d-d1c9-494d-ac48-585cd94d4a8b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Stockage en chaînes de caractères uniquement (utiliser JSON pour
+                les objets)
+              </li>
+            </ul>
+            <ul id="70ea623f-02a7-4388-a388-e76f2552d13a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Pas de cryptage natif (ne pas stocker de données sensibles)
+              </li>
+            </ul>
+            <h3 id="b09f2234-16f1-4633-986d-9b4cd92fbdd7" class="">
+              3.4.5. Exemple pratique : Thème utilisateur
+            </h3>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="17aa3555-fdfc-4b9c-8bc9-b0d1308b7033"
+              class="code"
+            ><code class="language-JavaScript">// Sauvegarder le thème
+function saveTheme(theme) {
+    localStorage.setItem(&#x27;userTheme&#x27;, theme);
+}
+
+// Récupérer le thème
+function getTheme() {
+    return localStorage.getItem(&#x27;userTheme&#x27;) || &#x27;light&#x27;; // &#x27;light&#x27; par défaut
+}
+
+// Utilisation
+saveTheme(&#x27;dark&#x27;);
+console.log(getTheme()); // Affiche &#x27;dark&#x27;
+
+// Appliquer le thème au chargement de la page
+document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; {
+    const currentTheme = getTheme();
+    document.body.className = currentTheme;
+});</code></pre>
+            <p id="b2071431-5a0b-47c7-9cfe-ee680f0a14ad" class="">
+              En conclusion, Web Storage offre une solution simple et efficace
+              pour stocker des données côté client, améliorant les performances
+              et l&#x27;expérience utilisateur des applications web.
+            </p>
+          </div>
+        </details>
+        <h1 id="95d46554-90f7-401d-be73-d00b78b2702e" class="">
+          4. Frameworks et bibliothèques
+        </h1>
+        <ul id="52eb9d64-3066-423a-9363-6042883e05f7" class="bulleted-list">
+          <li style="list-style-type: disc">4.1. React, Vue.js ou Angular</li>
+        </ul>
+        <ul id="c579d734-6ecc-464d-a5e5-553ef9bd7f91" class="bulleted-list">
+          <li style="list-style-type: disc">
+            4.2. jQuery (pour la maintenance de projets plus anciens)
+          </li>
+        </ul>
+        <ul id="3ac2f60c-6423-46c5-9d7a-3dc54644e7dc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            4.3. Bibliothèques utilitaires (Lodash, Moment.js)
+          </li>
+        </ul>
+        <h1 id="525db087-b39a-4500-8fe6-5e5f0dd84f60" class="">
+          5. Outils de développement
+        </h1>
+        <ul id="f7207783-20a3-4a1f-8dbf-77628ea8ae19" class="bulleted-list">
+          <li style="list-style-type: disc">
+            5.1. Gestionnaires de paquets (npm, Yarn)
+          </li>
+        </ul>
+        <ul id="d68364df-b2a6-4e8f-b0e7-aae3904694f3" class="bulleted-list">
+          <li style="list-style-type: disc">5.2. Bundlers (Webpack, Rollup)</li>
+        </ul>
+        <ul id="a16642fa-eaab-4404-918b-670c96c797a2" class="bulleted-list">
+          <li style="list-style-type: disc">5.3. Transpileurs (Babel)</li>
+        </ul>
+        <ul id="3f89b628-57cd-4d2f-b895-56af89bf254e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            5.4. Linters et formatters (ESLint, Prettier)
+          </li>
+        </ul>
+        <h1 id="bab2d977-f0cd-42c5-9ff7-21153fe0b56d" class="">
+          6. Tests et débogage
+        </h1>
+        <ul id="affdbec0-e459-49ce-bd4d-33a3c9ab2828" class="bulleted-list">
+          <li style="list-style-type: disc">
+            6.1. Frameworks de test (Jest, Mocha)
+          </li>
+        </ul>
+        <ul id="36b0feb3-be63-4907-bc60-ef488a7c1f42" class="bulleted-list">
+          <li style="list-style-type: disc">
+            6.2. Tests unitaires et d&#x27;intégration
+          </li>
+        </ul>
+        <ul id="388a25ea-fcbe-4f0c-9864-1db276e0d4bb" class="bulleted-list">
+          <li style="list-style-type: disc">
+            6.3. Outils de débogage du navigateur
+          </li>
+        </ul>
+        <h1 id="bbdd1d46-8600-48ee-840f-39478c499e7d" class="">7. Sécurité</h1>
+        <ul id="15e534bb-2023-4aef-818a-791e51dcb51c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            7.1. Meilleures pratiques de sécurité en JavaScript
+          </li>
+        </ul>
+        <ul id="87f88ac1-afa2-4bfd-8c5a-9b9ed4f166cb" class="bulleted-list">
+          <li style="list-style-type: disc">
+            7.2. Prévention des attaques XSS et CSRF
+          </li>
+        </ul>
+        <h1 id="678ef8ec-ea4e-4204-92ec-d59f25c93f52" class="">
+          8. Performance
+        </h1>
+        <ul id="4eac4f33-7586-43ca-b4ec-2b01a29cabd5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            8.1. Optimisation du code JavaScript
+          </li>
+        </ul>
+        <ul id="f2b53cfe-552f-4b4b-add6-ec5cd7592b65" class="bulleted-list">
+          <li style="list-style-type: disc">
+            8.2. Techniques de mise en cache
+          </li>
+        </ul>
+        <ul id="28308f8d-481e-494d-b1dd-890d8dd6071f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            8.3. Lazy loading et code splitting
+          </li>
+        </ul>
+        <h1 id="ba65b02c-5d10-47fd-a611-eaa661c36e11" class="">
+          9. Nouveautés et évolution du langage
+        </h1>
+        <ul id="dbf06675-d872-4f49-80d3-15ad28c3a54d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            9.1. Suivi des nouvelles fonctionnalités ECMAScript
+          </li>
+        </ul>
+        <ul id="afbcb977-2685-4c36-8869-cde345b0eb4b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            9.2. Compréhension des propositions de fonctionnalités futures
+          </li>
+        </ul>
+        <h1 id="529dc06a-511b-4c04-aaa9-a061510b0e0e" class="">
+          10. Projets pratiques et expérience
+        </h1>
+        <ul id="16e21de3-e0a0-4f8d-ab54-1dcda6710ff7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            10.1. Création d&#x27;applications complètes
+          </li>
+        </ul>
+        <ul id="1c7589e4-4b17-436c-8317-05189fb1e61a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            10.2. Contribution à des projets open source
+          </li>
+        </ul>
+        <ul id="6d2f2088-6e21-49aa-b5bc-44d175f7429d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            10.3. Participation à des hackathons et des défis de codage
+          </li>
+        </ul>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>

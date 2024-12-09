@@ -1,0 +1,5266 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CCNA - 3</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="146647a1-1d76-440a-b6e8-d6f2acb21a1f" class="page sans">
+      <header>
+        <h1 class="page-title">CCNA - 3</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            1. Concepts avancés de commutation
+          </summary>
+          <div class="indented">
+            <h2 id="15084eed-7b66-8060-95c4-e3e6674a3379" class="">
+              <strong
+                >1.1 VLANs (Virtual Local Area Networks) et leur
+                configuration</strong
+              >
+            </h2>
+            <h3 id="15084eed-7b66-80cb-afd5-ddfb60421de7" class="">
+              <strong>Qu’est-ce qu’un VLAN ?</strong>
+            </h3>
+            <ul id="15084eed-7b66-8004-8f6d-e4682c5a79e5" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Un VLAN (Virtual Local Area Network) est une segmentation
+                logique d’un réseau local physique.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-8047-8cfb-e8a84fa7b185" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les VLAN permettent de regrouper les ports des commutateurs dans
+                des segments réseau indépendants, même si ces ports sont
+                physiquement sur différents commutateurs.
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-8079-bed1-cf6033eb2759" class="">
+              <strong>Avantages des VLANs</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-804a-af02-c437a51d2cde"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Isolation des réseaux</strong> :
+                <ul
+                  id="15084eed-7b66-803b-bbf1-cd8e455ae00c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Chaque VLAN agit comme un réseau indépendant.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80a6-8f63-f22a9facbdcf"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Réduit le trafic inutile en limitant les broadcast à un
+                    VLAN.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80cf-9604-da22cd187887"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Amélioration de la sécurité</strong> :
+                <ul
+                  id="15084eed-7b66-8077-8716-e755bcfc3bc8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les VLAN isolent les utilisateurs ou les services sensibles.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8039-9311-c119b777811e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple : Un VLAN pour les serveurs, un pour les invités.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-806d-b92e-fc0b1aaaaac0"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Facilité d’administration</strong> :
+                <ul
+                  id="15084eed-7b66-8038-a111-cbf339c95c22"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les VLAN permettent de gérer les groupes logiques sans
+                    changer la topologie physique.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80da-a9ba-e034acfee484" class="">
+              <strong>Configuration des VLANs</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8014-8457-f7290dcf8be8"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Création d’un VLAN :
+                <ul
+                  id="15084eed-7b66-804d-9e59-de06b002502a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple de commande Cisco IOS :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-809e-8947-cc316a45dd1b"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-80b6-957b-f88ae56841b7" class="">
+                          configure terminal<br />vlan 10<br />name Finance<br />exit<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8060-a86c-ec1d698cae84"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Affectation d’un port à un VLAN :
+                <ul
+                  id="15084eed-7b66-8007-aca6-f7257c43beb4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Mode d’accès (port membre d’un seul VLAN) :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-8036-915a-c62019f7e0b1"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-80bc-900c-cb8d6274aff8" class="">
+                          interface FastEthernet0/1<br />switchport mode
+                          access<br />switchport access vlan 10<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-800c-9717-f04f56655deb"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                VLANs sur plusieurs commutateurs (trunking) :
+                <ul
+                  id="15084eed-7b66-8091-a32a-c5c7adb74c50"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilise le protocole 802.1Q pour taguer les VLANs sur des
+                    liens trunk.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80e0-9fd1-c8a6d3c4d396"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configuration d’un port trunk :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-800c-9c5a-e43a8af14853"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-8010-906e-d10d0e0a0760" class="">
+                          interface GigabitEthernet0/1<br />switchport mode
+                          trunk<br />switchport trunk allowed vlan 10,20,30<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15084eed-7b66-80c4-bb10-cdf686d2c170" class="">
+              <strong
+                >1.2 Protocole STP (Spanning Tree Protocol) et ses
+                variantes</strong
+              >
+            </h2>
+            <h3 id="15084eed-7b66-800e-9083-e54336ff8a19" class="">
+              <strong>Qu’est-ce que le STP ?</strong>
+            </h3>
+            <ul id="15084eed-7b66-80eb-818d-d605f256ec06" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Le protocole STP (Spanning Tree Protocol) empêche les boucles
+                réseau dans une architecture de commutateurs redondante.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-8004-ab23-f5d17328ba51" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Fonctionnement :
+                <ul
+                  id="15084eed-7b66-80fb-afa9-eb86489e10eb"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    STP désactive automatiquement les ports redondants pour
+                    créer une topologie arborescente sans boucle.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-80c9-8f2f-df5b4a6f00fc" class="">
+              <strong>Étapes du STP</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8081-9a9a-f3ef22edced5"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Élection du Root Bridge</strong> :
+                <ul
+                  id="15084eed-7b66-80af-954e-fd6130fde35f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Chaque commutateur compare son identifiant de pont (Bridge
+                    ID) pour élire le Root Bridge (commutateur central de la
+                    topologie).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80f1-b4a7-ff9f90b3ddfc"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Sélection des ports Root</strong> :
+                <ul
+                  id="15084eed-7b66-80b6-9f0d-e3fbba6f7654"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Chaque commutateur identifie son port le plus rapide pour
+                    atteindre le Root Bridge.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8097-9c2d-c582194fdd10"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Désactivation des ports redondants</strong> :
+                <ul
+                  id="15084eed-7b66-804d-adfe-ec6bfed5f061"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les ports non essentiels sont mis en état bloqué pour éviter
+                    les boucles.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80d2-8979-dc58dc296daf" class="">
+              <strong>Variantes de STP</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-808d-8343-f4f47a446158"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>RSTP (Rapid Spanning Tree Protocol, 802.1w)</strong> :
+                <ul
+                  id="15084eed-7b66-806f-9c3e-ed828140fa13"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Amélioration de STP classique avec une convergence plus
+                    rapide.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8039-9531-ef027dc34a12"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>MSTP (Multiple Spanning Tree Protocol, 802.1s)</strong>
+                :
+                <ul
+                  id="15084eed-7b66-8012-b01e-d34108f194e4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet la gestion simultanée de plusieurs instances STP pour
+                    différents VLANs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8049-bfc1-e9b8b56a0b02"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>PVST+ (Per VLAN Spanning Tree)</strong> :
+                <ul
+                  id="15084eed-7b66-8001-aa26-cf38fa69ec14"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Implémentation Cisco qui gère une instance STP pour chaque
+                    VLAN.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-802c-b604-f98028a00e4d" class="">
+              <strong>Configuration de base STP sur Cisco</strong> :
+            </h3>
+            <ul id="15084eed-7b66-80c5-bb34-ff2e06eaa32b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Activer le mode RSTP :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8065-9013-fc7ee57ee248"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-804e-aa6d-fef29bb1718e" class="">
+                      spanning-tree mode rapid-pvst
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-8088-9fbc-c946dff95b23" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Priorité du Root Bridge pour un VLAN spécifique :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-809e-b1ce-e780e7223745"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80f9-aa0c-f0a691d693a0" class="">
+                      spanning-tree vlan 10 priority 4096
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ul>
+            <h2 id="15084eed-7b66-805d-a1b5-df5ac6847e8a" class="">
+              <strong>1.3 EtherChannel et agrégation de liens</strong>
+            </h2>
+            <h3 id="15084eed-7b66-80e2-9682-cccb98ade6cf" class="">
+              <strong>Qu’est-ce qu’EtherChannel ?</strong>
+            </h3>
+            <ul id="15084eed-7b66-8087-80ad-d8166319a0d5" class="bulleted-list">
+              <li style="list-style-type: disc">
+                EtherChannel regroupe plusieurs liaisons physiques entre deux
+                commutateurs pour en faire une seule liaison logique.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-80a1-be20-e89a4592728e" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Avantages :
+                <ol
+                  type="1"
+                  id="15084eed-7b66-80b5-abdf-c36af4c0d1d1"
+                  class="numbered-list"
+                  start="1"
+                >
+                  <li>Augmente la bande passante disponible.</li>
+                </ol>
+                <ol
+                  type="1"
+                  id="15084eed-7b66-8007-a850-f536fe1d8157"
+                  class="numbered-list"
+                  start="2"
+                >
+                  <li>
+                    Fournit une redondance (les liaisons restantes prennent le
+                    relais en cas de panne).
+                  </li>
+                </ol>
+                <ol
+                  type="1"
+                  id="15084eed-7b66-805b-b799-f8a610264b62"
+                  class="numbered-list"
+                  start="3"
+                >
+                  <li>
+                    Réduit la complexité du STP (les liens agrégés sont vus
+                    comme un seul lien logique).
+                  </li>
+                </ol>
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-80a7-8719-e5be228649e1" class="">
+              <strong>Protocole de négociation d’EtherChannel</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8095-90c6-eb281d5c18b6"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>PAgP (Port Aggregation Protocol)</strong> :
+                <ul
+                  id="15084eed-7b66-8068-803c-e89fe0f9cc83"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Protocole propriétaire Cisco.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80e3-9d2e-d3ecaa863a46"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>LACP (Link Aggregation Control Protocol)</strong> :
+                <ul
+                  id="15084eed-7b66-80a1-b627-e09c1f82bd57"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Standard IEEE (802.3ad), interopérable avec des équipements
+                    non-Cisco.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8075-a70f-d9a10b2dd7c5" class="">
+              <strong>Configuration d’un EtherChannel</strong> :
+            </h3>
+            <ul id="15084eed-7b66-8016-8bf9-f35c829618db" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Création d’un port-channel avec LACP :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-809c-8fb9-da39a057c719"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-809a-b5eb-c9f30cb48927" class="">
+                      interface range GigabitEthernet0/1 - 2<br />channel-group
+                      1 mode active<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-8047-91cb-e0ebd6bb0d08" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Vérification :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8034-8158-d6820f664b85"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8025-9c9e-dbc267c0473c" class="">
+                      show etherchannel summary
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ul>
+            <h2 id="15084eed-7b66-8031-a08f-db7f1f6bbb12" class="">
+              <strong>1.4 Sécurité des ports de commutateur</strong>
+            </h2>
+            <h3 id="15084eed-7b66-80b5-b85b-cd1e7b03c468" class="">
+              <strong>Pourquoi sécuriser les ports ?</strong>
+            </h3>
+            <ul id="15084eed-7b66-8084-97df-d766ed6064dc" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les ports de commutateurs ouverts peuvent être exploités pour
+                des attaques réseau telles que l’usurpation d’adresse MAC ou les
+                boucles accidentelles.
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-80a1-8f09-ee2aa51f8459" class="">
+              <strong>Fonctionnalités de sécurité des ports</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-806b-a008-e477b1189e7b"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Port Security</strong> :
+                <ul
+                  id="15084eed-7b66-80f5-8de7-e1ad34e6432c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Limite le nombre d’adresses MAC apprises sur un port.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80d6-a7e3-d419f73ad280"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Actions possibles en cas de violation :
+                    <ul
+                      id="15084eed-7b66-8016-b3fe-e1b51d73b466"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Shutdown</strong> : Désactive le port.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15084eed-7b66-802a-89e5-fa8d66779365"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Restrict</strong> : Bloque les adresses non
+                        autorisées mais génère des alertes.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15084eed-7b66-80e5-9421-c749e4f42ba9"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Protect</strong> : Bloque les adresses non
+                        autorisées sans alerte.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-801a-ae4e-e157d2a6ae81"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configuration :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-80e8-9983-e8c616435568"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-8088-bce7-fb7e0f4012a0" class="">
+                          interface FastEthernet0/1<br />switchport mode
+                          access<br />switchport port-security<br />switchport
+                          port-security maximum 2<br />switchport port-security
+                          violation shutdown<br />
+                        </p>
+                      </div>
+                    </figure>
+                    <p id="15084eed-7b66-8007-a5ac-cea14b7105d7" class=""></p>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8022-bdf6-d551e06cb3ca"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>BPDU Guard</strong> :
+                <ul
+                  id="15084eed-7b66-80a8-87ab-fb6552a81762"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Protège les ports configurés en mode Access contre l’envoi
+                    de BPDUs (Bridge Protocol Data Units).
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80ab-91e8-dad4d6d4a1a8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Idéal pour éviter l’influence des appareils non autorisés
+                    sur STP.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80e7-95c8-d67fcf4256b9"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configuration :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-80c4-8ca6-d65ec473dc78"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-802d-9c22-dd41264e0c1b" class="">
+                          spanning-tree bpduguard enable
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8036-8a5e-c97362305413"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Storm Control</strong> :
+                <ul
+                  id="15084eed-7b66-8025-83b5-d8a05b270abe"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Limite le trafic broadcast, multicast ou unicast inconnu
+                    pour éviter les tempêtes réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8011-b783-d816aabf2387"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configuration :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-8066-9fb6-dfc243b78c32"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-80b8-96e7-ddd4d6521ea3" class="">
+                          storm-control broadcast level 5.00
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8026-b383-cfac579de598"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>DHCP Snooping</strong> :
+                <ul
+                  id="15084eed-7b66-809b-a6e4-cda901da38a0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Protège contre les attaques DHCP en autorisant uniquement
+                    les réponses des serveurs DHCP légitimes.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-807d-979b-d461a187601d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple d’activation :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-80cc-bd66-dbf9433d1167"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-80ac-9c64-e725268709ee" class="">
+                          ip dhcp snooping<br />ip dhcp snooping vlan 10<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <p id="15084eed-7b66-8065-8484-c4ec25281f6a" class=""></p>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            2. Routage inter-VLAN
+          </summary>
+          <div class="indented">
+            <h3 id="15084eed-7b66-80f6-86f5-ee40fa02c496" class="">
+              <strong>2.1 Configuration du routage entre VLANs</strong>
+            </h3>
+            <h3 id="15084eed-7b66-80b1-99c5-e9db37469f1e" class="">
+              <strong>Principe</strong>
+            </h3>
+            <p id="15084eed-7b66-801b-9152-c5af8482bce6" class="">
+              Chaque VLAN correspond à un sous-réseau. Pour que les hôtes de
+              différents VLANs puissent communiquer, leur trafic doit passer par
+              une interface de routage (routeur ou commutateur de couche 3).
+            </p>
+            <h3 id="15084eed-7b66-809f-8541-c86fda406f31" class="">
+              <strong>Conditions nécessaires</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8097-ab70-fe781294eb32"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Chaque VLAN doit avoir une adresse IP de passerelle attribuée.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8062-b22a-e39707be6ccf"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Les appareils connectés doivent configurer cette passerelle
+                comme route par défaut.
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80af-bf3c-e78b6bd62b8e" class="">
+              <strong>2.2 Router-on-a-stick et sous-interfaces</strong>
+            </h3>
+            <h3 id="15084eed-7b66-80c1-a9fe-dbc5400ba215" class="">
+              <strong>Qu’est-ce que &quot;Router-on-a-stick&quot; ?</strong>
+            </h3>
+            <p id="15084eed-7b66-800f-85b1-c1d0682d3dea" class="">
+              C’est une méthode classique où un
+              <strong>routeur unique</strong> est utilisé pour router le trafic
+              entre plusieurs VLANs en utilisant une seule interface physique.
+              Cette interface est subdivisée en plusieurs sous-interfaces,
+              chacune configurée avec une adresse IP et associée à un VLAN.
+            </p>
+            <h3 id="15084eed-7b66-80be-8d6b-d91f8dc4f35e" class="">
+              <strong>Fonctionnement de &quot;Router-on-a-stick&quot;</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8082-ba81-eb589ddd249a"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                La liaison entre le routeur et le commutateur est configurée
+                comme un lien <strong>trunk</strong> (802.1Q).
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8088-ae1c-f322ab93dfab"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Les <strong>sous-interfaces</strong> sur le routeur prennent en
+                charge les VLANs et assurent le routage entre eux.
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80c8-96e3-ef76da91c27a" class="">
+              <strong>Configuration d’un &quot;Router-on-a-stick&quot;</strong>
+              :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8047-b4cb-df90d7b30964"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Configuration du port trunk sur le commutateur :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-807e-965d-c8ba84360d0b"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8060-9dae-cde371799c76" class="">
+                      interface GigabitEthernet0/1<br />switchport mode trunk<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8003-b6ac-d7b037d34f4a"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Création des sous-interfaces sur le routeur :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8004-9bab-c836beef6c7a"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80ea-816f-f5dcc7e70fe1" class="">
+                      interface GigabitEthernet0/0.10<br />encapsulation dot1Q
+                      10<br />ip address 192.168.10.1 255.255.255.0<br />
+                    </p>
+                    <p id="15084eed-7b66-80fa-9273-f1e9da905c45" class="">
+                      interface GigabitEthernet0/0.20<br />encapsulation dot1Q
+                      20<br />ip address 192.168.20.1 255.255.255.0<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80b6-b8d8-f98d38f23fe7"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                Vérification du routage :
+                <ul
+                  id="15084eed-7b66-80d7-86f3-e3f46a974370"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les sous-interfaces doivent apparaître comme des interfaces
+                    actives.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-8002-a7f0-f4603ab4c023"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-803f-9226-cd365f073b62" class="">
+                          show ip interface brief
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8099-9be3-cd4ed2a82b4f" class="">
+              <strong>Limites du Router-on-a-stick</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8017-bea7-d8e8177ed578"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Performances limitées : Un seul lien physique pour tout le
+                trafic inter-VLAN.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-806c-9e6d-cefdb6b4fac3"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Risques de congestion : Les environnements à forte charge
+                nécessitent des solutions plus robustes comme les
+                <strong>commutateurs de couche 3</strong>.
+              </li>
+            </ol>
+            <h2 id="15084eed-7b66-8051-a3d1-e309c801f6f7" class="">
+              <strong>2.3 Commutateurs de couche 3</strong>
+            </h2>
+            <h3 id="15084eed-7b66-80e3-9f71-f5eac08c4e56" class="">
+              <strong>Qu’est-ce qu’un commutateur de couche 3 ?</strong>
+            </h3>
+            <p id="15084eed-7b66-80c2-8f20-ca09cd5a6ed6" class="">
+              Un <strong>commutateur de couche 3</strong> combine les
+              fonctionnalités d’un commutateur et d’un routeur :
+            </p>
+            <ul id="15084eed-7b66-80c3-8a86-dfefe3853ba6" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Fonctionne comme un commutateur pour les communications au sein
+                d’un VLAN.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-801b-b52f-d7d01c3740f5" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Route le trafic entre VLANs directement, sans besoin d’un
+                routeur externe.
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-80c6-9616-c921461bb094" class="">
+              <strong>Avantages par rapport à Router-on-a-stick</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8068-aaaf-e9772612a27c"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Performance améliorée</strong> : Le routage est effectué
+                directement dans le matériel, évitant les goulots
+                d’étranglement.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80ff-9eef-cccef4be1bd4"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Simplification de l’architecture</strong> : Pas besoin
+                d’utiliser un routeur séparé pour le routage inter-VLAN.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-801d-beaa-c05d78d091dc"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Évolutivité</strong> : Idéal pour les réseaux de grande
+                taille nécessitant un trafic inter-VLAN important.
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80f8-9e89-d90bff4de72d" class="">
+              <strong
+                >Configuration de base d’un commutateur de couche 3</strong
+              >
+              :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-800f-beb7-d648979c4a81"
+              class="numbered-list"
+              start="1"
+            >
+              <li>Activation du routage IP :</li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8055-81ae-f07ce7136487"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Création des interfaces VLAN :
+                <ul
+                  id="15084eed-7b66-8010-a81a-f2b94c44782c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Attribuer une adresse IP comme passerelle pour chaque VLAN.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-803e-8fdb-fac3a0373fcf"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-808b-9d5b-f3e19442fc00" class="">
+                          interface vlan 10<br />ip address 192.168.10.1
+                          255.255.255.0<br />no shutdown<br />
+                        </p>
+                        <p id="15084eed-7b66-8041-8f75-e1d7694a1866" class="">
+                          interface vlan 20<br />ip address 192.168.20.1
+                          255.255.255.0<br />no shutdown<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80e0-892a-fa309fab2b43"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                Configuration des ports comme <strong>Access</strong> ou
+                <strong>Trunk</strong> :
+                <ul
+                  id="15084eed-7b66-80ae-b55a-ef30f71a3b45"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Port d’accès pour les appareils d’un VLAN :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-800c-ad94-ca1362d74816"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-804f-9650-c61311d99068" class="">
+                          interface FastEthernet0/1<br />switchport mode
+                          access<br />switchport access vlan 10<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80b8-96c8-ed23c2a72a6e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Port trunk pour la connexion entre commutateurs :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15084eed-7b66-80e3-9713-ea0fbf525ee9"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-8002-8c7f-dc0b5d0a39d7" class="">
+                          interface GigabitEthernet0/1<br />switchport mode
+                          trunk<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80fe-9411-d49d0f1c95b2" class="">
+              <strong
+                >Routage inter-VLAN avec un commutateur de couche 3</strong
+              >
+              :
+            </h3>
+            <ul id="15084eed-7b66-805a-81d7-c6d56b43153f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les <strong>interfaces VLAN</strong> (SVI - Switch Virtual
+                Interfaces) servent de passerelles.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-804c-949e-f9cc7b863636" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Le commutateur utilise son routage interne pour transférer les
+                paquets entre VLANs.
+              </li>
+            </ul>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            3. Protocoles de routage dynamique
+          </summary>
+          <div class="indented">
+            <h2 id="15084eed-7b66-801e-a735-f5ddf6f12984" class="">
+              <strong
+                >3.1 OSPF (Open Shortest Path First) pour IPv4 et IPv6</strong
+              >
+            </h2>
+            <h3 id="15084eed-7b66-8014-a1ff-cd8ddb2ee064" class="">
+              <strong>Qu’est-ce qu’OSPF ?</strong>
+            </h3>
+            <ul id="15084eed-7b66-8010-a3e8-d21e328718f8" class="bulleted-list">
+              <li style="list-style-type: disc">
+                OSPF (Open Shortest Path First) est un protocole de routage
+                dynamique à <strong>état de liens</strong>.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-80a0-9d80-cdfdbea1469f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Standard ouvert, il est largement utilisé pour les réseaux de
+                grande taille.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-80e8-9a2b-f97360479818" class="bulleted-list">
+              <li style="list-style-type: disc">
+                OSPF calcule les routes les plus courtes en utilisant
+                l’algorithme SPF (Shortest Path First) basé sur le coût de
+                chaque lien.
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-8066-8604-f63da0a08c54" class="">
+              <strong>Caractéristiques principales d’OSPF</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8022-a62b-f1a1e06951f4"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Hiérarchique</strong> :
+                <ul
+                  id="15084eed-7b66-806c-a086-d4d457ba470b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilise des <strong>zones</strong> pour optimiser les mises
+                    à jour (Zone 0 ou backbone, zones non-backbone).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8011-8edb-ef59bd724f22"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Convergence rapide</strong> :
+                <ul
+                  id="15084eed-7b66-80dd-961d-c4596622a1de"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Réagit rapidement aux changements du réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8050-a151-e7de081dc2bb"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Support d’IPv4 et IPv6</strong> :
+                <ul
+                  id="15084eed-7b66-8095-9d98-fa2929586559"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilise OSPFv2 pour IPv4 et OSPFv3 pour IPv6.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8061-9bd0-c7d8d1eec84e"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Authentification</strong> :
+                <ul
+                  id="15084eed-7b66-80c8-86ac-d1a40dca426f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet de sécuriser les mises à jour de routage avec des
+                    mots de passe ou des signatures.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80b6-a6a0-e7970f21e043" class="">
+              <strong>Configuration d’OSPF pour IPv4</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8072-8ec0-d4847d2f0751"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Activer OSPF et assigner les réseaux :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-803e-b297-eba3507df29a"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8063-b02d-d15604253d7c" class="">
+                      router ospf 1<br />network 192.168.1.0 0.0.0.255 area 0<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8072-910b-dc34c7692e24"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Ajuster le coût d’une interface :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-803f-9106-f14566b73738"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80af-a24f-e735026ab185" class="">
+                      interface GigabitEthernet0/1<br />ip ospf cost 10<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80ee-8e62-c1529bde0410" class="">
+              <strong>Configuration d’OSPF pour IPv6</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8056-ad21-cbbbba5b87af"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Activer OSPFv3 sur les interfaces :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-801d-9877-c80931c306ea"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80a6-9361-d17b2d61d7f5" class="">
+                      interface GigabitEthernet0/1<br />ipv6 ospf 1 area 0<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80ca-9048-d9e60b3cdb63"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Activer le processus OSPFv3 :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-80bf-a30f-c6985b20d5ee"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8055-8cbf-d51830ecdc32" class="">
+                      ipv6 router ospf 1<br />router-id 1.1.1.1<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <h2 id="15084eed-7b66-8045-be19-e4194f808a8b" class="">
+              <strong
+                >3.2 EIGRP (Enhanced Interior Gateway Routing Protocol)</strong
+              >
+            </h2>
+            <h3 id="15084eed-7b66-80cf-9a7c-e6cc5dca470a" class="">
+              <strong>Qu’est-ce qu’EIGRP ?</strong>
+            </h3>
+            <ul id="15084eed-7b66-80d3-91f8-c808064e8efa" class="bulleted-list">
+              <li style="list-style-type: disc">
+                EIGRP est un protocole de routage dynamique à
+                <strong>vecteur de distance avancé</strong>, développé par
+                Cisco.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-80da-bdef-fbc7f9e3f38d" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Combine les avantages des protocoles à vecteur de distance
+                (simplicité) et des protocoles à état de liens (rapidité et
+                précision).
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-8042-ab83-f55e5aef3a69" class="">
+              <strong>Caractéristiques principales d’EIGRP</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8049-9705-d9157a78c67a"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Algorithme DUAL (Diffusing Update Algorithm)</strong> :
+                <ul
+                  id="15084eed-7b66-80c0-b59d-c9f80ea862ec"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Garantit des routes sans boucle et une convergence rapide.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80de-9484-eefa3278d839"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Simplicité d’administration</strong> :
+                <ul
+                  id="15084eed-7b66-80af-954a-fb0c731bbae5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Facilite la configuration avec des fonctionnalités avancées.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-806e-9896-f20241145916"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Support IPv4 et IPv6</strong> :
+                <ul
+                  id="15084eed-7b66-8016-ba00-dad6c7a97a7f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Fonctionne sur les deux types de réseaux.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8085-9943-e1dc33ae3e4b"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Protocoles multiples</strong> :
+                <ul
+                  id="15084eed-7b66-80a7-95c2-f92b96c964df"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Prend en charge plusieurs protocoles comme IP, IPv6 et
+                    AppleTalk.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80df-b554-c3837d4e3078" class="">
+              <strong>Configuration de base d’EIGRP pour IPv4</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8033-ac8d-d968e8dddae9"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Activer EIGRP et déclarer les réseaux :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8077-945b-c2a51713a0e0"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8088-a1c7-cb8415915a1c" class="">
+                      router eigrp 100<br />network 192.168.1.0 0.0.0.255<br />no
+                      auto-summary<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8005-9a42-e46482496713"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Ajuster la métrique (facultatif) :
+                <ul
+                  id="15084eed-7b66-80f8-b363-d664c13bfa7d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Basée sur la bande passante et le délai par défaut.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8042-b93f-dd34b39f7161" class="">
+              <strong>Configuration d’EIGRP pour IPv6</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-80d5-b03c-e8a692445919"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Activer le protocole sur les interfaces :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8084-b352-de7eb276f1ed"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-803e-bb77-ca900efb8ea6" class="">
+                      interface GigabitEthernet0/1<br />ipv6 eigrp 100<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80c3-a8d9-c7c384018f82"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Activer le processus EIGRP :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-80ca-87f3-fb00cdcebe81"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80c2-8838-c045a63bba19" class="">
+                      ipv6 router eigrp 100<br />router-id 2.2.2.2<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <h2 id="15084eed-7b66-801c-bd3d-ecd3dbe11e64" class="">
+              <strong
+                >3.3 Comparaison : Protocole à vecteur de distance vs Protocole
+                à état de liens</strong
+              >
+            </h2>
+            <table
+              id="15084eed-7b66-8016-917c-fb2804bd203b"
+              class="simple-table"
+            >
+              <tbody>
+                <tr id="15084eed-7b66-8036-b96d-d43f5d528a23">
+                  <td id="_JGh" class=""><strong>Critère</strong></td>
+                  <td id="N{QE" class="">
+                    <strong>Vecteur de distance</strong>
+                  </td>
+                  <td id="GJeK" class=""><strong>État de liens</strong></td>
+                </tr>
+                <tr id="15084eed-7b66-80ea-b694-c41ba8314791">
+                  <td id="_JGh" class=""><strong>Exemples</strong></td>
+                  <td id="N{QE" class="">RIP, EIGRP</td>
+                  <td id="GJeK" class="">OSPF, IS-IS</td>
+                </tr>
+                <tr id="15084eed-7b66-8058-beb2-d43f0c76ef7a">
+                  <td id="_JGh" class=""><strong>Algorithme</strong></td>
+                  <td id="N{QE" class="">Simple : Distance au prochain saut</td>
+                  <td id="GJeK" class="">Complexe : Vue complète du réseau</td>
+                </tr>
+                <tr id="15084eed-7b66-80f4-afbb-cd085b2664be">
+                  <td id="_JGh" class=""><strong>Convergence</strong></td>
+                  <td id="N{QE" class="">Lente</td>
+                  <td id="GJeK" class="">Rapide</td>
+                </tr>
+                <tr id="15084eed-7b66-8013-a575-efe99da2aabc">
+                  <td id="_JGh" class=""><strong>Utilisation</strong></td>
+                  <td id="N{QE" class="">Petits réseaux</td>
+                  <td id="GJeK" class="">Réseaux moyens à grands</td>
+                </tr>
+                <tr id="15084eed-7b66-80db-a87c-e173109a6b6c">
+                  <td id="_JGh" class=""><strong>Simplicité</strong></td>
+                  <td id="N{QE" class="">Facile à configurer</td>
+                  <td id="GJeK" class="">Plus complexe</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3 id="15084eed-7b66-8035-927b-d5e6fb61cd85" class="">
+              <strong>Vecteur de distance</strong> :
+            </h3>
+            <ul id="15084eed-7b66-80a6-aa0f-f6733dbd7d9b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les routeurs échangent des informations de routage limitées
+                (distance et saut suivant).
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-8011-b3ab-ed5cac636634" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Converge moins rapidement car chaque routeur dépend des mises à
+                jour des voisins.
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-802e-b208-cbc153ad5a50" class="">
+              <strong>État de liens</strong> :
+            </h3>
+            <ul id="15084eed-7b66-80e0-9067-dcc07ccbe27b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les routeurs maintiennent une vue complète de la topologie
+                réseau.
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-8028-aa04-eee5dd7b3703" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Plus précis et rapide, mais consomme davantage de ressources.
+              </li>
+            </ul>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            4. Réseaux WAN (Wide Area Network)
+          </summary>
+          <div class="indented">
+            <h2 id="15084eed-7b66-807d-b562-cd9675310e70" class="">
+              <strong>4.1 Technologies WAN</strong>
+            </h2>
+            <h3 id="15084eed-7b66-80cc-b719-f7e72e4803da" class="">
+              <strong>PPP (Point-to-Point Protocol)</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-805d-8928-e8f0da2394e0"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Définition</strong> :
+                <ul
+                  id="15084eed-7b66-800c-a011-ec9e7091465d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Protocole utilisé pour établir des connexions directes entre
+                    deux points sur des lignes série ou des liens dédiés.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8011-bbff-e23c79f58419"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Caractéristiques</strong> :
+                <ul
+                  id="15084eed-7b66-80ed-ad21-d68e50c34c09"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Supporte plusieurs protocoles de couche 3 (IP, IPv6).
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80cd-bab7-e0bf3cdc6028"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Offre des mécanismes d’authentification (<strong
+                      >PAP</strong
+                    >
+                    et <strong>CHAP</strong>).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8038-9244-e9bea4343832"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Fonctionnalités principales</strong> :
+                <ul
+                  id="15084eed-7b66-8089-b9d3-d3bb8eeb3e7b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">Encapsulation simple.</li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80f6-92ce-da5c54fc0e5e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">Détection des erreurs.</li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-809c-bf81-ccabadd687c1"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Compression des données pour améliorer l&#x27;efficacité.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8008-a37b-cbd4fcaee65a"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Configuration PPP sur un routeur Cisco</strong> :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-80f7-896e-e8198bb53f07"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80eb-861e-ca980e11be28" class="">
+                      interface serial0/0/0<br />encapsulation ppp<br />ppp
+                      authentication chap<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80bd-89a2-d9e718613879" class="">
+              <strong>Frame Relay</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8084-9ada-d7df3230c72b"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Définition</strong> :
+                <ul
+                  id="15084eed-7b66-80ba-b418-fbfb19c92c21"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Technologie orientée paquet, utilisée pour établir des
+                    connexions logiques (DLCI) entre plusieurs sites.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80a0-aeb8-db71b83936c0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Plus ancien, aujourd’hui largement remplacé par MPLS.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80f8-952d-d0d8a32fc70c"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Caractéristiques</strong> :
+                <ul
+                  id="15084eed-7b66-8062-8435-f5d6cf8aacd0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Basé sur des connexions virtuelles.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-807b-8421-d0f68794c132"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Offre une bande passante partagée avec un modèle &quot;best
+                    effort&quot;.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8052-a6b2-cba6089bfd84"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Moins coûteux que les circuits dédiés traditionnels.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-804e-9294-e7fdb4b2c499"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Utilisation</strong> :
+                <ul
+                  id="15084eed-7b66-8007-b045-caad8ab90bff"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Idéal pour des réseaux avec des besoins de connectivité
+                    modérée.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80a7-93b0-ed53ed5596ab"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Configuration Frame Relay</strong> :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-8075-af01-f3dda22d77b4"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80d7-b7e3-d953779cc2da" class="">
+                      interface serial0/0/0<br />encapsulation frame-relay<br />frame-relay
+                      interface-dlci 16<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8068-af49-fda964bfcfc3" class="">
+              <strong>MPLS (Multiprotocol Label Switching)</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-80e4-a497-f2ca3051551e"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Définition</strong> :
+                <ul
+                  id="15084eed-7b66-80b7-9bcf-d62b36b5de74"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Technologie moderne qui dirige les paquets de données à
+                    travers un réseau basé sur des
+                    <strong>labels</strong> plutôt que sur des adresses IP.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8095-a199-f671dd113d0c"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Caractéristiques</strong> :
+                <ul
+                  id="15084eed-7b66-80d9-9154-df77a0c896fe"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Convergence rapide et performances élevées.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-805c-a1bc-f58c6d1b89c8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Supporte plusieurs types de trafic (voix, vidéo, données).
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8014-98f2-c2318983e33f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Offre une meilleure qualité de service (QoS).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8002-9d3e-f12491dfaa4f"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Avantages</strong> :
+                <ul
+                  id="15084eed-7b66-80d2-a2f9-df9f70ad1149"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Sécurité intrinsèque (trafic isolé par labels).
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8091-be9c-fb6bfbc24029"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Réduction de la latence.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8074-b8b8-f80b6f979ed2"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Gestion efficace des chemins.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-804b-b5c2-f562891452d6" class="">
+              <strong>4.2 VPNs (Virtual Private Networks)</strong>
+            </h3>
+            <h3 id="15084eed-7b66-803e-80b0-e46cf719c60a" class="">
+              <strong>Qu’est-ce qu’un VPN ?</strong>
+            </h3>
+            <p id="15084eed-7b66-80b9-b0f5-c36ba7ea2847" class="">
+              Un <strong>VPN</strong> crée une connexion sécurisée sur un réseau
+              non sécurisé (par exemple, Internet). Il chiffre les données et
+              assure leur confidentialité et intégrité.
+            </p>
+            <h3 id="15084eed-7b66-8005-9e8b-fe485d34048a" class="">
+              <strong>Types de VPN</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-802d-899e-d03249d78b22"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>VPN Site-à-Site</strong> :
+                <ul
+                  id="15084eed-7b66-8030-b48c-c27d4d64c6f2"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Connecte deux réseaux LAN via une connexion sécurisée.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-806a-aef1-e53644edac37"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisé pour interconnecter des succursales ou des
+                    datacenters.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80c3-b0f6-e9a9a6951a39"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>VPN Accès à distance</strong> :
+                <ul
+                  id="15084eed-7b66-80cf-877d-d7ffdf5e2daa"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet aux utilisateurs distants de se connecter à un réseau
+                    centralisé.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80ff-9ed8-d4575c2a7103"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemples : VPN SSL, VPN IPsec.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8028-b330-cb1065de9467" class="">
+              <strong>Protocoles VPN courants</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8022-83c0-ff2502edb1fe"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>IPsec (Internet Protocol Security)</strong> :
+                <ul
+                  id="15084eed-7b66-806e-98fc-e9ee97b3098d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Fournit un chiffrement et une authentification robustes.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-804c-b501-e07447bee2b2"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>SSL/TLS</strong> :
+                <ul
+                  id="15084eed-7b66-80b6-9e3e-fd6c032d888e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisé pour sécuriser les VPN d’accès à distance.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80e6-967c-d3d1d1c8e154"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>GRE (Generic Routing Encapsulation)</strong> :
+                <ul
+                  id="15084eed-7b66-805d-9aef-f8675d7f7603"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Encapusle les protocoles pour créer des tunnels, souvent
+                    utilisé avec IPsec.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8061-83eb-ecb185ad5bfc" class="">
+              <strong>Configuration de base d’un VPN Site-à-Site</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-80e1-9c85-d7eb2390c1e7"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                Définir les ACL pour le trafic autorisé :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-803e-add3-c322569bb061"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-802b-9940-f4385ad33dfc" class="">
+                      access-list 101 permit ip 192.168.1.0 0.0.0.255
+                      192.168.2.0 0.0.0.255
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8005-8ff0-d1af823acb63"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                Configurer les paramètres IPsec :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-80c5-865f-e7f496ebbc8c"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8021-9b47-f0e62632cd13" class="">
+                      crypto isakmp policy 10<br />encryption aes<br />hash
+                      sha256<br />authentication pre-share<br />group 2<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80e8-bbfd-f8c248f9a03c"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                Appliquer les paramètres au tunnel :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-802f-a4b5-d9c06cc3bae8"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80a4-ab58-f4781ac6b4da" class="">
+                      interface tunnel0<br />ip address 10.10.10.1
+                      255.255.255.252<br />tunnel source 192.168.1.1<br />tunnel
+                      destination 192.168.2.1<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8073-86ce-fe8672bf4266" class="">
+              <strong>4.3 Configuration de base des connexions WAN</strong>
+            </h3>
+            <h3 id="15084eed-7b66-80db-819d-fed54263df85" class="">
+              <strong>Étapes générales</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-805c-a264-e6cab10dc937"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Configurer l’encapsulation</strong> :
+                <ul
+                  id="15084eed-7b66-803e-88fe-eff53d471f78"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Choisir une technologie WAN (PPP, Frame Relay, MPLS).
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8045-9851-ed9ccbb59839"
+                    >
+                      <div style="width: 100%">
+                        <p id="15084eed-7b66-80d5-9671-f7ec8c3dae7b" class="">
+                          interface serial0/0/0<br />encapsulation ppp<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8027-8338-e87cccbaa03a"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Attribuer une adresse IP</strong> :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-8014-9ffc-e7663b0af0bf"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-804a-8d87-cae4f5c89004" class="">
+                      interface serial0/0/0<br />ip address 10.1.1.1
+                      255.255.255.252<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-809a-a1d0-f07066c121d2"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Activer l’interface</strong> :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-805b-8cea-e81f77b0b3f6"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-806c-80b9-e7866a33b082" class="">
+                      no shutdown
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80de-9735-e006eb1499f6"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Configurer un protocole de routage</strong> (exemple :
+                OSPF) :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15184eed-7b66-80b3-bfde-ed4d1b44c37f"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-806d-804d-f836967ecb7e" class="">
+                      router ospf 1<br />network 10.1.1.0 0.0.0.3 area 0<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            5. Qualité de service (QoS)
+          </summary>
+          <div class="indented">
+            <h2 id="15084eed-7b66-80f9-9e47-c5815aa38438" class="">
+              <strong>5.1 Principes de base de la QoS</strong>
+            </h2>
+            <h3 id="15084eed-7b66-80e4-9c66-c7a5459c32c4" class="">
+              <strong>Définition</strong> :
+            </h3>
+            <ul id="15084eed-7b66-8033-a8bf-c6c3f2781820" class="bulleted-list">
+              <li style="list-style-type: disc">
+                La QoS contrôle la façon dont les paquets de données sont
+                transmis sur un réseau afin de répondre à des exigences
+                spécifiques en termes de :
+                <ul
+                  id="15084eed-7b66-803c-97c9-d56344b9e90e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    <strong>Bande passante</strong> : Assurer suffisamment de
+                    débit pour le trafic critique.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8073-bbe3-e6360b6cd268"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    <strong>Latence</strong> : Réduire les délais pour les
+                    applications temps réel.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8027-9216-e25384a10b81"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    <strong>Gigue (jitter)</strong> : Minimiser la variation du
+                    délai pour les flux audio/vidéo.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80be-9755-ca53c7e24c5c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    <strong>Pertes</strong> : Réduire les paquets perdus dans le
+                    réseau.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-807b-8acc-d23269d3d58b" class="">
+              <strong>Objectifs principaux</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8057-ab20-f2b5668b5b98"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Priorisation</strong> : Offrir un traitement
+                préférentiel au trafic critique.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80ae-a849-fd5402d19f1e"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Allocation de bande passante</strong> : Réserver des
+                ressources pour certaines applications.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80ac-a920-c5037333586d"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Réduction de la congestion</strong> : Gérer les
+                surcharges pour éviter la dégradation des performances.
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-80e2-a61a-fd6a9451acff" class="">
+              <strong>Modèles de QoS</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-806d-8c8b-c46f4198e557"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Best-Effort</strong> :
+                <ul
+                  id="15084eed-7b66-8022-811d-ed59e3a1d0d5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Aucun mécanisme QoS n’est appliqué, tous les paquets sont
+                    traités équitablement.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8004-8ae1-f0e88b0ef520"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Adapté pour des réseaux sans trafic critique.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80d5-b6e7-c9e693b61ffc"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Integrated Services (IntServ)</strong> :
+                <ul
+                  id="15084eed-7b66-8076-bc34-c79cc588f7f1"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Réserve explicitement des ressources pour chaque flux.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80a8-a880-fb0181f50d79"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Efficace mais complexe à mettre en œuvre.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8055-aa05-d9b131008ffe"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Differentiated Services (DiffServ)</strong> :
+                <ul
+                  id="15084eed-7b66-8005-aea6-d12adcda1f5b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Classe les paquets dans des catégories (classes) et applique
+                    des politiques spécifiques à chaque classe.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8004-87a3-c03e0599d373" class="">
+              <strong
+                >5.2 Méthodes de classification et de marquage du trafic</strong
+              >
+            </h3>
+            <h3 id="15084eed-7b66-80c5-bc56-f91ee4589a05" class="">
+              <strong>Classification</strong> :
+            </h3>
+            <ul id="15084eed-7b66-803f-bea3-da145e72a89f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Processus de catégorisation des paquets en fonction de certains
+                critères, tels que :
+                <ul
+                  id="15084eed-7b66-8041-b27f-ff12d7a9f647"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    <strong>Adresse IP source/destination</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-8015-b59d-da86fedb706e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    <strong>Port TCP/UDP</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-806a-9df1-f77d6e552eef"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    <strong>Type de protocole</strong> (HTTP, VoIP, etc.).
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-8041-b28e-c8fd7dde21f0" class="">
+              <strong>Marquage</strong> :
+            </h3>
+            <ul id="15084eed-7b66-805d-bbf5-def4b6e47740" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les paquets sont marqués pour indiquer leur priorité ou leur
+                classe de service. Les marques courantes incluent :
+                <ol
+                  type="1"
+                  id="15084eed-7b66-80b5-a25e-dfe75bc63a10"
+                  class="numbered-list"
+                  start="1"
+                >
+                  <li>
+                    <strong>DSCP (Differentiated Services Code Point)</strong> :
+                    <ul
+                      id="15084eed-7b66-80fb-a895-e99d5f705f7f"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: disc">
+                        Champs de 6 bits dans l&#x27;en-tête IP pour définir la
+                        classe de service.
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+                <ol
+                  type="1"
+                  id="15084eed-7b66-803a-9321-d9036943a45f"
+                  class="numbered-list"
+                  start="2"
+                >
+                  <li>
+                    <strong>CoS (Class of Service)</strong> :
+                    <ul
+                      id="15084eed-7b66-8061-ad02-d7492ce2dd94"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: disc">
+                        Utilisé dans les en-têtes Ethernet VLAN pour marquer les
+                        priorités au niveau de la couche 2.
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-8043-b203-dfa723eee974" class="">
+              <strong>Exemple de marquage avec DSCP</strong> :
+            </h3>
+            <ul id="15084eed-7b66-80ca-a07c-e0b9399e8972" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Priorité élevée pour la voix :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8074-8646-dc0dc633d18a"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80cb-9092-d9f057412b4a" class="">
+                      class-map match-all VOIP<br />match ip dscp ef<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ul>
+            <ul id="15084eed-7b66-80a6-ad96-d61987437e6d" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Assignation d&#x27;une politique :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8080-9bb8-e1d6915d0d0e"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8003-8642-e29384eac2ac" class="">
+                      policy-map QoS_POLICY<br />class VOIP<br />priority
+                      1000<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ul>
+            <h2 id="15084eed-7b66-80fd-91d5-df7f14d14a12" class="">
+              <strong
+                >5.3 Gestion de la congestion et de la bande passante</strong
+              >
+            </h2>
+            <h3 id="15084eed-7b66-806e-9d21-fbc177efff21" class="">
+              <strong>Problème de congestion</strong> :
+            </h3>
+            <ul id="15084eed-7b66-80dd-953c-d9a01430c2d4" class="bulleted-list">
+              <li style="list-style-type: disc">
+                La congestion survient lorsque la demande en bande passante
+                dépasse la capacité d’un lien ou d’un équipement réseau, ce qui
+                entraîne des retards et des pertes.
+              </li>
+            </ul>
+            <h3 id="15084eed-7b66-80e5-acf4-e2f53e6ae9fb" class="">
+              <strong>Techniques de gestion de la congestion</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-803d-ae92-f90e5159fca7"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Queuing (Mise en file d’attente)</strong> :
+                <ul
+                  id="15084eed-7b66-80a9-bc98-e46129b7eaa2"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Organise les paquets dans des files d&#x27;attente en
+                    fonction de leur priorité.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-80c8-ae60-d61df2ee5503"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Méthodes courantes :
+                    <ul
+                      id="15084eed-7b66-8006-b911-ea968732e81c"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>FIFO (First-In-First-Out)</strong> : Simple,
+                        mais ne traite pas les priorités.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15084eed-7b66-80ae-b688-db48aa160a6f"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Priority Queuing (PQ)</strong> : Les files de
+                        priorité élevée sont traitées en premier.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15084eed-7b66-80d8-ae25-d35e78b8ee63"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Weighted Fair Queuing (WFQ)</strong> : Répartit
+                        équitablement la bande passante entre les flux.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8031-83ec-d7503c566d50"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Policing et Shaping</strong> :
+                <ul
+                  id="15084eed-7b66-805e-9d00-c5a727d65068"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Policing</strong> : Limite la bande passante
+                    maximale pour un trafic donné. Les paquets excédentaires
+                    sont supprimés.
+                  </li>
+                </ul>
+                <ul
+                  id="15084eed-7b66-802e-a8e7-fe8798059e54"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Shaping</strong> : Lisse le trafic pour éviter les
+                    rafales et respecte une bande passante définie.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-8069-bea5-ffb1f40cb8ec"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>RED (Random Early Detection)</strong> :
+                <ul
+                  id="15084eed-7b66-8048-828e-e1a48ad7b381"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Réduit la congestion en supprimant de manière aléatoire les
+                    paquets avant que la file d’attente ne soit pleine.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15084eed-7b66-8079-9d22-f21ced0b5361" class="">
+              <strong>Exemple de configuration QoS sur un routeur Cisco</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15084eed-7b66-8020-9760-f8135871ca6f"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Créer une classe de trafic</strong> :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-804a-bdf5-ccc14ef42837"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-80c8-96a3-db7b6663ca1d" class="">
+                      class-map match-all VOIP<br />match ip dscp ef<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-80c2-88e9-f938a3453c7b"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Définir une politique de trafic</strong> :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-80e7-9512-fc52a0e6cff6"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8061-b6fd-db3dcdfed808" class="">
+                      policy-map QoS_POLICY<br />class VOIP<br />priority
+                      1000<br />class DEFAULT<br />bandwidth 500<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15084eed-7b66-802a-8fd9-d696f25957d9"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Appliquer la politique à une interface</strong> :
+                <figure
+                  class="block-color-gray_background callout"
+                  style="white-space: pre-wrap; display: flex"
+                  id="15084eed-7b66-8050-95d6-f498386efb15"
+                >
+                  <div style="width: 100%">
+                    <p id="15084eed-7b66-8072-ba91-f876e26f59fe" class="">
+                      interface GigabitEthernet0/1<br />service-policy output
+                      QoS_POLICY<br />
+                    </p>
+                  </div>
+                </figure>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            6. Sécurité des réseaux
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-8016-ad1e-e503ceff5912" class="">
+              <strong
+                >6.1 ACLs (Access Control Lists) standard et étendues</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-808f-a55c-f447f7968bf0" class="">
+              <strong>Qu&#x27;est-ce qu&#x27;une ACL ?</strong>
+            </h3>
+            <ul id="15184eed-7b66-80f3-9ce3-c4ce47eedb3c" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Une <strong>Access Control List (ACL)</strong> est un ensemble
+                de règles appliquées sur un routeur ou un commutateur pour
+                contrôler le trafic réseau en autorisant ou refusant des paquets
+                en fonction de critères spécifiques.
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-80ad-beaf-c8566f404817" class="">
+              <strong>Types d&#x27;ACL :</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80e9-915e-e212d1418512"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>ACL standard</strong> :
+                <ul
+                  id="15184eed-7b66-8097-922a-ec5cc751d3e0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Contrôle le trafic en se basant uniquement sur l’adresse IP
+                    source.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80e6-a151-eb5504b5a72c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Numérotée entre <strong>1 et 99</strong> ou
+                    <strong>1300 et 1999</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80ec-83cd-ef0f05be5d93"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple de règle :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80ae-9862-cf9304c90186"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8049-b55f-f85cc8ff0aa0" class="">
+                          access-list 10 permit 192.168.1.0 0.0.0.255
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8064-b29a-e59303bf5a1e"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>ACL étendue</strong> :
+                <ul
+                  id="15184eed-7b66-805b-9084-f2ead133af35"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Offre un contrôle plus précis en filtrant selon :
+                    <ul
+                      id="15184eed-7b66-808e-b31e-eaec91721141"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Adresse IP source et destination.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-8099-9569-dbb7745e7b5d"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Type de protocole (TCP, UDP, ICMP, etc.).
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-8076-a7b1-c91ae2e2c30a"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Numéro de port (HTTP, DNS, etc.).
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8039-af1c-f2e8db899db5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Numérotée entre <strong>100 et 199</strong> ou
+                    <strong>2000 et 2699</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80f7-b30b-f7c604ef2019"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple de règle :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80f0-82e2-ef5ddcc09543"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80ed-9222-d661fc1a3023" class="">
+                          access-list 110 permit tcp 192.168.1.0 0.0.0.255 any
+                          eq 80
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-80eb-bb46-ff75aac42b21" class="">
+              <strong>Étapes pour appliquer une ACL</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8008-bd7f-fb7ebc08c360"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Créer une ACL</strong> : Définir les règles
+                d’autorisation ou de refus.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-806d-8078-f59303df89c1"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Appliquer l’ACL à une interface</strong> :
+                <ul
+                  id="15184eed-7b66-807a-8ecc-c7082336616a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    En entrée (inbound) ou en sortie (outbound).
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8041-80e8-fbabccaea829"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8042-a5be-d5eea5e28e01" class="">
+                          interface GigabitEthernet0/0<br />ip access-group 10
+                          in<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-80e9-9350-cd8377586666" class="">
+              <strong
+                >6.2 Sécurité des périphériques (sécurisation des accès
+                administratifs)</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-80a9-85ef-f6fc3df73275" class="">
+              <strong>Pourquoi sécuriser les périphériques réseau ?</strong>
+            </h3>
+            <ul id="15184eed-7b66-801b-b3a5-e6fcd62fbda9" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les routeurs, commutateurs, et autres périphériques sont des
+                cibles privilégiées pour les attaques, car leur compromis peut
+                donner un contrôle total sur le réseau.
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-80df-b0f9-ce9cd1b6f916" class="">
+              <strong>Meilleures pratiques pour la sécurisation :</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80cc-a81d-df5643f455e9"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Utiliser des mots de passe sécurisés</strong> :
+                <ul
+                  id="15184eed-7b66-8089-b520-db0ba3517243"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configurer un mot de passe fort pour les connexions locales
+                    et distantes.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8058-a338-e5080c782a4a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple pour une console locale :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8026-bdb4-eafa0a2389cc"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-808c-b96b-ea77348c7f2d" class="">
+                          line console 0<br />password MonMotDePasseFort<br />login<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8071-89e2-e5fa91880eb6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Chiffrer les mots de passe dans la configuration :
+                    <p id="15184eed-7b66-8076-bc7a-cdcf1a27a072" class="">
+                      service password-encryption
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80bf-a139-dd9ee8b4bd01"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Configurer SSH pour l’accès à distance</strong> :
+                <ul
+                  id="15184eed-7b66-808c-a00f-ecfdb4dcc5a0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Remplacer Telnet (non sécurisé) par SSH.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8012-8f6f-d50fdef94973"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8046-933f-e21a7a95efeb" class="">
+                          ip domain-name monreseau.local<br />crypto key
+                          generate rsa<br />ip ssh version 2<br />line vty 0
+                          4<br />transport input ssh<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8024-a315-d67539f82e0c"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Restreindre les accès avec des ACL</strong> :
+                <ul
+                  id="15184eed-7b66-8080-9a85-c0fcd79a8a0a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Autoriser uniquement certaines adresses IP à administrer le
+                    périphérique.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8006-8751-d42178fcb892"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80b5-841d-e586b84b2dee" class="">
+                          access-list 50 permit 192.168.1.10<br />line vty 0
+                          4<br />access-class 50 in<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8004-afd1-d64339c9f3ae"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Configurer un bannière d’avertissement</strong> :
+                <ul
+                  id="15184eed-7b66-8058-96e2-f3c64ad594b7"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Informer les utilisateurs non autorisés qu’ils sont
+                    surveillés.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8024-82fa-e28daa07e953"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8046-a11f-dfcd304a51aa" class="">
+                          banner motd # Attention : accès réservé aux
+                          utilisateurs autorisés ! #
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-80a2-a04b-fc78d6995afb" class="">
+              <strong
+                >6.3 Principes de base des pare-feux et de la détection
+                d&#x27;intrusion</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-80e6-b492-e2a3a1e9c882" class="">
+              <strong>Pare-feux</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80b8-89c6-d75de008a58e"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Définition</strong> :
+                <ul
+                  id="15184eed-7b66-8013-8d9e-eaa068817718"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Un pare-feu est une barrière qui surveille et contrôle le
+                    trafic réseau en appliquant des règles prédéfinies.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80bb-a494-f4e50474505d"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Types de pare-feux</strong> :
+                <ul
+                  id="15184eed-7b66-80d2-8a31-d91ff826a195"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Pare-feu matériel</strong> : Intégré dans un routeur
+                    ou une appliance dédiée.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80d6-aec7-c24b15c6fd2e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Pare-feu logiciel</strong> : Fonctionne sur un
+                    serveur ou un ordinateur.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80d1-aaa1-e355cc2c701e"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Fonctionnalités clés</strong> :
+                <ul
+                  id="15184eed-7b66-803d-ad55-fa6f79333017"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Filtrage des paquets</strong> : Basé sur l’adresse
+                    IP, les ports et les protocoles.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-809e-9e22-ed1181bc7302"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Inspection d&#x27;état</strong> (stateful
+                    inspection) : Suit les connexions actives pour une gestion
+                    dynamique.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80af-8c0d-e5f87a2b55fa"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Proxy</strong> : Agit comme intermédiaire pour
+                    analyser les requêtes avant leur transmission.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80f7-8ded-c745688294e7"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Exemple de configuration de pare-feu sur Cisco</strong>
+                :
+                <ul
+                  id="15184eed-7b66-8014-89a7-f529b463beb7"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configurer une inspection de trafic avec
+                    <strong>CBAC (Context-Based Access Control)</strong> :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-809c-a118-c0de440be4c1"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80f3-ab41-d221cc26a09f" class="">
+                          ip inspect name FIREWALL tcp<br />ip inspect name
+                          FIREWALL udp<br />interface GigabitEthernet0/0<br />ip
+                          inspect FIREWALL out<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-80c6-a09e-cdff0df3a957" class="">
+              <strong
+                >Détection et prévention d&#x27;intrusion (IDS/IPS)</strong
+              >
+              :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8043-9b5e-caf6d3d77378"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Définitions</strong> :
+                <ul
+                  id="15184eed-7b66-80d9-9108-d9d88f4f25ae"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>IDS (Intrusion Detection System)</strong> : Détecte
+                    les activités malveillantes et envoie des alertes.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80ee-b5ee-cc29fc1d7a53"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>IPS (Intrusion Prevention System)</strong> : Bloque
+                    activement les menaces identifiées.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8094-8a98-db1cb84d77a8"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Fonctionnement</strong> :
+                <ul
+                  id="15184eed-7b66-80b3-9c41-ddf640148270"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Analyse le trafic en temps réel pour identifier des modèles
+                    d’attaques connus ou des comportements anormaux.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8094-8605-efe203e3b1f5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Implémenté en ligne (IPS) ou en mode miroir (IDS).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80cb-9bda-fadb4f321d8f"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Avantages</strong> :
+                <ul
+                  id="15184eed-7b66-801b-8249-df41f567e673"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Fournit une couche de défense supplémentaire contre les
+                    attaques.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-804e-8471-ee029e3dce56"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Peut détecter les attaques par déni de service (DDoS), le
+                    balayage de ports et les tentatives d’exploitation de
+                    vulnérabilités.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            7. Dépannage réseau
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-8097-8337-eb3d6f33b7c6" class="">
+              <strong>7.1 Méthodologie de dépannage structurée</strong>
+            </h2>
+            <h3 id="15184eed-7b66-802b-8009-c4ae035d8c13" class="">
+              <strong>7.1.1. Identifier le problème</strong> :
+            </h3>
+            <ul id="15184eed-7b66-8044-b59d-c16a2da55a64" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Symptômes</strong> : Recueillir des informations auprès
+                des utilisateurs ou via des outils réseau.
+                <ul
+                  id="15184eed-7b66-801e-9057-e8c8e8ec200c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    Exemple : Absence de connectivité, lenteur, déconnexion
+                    intermittente.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-8078-b940-c9196ffed13f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Définir les limites</strong> : Identifier les zones
+                impactées (un utilisateur, un VLAN, tout le réseau).
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-8051-bdd4-f52a894a47eb" class="">
+              <strong>7.1.2. Formuler une hypothèse</strong> :
+            </h3>
+            <ul id="15184eed-7b66-80c7-ba86-d493e139ede5" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Analyser les symptômes pour déterminer la cause probable.
+                <ul
+                  id="15184eed-7b66-805e-ad23-d5263fc42b35"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    Exemples : Un problème matériel, une configuration erronée,
+                    ou une surcharge réseau.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-8092-a4f9-d285504e8df1" class="">
+              <strong>7.1.3. Tester l&#x27;hypothèse</strong> :
+            </h3>
+            <ul id="15184eed-7b66-80ab-9c6a-f5df0581fdac" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Effectuer des actions correctives ou des tests ciblés pour
+                valider l’hypothèse.
+                <ul
+                  id="15184eed-7b66-80f2-9506-f0a5ad1aaab8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    Exemple : Pinger une adresse IP ou inspecter la table ARP.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-80ac-a62d-ff2b845f8a67" class="">
+              <strong>7.1.4. Implémenter une solution</strong> :
+            </h3>
+            <ul id="15184eed-7b66-80ac-9db5-e9b10ed9adeb" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Appliquer des correctifs pour résoudre le problème.
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-8080-9f4c-c8d065159ac8" class="">
+              <strong>7.1.5. Vérification</strong> :
+            </h3>
+            <ul id="15184eed-7b66-8001-99ce-ee87feb45e39" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Confirmer que le problème est résolu et que le réseau fonctionne
+                normalement.
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-80a1-b6ff-d98603279d44" class="">
+              <strong>7.1.6. Documenter</strong> :
+            </h3>
+            <ul id="15184eed-7b66-80dd-ad0e-c8fe7e0407d2" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Enregistrer les détails du problème, la solution appliquée et
+                les leçons apprises pour référence future.
+              </li>
+            </ul>
+            <h2 id="15184eed-7b66-807e-9a9d-c354c0726441" class="">
+              <strong>7.2 Outils de dépannage réseau</strong>
+            </h2>
+            <h3 id="15184eed-7b66-808a-af08-c5f7f2350908" class="">
+              <strong>7.2.1. Commandes réseau de base</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-809d-8ad6-c5c44ca89cbe"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>ping</strong> :
+                <ul
+                  id="15184eed-7b66-80f5-88e5-c0f988c715c9"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Teste la connectivité entre deux hôtes en envoyant des
+                    paquets ICMP.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8083-a2dd-e3186715dc0b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80e0-8650-c6c4ee50c299"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8061-8c23-d581dc878449" class="">
+                          ping 192.168.1.1
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8031-a528-eee6e527ae54"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Résultat :
+                    <ul
+                      id="15184eed-7b66-800a-ac34-e249024c3ccf"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Réponse reçue : Connectivité OK.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-80c0-9404-fd8d25ccb6e5"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Pas de réponse : Problème de connectivité.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ff-9577-d8226f8e4f3e"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>traceroute</strong> :
+                <ul
+                  id="15184eed-7b66-804e-a160-ffcaae48350a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Identifie le chemin parcouru par les paquets pour atteindre
+                    leur destination.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80d1-8da5-e081d6e9b037"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisé pour détecter les points de défaillance ou de
+                    latence.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8050-9ddb-e6647b9aa1ec"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8097-9640-d5911ffba763"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8072-81ae-c6089e5deead" class="">
+                          traceroute 8.8.8.8
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8085-8abf-c7cd55a969da"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>arp</strong> :
+                <ul
+                  id="15184eed-7b66-80e9-a95e-f1eab8cba918"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Vérifie les correspondances entre adresses IP et MAC dans la
+                    table ARP.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8089-88a9-c37911a4f73b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-809b-acb2-dfaf5d1ffe42"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-806b-a4af-cc3b90acadd8" class="">
+                          arp -a
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-800c-bb4b-f2a3a12f4156"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>ipconfig/ifconfig</strong> :
+                <ul
+                  id="15184eed-7b66-80da-9e05-ce9912e8b786"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Affiche les informations réseau des interfaces (adresse IP,
+                    passerelle, DNS).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8087-9074-d30520f3990f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple (Windows) :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80b5-8a6a-c44f90178796"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-804a-9d11-c4d36824018d" class="">
+                          ipconfig /all
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8040-a5e1-f4d9162eaa63"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>show commands</strong> (Cisco) :
+                <ul
+                  id="15184eed-7b66-80fa-8795-d493de34011a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permettent une analyse approfondie des équipements.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8084-bfe9-fc44bcc0ee5f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Exemples</strong> :
+                    <ul
+                      id="15184eed-7b66-80c3-afae-c15956e5254a"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>show ip route</strong> : Vérifie les routes
+                        connues par le routeur.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-805a-a901-fb308f0b5ec1"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>show interfaces</strong> : Identifie les
+                        interfaces actives/inactives.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-80ed-832f-f034211019dd"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>show vlan brief</strong> : Vérifie la
+                        configuration VLAN sur un commutateur.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-80d8-8ea8-e32ab319c218"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>show running-config</strong> : Consulte la
+                        configuration en cours.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-8029-b95d-c2a9a3577ce6" class="">
+              <strong>7.2.2. Outils avancés</strong>
+            </h3>
+            <ul id="15184eed-7b66-80a0-bac6-c63fdad1d58f" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Packet sniffer (Wireshark)</strong> : Analyse les
+                paquets pour diagnostiquer les problèmes spécifiques.
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-80ce-95aa-eb6537fe9510" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Netstat</strong> : Vérifie les connexions réseau actives
+                sur un appareil.
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-8009-9311-d61904c7bb30" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Nmap</strong> : Outil de scan pour détecter les hôtes et
+                les services actifs.
+              </li>
+            </ul>
+            <h2 id="15184eed-7b66-8077-aef7-e78f75b3e446" class="">
+              <strong
+                >7.3 Résolution des problèmes courants de couche 2 et 3</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-80a9-8fcc-e360ae3e0938" class="">
+              <strong>Problèmes de couche 2 (Commutation)</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-807c-8f08-ceb33e822cf3"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Symptômes</strong> :
+                <ul
+                  id="15184eed-7b66-8089-ba65-c7856ca86779"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Absence de connectivité entre des hôtes dans le même VLAN.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8045-b307-cafd23d06d6b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Anomalies dans les tables MAC.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8009-9bbb-e1f272635ef5"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Causes fréquentes</strong> :
+                <ul
+                  id="15184eed-7b66-80e1-a854-f547762573a6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    VLAN mal configuré ou absent.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80fb-b206-ef0725ec56c0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Problèmes de trunk (802.1Q non configuré).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-808b-897e-d6096c46e4d7"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Boucles réseau non contrôlées.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-808f-b75a-d4d412a85aa0"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Résolution</strong> :
+                <ul
+                  id="15184eed-7b66-80d4-b213-edd0d57ce8d0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Vérifiez les configurations VLAN :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8073-a90f-f632ff632ca8"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80cc-97e1-e8f67506d252" class="">
+                          show vlan brief
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80aa-8f55-f14c237c0009"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Vérifiez les trunks :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80dd-b3da-c52683db16f2"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-802c-bfb8-c23c6d705631" class="">
+                          show interfaces trunk
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8094-ba4a-e5f1359b2179"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Détectez les boucles avec <strong>STP</strong> :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8069-aa53-d22ae499968f"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8009-9ba6-d19f1b8549f0" class="">
+                          show spanning-tree
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-80ef-8400-ffaf3c66797f" class="">
+              <strong>Problèmes de couche 3 (Routage)</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-803b-adf6-e8eb5585b319"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Symptômes</strong> :
+                <ul
+                  id="15184eed-7b66-80a4-a751-c98950be1628"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les hôtes de différents VLANs ne communiquent pas.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8031-82d3-fa33e1436181"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Perte de connectivité avec des sous-réseaux distants.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80fd-9d92-d84834a529ff"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Causes fréquentes</strong> :
+                <ul
+                  id="15184eed-7b66-80d0-998a-d0b5f5b01b00"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Route statique manquante ou incorrecte.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80b9-8f4a-c37486cfc2f7"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Protocoles de routage mal configurés.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80f7-b64d-f6de37609782"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Problèmes de passerelle par défaut.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-801b-83a3-c47dda8b5730"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Résolution</strong> :
+                <ul
+                  id="15184eed-7b66-80da-9522-db42fd42d9d8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Vérifiez les routes sur les routeurs :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-809d-ba0d-c8c7e6c473fa"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80b5-9168-d1c48c9cf1e4" class="">
+                          show ip route
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8098-8636-fa5eca98aa71"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Testez la passerelle avec <strong>ping</strong> :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-806a-afa7-c15781433c0c"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80f0-98f8-f7e97dd684a7" class="">
+                          ping 192.168.1.1
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8097-bb8d-ea80eb8f5e25"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Analysez les protocoles de routage (OSPF, EIGRP) :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-809e-a758-dc1fe2087b2b"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80d0-bb81-ed08158002e7" class="">
+                          show ip ospf neighbor
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-8060-93a3-e2a97b8e0066" class="">
+              <strong>Exemple de dépannage complet</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-804c-86e3-f68c6e48dbff"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Problème signalé</strong> : Un utilisateur ne peut pas
+                accéder à un serveur.
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80e2-984a-e2687a2c2f4b"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Étapes</strong> :
+                <ul
+                  id="15184eed-7b66-8089-9198-e008c66dd9c5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Ping l&#x27;utilisateur et le serveur</strong> :
+                    Identifier la première adresse non joignable.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8011-91e6-efe7e5646068"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Traceroute vers le serveur</strong> : Identifier où
+                    le trafic est bloqué.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-808e-b784-f8a392460ca1"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Vérifier VLANs et trunking</strong> sur les
+                    commutateurs impliqués.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8019-9ff3-c8b9e4d238d7"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80e3-9e37-c1808541f9ff" class="">
+                          show vlan brief<br />show interfaces trunk<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8048-979b-cc5df6a1327a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Analyser les routes</strong> sur les routeurs
+                    intermédiaires.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-807b-a254-c96d91ae7f66"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80f5-94e0-f23840988e9c" class="">
+                          show ip route
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80c0-b6cf-ce43a9966450"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Résoudre le problème</strong> : Corriger une
+                    configuration VLAN manquante ou une route incorrecte.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8095-979d-fdb22b1b579b"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Vérification</strong> : Confirmer que l’utilisateur
+                accède au serveur.
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            8. Automatisation et programmabilité des réseaux
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-80c2-9e06-c034ccef27d5" class="">
+              <strong
+                >8.1 Introduction aux concepts de SDN (Software-Defined
+                Networking)</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-8052-87c8-fde52cd8331b" class="">
+              <strong>Définition du SDN</strong> :
+            </h3>
+            <ul id="15184eed-7b66-804b-9452-d23be70945bf" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Software-Defined Networking (SDN)</strong> est une
+                approche de l&#x27;architecture réseau qui sépare le plan de
+                contrôle (qui prend des décisions sur le flux de données) et le
+                plan de données (qui acheminent les paquets). Cela permet une
+                gestion plus centralisée et dynamique du réseau.
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-8086-98c4-d8f8adf782d5" class="">
+              <strong>Principes fondamentaux du SDN</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8056-9573-dd71b1748222"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Séparation des plans de contrôle et de données</strong>
+                :
+                <ul
+                  id="15184eed-7b66-808f-af21-e6e3208e86a4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le <strong>plan de contrôle</strong> gère la logique de
+                    routage et de commutation (par exemple, les décisions de
+                    transmission de paquets), tandis que le
+                    <strong>plan de données</strong> gère le transfert réel des
+                    paquets via les équipements réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80da-bde1-f3c46b843bbf"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Cela permet une plus grande flexibilité, car les décisions
+                    peuvent être prises centralement, sans avoir besoin de
+                    configurations manuelles sur chaque périphérique.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80b2-885a-dcc8f80f6385"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Contrôleur SDN</strong> :
+                <ul
+                  id="15184eed-7b66-80df-9fda-fcb93da1e50c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le <strong>contrôleur SDN</strong> est un composant central
+                    qui gère l’ensemble du réseau. Il communique avec les
+                    équipements réseau via un protocole de contrôle pour mettre
+                    à jour les tables de routage et appliquer des politiques
+                    réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8030-b70a-ceb3ee5518db"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple de contrôleur SDN : <strong>OpenFlow</strong>,
+                    <strong>Cisco ACI</strong>, <strong>ONOS</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8065-b321-d7820a3984a5"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Programmes et applications SDN</strong> :
+                <ul
+                  id="15184eed-7b66-8017-b3f7-e813ca45ff35"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les applications SDN peuvent être utilisées pour automatiser
+                    des tâches telles que la gestion de la bande passante, la
+                    configuration des VLANs, la sécurité réseau, et plus encore.
+                    Ces applications communiquent avec le contrôleur SDN pour
+                    ajuster les configurations réseau en temps réel.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-80d3-987c-cb074bec1c82" class="">
+              <strong>Avantages du SDN</strong> :
+            </h3>
+            <ul id="15184eed-7b66-8091-9752-d062c091bcc2" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Centralisation</strong> : Facilite la gestion et la
+                configuration du réseau à partir d’un seul point central.
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-807f-8244-c9aac25d8dd3" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Agilité</strong> : Permet des modifications rapides et
+                dynamiques de la topologie et des règles de routage.
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-8004-b9ad-f52a79d7fcab" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Automatisation</strong> : Réduit la nécessité
+                d&#x27;interventions manuelles répétitives.
+              </li>
+            </ul>
+            <h2 id="15184eed-7b66-8023-a4f5-d6e0dc255d22" class="">
+              <strong
+                >8.2 APIs et protocoles de gestion de réseau (NETCONF,
+                RESTCONF)</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-808c-9f11-db69a0ca9524" class="">
+              <strong
+                >APIs (Interfaces de Programmation d&#x27;Applications)</strong
+              >
+              :
+            </h3>
+            <ul id="15184eed-7b66-80b9-ae02-d957518cfd58" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Les <strong>APIs</strong> permettent aux applications et aux
+                services externes de communiquer avec les équipements réseau
+                pour leur configuration, leur gestion et leur surveillance.
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-80d9-a53a-fffbde3c430f" class="">
+              <strong>Protocoles de gestion de réseau</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8091-8e0c-f21cfc554b68"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>NETCONF (Network Configuration Protocol)</strong> :
+                <ul
+                  id="15184eed-7b66-80e7-8540-db20b6215455"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>NETCONF</strong> est un protocole de gestion de
+                    réseau basé sur XML qui permet de configurer, surveiller et
+                    contrôler les périphériques réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8020-8310-f7e04fb0cc8d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Fonctionnalités</strong> :
+                    <ul
+                      id="15184eed-7b66-80c2-b608-e60342eee02d"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Il permet une gestion structurée des configurations,
+                        avec un contrôle de version et une capacité de gestion
+                        des erreurs.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-809f-b5b2-ecadaa5f7d64"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Il est souvent utilisé dans des environnements où une
+                        gestion robuste de la configuration est nécessaire.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80a0-ae8a-def02f34e321"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Exemple d’utilisation</strong> : Configuration
+                    dynamique d&#x27;un routeur ou d&#x27;un switch via un
+                    contrôleur SDN ou un serveur d&#x27;automatisation.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ed-9d51-c8c4748a27d1"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>RESTCONF</strong> :
+                <ul
+                  id="15184eed-7b66-80ba-9656-e74beadeb8a1"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>RESTCONF</strong> est une extension du protocole
+                    <strong>REST</strong> (Representational State Transfer) qui
+                    est spécifiquement conçu pour la gestion des réseaux.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8037-8f82-e6caf4b84c7a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Fonctionnalités</strong> :
+                    <ul
+                      id="15184eed-7b66-80a2-878f-e667527b1fbd"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        RESTCONF fournit une API web basée sur HTTP qui est
+                        beaucoup plus simple à intégrer et à utiliser que
+                        NETCONF. Il est basé sur des services RESTful et est
+                        souvent utilisé pour interagir avec des équipements
+                        réseau via des requêtes HTTP.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-8034-8684-cdff5729724c"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Idéal pour une communication plus légère et accessible
+                        avec des systèmes de gestion de réseau via des
+                        applications externes ou des outils d’automatisation
+                        comme <strong>Ansible</strong>.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80c0-bad0-c4a03d09c83a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Exemple d’utilisation</strong> : Contrôler et
+                    configurer des périphériques réseau via des appels HTTP
+                    (GET, POST, PUT).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-80c2-9129-e3d244982f59" class="">
+              <strong>Exemple d&#x27;intégration avec SDN</strong> :
+            </h3>
+            <p id="15184eed-7b66-8092-bed2-d0a7756effa9" class="">
+              Les contrôleurs SDN peuvent utiliser NETCONF ou RESTCONF pour
+              envoyer des configurations directement aux périphériques réseau
+              (commutateurs, routeurs), permettant une gestion et un contrôle
+              dynamique du réseau via des interfaces programmables.
+            </p>
+            <h2 id="15184eed-7b66-80ed-8815-d549100f9c9b" class="">
+              <strong
+                >8.3 Notions de base sur les outils d&#x27;automatisation (ex :
+                Ansible, Python)</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-8055-9a26-f60295a81afb" class="">
+              <strong>Outils d&#x27;automatisation réseau</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-806f-a0a4-f579c04275aa"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Ansible</strong> :
+                <ul
+                  id="15184eed-7b66-80f9-98ac-d8d9f14b0637"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Ansible</strong> est un outil d&#x27;automatisation
+                    de configuration et de gestion des systèmes et des réseaux.
+                    Il est simple à utiliser et basé sur des
+                    <strong>playbooks</strong> (scripts de configuration écrits
+                    en YAML).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8023-b231-fa919185366d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Avantages</strong> :
+                    <ul
+                      id="15184eed-7b66-804c-830d-cd4582db1db7"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Pas besoin d’agents : Ansible fonctionne en utilisant
+                        SSH pour se connecter aux périphériques.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-807d-8c11-f5b00d9cd339"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Idéal pour des tâches répétitives telles que la
+                        configuration des périphériques réseau, la gestion des
+                        VLANs, l&#x27;application de politiques de sécurité,
+                        etc.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80ce-a5fb-d42725043b57"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Exemple de playbook Ansible</strong> pour configurer
+                    un VLAN :
+                    <script
+                      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+                      integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+                      crossorigin="anonymous"
+                      referrerpolicy="no-referrer"
+                    ></script>
+                    <link
+                      rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+                      integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+                      crossorigin="anonymous"
+                      referrerpolicy="no-referrer"
+                    />
+                    <pre
+                      id="15184eed-7b66-807e-8621-ed94e892ca4a"
+                      class="code"
+                    ><code class="language-YAML">- name: Configure VLAN on a switch
+  hosts: switches
+  tasks:
+    - name: Create VLAN 10
+      ios_vlan:
+        vlan_id: 10
+        name: &quot;VLAN_10&quot;
+        state: present</code></pre>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-800e-a631-eeae218045af"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Python</strong> :
+                <ul
+                  id="15184eed-7b66-8063-87f3-c3960758bb81"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Python</strong> est un langage de programmation très
+                    populaire dans le domaine de l&#x27;automatisation réseau.
+                    Il est utilisé pour écrire des scripts qui interagissent
+                    avec des équipements réseau via des
+                    <strong>API RESTful</strong>, <strong>NETCONF</strong>, ou
+                    des modules spécifiques comme <strong>PySNMP</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80fe-b6d4-caff9647488e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong
+                      >Exemple de script Python pour configurer un switch via
+                      RESTCONF</strong
+                    >
+                    :
+                    <script
+                      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+                      integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+                      crossorigin="anonymous"
+                      referrerpolicy="no-referrer"
+                    ></script>
+                    <link
+                      rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+                      integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+                      crossorigin="anonymous"
+                      referrerpolicy="no-referrer"
+                    />
+                    <pre
+                      id="15184eed-7b66-8082-bc03-cd29d91ff65f"
+                      class="code"
+                    ><code class="language-Python">import requests
+url = &quot;https://&lt;ip_address&gt;/restconf/data/native/interface/Vlan1&quot;
+headers = {&quot;Content-Type&quot;: &quot;application/yang.data+json&quot;}
+data = {
+  &quot;name&quot;: &quot;Vlan1&quot;,
+  &quot;ip&quot;: {&quot;address&quot;: {&quot;primary&quot;: {&quot;address&quot;: &quot;192.168.1.1&quot;, &quot;mask&quot;: &quot;255.255.255.0&quot;}}}
+}
+response = requests.put(url, json=data, headers=headers, auth=(&#x27;admin&#x27;, &#x27;password&#x27;))
+print(response.status_code, response.text)</code></pre>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-806f-8e98-e3368154f58e"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Avantages de l&#x27;automatisation</strong> :
+                <ul
+                  id="15184eed-7b66-803f-8cbf-fc5fce9950b4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Consistance</strong> : Réduit les erreurs humaines
+                    en appliquant les mêmes configurations de manière répétée.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8010-9270-d7ba1f8b5399"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Efficacité</strong> : Automatise les tâches
+                    répétitives, permettant de gagner du temps et
+                    d&#x27;augmenter la productivité.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8043-a097-de63c74ca0b3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Scalabilité</strong> : Permet de gérer facilement un
+                    grand nombre de périphériques et de configurations.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>
