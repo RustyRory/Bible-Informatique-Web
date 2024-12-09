@@ -1,0 +1,2720 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Bootstrap</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="9ab0f1da-1925-4bdb-b3ad-b2993a0621b0" class="page sans">
+      <header>
+        <h1 class="page-title">Bootstrap</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <h1 id="e2c1c796-c277-4811-9ee6-8e43cd8c4b06" class="">
+          1. Fondamentaux de Bootstrap
+        </h1>
+        <h2 id="4405dccc-abb0-4e55-b05c-ada2f46fb689" class="">
+          1.1. Comprendre l&#x27;histoire et le but de Bootstrap
+        </h2>
+        <p id="bda3551b-bc5f-4681-869b-e2a2fb182c2f" class="">
+          Bootstrap est un framework CSS open-source développé par Twitter en
+          2010. Son histoire et son but se résument ainsi :
+        </p>
+        <ul id="ac1b55b2-47ee-4208-86c5-ec995448b417" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Origine :</strong> Créé par Mark Otto et Jacob Thornton,
+            employés de Twitter, pour uniformiser les outils de développement
+            front-end de l&#x27;entreprise.
+          </li>
+        </ul>
+        <ul id="0570db51-6423-4d7a-a3ef-0aa63efff1ed" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Lancement public :</strong> Publié en août 2011, Bootstrap a
+            rapidement séduit les développeurs web du monde entier.
+          </li>
+        </ul>
+        <ul id="5cff385c-4b7d-4557-9613-7da3737ec793" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>But initial :</strong> Offrir un ensemble cohérent
+            d&#x27;outils pour accélérer et simplifier le développement
+            d&#x27;interfaces web réactives et esthétiques.
+          </li>
+        </ul>
+        <ul id="e2f94f35-0b9a-4346-8e72-1eb98945dd4d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Évolution :</strong> Au fil des versions, Bootstrap
+            s&#x27;est enrichi, améliorant sa flexibilité et sa compatibilité
+            avec les technologies web modernes.
+          </li>
+        </ul>
+        <ul id="0dc04f91-1876-4cef-be93-b22c7516159c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Standardisation :</strong> Bootstrap a établi des normes de
+            design web, fournissant une base cohérente pour de nombreux sites et
+            applications.
+          </li>
+        </ul>
+        <ul id="788a3c29-ad3b-4516-b3df-1ae106a16abb" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Design réactif :</strong> Avec l&#x27;essor du mobile,
+            Bootstrap a priorisé le design réactif, permettant aux sites de
+            s&#x27;adapter à diverses tailles d&#x27;écran.
+          </li>
+        </ul>
+        <ul id="27a3b7fb-6918-4810-86c6-33de59452ad1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Communauté :</strong> Un vaste écosystème de développeurs,
+            plugins et thèmes s&#x27;est formé autour de Bootstrap, consolidant
+            sa position de leader.
+          </li>
+        </ul>
+        <ul id="9e4a04d5-6a42-475e-b0a0-41d151d0b9c1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif actuel :</strong> Continuer à fournir un framework
+            robuste, flexible et convivial pour le développement web moderne,
+            tout en s&#x27;adaptant aux nouvelles tendances.
+          </li>
+        </ul>
+        <p id="13df1d50-5b40-4abf-98b4-077bce337577" class="">
+          En somme, Bootstrap vise à simplifier et accélérer le développement
+          web en offrant des outils prêts à l&#x27;emploi, tout en assurant
+          cohérence et qualité des interfaces utilisateur.
+        </p>
+        <h2 id="ff8634a4-f33a-4147-990a-79db05f246c2" class="">
+          1.2. Maîtriser l&#x27;installation et la configuration de Bootstrap
+        </h2>
+        <p id="fbd7b838-1058-4958-9320-2a4b68b94854" class="">
+          L&#x27;installation et la configuration de Bootstrap peuvent se faire
+          de plusieurs manières :
+        </p>
+        <h3 id="f34f2277-247b-4fc6-803f-ebc7bd914ff1" class="">
+          1. Via CDN (Content Delivery Network)
+        </h3>
+        <p id="45edc638-5d55-4f04-aee6-d0aa82c89bd0" class="">
+          C&#x27;est la méthode la plus simple et rapide pour commencer :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="6cc947d5-5686-4edf-8c07-5856dd2775aa"
+          class="code"
+        ><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Mon site Bootstrap&lt;/title&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Votre contenu ici --&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <h3 id="d29b3b04-56b6-4aed-900d-09a90c734066" class="">
+          2. Téléchargement direct
+        </h3>
+        <p id="631bae07-81c4-407e-a5df-38f7125b8620" class="">
+          Téléchargez les fichiers CSS et JS depuis le site officiel de
+          Bootstrap et incluez-les dans votre projet :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="6a809b5a-cbb6-4007-8093-06ed52c0abce"
+          class="code"
+        ><code class="language-HTML">&lt;link href=&quot;chemin/vers/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;chemin/vers/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+        <h3 id="2d3faf07-2a3c-466e-aeb7-dfafeaac91b1" class="">
+          3. Via npm (Node Package Manager)
+        </h3>
+        <p id="ed4e20b0-aae5-46a5-a38d-9195f3e467ce" class="">
+          Pour les projets utilisant npm :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="a2a7da6a-4356-4afa-97c3-166c8c7b0e2c"
+          class="code"
+        ><code class="language-Bash">npm install bootstrap</code></pre>
+        <p id="94dabf95-291a-4528-b472-4898bac3d66f" class="">
+          Puis importez Bootstrap dans votre fichier JavaScript principal :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="1f05c473-c605-479f-b64f-d04c908d2f41"
+          class="code"
+        ><code class="language-JavaScript">import &#x27;bootstrap/dist/css/bootstrap.min.css&#x27;;
+import &#x27;bootstrap/dist/js/bootstrap.bundle.min.js&#x27;;</code></pre>
+        <h3 id="6fad5932-6bc8-4f3d-9ed4-6538c344fdae" class="">
+          4. Personnalisation avec Sass
+        </h3>
+        <p id="c4705294-2bb2-44fb-bf5a-e299d0843d5c" class="">
+          Pour une personnalisation avancée, utilisez Sass :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="b15c55b0-0681-4bad-a882-90ea619314dc"
+          class="code"
+        ><code class="language-Scss">// Personnalisez les variables
+$primary: #007bff;
+$font-family-base: &#x27;Arial&#x27;, sans-serif;
+
+// Importez Bootstrap
+@import &quot;~bootstrap/scss/bootstrap&quot;;</code></pre>
+        <h3 id="dfb75420-0377-4338-9f1d-3df61207a10a" class="">
+          Configuration supplémentaire
+        </h3>
+        <ul id="e4919b9f-adb6-434b-b30f-3a4cfa048527" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Assurez-vous d&#x27;inclure la balise meta viewport pour le
+            responsive design.
+          </li>
+        </ul>
+        <ul id="68b0ae26-d55c-47d9-9708-3ed98cd79550" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Pour utiliser les composants JavaScript, incluez Popper.js (inclus
+            dans bootstrap.bundle.min.js).
+          </li>
+        </ul>
+        <ul id="65b95764-2db4-4111-9eb3-dfc44a7d210f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Activez les tooltips et popovers manuellement si nécessaire :
+          </li>
+        </ul>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="8b096166-d86e-490c-9759-57a8ed809146"
+          class="code"
+        ><code class="language-JavaScript">var tooltipTriggerList = [].slice.call(document.querySelectorAll(&#x27;[data-bs-toggle=&quot;tooltip&quot;]&#x27;))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})</code></pre>
+        <p id="f8b84c16-5f68-4e77-a75b-2eeebc595387" class="">
+          En suivant ces étapes, vous aurez une configuration de base de
+          Bootstrap prête à l&#x27;emploi. Vous pouvez ensuite commencer à
+          utiliser les classes et composants Bootstrap dans votre HTML.
+        </p>
+        <h2 id="6224f8c7-2046-49e6-9bbc-aa44f6bb8e70" class="">
+          1.3. Connaître la structure de base d&#x27;un projet Bootstrap
+        </h2>
+        <p id="c7844169-f6ee-4e0b-aa3e-80b6e25d170d" class="">
+          La structure de base d&#x27;un projet Bootstrap comprend généralement
+          les éléments suivants :
+        </p>
+        <ul id="391cf952-e075-407b-b2f3-4c8a6b0f43f0" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Doctype HTML5 :</strong> Déclaration du type de document
+            pour assurer la compatibilité.
+          </li>
+        </ul>
+        <ul id="415ee517-5c4c-4992-93ab-2a18abc39c53" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Balise viewport :</strong> Pour garantir un affichage
+            correct sur les appareils mobiles.
+          </li>
+        </ul>
+        <ul id="612b5a95-5189-4d0c-aa94-22f5e734fba3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Liens CSS :</strong> Inclusion du fichier CSS de Bootstrap
+            et éventuellement des styles personnalisés.
+          </li>
+        </ul>
+        <ul id="efd49b5a-378d-4863-a03e-57a8b7c0708d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Structure du contenu :</strong> Utilisation de conteneurs,
+            lignes et colonnes pour organiser la mise en page.
+          </li>
+        </ul>
+        <ul id="c8770cf1-5b91-44dc-9725-3e35e4988170" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Scripts JavaScript :</strong> Inclusion de Bootstrap JS et
+            de ses dépendances (comme Popper.js) en fin de document.
+          </li>
+        </ul>
+        <ul id="33b737ec-d6b2-4dda-ad30-e2ba0396b7bc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Composants Bootstrap :</strong> Utilisation des classes
+            prédéfinies pour créer rapidement des éléments d&#x27;interface.
+          </li>
+        </ul>
+        <p id="759d4ec4-2ce9-4135-b2dd-f3df26c8fc3e" class="">
+          Cette structure de base permet de tirer pleinement parti des
+          fonctionnalités de Bootstrap tout en assurant une compatibilité et une
+          réactivité optimales.
+        </p>
+        <p id="7a8bf8a9-66a8-4566-9bee-b6e276dc60da" class="">
+          Voici un exemple concret de structure de base :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="a7c839a3-36aa-4b8a-9e7f-1f949d9a1738"
+          class="code"
+        ><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Mon Projet Bootstrap&lt;/title&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;styles/custom.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav class=&quot;navbar navbar-expand-lg navbar-light bg-light&quot;&gt;
+        &lt;!-- Contenu de la barre de navigation --&gt;
+    &lt;/nav&gt;
+
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-md-8&quot;&gt;
+                &lt;h1&gt;Contenu Principal&lt;/h1&gt;
+                &lt;!-- Contenu principal --&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;h2&gt;Barre latérale&lt;/h2&gt;
+                &lt;!-- Contenu de la barre latérale --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;footer class=&quot;bg-dark text-white mt-4&quot;&gt;
+        &lt;!-- Contenu du pied de page --&gt;
+    &lt;/footer&gt;
+
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/custom.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <p id="a2cb2c23-9c03-4dc1-87f9-82e6dc9b29dd" class="">
+          Cet exemple illustre comment structurer une page web de base avec
+          Bootstrap, incluant une barre de navigation, un contenu principal avec
+          une mise en page en colonnes, et un pied de page.
+        </p>
+        <h1 id="56b5bce7-4ab3-4c0d-841f-02241f1a2615" class="">
+          2. Système de grille
+        </h1>
+        <h2 id="1277c924-ee18-4142-9982-d2f43a784330" class="">
+          2.1. Maîtriser le système de grille à 12 colonnes
+        </h2>
+        <p id="e216b0cb-e2ff-4512-97ee-25665d97f344" class="">
+          Le système de grille à 12 colonnes est un élément fondamental de
+          Bootstrap, offrant une structure flexible pour créer des mises en page
+          responsives. Voici les points clés à comprendre :
+        </p>
+        <ul id="9354c98c-8edd-4929-8c4d-a8923b8a01d9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Principe de base :</strong> La grille divise la largeur de
+            la page en 12 colonnes égales.
+          </li>
+        </ul>
+        <ul id="cda7bc9f-bed1-4e7b-a01c-122188b05613" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Conteneurs :</strong> Utilisez .container ou
+            .container-fluid pour envelopper le contenu de la grille.
+          </li>
+        </ul>
+        <ul id="93b289ef-e918-4ef0-a842-a26d2ff76984" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Lignes :</strong> Utilisez la classe .row pour créer des
+            lignes horizontales dans votre mise en page.
+          </li>
+        </ul>
+        <ul id="436fea29-9023-4606-bc21-410f5e866d06" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Colonnes :</strong> Utilisez les classes .col-* pour définir
+            la largeur des colonnes (ex: .col-4 pour 1/3 de la largeur).
+          </li>
+        </ul>
+        <ul id="b889794b-e966-48cc-9079-1df4fe276e76" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Flexibilité :</strong> Les colonnes s&#x27;adaptent
+            automatiquement à la largeur de leur conteneur parent.
+          </li>
+        </ul>
+        <ul id="56bb49b2-8170-4446-8006-06b9fdf80060" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Imbrication :</strong> Vous pouvez imbriquer des grilles à
+            l&#x27;intérieur d&#x27;autres grilles pour des mises en page
+            complexes.
+          </li>
+        </ul>
+        <ul id="bdfa5d1a-beab-4362-8da3-5c8721c82a6f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Offset :</strong> Utilisez .offset-* pour décaler les
+            colonnes horizontalement.
+          </li>
+        </ul>
+        <p id="0b62a26a-d509-4e6e-8818-5d973a043277" class="">
+          La maîtrise de ce système permet de créer des mises en page flexibles
+          et cohérentes sur différents appareils.
+        </p>
+        <p id="c9e8930d-fe25-4f3f-b0c9-3f124f78daf6" class="">
+          Pourquoi utiliser ce système ?
+        </p>
+        <ul id="d2b22af5-9298-4403-ba90-d8f284d7f93b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Cohérence :</strong> Il assure une mise en page uniforme sur
+            l&#x27;ensemble du site.
+          </li>
+        </ul>
+        <ul id="30500848-6ca8-4ac5-8604-ddff410eed5a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Responsive :</strong> S&#x27;adapte automatiquement à
+            différentes tailles d&#x27;écran.
+          </li>
+        </ul>
+        <ul id="232a798e-29ff-4f34-911a-a2884a958128" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Rapidité de développement :</strong> Permet de créer des
+            layouts complexes rapidement.
+          </li>
+        </ul>
+        <ul id="6f2a5398-400b-4ad9-98a0-00a9266dc763" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Flexibilité :</strong> Facile à personnaliser pour répondre
+            à des besoins spécifiques.
+          </li>
+        </ul>
+        <p id="f504ffe5-69af-4d83-916b-df4e3e252ccd" class="">
+          Exemples d&#x27;utilisation :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="a19cd9dd-d942-4644-babd-884db67217e3"
+          class="code"
+        ><code class="language-HTML">&lt;!-- Exemple de mise en page simple --&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-8&quot;&gt;Contenu principal&lt;/div&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;Barre latérale&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Exemple avec des colonnes de largeurs différentes --&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;Colonne 1&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;Colonne 2&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;Colonne 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Exemple avec offset --&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-4 offset-md-2&quot;&gt;Colonne décalée&lt;/div&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;Autre colonne&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p id="5b5d668f-2847-4103-bde9-55f9209ea7ab" class="">
+          Ces exemples illustrent la flexibilité du système de grille pour créer
+          diverses mises en page.
+        </p>
+        <h2 id="df67281d-5d11-4ff5-8890-c3b30d0b4ce2" class="">
+          2.2. Comprendre les classes de grille responsive (col-<em
+            >, col-sm-</em
+          >, col-md-<em>, col-lg-</em>, col-xl-*)
+        </h2>
+        <p id="1a746799-0a93-4e43-bf52-7f88533f63b8" class="">
+          Les classes de grille responsive de Bootstrap permettent de créer des
+          mises en page qui s&#x27;adaptent à différentes tailles d&#x27;écran.
+          Voici les principaux points à comprendre :
+        </p>
+        <ul id="ab50dd05-baa3-44ea-a526-b80ededd2092" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>col-* :</strong> S&#x27;applique à tous les appareils,
+            quelle que soit leur taille.
+          </li>
+        </ul>
+        <ul id="783c06bf-2abf-484e-bdf1-2d2518107b0b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>col-sm-* :</strong> Pour les petits écrans (≥576px) et
+            supérieurs.
+          </li>
+        </ul>
+        <ul id="505de7be-97d6-450e-9e49-d83864ef029a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>col-md-* :</strong> Pour les écrans moyens (≥768px) et
+            supérieurs.
+          </li>
+        </ul>
+        <ul id="641cddd2-52f0-4057-bb21-797f1ba5a105" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>col-lg-* :</strong> Pour les grands écrans (≥992px) et
+            supérieurs.
+          </li>
+        </ul>
+        <ul id="c0e8919f-3e57-49a4-81e5-dd4fc0dddf93" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>col-xl-* :</strong> Pour les très grands écrans (≥1200px).
+          </li>
+        </ul>
+        <p id="ea6d83c5-5b7e-4e10-b8ae-5e105bf27491" class="">
+          Ces classes permettent de définir différentes largeurs de colonnes
+          selon la taille de l&#x27;écran, offrant ainsi un contrôle précis sur
+          la mise en page responsive. Voici quelques exemples :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="f701eacf-1035-419c-9052-ef5700c82aed"
+          class="code"
+        ><code class="language-HTML">&lt;!-- Exemple 1 : Colonnes empilées sur mobile, côte à côte sur desktop --&gt;
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-12 col-md-6&quot;&gt;
+    Colonne 1 : Pleine largeur sur mobile, demi-largeur sur tablette et desktop
+  &lt;/div&gt;
+  &lt;div class=&quot;col-12 col-md-6&quot;&gt;
+    Colonne 2 : Pleine largeur sur mobile, demi-largeur sur tablette et desktop
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Exemple 2 : Adaptation progressive --&gt;
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-12 col-sm-6 col-md-4 col-lg-3&quot;&gt;
+    Colonne qui s&#x27;adapte progressivement selon la taille de l&#x27;écran
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Exemple 3 : Masquage/affichage selon la taille d&#x27;écran --&gt;
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-md-6 d-none d-md-block&quot;&gt;
+    Cette colonne est visible uniquement sur les écrans moyens et grands
+  &lt;/div&gt;
+  &lt;div class=&quot;col-12 col-md-6&quot;&gt;
+    Cette colonne est toujours visible
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p id="fd9ad30d-09c8-407a-8379-4e8d13ebffcc" class="">
+          Ces exemples illustrent comment utiliser les classes de grille
+          responsive pour créer des mises en page flexibles qui s&#x27;adaptent
+          à différentes tailles d&#x27;écran. L&#x27;Exemple 1 montre une mise
+          en page basique qui passe de colonnes empilées à des colonnes côte à
+          côte. L&#x27;Exemple 2 démontre une adaptation progressive de la
+          largeur de la colonne. L&#x27;Exemple 3 combine les classes de grille
+          avec des classes d&#x27;utilitaires pour contrôler la visibilité des
+          éléments selon la taille de l&#x27;écran.
+        </p>
+        <h2 id="b74ac02d-b5bc-45a3-bfe9-1f0565c8c105" class="">
+          2.3. Savoir créer des mises en page complexes et responsives
+        </h2>
+        <p id="c3ec8507-14cd-403b-ab1f-5b4ed3847ebb" class="">
+          La création de mises en page complexes et responsives avec Bootstrap
+          nécessite une compréhension approfondie du système de grille et des
+          classes responsives. Voici les points clés à maîtriser :
+        </p>
+        <ul id="30b4ca0f-8c14-4d4e-8988-48cfe927b1c3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Imbrication de grilles :</strong> Utiliser des grilles à
+            l&#x27;intérieur d&#x27;autres grilles pour des layouts complexes.
+          </li>
+        </ul>
+        <ul id="29631112-2d93-4984-9247-769e667a0146" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Combinaison de classes :</strong> Mélanger différentes
+            classes de colonnes pour une adaptabilité optimale.
+          </li>
+        </ul>
+        <ul id="b2bc1559-953e-4403-9f86-860ab2e0077a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Utilisation des utilitaires :</strong> Employer les classes
+            d&#x27;espacement, d&#x27;alignement et de visibilité pour affiner
+            la mise en page.
+          </li>
+        </ul>
+        <ul id="ec86e76b-f3c2-421b-a321-3d2daaf22d0d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Flexbox :</strong> Tirer parti des propriétés flexbox
+            intégrées à Bootstrap pour un contrôle précis de l&#x27;alignement.
+          </li>
+        </ul>
+        <ul id="2295bf2f-1a0f-4651-85a0-d2b0664a7a1f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Media queries personnalisées :</strong> Ajouter des media
+            queries spécifiques pour des ajustements fins.
+          </li>
+        </ul>
+        <p id="3de9ac9d-f05d-4bed-bb36-754fc1e29294" class="">
+          Exemple de mise en page complexe :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="ac1480e9-830b-427e-a2bf-c23ee2376089"
+          class="code"
+        ><code class="language-HTML">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-8&quot;&gt;
+      &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-sm-6&quot;&gt;Contenu principal 1&lt;/div&gt;
+        &lt;div class=&quot;col-sm-6&quot;&gt;Contenu principal 2&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+      &lt;div class=&quot;d-none d-md-block&quot;&gt;Barre latérale (visible sur MD+)&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row mt-4&quot;&gt;
+    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;Colonne 1&lt;/div&gt;
+    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;Colonne 2&lt;/div&gt;
+    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;Colonne 3&lt;/div&gt;
+    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;Colonne 4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p id="90dc49f0-1b5e-470c-91b2-889e80944e67" class="">
+          Cet exemple illustre une mise en page complexe avec une section
+          principale, une barre latérale, et une rangée de quatre colonnes qui
+          s&#x27;adaptent selon la taille de l&#x27;écran.
+        </p>
+        <h1 id="cd0661c8-5ea5-46ae-9193-9012b25d9337" class="">
+          3. Composants Bootstrap
+        </h1>
+        <h2 id="5dff9cc3-f3cf-42b5-a2ed-9a183bf03aef" class="">
+          3.1. Connaître et savoir utiliser tous les composants principaux
+          (boutons, formulaires, navbar, etc.)
+        </h2>
+        <p id="658cdc5d-22f8-4a15-b85a-429ce2e25ab3" class="">
+          Les composants principaux de Bootstrap sont essentiels pour créer
+          rapidement des interfaces utilisateur cohérentes et fonctionnelles.
+          Voici un aperçu des composants les plus importants :
+        </p>
+        <ul id="cef2da8e-c9cc-40a7-899b-9b4f7f89a442" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Boutons :</strong> Utilisez les classes .btn et .btn-* pour
+            créer des boutons stylisés et interactifs.
+          </li>
+        </ul>
+        <ul id="48d2f7d6-d5de-41f5-9bc1-319187481157" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Formulaires :</strong> Bootstrap offre des styles prédéfinis
+            pour les champs de formulaire, les étiquettes et les groupes de
+            formulaires.
+          </li>
+        </ul>
+        <ul id="13c7503c-1913-462f-8074-c73715ea21b6" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Navbar :</strong> Créez des barres de navigation responsives
+            avec la classe .navbar et ses variantes.
+          </li>
+        </ul>
+        <ul id="b4d4408a-2e71-4faf-b562-6a01eec3605c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Cards :</strong> Utilisez la classe .card pour créer des
+            conteneurs flexibles pour divers types de contenu.
+          </li>
+        </ul>
+        <ul id="0c82d9c7-ceb8-42eb-b74e-e0a53b4e06ed" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Modals :</strong> Créez des boîtes de dialogue interactives
+            avec les classes .modal et .modal-*.
+          </li>
+        </ul>
+        <ul id="bae91507-d185-4d12-89bf-9e4ac9d423e3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Dropdowns :</strong> Ajoutez des menus déroulants à vos
+            interfaces avec les classes .dropdown et .dropdown-menu.
+          </li>
+        </ul>
+        <p id="2f3e333c-92b9-4b4d-b446-89989cb11267" class="">
+          La maîtrise de ces composants vous permettra de construire rapidement
+          des interfaces utilisateur robustes et cohérentes.
+        </p>
+        <p id="45559017-fe9b-40e8-ac28-2370fe2c4e4a" class="">
+          Voici quelques exemples d&#x27;utilisation des composants principaux
+          de Bootstrap :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="49bcfca2-70bc-4428-8031-492ac9d6bb8c"
+          class="code"
+        ><code class="language-HTML">&lt;!-- Bouton --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Cliquez ici&lt;/button&gt;
+
+&lt;!-- Formulaire --&gt;
+&lt;form&gt;
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;exampleInputEmail1&quot;&gt;Adresse email&lt;/label&gt;
+    &lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;exampleInputEmail1&quot; aria-describedby=&quot;emailHelp&quot; placeholder=&quot;Entrez votre email&quot;&gt;
+  &lt;/div&gt;
+  &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Navbar --&gt;
+&lt;nav class=&quot;navbar navbar-expand-lg navbar-light bg-light&quot;&gt;
+  &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Mon Site&lt;/a&gt;
+  &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarNav&quot; aria-controls=&quot;navbarNav&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
+    &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarNav&quot;&gt;
+    &lt;ul class=&quot;navbar-nav&quot;&gt;
+      &lt;li class=&quot;nav-item active&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Accueil&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;À propos&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;!-- Card --&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 18rem;&quot;&gt;
+  &lt;img src=&quot;...&quot; class=&quot;card-img-top&quot; alt=&quot;...&quot;&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Titre de la carte&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Un exemple de texte rapide pour constituer le contenu de la carte.&lt;/p&gt;
+    &lt;a href=&quot;#&quot; class=&quot;btn btn-primary&quot;&gt;Aller quelque part&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#exampleModal&quot;&gt;
+  Lancer la démo de modal
+&lt;/button&gt;
+
+&lt;div class=&quot;modal fade&quot; id=&quot;exampleModal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;exampleModalLabel&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot; id=&quot;exampleModalLabel&quot;&gt;Titre de la modal&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        ...
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot; data-dismiss=&quot;modal&quot;&gt;Fermer&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Sauvegarder les changements&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Dropdown --&gt;
+&lt;div class=&quot;dropdown&quot;&gt;
+  &lt;button class=&quot;btn btn-secondary dropdown-toggle&quot; type=&quot;button&quot; id=&quot;dropdownMenuButton&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;
+    Menu déroulant
+  &lt;/button&gt;
+  &lt;div class=&quot;dropdown-menu&quot; aria-labelledby=&quot;dropdownMenuButton&quot;&gt;
+    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Action&lt;/a&gt;
+    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Autre action&lt;/a&gt;
+    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Quelque chose d&#x27;autre ici&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <h2 id="604b1254-dcf9-4775-bff1-472d6ff67e97" class="">
+          3.2. Personnaliser les composants pour les adapter à vos besoins
+        </h2>
+        <p id="def0eb57-034b-4f4b-ac59-53190029fbbb" class="">
+          La personnalisation des composants Bootstrap est essentielle pour
+          créer des interfaces uniques et adaptées à vos besoins spécifiques.
+          Voici quelques techniques clés :
+        </p>
+        <ul id="f677707a-4efe-4c69-b34e-3fb56c51cabe" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Surcharge CSS :</strong> Créez un fichier CSS personnalisé
+            pour modifier les styles par défaut de Bootstrap.
+          </li>
+        </ul>
+        <ul id="866e262c-a61e-4576-82ad-425da697db02" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Variables Sass :</strong> Utilisez et modifiez les variables
+            Sass de Bootstrap pour une personnalisation globale.
+          </li>
+        </ul>
+        <ul id="77f9fc9a-969f-4c9b-bfe0-f67586422c00" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Classes personnalisées :</strong> Ajoutez vos propres
+            classes pour étendre les fonctionnalités des composants.
+          </li>
+        </ul>
+        <ul id="30d8a3dd-9ebd-4a7d-8d4b-5a5c2f0ace57" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>JavaScript :</strong> Personnalisez le comportement des
+            composants en modifiant leurs options JavaScript.
+          </li>
+        </ul>
+        <ul id="96c4ef60-a0b5-4e16-a336-d8c1ee2c41ef" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Mixins Sass :</strong> Créez des variations de composants en
+            utilisant les mixins fournis par Bootstrap.
+          </li>
+        </ul>
+        <p id="dfa10e58-6138-4f46-a2e1-37cf05b1c56e" class="">
+          En maîtrisant ces techniques, vous pourrez adapter les composants
+          Bootstrap à l&#x27;identité visuelle et aux exigences fonctionnelles
+          de votre projet.
+        </p>
+        <p id="ee551ca8-c712-45b6-8ff3-c766a60b6faa" class="">
+          Voici quelques exemples de personnalisation de composants Bootstrap :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="93c00389-2d10-435c-bed2-58aced2cb7fe"
+          class="code"
+        ><code class="language-CSS">/* Personnalisation d&#x27;un bouton */
+.btn-custom {
+  background-color: #ff6b6b;
+  border-color: #ff6b6b;
+  color: white;
+}
+
+/* Modification de la navbar */
+.navbar-custom {
+  background-color: #4ecdc4;
+}
+
+/* Personnalisation d&#x27;une card */
+.card-custom {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}</code></pre>
+        <p id="78f496ca-a753-43f9-9391-8b9d27af4063" class="">
+          Ces exemples montrent comment vous pouvez facilement adapter
+          l&#x27;apparence des composants Bootstrap en utilisant du CSS
+          personnalisé. En appliquant ces techniques, vous pouvez créer une
+          interface unique tout en conservant les avantages du framework.
+        </p>
+        <h2 id="4036f90d-a2c5-40cb-b792-b7458a7c444f" class="">
+          3.3. Combiner efficacement différents composants
+        </h2>
+        <p id="85b9d5a8-eec9-4e1f-86bd-9aebd646f1f0" class="">
+          La combinaison efficace de différents composants Bootstrap est
+          essentielle pour créer des interfaces utilisateur riches et
+          fonctionnelles. Voici quelques points clés à considérer :
+        </p>
+        <ul id="7c1ae338-cc8c-432c-9fc3-da3c5c4e7a17" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Cohérence visuelle :</strong> Assurez-vous que les
+            composants combinés maintiennent une apparence cohérente.
+          </li>
+        </ul>
+        <ul id="e5f443d7-bc7e-41c4-9a0e-b55198cdb0e0" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Interactivité :</strong> Utilisez JavaScript pour gérer les
+            interactions entre les composants.
+          </li>
+        </ul>
+        <ul id="6504697e-f546-416d-bb9a-c8ae9a1a7c61" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Accessibilité :</strong> Veillez à ce que les combinaisons
+            de composants restent accessibles à tous les utilisateurs.
+          </li>
+        </ul>
+        <ul id="ed20f768-d56a-4a44-9c2b-ca856672f8d7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Performance :</strong> Optimisez le chargement et le rendu
+            des composants combinés pour maintenir de bonnes performances.
+          </li>
+        </ul>
+        <p id="a1310b24-454f-4b57-9757-42993c90c105" class="">
+          Exemple de combinaison de composants :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="2407cbca-cb98-47a3-bc96-0f995f206f63"
+          class="code"
+        ><code class="language-HTML">&lt;navbar class=&quot;navbar navbar-expand-lg navbar-light bg-light&quot;&gt;
+  &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Mon Site&lt;/a&gt;
+  &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarNav&quot;&gt;
+    &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarNav&quot;&gt;
+    &lt;ul class=&quot;navbar-nav mr-auto&quot;&gt;
+      &lt;li class=&quot;nav-item active&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Accueil&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;nav-item dropdown&quot;&gt;
+        &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; id=&quot;navbarDropdown&quot; role=&quot;button&quot; data-toggle=&quot;dropdown&quot;&gt;
+          Catégories
+        &lt;/a&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+          &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Catégorie 1&lt;/a&gt;
+          &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Catégorie 2&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;form class=&quot;form-inline my-2 my-lg-0&quot;&gt;
+      &lt;input class=&quot;form-control mr-sm-2&quot; type=&quot;search&quot; placeholder=&quot;Rechercher&quot;&gt;
+      &lt;button class=&quot;btn btn-outline-success my-2 my-sm-0&quot; type=&quot;submit&quot;&gt;Rechercher&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/navbar&gt;</code></pre>
+        <p id="11d88bac-bb1b-4da5-aebb-6f1f2d329635" class="">
+          Cet exemple combine une barre de navigation avec un menu déroulant et
+          un formulaire de recherche, illustrant comment différents composants
+          peuvent être intégrés de manière cohérente.
+        </p>
+        <h2 id="c46f3f16-b40b-4fb0-a631-e6e908308f06" class="">
+          4. Utilitaires Bootstrap
+        </h2>
+        <h2 id="c826040c-87fe-4c62-92ff-ac840081cdbb" class="">
+          4.1. Maîtriser les classes utilitaires pour le spacing, les couleurs,
+          le texte, etc.
+        </h2>
+        <p id="4dc084dd-16f2-4363-847c-000660d6ead1" class="">
+          Les classes utilitaires de Bootstrap sont des outils puissants pour
+          appliquer rapidement des styles courants sans écrire de CSS
+          personnalisé. Voici les principaux types de classes utilitaires :
+        </p>
+        <ul id="1427521e-87aa-4b35-b944-3fef0e0155b1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Spacing :</strong> Utilisez m-<em>
+              pour les marges et p-</em
+            >
+            pour les paddings (ex: mt-3 pour margin-top: 1rem)
+          </li>
+        </ul>
+        <ul id="c761536d-0161-4e52-9f39-3dbffc84b0f1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Couleurs :</strong> Appliquez des couleurs prédéfinies avec
+            bg-<em> pour l&#x27;arrière-plan et text-</em> pour le texte
+          </li>
+        </ul>
+        <ul id="b34f9ad8-fb21-480b-800e-b3f312f1780a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Texte :</strong> Contrôlez l&#x27;alignement (text-center),
+            la taille (fs-*) et le poids (fw-bold) du texte
+          </li>
+        </ul>
+        <ul id="178ab73b-6709-4306-aa83-5508b10cd407" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Affichage :</strong> Gérez la visibilité des éléments avec
+            d-* (ex: d-none pour masquer un élément)
+          </li>
+        </ul>
+        <ul id="216be84e-fc2b-451c-85c7-27c371dbd8c8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Flexbox :</strong> Utilisez les classes flex-* pour créer
+            des mises en page flexibles
+          </li>
+        </ul>
+        <p id="c3c07583-8cd8-4045-8ff0-edff743a352b" class="">
+          La maîtrise de ces classes utilitaires permet d&#x27;accélérer le
+          développement et de maintenir une cohérence visuelle dans vos projets
+          Bootstrap.
+        </p>
+        <p id="a14e064e-977e-4b43-98d9-4b8006fc6db0" class="">
+          Voici quelques exemples d&#x27;utilisation des classes utilitaires de
+          Bootstrap :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="66e797e7-4bc2-438f-ab07-52d6414d0b1e"
+          class="code"
+        ><code class="language-HTML">&lt;!-- Spacing --&gt;
+&lt;div class=&quot;mt-3 mb-4 p-2&quot;&gt;Contenu avec marges et padding&lt;/div&gt;
+
+&lt;!-- Couleurs --&gt;
+&lt;p class=&quot;text-primary bg-light&quot;&gt;Texte bleu sur fond clair&lt;/p&gt;
+
+&lt;!-- Texte --&gt;
+&lt;h2 class=&quot;text-center fs-4 fw-bold&quot;&gt;Titre centré, taille 4, gras&lt;/h2&gt;
+
+&lt;!-- Affichage --&gt;
+&lt;div class=&quot;d-none d-md-block&quot;&gt;Visible uniquement sur les écrans moyens et grands&lt;/div&gt;
+
+&lt;!-- Flexbox --&gt;
+&lt;div class=&quot;d-flex justify-content-between align-items-center&quot;&gt;
+  &lt;div&gt;Élément 1&lt;/div&gt;
+  &lt;div&gt;Élément 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p id="9de512b9-c449-48f5-abd9-bf6301e1a096" class="">
+          Ces exemples illustrent comment les classes utilitaires peuvent être
+          combinées pour créer rapidement des mises en page et des styles sans
+          avoir à écrire de CSS personnalisé.
+        </p>
+        <h2 id="3bacf133-c661-4e6e-aa7d-200dee564f95" class="">
+          4.2. Savoir quand et comment utiliser ces utilitaires pour un code
+          plus efficace
+        </h2>
+        <p id="3ec158e3-02bc-42e3-b42a-22e780efdef4" class="">
+          L&#x27;utilisation judicieuse des classes utilitaires de Bootstrap
+          peut grandement améliorer l&#x27;efficacité de votre code. Voici
+          quelques conseils pour bien les utiliser :
+        </p>
+        <ul id="9dd5a0f9-cbb5-44a0-8784-39a0a88d2b6c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Rapidité de développement :</strong> Utilisez les
+            utilitaires pour des ajustements rapides sans créer de CSS
+            personnalisé.
+          </li>
+        </ul>
+        <ul id="61bfa046-be40-4b61-a75a-5f62b107de61" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Cohérence :</strong> Préférez les classes utilitaires pour
+            maintenir une cohérence visuelle à travers le projet.
+          </li>
+        </ul>
+        <ul id="7346c384-38d0-4293-9b89-182392b53850" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Responsive design :</strong> Profitez des classes responsive
+            (ex: d-md-none) pour ajuster le design selon la taille de
+            l&#x27;écran.
+          </li>
+        </ul>
+        <ul id="90bfcbd6-7d34-423a-b76d-34f9300455af" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Évitez la surcharge :</strong> N&#x27;abusez pas des classes
+            utilitaires. Pour des styles complexes ou répétitifs, créez des
+            classes personnalisées.
+          </li>
+        </ul>
+        <ul id="7c2b065a-f7fa-4e5c-a265-ba665a03fe05" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Performance :</strong> Utilisez les utilitaires pour réduire
+            la taille globale de votre CSS en évitant les styles redondants.
+          </li>
+        </ul>
+        <p id="1eaf4d22-0eb5-4ce9-bf4d-2aa1fe81897f" class="">
+          En maîtrisant ces principes, vous pourrez créer un code plus efficace
+          et maintenable avec Bootstrap.
+        </p>
+        <p id="429acf6b-917f-4599-a5f0-718cae581e04" class="">
+          Voici quelques exemples concrets d&#x27;utilisation judicieuse des
+          classes utilitaires Bootstrap :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="5315afbf-9321-40f4-8cb2-169db3119a39"
+          class="code"
+        ><code class="language-HTML">&lt;!-- Ajustement rapide de l&#x27;espacement --&gt;
+&lt;div class=&quot;mt-3 mb-4&quot;&gt;
+  &lt;h3 class=&quot;text-primary&quot;&gt;Titre de section&lt;/h3&gt;
+  &lt;p class=&quot;text-muted&quot;&gt;Contenu avec une marge supérieure et inférieure&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Design responsive avec classes utilitaires --&gt;
+&lt;div class=&quot;d-none d-md-block&quot;&gt;
+  &lt;p&gt;Ce contenu est visible uniquement sur les écrans moyens et grands&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Combinaison de classes pour un style cohérent --&gt;
+&lt;button class=&quot;btn btn-primary mt-2 px-4&quot;&gt;
+  Bouton d&#x27;action
+&lt;/button&gt;</code></pre>
+        <p id="9ce91d84-6d6a-43a0-a3a4-b4fdf3ad6a10" class="">
+          Ces exemples montrent comment les classes utilitaires peuvent être
+          utilisées pour ajuster rapidement le design, créer des éléments
+          responsives, et maintenir une cohérence visuelle sans avoir à écrire
+          de CSS personnalisé supplémentaire.
+        </p>
+        <h1 id="6790d4e7-3cb0-4a4d-8dbf-4f2effec065f" class="">
+          5. Personnalisation et thèmes
+        </h1>
+        <h2 id="9521a090-4b1b-46f6-94ec-7a2f048d4531" class="">
+          5.1. Comprendre comment personnaliser Bootstrap avec Sass
+        </h2>
+        <p id="d15e65cd-10bf-4640-af0b-07282cf291c9" class="">
+          La personnalisation de Bootstrap avec Sass offre une flexibilité
+          considérable pour adapter le framework à vos besoins spécifiques.
+          Voici les points clés à comprendre :
+        </p>
+        <ul id="47c65e49-6b88-48fa-ac20-00fe8b3355d5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Variables Sass :</strong> Modifiez les variables Sass de
+            Bootstrap pour ajuster les couleurs, les tailles, et d&#x27;autres
+            paramètres globaux.
+          </li>
+        </ul>
+        <ul id="1e3c339c-7faf-4ddb-92ab-2ed2c87916aa" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Mixins :</strong> Utilisez les mixins Sass de Bootstrap pour
+            créer des styles personnalisés de manière efficace.
+          </li>
+        </ul>
+        <ul id="8104a5ff-81db-422b-91b0-6587c5906950" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Personnalisation sélective :</strong> Importez uniquement
+            les composants Bootstrap dont vous avez besoin pour réduire la
+            taille du fichier CSS final.
+          </li>
+        </ul>
+        <ul id="78a17e7f-44df-4ff6-a55c-31294296fe21" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Surcharge de styles :</strong> Créez vos propres styles Sass
+            qui surchargent les styles par défaut de Bootstrap.
+          </li>
+        </ul>
+        <p id="3ab62d4f-13b7-49b6-b8f8-e41091f24716" class="">
+          En maîtrisant ces techniques, vous pourrez créer une version
+          personnalisée de Bootstrap qui correspond parfaitement à
+          l&#x27;identité visuelle de votre projet tout en conservant les
+          avantages du framework.
+        </p>
+        <p id="76c8c566-5cff-45ac-ab5b-fa65090f7c2b" class="">
+          Voici un exemple de personnalisation de Bootstrap avec Sass :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="24951c0e-acfc-4c18-bfdd-ab47e826740e"
+          class="code"
+        ><code class="language-Scss">// Personnalisation des variables
+$primary: #007bff;
+$font-family-base: &#x27;Roboto&#x27;, sans-serif;
+
+// Import de Bootstrap
+@import &quot;bootstrap&quot;;
+
+// Personnalisation supplémentaire
+.btn-custom {
+  @include button-variant($primary, darken($primary, 10%));
+}</code></pre>
+        <p id="7aae7bdf-5541-48b5-b884-2972309c22a8" class="">
+          Ce code montre comment modifier les variables de base, importer
+          Bootstrap, et créer des styles personnalisés en utilisant les mixins
+          de Bootstrap. Cette approche permet une personnalisation fine tout en
+          conservant la structure et les fonctionnalités du framework.
+        </p>
+        <h2 id="00b8c3aa-0ee1-4495-a8de-70e082eba481" class="">
+          5.2. Savoir créer et appliquer des thèmes personnalisés
+        </h2>
+        <p id="1f957f15-5b35-4009-a101-808876910d32" class="">
+          La création et l&#x27;application de thèmes personnalisés avec
+          Bootstrap permettent d&#x27;adapter l&#x27;apparence du framework à
+          l&#x27;identité visuelle unique de votre projet. Voici les points clés
+          à maîtriser :
+        </p>
+        <ul id="48135855-af88-4cee-a9d4-d7fae4e5f14c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Structure du thème :</strong> Organisez vos fichiers Sass en
+            séparant les variables, les composants personnalisés et les
+            surcharges.
+          </li>
+        </ul>
+        <ul id="8ef5bad1-d628-4e16-907d-e9a4d24d3989" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Palette de couleurs :</strong> Définissez une palette de
+            couleurs cohérente et utilisez les variables Sass pour
+            l&#x27;appliquer.
+          </li>
+        </ul>
+        <ul id="16954ac6-4311-491e-8f0e-463bb74a6695" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Typographie :</strong> Personnalisez les polices, tailles et
+            styles de texte pour refléter l&#x27;identité de votre marque.
+          </li>
+        </ul>
+        <ul id="08f78610-6fd2-4dfb-8378-9ebfaab40c13" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Composants sur mesure :</strong> Créez des variantes
+            personnalisées des composants Bootstrap existants.
+          </li>
+        </ul>
+        <ul id="c1207d5e-0ae8-4a2b-af1b-bff4e57f3745" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Compilation :</strong> Utilisez un préprocesseur Sass pour
+            compiler votre thème personnalisé avec Bootstrap.
+          </li>
+        </ul>
+        <p id="36428a27-3e8f-4067-a92e-c133eaaf0a8c" class="">
+          En maîtrisant ces aspects, vous pourrez créer des thèmes Bootstrap
+          uniques et professionnels qui s&#x27;intègrent parfaitement à vos
+          projets.
+        </p>
+        <p id="81937848-dbb3-47cc-ac93-377ce7f693f0" class="">
+          Voici un exemple de structure de base pour créer un thème personnalisé
+          avec Bootstrap :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="eb3ff3ba-1be4-4466-a1c2-440c9982d54f"
+          class="code"
+        ><code class="language-Scss">// _variables.scss
+$primary: #3498db;
+$secondary: #2ecc71;
+$font-family-base: &#x27;Lato&#x27;, sans-serif;
+
+// _custom-components.scss
+.btn-custom {
+  @include button-variant($primary, darken($primary, 10%));
+}
+
+// main.scss
+@import &quot;variables&quot;;
+@import &quot;bootstrap/scss/bootstrap&quot;;
+@import &quot;custom-components&quot;;
+
+// Surcharges supplémentaires
+.navbar-brand {
+  font-weight: bold;
+  color: $primary;
+}</code></pre>
+        <p id="e9f2dda4-0e8c-42f3-8aed-0ac9fb2cb20c" class="">
+          Cette structure permet une personnalisation claire et organisée,
+          facilitant la maintenance et les mises à jour futures du thème.
+        </p>
+        <h2 id="4505d367-554c-4c06-acb8-b300e36757cd" class="">
+          5.3. Maîtriser l&#x27;outil de personnalisation sur le site officiel
+          de Bootstrap
+        </h2>
+        <p id="e9f6cbea-3d1d-4070-a43c-edefc754733d" class="">
+          L&#x27;outil de personnalisation sur le site officiel de Bootstrap est
+          une ressource précieuse pour adapter rapidement le framework à vos
+          besoins. Voici les points clés pour le maîtriser :
+        </p>
+        <ul id="f78d5575-d586-4db3-8f4b-5d4ea8ccdac5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Interface intuitive :</strong> Familiarisez-vous avec
+            l&#x27;interface qui permet de modifier facilement les variables de
+            couleur, de typographie et de mise en page.
+          </li>
+        </ul>
+        <ul id="13af76b5-9c55-4589-badf-893e7ca6ffb6" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Prévisualisation en temps réel :</strong> Utilisez la
+            fonction de prévisualisation pour voir immédiatement l&#x27;impact
+            de vos modifications.
+          </li>
+        </ul>
+        <ul id="b4517422-0fe5-4886-a8e5-a99fbbae28fa" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Sélection des composants :</strong> Choisissez uniquement
+            les composants dont vous avez besoin pour optimiser la taille de
+            votre CSS final.
+          </li>
+        </ul>
+        <ul id="27fcc972-3353-49e5-becf-45cc09a830c3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Exportation :</strong> Maîtrisez les options
+            d&#x27;exportation pour télécharger votre version personnalisée de
+            Bootstrap.
+          </li>
+        </ul>
+        <p id="20294ed8-ab1d-41f8-987f-d350d4e9bf4f" class="">
+          En utilisant efficacement cet outil, vous pouvez créer rapidement une
+          version de Bootstrap adaptée à votre projet sans avoir à plonger dans
+          le code Sass.
+        </p>
+        <p id="e349c055-98c1-4fd3-9c30-09b8af0b802d" class="">
+          Pour illustrer l&#x27;utilisation de l&#x27;outil de personnalisation,
+          voici un exemple concret :
+        </p>
+        <ol
+          type="1"
+          id="31627454-fd29-4b8a-b65d-e6e5eb3da36d"
+          class="numbered-list"
+          start="1"
+        >
+          <li>
+            Accédez à l&#x27;outil de personnalisation sur le site officiel de
+            Bootstrap.
+          </li>
+        </ol>
+        <ol
+          type="1"
+          id="575c3cd8-a867-4876-9a95-6f546dcbea39"
+          class="numbered-list"
+          start="2"
+        >
+          <li>
+            Modifiez les couleurs primaires et secondaires pour correspondre à
+            votre charte graphique.
+          </li>
+        </ol>
+        <ol
+          type="1"
+          id="c7b61c84-63cc-42b6-a230-8bf7a03d2ad0"
+          class="numbered-list"
+          start="3"
+        >
+          <li>
+            Ajustez les variables de typographie, comme la police de base et les
+            tailles de texte.
+          </li>
+        </ol>
+        <h1 id="512d6af7-93d0-4f1d-b9ba-5fc75005af40" class="">
+          6. Responsive Design avancé
+        </h1>
+        <h2 id="22a88108-7606-4eed-96f4-9c5fa8345df1" class="">
+          6.1. Approfondir les techniques de design responsive
+        </h2>
+        <p id="fd4341b7-45da-4af0-bfe9-09ef112dc155" class="">
+          Le design responsive est un aspect crucial de Bootstrap. Pour
+          approfondir les techniques de design responsive, considérez les points
+          suivants :
+        </p>
+        <ul id="471e504c-0b97-4927-a366-486be81a2b5c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Système de grille fluide :</strong> Maîtrisez
+            l&#x27;utilisation des classes col-* pour créer des mises en page
+            flexibles.
+          </li>
+        </ul>
+        <ul id="92403d20-4736-40e1-97f1-cb1c79718ccd" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Images responsive :</strong> Utilisez la classe img-fluid
+            pour que les images s&#x27;adaptent automatiquement à leur
+            conteneur.
+          </li>
+        </ul>
+        <ul id="002e8396-235b-4143-bd41-09b7311fdd36" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Media queries :</strong> Comprenez comment Bootstrap utilise
+            les media queries pour ajuster le design selon la taille de
+            l&#x27;écran.
+          </li>
+        </ul>
+        <ul id="df705f84-0438-47c9-b728-fd8a09b0e407" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Classes d&#x27;affichage :</strong> Utilisez les classes d-*
+            pour contrôler la visibilité des éléments selon les breakpoints.
+          </li>
+        </ul>
+        <ul id="553b7a6a-040d-414f-a476-bc7f797c6687" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Flexbox :</strong> Exploitez les classes flex-* de Bootstrap
+            pour créer des mises en page complexes et flexibles.
+          </li>
+        </ul>
+        <p id="c2084566-8f0c-446d-bf70-a7a5a278d266" class="">
+          En maîtrisant ces techniques, vous pourrez créer des designs
+          responsive sophistiqués et adaptés à tous les appareils.
+        </p>
+        <p id="82e82346-4e0b-418b-bf0b-ae48d920ce5e" class="">
+          Voici un exemple concret de mise en page responsive utilisant les
+          techniques avancées de Bootstrap :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="a9297770-c325-4615-a175-c0413d69fbb6"
+          class="code"
+        ><code class="language-HTML">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12 col-md-6 col-lg-4&quot;&gt;
+      &lt;img src=&quot;image.jpg&quot; class=&quot;img-fluid&quot; alt=&quot;Image responsive&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-12 col-md-6 col-lg-8&quot;&gt;
+      &lt;h2 class=&quot;d-none d-md-block&quot;&gt;Titre visible sur tablettes et ordinateurs&lt;/h2&gt;
+      &lt;p class=&quot;text-justify&quot;&gt;Contenu adaptatif utilisant les classes flex et d&#x27;affichage&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p id="b000ddb5-a781-4846-a7d0-48ba0a74d738" class="">
+          Cet exemple illustre l&#x27;utilisation du système de grille, des
+          images responsives, et des classes d&#x27;affichage pour créer un
+          design qui s&#x27;adapte à différentes tailles d&#x27;écran.
+        </p>
+        <h2 id="7843315e-a8c2-4f23-94db-ded7e5ef7272" class="">
+          6.2. Maîtriser l&#x27;utilisation des breakpoints
+        </h2>
+        <p id="b6bb81e8-6f66-4ce0-a104-7f5208a9b786" class="">
+          La maîtrise des breakpoints est essentielle pour créer des designs
+          responsive efficaces avec Bootstrap. Voici les points clés à
+          comprendre :
+        </p>
+        <ul id="61d91d68-d625-403a-a16a-7d5c36b3d84c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Breakpoints par défaut :</strong> Familiarisez-vous avec les
+            breakpoints standard de Bootstrap (xs, sm, md, lg, xl, xxl).
+          </li>
+        </ul>
+        <ul id="f4a4fd35-2474-4f62-a8a1-529ade3731a1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Classes responsives :</strong> Utilisez les classes
+            spécifiques aux breakpoints pour ajuster la mise en page et le
+            style.
+          </li>
+        </ul>
+        <ul id="2f6d4e6b-0005-4c79-b82e-dd109d821763" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Media queries personnalisées :</strong> Apprenez à créer des
+            media queries personnalisées pour des besoins spécifiques.
+          </li>
+        </ul>
+        <ul id="ea6685f6-00b7-4049-b818-8e6c0a1a5378" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Mixins Sass :</strong> Exploitez les mixins Sass de
+            Bootstrap pour créer des styles responsifs avancés.
+          </li>
+        </ul>
+        <p id="0033373e-f042-4cea-9120-333df65813d3" class="">
+          Voici un exemple d&#x27;utilisation des breakpoints dans une mise en
+          page responsive :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="7a1f9918-c8a0-4266-ba2f-62f8094463a9"
+          class="code"
+        ><code class="language-HTML">&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-12 col-md-6 col-lg-4&quot;&gt;
+    &lt;!-- Contenu pleine largeur sur mobile, demi-largeur sur tablette, tiers sur desktop --&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-12 col-md-6 col-lg-8&quot;&gt;
+    &lt;!-- Ajustement automatique selon les breakpoints --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p id="989d5491-377d-4bce-b6dc-98bb4cd04e71" class="">
+          Cette approche permet de créer des designs flexibles qui
+          s&#x27;adaptent harmonieusement à différentes tailles d&#x27;écran.
+        </p>
+        <h2 id="5ee50b40-7e93-4f3a-b547-14fe0fc93385" class="">
+          6.3. Savoir créer des designs adaptés à tous les appareils
+        </h2>
+        <p id="676e323a-ae3a-43a0-b929-2944433b2e6f" class="">
+          Pour créer des designs adaptés à tous les appareils avec Bootstrap,
+          suivez ces principes clés :
+        </p>
+        <ul id="843f681b-7685-449d-8ee3-4f0eb8a24eb5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Mobile-first :</strong> Commencez par concevoir pour les
+            petits écrans, puis ajoutez de la complexité pour les écrans plus
+            grands.
+          </li>
+        </ul>
+        <ul id="3e4209de-89a5-4ffc-b6b6-91c9a5cd821e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Utilisation judicieuse de la grille :</strong> Exploitez le
+            système de grille de Bootstrap pour créer des mises en page
+            flexibles.
+          </li>
+        </ul>
+        <ul id="07feaa45-57a3-4fc8-b354-87b8817a5094" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Images et médias responsives :</strong> Utilisez les classes
+            img-fluid et embed-responsive pour des médias adaptables.
+          </li>
+        </ul>
+        <ul id="78206160-3543-4960-abd9-1d2b1061db0a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Navigation adaptative :</strong> Concevez des menus qui se
+            transforment en fonction de la taille de l&#x27;écran (par exemple,
+            un menu hamburger sur mobile).
+          </li>
+        </ul>
+        <ul id="c0939266-5c7b-4207-a48c-09a9ff594a33" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Tests sur différents appareils :</strong> Testez
+            régulièrement votre design sur une variété d&#x27;appareils et de
+            navigateurs.
+          </li>
+        </ul>
+        <p id="5c095e87-209c-447b-a1b0-0c9c4368609d" class="">
+          En appliquant ces principes, vous créerez des interfaces utilisateur
+          cohérentes et fonctionnelles sur tous les types d&#x27;appareils, des
+          smartphones aux grands écrans de bureau.
+        </p>
+        <p id="6f8e4c42-921c-4c9b-b018-f2f7b2bb2a11" class="">
+          Voici un exemple concret de design adapté à tous les appareils
+          utilisant Bootstrap :
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="8ceb93eb-2d25-4ecb-98cb-580dfff42d06"
+          class="code"
+        ><code class="language-HTML">&lt;nav class=&quot;navbar navbar-expand-lg navbar-light bg-light&quot;&gt;
+  &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
+  &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarNav&quot;&gt;
+    &lt;span class=&quot;navbar-toggler-icon&quot;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarNav&quot;&gt;
+    &lt;ul class=&quot;navbar-nav&quot;&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;À propos&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+        <p id="43cbd131-0f7c-4077-b364-ab67a793c87e" class="">
+          Ce code crée une barre de navigation responsive qui s&#x27;adapte à
+          différentes tailles d&#x27;écran, se transformant en menu hamburger
+          sur les appareils mobiles.
+        </p>
+        <h1 id="32eceed2-2dd4-40b9-93d1-b0b30b718443" class="">
+          7. Performance et optimisation
+        </h1>
+        <h2 id="14b84eed-7b66-80b6-a7ad-e954515716cf" class="">
+          7.1. Optimiser le chargement et les performances des sites Bootstrap
+        </h2>
+        <p id="14b84eed-7b66-80f2-bd35-dab1c779441e" class="">
+          Lorsque vous travaillez avec <strong>Bootstrap</strong>, l&#x27;un des
+          principaux objectifs est de garantir que les pages se chargent
+          rapidement et offrent une expérience utilisateur fluide. Pour ce
+          faire, plusieurs techniques d&#x27;optimisation sont à considérer.
+        </p>
+        <h3 id="14b84eed-7b66-8013-a66f-deae1e5feb3b" class="">
+          7.1.1. <strong>Utiliser un CDN (Content Delivery Network)</strong>
+        </h3>
+        <p id="14b84eed-7b66-804c-9c2b-c303461e125c" class="">
+          Bootstrap peut être chargé depuis un CDN (comme celui de
+          <strong>BootstrapCDN</strong> ou <strong>jsDelivr</strong>).
+          L&#x27;utilisation d&#x27;un CDN permet de :
+        </p>
+        <ul id="14b84eed-7b66-808f-ad15-e97fd9529a38" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Réduire le temps de chargement en servant les fichiers à partir
+            d&#x27;un serveur géographiquement plus proche de
+            l&#x27;utilisateur.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-802a-9ae1-f241221e4e3e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Tirer parti du cache : si un utilisateur a déjà visité un autre site
+            utilisant le même CDN pour <strong>Bootstrap</strong>, le fichier
+            CSS/JS est déjà en cache et ne sera pas téléchargé à nouveau.
+          </li>
+        </ul>
+        <h3 id="14b84eed-7b66-80d8-88e1-d3031e98444d" class="">
+          7.1.2. <strong>Minimiser les fichiers CSS et JS</strong>
+        </h3>
+        <p id="14b84eed-7b66-80d7-9ba4-c4a27625d6be" class="">
+          Les fichiers CSS et JavaScript peuvent être assez volumineux, ce qui
+          ralentit le chargement. Il est important de :
+        </p>
+        <ul id="14b84eed-7b66-8056-9ab4-fd4672264bb3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Minimiser</strong> les fichiers CSS et JavaScript. Cela
+            supprime les espaces blancs, les commentaires et raccourcit les noms
+            des variables pour réduire la taille du fichier.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-80ad-a338-f70f6467d6c1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Utiliser des outils comme <strong>UglifyJS</strong> (pour JS) et
+            <strong>CSSNano</strong> (pour CSS) pour automatiser ce processus.
+          </li>
+        </ul>
+        <h3 id="14b84eed-7b66-807a-b511-c2f022cd5e9a" class="">
+          7.1.3.
+          <strong>Utiliser les versions de production de Bootstrap</strong>
+        </h3>
+        <p id="14b84eed-7b66-80b6-aab8-f18f2c742a78" class="">
+          Bootstrap propose des versions <strong>minifiées</strong> des fichiers
+          CSS et JS pour une utilisation en production. Ces fichiers sont
+          optimisés pour la taille et la performance, contrairement aux versions
+          <strong>non minifiées</strong> qui sont destinées au développement.
+        </p>
+        <h3 id="14b84eed-7b66-8000-be91-f80395e51799" class="">
+          7.1.4. <strong>Réduire la taille du fichier CSS</strong>
+        </h3>
+        <p id="14b84eed-7b66-8083-85b3-dfacb1dbd6d8" class="">
+          Si vous n’utilisez qu’une petite portion de Bootstrap, vous pouvez
+          réduire la taille du fichier CSS en supprimant les styles inutilisés.
+          Des outils comme <strong>PurgeCSS</strong> ou
+          <strong>UnCSS</strong> peuvent analyser vos fichiers HTML pour
+          identifier et supprimer les classes CSS non utilisées.
+        </p>
+        <h3 id="14b84eed-7b66-80ab-9cbf-eacfe5a4abea" class="">
+          7.1.5. <strong>Déférer ou asynchrone les scripts JavaScript</strong>
+        </h3>
+        <p id="14b84eed-7b66-80b4-b3f8-ca2cf6826e95" class="">
+          Les scripts JavaScript peuvent bloquer le rendu de la page. Pour
+          améliorer les performances, il est préférable de :
+        </p>
+        <ul id="14b84eed-7b66-80d6-9cc1-d35a4d4959b8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Charger les fichiers JavaScript en
+            <strong>mode asynchrone</strong> (avec l&#x27;attribut
+            <code>async</code> ou <code>defer</code> dans la balise
+            <code>&lt;script&gt;</code>).
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-8030-88fe-cf68f6af8a48" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Charger les scripts à la fin du document HTML, juste avant la
+            fermeture de la balise <code>&lt;/body&gt;</code>, pour que le
+            contenu principal de la page soit chargé avant les scripts.
+          </li>
+        </ul>
+        <h3 id="14b84eed-7b66-802f-ae21-ef9b76b2f31a" class="">
+          7.1.6. <strong>Images optimisées</strong>
+        </h3>
+        <p id="14b84eed-7b66-80c2-80b0-f2ac34a3b88a" class="">
+          Les images sont un autre facteur clé dans le temps de chargement.
+          Assurez-vous que les images sont optimisées (par exemple en utilisant
+          des formats comme <strong>WebP</strong> ou des outils de compression
+          comme <strong>ImageOptim</strong> ou <strong>TinyPNG</strong>).
+        </p>
+        <h2 id="14b84eed-7b66-8023-8e87-f31ac6254532" class="">
+          7.2. Comprendre comment minimiser et combiner les fichiers CSS et JS
+        </h2>
+        <p id="14b84eed-7b66-80de-8381-d589b99d7a3d" class="">
+          La gestion des fichiers CSS et JS est cruciale pour améliorer la
+          performance de votre site en réduisant la quantité de requêtes HTTP
+          nécessaires pour charger la page.
+        </p>
+        <h3 id="14b84eed-7b66-8065-811c-d803ec9e0c19" class="">
+          7.2.1. <strong>Minimiser les fichiers CSS et JS</strong>
+        </h3>
+        <ul id="14b84eed-7b66-80fc-ba43-ce7a681befed" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Minification</strong> consiste à supprimer tous les
+            caractères inutiles (espaces, retours à la ligne, commentaires) du
+            code. Cela permet de réduire la taille du fichier et
+            d&#x27;améliorer le temps de chargement.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-80df-ae4d-ce7978329f7f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Utilisez des outils comme <strong>CSSMinifier</strong> pour CSS et
+            <strong>UglifyJS</strong> pour JavaScript.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-808d-b147-d3363d75a6ab" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Outils d’automatisation</strong> : Pour faciliter ce
+            processus, vous pouvez utiliser des outils comme
+            <strong>Grunt</strong> ou <strong>Gulp</strong>, qui automatisent la
+            minification et la gestion des fichiers lors du développement.
+          </li>
+        </ul>
+        <h3 id="14b84eed-7b66-8095-a857-da5872370d15" class="">
+          7.2.2. <strong>Combiner les fichiers CSS et JS</strong>
+        </h3>
+        <p id="14b84eed-7b66-806b-a832-e6a263a7a430" class="">
+          Lorsque vous chargez plusieurs fichiers CSS ou JS, chaque fichier
+          nécessite une requête HTTP séparée, ce qui ralentit le temps de
+          chargement. Pour y remédier :
+        </p>
+        <ul id="14b84eed-7b66-8002-a2a4-e84b2dc245d8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Combiner</strong> plusieurs fichiers CSS ou JS en un seul
+            fichier. Par exemple, au lieu de charger un fichier CSS pour chaque
+            composant de Bootstrap (grille, boutons, modals), vous pouvez
+            combiner tout le CSS nécessaire dans un seul fichier.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-80ee-8b44-eb9ceb83c9d4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Cela réduit le nombre de requêtes HTTP et accélère le rendu de la
+            page.
+          </li>
+        </ul>
+        <h3 id="14b84eed-7b66-80bc-8c64-fd769aafb415" class="">
+          7.2.3. <strong>Utiliser un build tool (outil de construction)</strong>
+        </h3>
+        <p id="14b84eed-7b66-804e-a682-cdcd87bdb4e4" class="">
+          Les outils de construction comme <strong>Webpack</strong>,
+          <strong>Grunt</strong>, <strong>Gulp</strong>, ou
+          <strong>Parcel</strong> permettent de :
+        </p>
+        <ul id="14b84eed-7b66-80ce-b793-c8ec6eb190ae" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Combiner les fichiers CSS et JS en un seul fichier.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-80ca-b22d-ed79509f6422" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Minifier les fichiers automatiquement.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-8055-b3fe-e818f8dab10e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Gérer les dépendances et optimiser les performances avec des
+            plugins.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-8016-9de4-c1f1fec587d1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Détecter et supprimer les fichiers inutilisés dans le code.
+          </li>
+        </ul>
+        <h3 id="14b84eed-7b66-808e-93d2-fc6d9b13a451" class="">
+          7.2.4.
+          <strong
+            >Séparer les fichiers CSS/JS pour le rendu initial et le rendu
+            différé</strong
+          >
+        </h3>
+        <p id="14b84eed-7b66-8089-b3ce-c21c164e353d" class="">
+          Une autre stratégie consiste à
+          <strong
+            >distinguer les fichiers nécessaires pour le rendu initial</strong
+          >
+          de la page et les fichiers qui peuvent être chargés de manière
+          différée (lazy loading). Par exemple :
+        </p>
+        <ul id="14b84eed-7b66-8024-8a82-f55ffb10b05a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>CSS pour le rendu initial</strong> : Inclure uniquement les
+            styles essentiels (grille, typographie, etc.) dans le fichier CSS
+            principal.
+          </li>
+        </ul>
+        <ul id="14b84eed-7b66-8036-956b-f355de5f5256" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>JS pour le rendu initial</strong> : Charger les scripts
+            essentiels au bon fonctionnement de la page. Les scripts non
+            nécessaires immédiatement peuvent être chargés plus tard.
+          </li>
+        </ul>
+        <h3 id="14b84eed-7b66-800a-a9ba-e208d34f5a9d" class="">
+          7.2.5. <strong>Lazy Loading des ressources</strong>
+        </h3>
+        <p id="14b84eed-7b66-805d-9597-d27f8c0aa292" class="">
+          Le <strong>lazy loading</strong> consiste à charger des ressources
+          (images, scripts, etc.) uniquement lorsque cela est nécessaire. Par
+          exemple, vous pouvez charger des scripts JS ou des images seulement
+          lorsque l&#x27;utilisateur fait défiler la page jusqu&#x27;à leur
+          position. Cela peut être effectué en utilisant des bibliothèques comme
+          <strong>Intersection Observer</strong> pour détecter quand une image
+          ou un script devient visible.
+        </p>
+        <h1 id="005df221-f12e-4dae-9656-a51a8e832486" class="">
+          8. Intégration avec d&#x27;autres technologies
+        </h1>
+        <h3 id="14b84eed-7b66-8099-b4eb-f981abcef77d" class="">
+          8.1. Savoir intégrer Bootstrap avec des frameworks JavaScript (React,
+          Vue.js, etc.)
+        </h3>
+        <p id="14b84eed-7b66-8058-9f80-f06faf85f5d4" class="">
+          8.2. Comprendre comment utiliser Bootstrap avec des outils de build
+          modernes
+        </p>
+        <h2 id="067b8330-553c-49b6-a487-d052ec08147d" class="">
+          9. Bonnes pratiques et patterns de conception
+        </h2>
+        <ul id="55a1767d-be94-47be-a79b-599e70eb5b25" class="bulleted-list">
+          <li style="list-style-type: disc">
+            9.1. Connaître les meilleures pratiques pour structurer un projet
+            Bootstrap
+          </li>
+        </ul>
+        <ul id="0d29289a-c8f2-47ec-80f9-e337048c1a07" class="bulleted-list">
+          <li style="list-style-type: disc">
+            9.2. Maîtriser les patterns de conception courants avec Bootstrap
+          </li>
+        </ul>
+        <h2 id="435f0c83-e846-45e9-a420-2b1fc3e5d528" class="">
+          10. Veille technologique
+        </h2>
+        <ul id="607cce91-695a-42be-be3c-862b55a5caee" class="bulleted-list">
+          <li style="list-style-type: disc">
+            10.1. Se tenir informé des dernières mises à jour et fonctionnalités
+            de Bootstrap
+          </li>
+        </ul>
+        <ul id="81dd4b81-de10-495a-b047-5220ea8b7fbb" class="bulleted-list">
+          <li style="list-style-type: disc">
+            10.2. Participer à la communauté Bootstrap (forums, contributions
+            open-source, etc.)
+          </li>
+        </ul>
+        <p id="14b84eed-7b66-807d-b79e-efe2d737102f" class=""></p>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>

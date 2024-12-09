@@ -1,0 +1,1056 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cyber-sécurité</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="11184eed-7b66-8091-98b4-ede7c488acc1" class="page sans">
+      <header>
+        <h1 class="page-title">Cyber-sécurité</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <h2 id="ad3e18f6-faf3-4e36-b56d-95b7ef9ce9ca" class="">
+          1. Fondamentaux de la sécurité
+        </h2>
+        <ul id="7250edd9-cb2a-4014-9c4d-11c13e84b043" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Concepts de base de la cybersécurité
+          </li>
+        </ul>
+        <ul id="8205c14f-a9b1-4a3b-9797-0288490dcdea" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Types de menaces et d&#x27;attaques
+          </li>
+        </ul>
+        <ul id="27e9c498-d348-455a-b2c0-b9920283bbbb" class="bulleted-list">
+          <li style="list-style-type: disc">Principes de cryptographie</li>
+        </ul>
+        <h2 id="b9d743e3-a2a0-4f68-828a-6e4a5d3218d4" class="">
+          2. Sécurité des réseaux
+        </h2>
+        <ul id="da517e42-8940-4a38-9e8f-3c7878ba2512" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Sécurisation des périphériques réseau
+          </li>
+        </ul>
+        <ul id="f30b6956-4514-4e8c-a617-34b75e684e83" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Pare-feu et systèmes de détection/prévention d&#x27;intrusion
+            (IDS/IPS)
+          </li>
+        </ul>
+        <ul id="7b99b253-74d4-413c-ad8a-cbe31e3c90a2" class="bulleted-list">
+          <li style="list-style-type: disc">VPN et tunneling sécurisé</li>
+        </ul>
+        <h2 id="fd08d662-42e7-4907-9d12-c46c156cac63" class="">
+          3. Sécurité des systèmes d&#x27;exploitation
+        </h2>
+        <ul id="3282f1c9-bd6a-462a-9c55-ada821557f0d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Durcissement des systèmes d&#x27;exploitation
+          </li>
+        </ul>
+        <ul id="08ec1903-99a5-413b-8146-1f68f662174b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Gestion des correctifs et des mises à jour
+          </li>
+        </ul>
+        <ul id="83fa7546-7297-427e-9439-de73fcafdb2e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Contrôle d&#x27;accès et authentification
+          </li>
+        </ul>
+        <h2 id="4e1b38f1-16d2-442d-a755-3ed7b29ebc77" class="">
+          4. Sécurité des applications
+        </h2>
+        <ul id="be43b68e-adfa-463f-b071-bbed8e40b50c" class="bulleted-list">
+          <li style="list-style-type: disc">Sécurité des applications Web</li>
+        </ul>
+        <ul id="df80c63d-a418-40e8-9cbd-ccfc79e8c041" class="bulleted-list">
+          <li style="list-style-type: disc">Gestion sécurisée des API</li>
+        </ul>
+        <ul id="1a627dc5-a65b-44ec-ac28-6950cd76530b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Sécurité du développement logiciel
+          </li>
+        </ul>
+        <h2 id="774c29da-5c09-40b5-923f-8c3a83d3e029" class="">
+          5. Gestion des incidents et réponse
+        </h2>
+        <ul id="afae018b-bedc-4f74-a241-95ab70a5b574" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Processus de gestion des incidents
+          </li>
+        </ul>
+        <ul id="078cb5d0-705a-4914-8159-7cf52bf4a387" class="bulleted-list">
+          <li style="list-style-type: disc">Analyse forensique de base</li>
+        </ul>
+        <ul id="6bb79fe8-6b04-4535-b38b-c22af46a06a4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Plans de continuité d&#x27;activité et de reprise après sinistre
+          </li>
+        </ul>
+        <h2 id="fef98e24-5b99-444c-8e5d-a04d50a9f773" class="">
+          6. Conformité et réglementation
+        </h2>
+        <ul id="0b4e8259-696e-46c3-9ded-8183d40fad8e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Normes de sécurité (ISO 27001, NIST, etc.)
+          </li>
+        </ul>
+        <ul id="70ea86c7-3810-4581-90f4-873f50de706d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Réglementations sur la protection des données (RGPD, etc.)
+          </li>
+        </ul>
+        <ul id="ecae9c51-2549-4bf6-8d80-c49e16328a4d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Audits de sécurité et évaluations des risques
+          </li>
+        </ul>
+        <h2 id="9925231f-30c3-4c2b-8a42-05f5eded7bd6" class="">
+          7. Nouvelles technologies et tendances
+        </h2>
+        <ul id="a9bf1492-6316-4a67-94e0-6d40cae69c65" class="bulleted-list">
+          <li style="list-style-type: disc">Sécurité du cloud</li>
+        </ul>
+        <ul id="e60d8f62-c7d0-40db-a0ab-39e42c4e015d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            IoT et sécurité des appareils mobiles
+          </li>
+        </ul>
+        <ul id="8f6acb58-1da4-4258-842c-1cec453f08cf" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Intelligence artificielle et apprentissage automatique en
+            cybersécurité
+          </li>
+        </ul>
+        <h2 id="e3df4910-3d6c-450e-b278-96f2d8bd0483" class="">
+          8. Sécurité avancée des réseaux
+        </h2>
+        <ul id="55f59472-b043-4112-9478-b27df546907f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Segmentation des réseaux et microsegmentation
+          </li>
+        </ul>
+        <ul id="6ebb15f5-39eb-4edd-96a0-75223ae3ddca" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Sécurité des réseaux sans fil (WPA3, 802.1X)
+          </li>
+        </ul>
+        <ul id="bbd22125-9b64-4252-84a5-b37e62973b63" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Sécurité des réseaux définis par logiciel (SDN)
+          </li>
+        </ul>
+        <h2 id="002b7322-6dd0-42ea-99eb-a51976844ff4" class="">
+          9. Cryptographie avancée
+        </h2>
+        <ul id="f8bb4d46-4558-4bc7-8a68-946cda06ed0c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Algorithmes de chiffrement modernes (AES, RSA, ECC)
+          </li>
+        </ul>
+        <ul id="d5e25a97-1a84-4a51-ad2e-a0fbd7a177ed" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Gestion des clés et infrastructures à clé publique (PKI)
+          </li>
+        </ul>
+        <ul id="a30de2cb-465b-4daa-b457-4d675b9a8ada" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Protocoles cryptographiques (TLS, SSH, IPsec)
+          </li>
+        </ul>
+        <h2 id="ee694b18-a601-4439-8b0f-d819e6e0e78b" class="">
+          10. Analyse des vulnérabilités et tests de pénétration
+        </h2>
+        <ul id="20e368c9-78fb-490b-b78d-d22514111cad" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Méthodologies de test de pénétration (OSSTMM, PTES)
+          </li>
+        </ul>
+        <ul id="f95319c0-e2db-4d21-b557-c4ab474bbc09" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Outils d&#x27;analyse de vulnérabilités et d&#x27;exploitation
+          </li>
+        </ul>
+        <ul id="318ca1b0-7e69-455e-a3cc-9f2942037189" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Rédaction de rapports et remédiation
+          </li>
+        </ul>
+        <h2 id="c2c48fac-e1da-4573-94fd-a7df8bdb2b41" class="">
+          11. Sécurité des bases de données
+        </h2>
+        <ul id="f6ff82e4-479f-4ab8-8ccf-9b3b21656947" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Contrôle d&#x27;accès et chiffrement des données
+          </li>
+        </ul>
+        <ul id="c344ac0c-118e-446a-a01b-c77ae0c0480b" class="bulleted-list">
+          <li style="list-style-type: disc">Prévention des injections SQL</li>
+        </ul>
+        <ul id="47a56117-c01a-4521-8d84-8f85a13cc455" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Audits et surveillance des bases de données
+          </li>
+        </ul>
+        <h2 id="4aa90cbc-2832-486f-86fa-b482ff860e93" class="">
+          12. Gouvernance de la sécurité de l&#x27;information
+        </h2>
+        <ul id="aa16ac02-d167-4775-b735-5077eacb8c49" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Développement de politiques et procédures de sécurité
+          </li>
+        </ul>
+        <ul id="3b4032c5-34d7-439f-9233-f3ed153e5728" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Gestion des risques en cybersécurité
+          </li>
+        </ul>
+        <ul id="7826d9ec-7c28-4b4f-8cee-887d4a658623" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Formation et sensibilisation à la sécurité
+          </li>
+        </ul>
+        <h2 id="fda7bdeb-634d-4904-9998-310cb3860a0f" class="">
+          13. Sécurité dans le DevOps (DevSecOps)
+        </h2>
+        <ul id="73561628-72ed-4f06-8a81-de5c325538bd" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Intégration de la sécurité dans le cycle de développement
+          </li>
+        </ul>
+        <ul id="ba45196a-620d-4a87-90e3-8e9132c53f27" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Sécurité des conteneurs et orchestration
+          </li>
+        </ul>
+        <ul id="f678d237-88c6-4bd7-9d5e-d06510f3ab8c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Automatisation de la sécurité et Infrastructure as Code
+          </li>
+        </ul>
+        <h2 id="56783225-fd9c-4edc-836c-589150b11b17" class="">
+          14. Threat Intelligence et Hunting
+        </h2>
+        <ul id="f9e3dc0b-81cd-4a6f-8e4b-cd4e25fadad9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Sources et plateformes de Threat Intelligence
+          </li>
+        </ul>
+        <ul id="1a6b325b-800c-4bfd-8888-55ff09823bf2" class="bulleted-list">
+          <li style="list-style-type: disc">Techniques de Threat Hunting</li>
+        </ul>
+        <ul id="5be94067-6bd7-4229-9f9d-860c647e0716" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Analyse des indicateurs de compromission (IoC)
+          </li>
+        </ul>
+        <h2 id="424c18df-8169-41b0-8e8d-1ecdf963f8b7" class="">
+          15. Sécurité des endpoints avancée
+        </h2>
+        <ul id="c6b97dfe-bd1d-4ab5-9ae8-f98f19de0408" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Solutions EDR (Endpoint Detection and Response)
+          </li>
+        </ul>
+        <ul id="2933002c-fd0d-47da-9b5d-c188bc21512e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Prévention des malwares avancés et des ransomwares
+          </li>
+        </ul>
+        <ul id="5d388fde-8fc9-4c68-b8ab-9fb297520869" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Gestion des privilèges et contrôle d&#x27;application
+          </li>
+        </ul>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>

@@ -1,0 +1,4256 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Git</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="11384eed-7b66-8075-af4c-e113a454eb04" class="page sans">
+      <header>
+        <h1 class="page-title">Git</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <h1 id="4a747a1e-6dce-4a45-b99d-88d4b0cd428d" class="">
+          1. Introduction à Git
+        </h1>
+        <h2 id="d203bde5-de56-4da8-83f9-409d68217b9f" class="">
+          1.1. Qu&#x27;est-ce que Git ?
+        </h2>
+        <p id="6dbe0e3f-339f-43fa-81b6-80636616ee05" class="">
+          Git est un système de contrôle de version distribué, créé par Linus
+          Torvalds en 2005. Il permet aux développeurs de suivre et gérer les
+          modifications apportées au code source au fil du temps. Git facilite
+          la collaboration, le suivi des changements, et la gestion de
+          différentes versions d&#x27;un projet.
+        </p>
+        <p id="f6fffd68-4e4d-4069-b807-4d256eb091f0" class="">
+          Voici les principales caractéristiques de Git en détail :
+        </p>
+        <ul id="dd80b220-5ea7-4f1f-9ee5-4308f0ed9129" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Système distribué :</strong> Chaque développeur possède une
+            copie complète du dépôt, y compris l&#x27;historique complet. Cela
+            permet de travailler hors ligne et de synchroniser les changements
+            ultérieurement.
+          </li>
+        </ul>
+        <ul id="78d477b6-23b4-4e9e-8c22-551fce583f53" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Gestion des branches :</strong> Git excelle dans la création
+            et la fusion de branches, facilitant le développement parallèle de
+            fonctionnalités et l&#x27;expérimentation sans affecter la branche
+            principale.
+          </li>
+        </ul>
+        <ul id="792563c7-fd37-4949-ab3b-cf4d8bc159b5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Historique complet :</strong> Git conserve un historique
+            détaillé de toutes les modifications, permettant de revenir à
+            n&#x27;importe quel point dans le temps ou de comprendre
+            l&#x27;évolution du projet.
+          </li>
+        </ul>
+        <ul id="db2bfc57-d91c-4726-9c52-1459c963b839" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Performance :</strong> Git est conçu pour être rapide, même
+            avec de grands projets. Les opérations comme la création de branches
+            ou la visualisation de l&#x27;historique sont presque instantanées.
+          </li>
+        </ul>
+        <ul id="5f63e6ad-35fb-49ef-9d1b-a431ed8be550" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Intégrité des données :</strong> Toutes les données dans Git
+            sont checksummées avant d&#x27;être stockées. Cela garantit
+            l&#x27;impossibilité de modifier le contenu d&#x27;un fichier ou
+            d&#x27;un répertoire sans que Git ne le détecte.
+          </li>
+        </ul>
+        <ul id="7ee036c3-5636-4543-b9d9-8162d3f36292" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Staging Area :</strong> Git utilise une &quot;zone de
+            préparation&quot; (staging area) qui permet aux développeurs de
+            formater et revoir leurs commits avant de les valider, offrant un
+            meilleur contrôle sur l&#x27;historique du projet.
+          </li>
+        </ul>
+        <ul id="c424a65a-92ed-4739-b800-27d436b7cd8a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Support de flux de travail non linéaires :</strong> Git
+            supporte des milliers de branches parallèles, facilitant des flux de
+            travail complexes et la collaboration à grande échelle.
+          </li>
+        </ul>
+        <p id="01cfda42-71c2-47c4-b143-22af1ff31a1b" class="">
+          Ces caractéristiques font de Git un outil puissant et flexible pour la
+          gestion de code source, adapté aussi bien aux petits projets
+          qu&#x27;aux grandes équipes de développement.
+        </p>
+        <h2 id="c4658cd0-2665-4b5b-b6ed-27ac6bc770d3" class="">
+          1.2. Pourquoi utiliser Git ?
+        </h2>
+        <p id="e5d48221-e043-487f-9f7d-ca99cded3616" class="">
+          L&#x27;utilisation de Git offre de nombreux avantages pour les
+          développeurs et les équipes :
+        </p>
+        <ul id="b575cbbc-b7fd-43d9-9b81-e26195fc8ef3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Suivi des modifications :</strong> Git enregistre chaque
+            changement apporté au code, créant un historique détaillé. Cela
+            permet de comprendre l&#x27;évolution du projet, d&#x27;identifier
+            qui a fait quelles modifications et pourquoi, facilitant ainsi le
+            débogage et l&#x27;analyse du code.
+          </li>
+        </ul>
+        <ul id="eafb576f-d21a-4231-b1c9-67f4e5e8df63" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Collaboration efficace :</strong> Grâce au système de
+            branches, plusieurs développeurs peuvent travailler simultanément
+            sur différentes parties du projet sans interférer les uns avec les
+            autres. Les fonctionnalités de fusion (merge) permettent ensuite
+            d&#x27;intégrer facilement ces travaux parallèles.
+          </li>
+        </ul>
+        <ul id="f7ac6fe6-d2d3-4159-8e75-522c3d6630c7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Sauvegarde et récupération :</strong> L&#x27;historique
+            complet stocké par Git permet de revenir à n&#x27;importe quelle
+            version antérieure du projet. Cela offre un filet de sécurité,
+            permettant de récupérer des données perdues ou de corriger des
+            erreurs en revenant à un état stable du code.
+          </li>
+        </ul>
+        <ul id="85e4a592-22c4-4706-b776-2b58a90d1147" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Expérimentation sans risque :</strong> Les branches
+            permettent de créer des &quot;espaces de travail&quot; isolés où
+            l&#x27;on peut tester de nouvelles idées ou fonctionnalités sans
+            affecter le code principal. Si l&#x27;expérience est concluante,
+            elle peut être facilement intégrée ; sinon, elle peut être
+            abandonnée sans conséquence.
+          </li>
+        </ul>
+        <ul id="7a75d4d9-744d-49c4-843e-45614cc54ef8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Gestion de versions :</strong> Git facilite la gestion de
+            différentes versions du logiciel, comme les versions de
+            développement, de test et de production. Cela permet de maintenir
+            plusieurs versions du logiciel en parallèle et de gérer efficacement
+            les mises à jour et les correctifs.
+          </li>
+        </ul>
+        <ul id="ffbde43b-9bad-44b5-a90f-ba44aa3376c4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Documentation implicite :</strong> Chaque commit dans Git
+            est accompagné d&#x27;un message descriptif. Au fil du temps, ces
+            messages forment une documentation détaillée de l&#x27;évolution du
+            projet, expliquant les raisons des changements et facilitant la
+            compréhension des décisions de conception prises au cours du
+            développement.
+          </li>
+        </ul>
+        <ul id="7695874c-d18d-4a32-a2ca-ac3ade0aafe2" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Travail hors ligne :</strong> Contrairement aux systèmes
+            centralisés, Git permet de travailler sans connexion internet
+            constante. Les développeurs peuvent effectuer des commits, créer des
+            branches et consulter l&#x27;historique en local, puis synchroniser
+            avec le serveur une fois la connexion rétablie.
+          </li>
+        </ul>
+        <ul id="16d309aa-b2eb-4a5b-b411-bca9da5f4066" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Intégration et déploiement continus :</strong> Git
+            s&#x27;intègre facilement avec des outils d&#x27;intégration
+            continue et de déploiement automatisé, permettant d&#x27;automatiser
+            les tests et le déploiement du code à chaque push, améliorant ainsi
+            la qualité et la rapidité du développement.
+          </li>
+        </ul>
+        <h2 id="deaed652-8bc2-46fb-82d5-7acf8a2bad83" class="">
+          1.3. Installation et configuration
+        </h2>
+        <p id="64c652d8-f733-4e0f-a8da-5897ba6407c9" class="">
+          L&#x27;installation et la configuration de Git sont des étapes
+          essentielles pour commencer à utiliser cet outil de gestion de
+          version. Voici un résumé détaillé du processus :
+        </p>
+        <h3 id="12fc5b4c-b31b-4fb5-910b-2eff39cc128f" class="">Installation</h3>
+        <ul id="dee57068-6bd0-4347-8a07-ddef10e991be" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Windows :</strong> Téléchargez l&#x27;installateur depuis le
+            site officiel de Git et suivez les instructions d&#x27;installation.
+          </li>
+        </ul>
+        <ul id="adff60e9-4b69-46c9-8086-6286d649fbcd" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>MacOS :</strong> Installez Git via Homebrew en utilisant la
+            commande &quot;brew install git&quot;, ou téléchargez
+            l&#x27;installateur depuis le site officiel.
+          </li>
+        </ul>
+        <ul id="2bc7d31f-5b10-4377-85dd-19af2f24bf7a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Linux :</strong> Utilisez le gestionnaire de paquets de
+            votre distribution (par exemple, &quot;sudo apt-get install
+            git&quot; pour Ubuntu).
+          </li>
+        </ul>
+        <h3 id="33a5ec73-ca8a-47e9-8b1c-86d4a0a56469" class="">
+          Configuration initiale
+        </h3>
+        <ul id="7032b968-64a8-4f71-9a1c-4dbfd89a37cc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Identité :</strong> Configurez votre nom et email avec les
+            commandes :
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="84994e7d-d473-4728-9c21-88a1f8605f28"
+              class="code"
+            ><code class="language-Bash">git config --global user.name &quot;Votre Nom&quot;
+git config --global user.email &quot;votre@email.com&quot;</code></pre>
+          </li>
+        </ul>
+        <ul id="3babd6c1-fe90-481f-aebf-b946213ef904" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Éditeur par défaut :</strong> Définissez votre éditeur de
+            texte préféré :
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="5b917759-5d39-4d2a-a36e-a920992fbac5"
+              class="code"
+            ><code class="language-Bash">git config --global core.editor &quot;nom_de_votre_editeur&quot;</code></pre>
+          </li>
+        </ul>
+        <ul id="a128301f-df60-4cca-9d78-6125b64e310c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Vérification des paramètres :</strong> Affichez vos
+            configurations avec :
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="10845fff-ae5c-4507-80ff-36e734be4ee0"
+              class="code"
+            ><code class="language-Bash">git config --list</code></pre>
+          </li>
+        </ul>
+        <h3 id="a5f1c4ae-f3d0-436b-b260-954c49f670f3" class="">
+          Personnalisation avancée
+        </h3>
+        <ul id="827c813e-dedf-4d57-a9e1-069de739ba5e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Alias :</strong> Créez des raccourcis pour les commandes
+            fréquemment utilisées :
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="bbe246ab-f61a-498a-b5c8-e34f5fb1ac56"
+              class="code"
+            ><code class="language-Bash">git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status</code></pre>
+          </li>
+        </ul>
+        <ul id="ffa954bd-b8e8-4230-b151-cff72315a1bf" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Ignorer des fichiers :</strong> Créez un fichier .gitignore
+            global pour exclure certains types de fichiers de tous vos projets
+            Git.
+          </li>
+        </ul>
+        <p id="70786d86-178a-4aca-996a-dd9df90816a8" class="">
+          Une fois ces étapes complétées, Git est prêt à être utilisé sur votre
+          système. Cette configuration initiale vous permet de commencer à
+          travailler efficacement avec Git, en adaptant l&#x27;outil à vos
+          préférences et à votre flux de travail.
+        </p>
+        <h1 id="62e356ff-515d-41cd-a8fc-2fd6cca14ad6" class="">
+          2. Concepts fondamentaux
+        </h1>
+        <h2 id="ff5cc83b-789a-4927-8b8b-c42ff7007052" class="">
+          2.1. Dépôts (repositories)
+        </h2>
+        <p id="757effe3-8699-451d-bb1e-14834c810c4f" class="">
+          Un dépôt Git (repository) est l&#x27;unité fondamentale de stockage et
+          de gestion de projet dans Git. Voici un résumé détaillé du concept de
+          dépôt :
+        </p>
+        <ul id="7c489ee6-aeda-4a92-91c2-6885d015c35b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Un dépôt Git est un conteneur virtuel
+            pour un projet. Il englobe l&#x27;intégralité du code source,
+            l&#x27;historique des modifications, et les métadonnées associées au
+            projet.
+          </li>
+        </ul>
+        <ul id="683a171a-7557-48b6-8d53-f3bae7495430" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Structure :</strong> Un dépôt contient tous les fichiers du
+            projet, ainsi qu&#x27;un dossier caché .git qui stocke
+            l&#x27;historique complet, les configurations, et les informations
+            de suivi.
+          </li>
+        </ul>
+        <ul id="d7072397-597d-448c-b045-5fc2b9828e65" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Types de dépôts :</strong>
+            <ul id="aa9b4753-20d1-41c5-b15a-978f4870fa51" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Local : Stocké sur votre machine, pour un travail individuel.
+              </li>
+            </ul>
+            <ul id="c24370aa-56e5-4f8a-a9ef-cf3935c26c73" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Remote : Hébergé sur un serveur, facilitant la collaboration.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="81a6c8b1-84dd-4c72-bb5f-5cbfb4b3f008" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Création :</strong> Un dépôt peut être créé de deux manières
+            principales :
+            <ul id="3c967350-50b0-4f5a-9898-55fc7aca40cd" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git init : Initialise un nouveau dépôt local.
+              </li>
+            </ul>
+            <ul id="aad78b5c-3498-42f0-9799-0dfed8846423" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git clone : Copie un dépôt existant (souvent distant) sur votre
+                machine.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="8c04dfd6-730b-44b0-9703-de664d6bcf48" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Composants clés :</strong>
+            <ul id="5ec3576b-afbc-46e9-bc27-76bee2f17962" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Working Directory : L&#x27;espace de travail où vous modifiez
+                les fichiers.
+              </li>
+            </ul>
+            <ul id="76cc0dd0-b169-4f81-ab89-b8d91eeb8404" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Staging Area : Zone intermédiaire où les changements sont
+                préparés pour le commit.
+              </li>
+            </ul>
+            <ul id="96a4a72d-f2e2-4fd3-9e6c-73c00ca76ead" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Git Directory : Stocke les métadonnées et la base de données des
+                objets du projet.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="927d6a51-4248-45a7-918d-cf738d6d6fe6" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnalités :</strong>
+            <ul id="619d8f57-ae6c-4d73-b364-ff29a8f32f04" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Suivi des modifications : Enregistre chaque changement dans
+                l&#x27;historique.
+              </li>
+            </ul>
+            <ul id="33879d44-bd73-4167-8ecf-05d6ab4ad9b7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Branching : Permet le développement parallèle de
+                fonctionnalités.
+              </li>
+            </ul>
+            <ul id="14f05140-926a-4233-836c-42cc00582324" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Collaboration : Facilite le travail en équipe via le partage et
+                la synchronisation.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="3544ca2a-2ffa-4910-87ab-93de4fe04c85" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="9f3f81c0-7b35-4e6c-b075-62db2f69709a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Versioning : Maintient un historique complet du projet.
+              </li>
+            </ul>
+            <ul id="3035e544-7e03-4f8e-aeac-8e71d78c7f2b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Backup : Chaque clone est une sauvegarde complète.
+              </li>
+            </ul>
+            <ul id="6ac987ec-c0c5-44eb-8b62-be7258304881" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Expérimentation : Les branches permettent de tester sans risque.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="961b7a4f-c42a-4e15-b2c0-3de7e9613767" class="">
+          Les dépôts Git sont au cœur de la gestion de version distribuée,
+          offrant flexibilité, sécurité, et efficacité dans le développement de
+          logiciels.
+        </p>
+        <h2 id="d89367de-4be4-4dea-b7f3-bb46ac91b576" class="">2.2. Commits</h2>
+        <p id="90bdadab-4ba1-49fe-93ae-8e5b6bbc6b9b" class="">
+          Les commits sont des éléments fondamentaux dans Git, représentant des
+          points spécifiques dans l&#x27;historique du projet. Voici un résumé
+          détaillé du concept de commit :
+        </p>
+        <ul id="55deb943-8d9d-468b-a6a9-a6907b05218a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Un commit est un instantané de
+            l&#x27;état du projet à un moment donné. Il capture les
+            modifications apportées aux fichiers depuis le dernier commit.
+          </li>
+        </ul>
+        <ul id="3b35be9b-a5d5-47e6-a63b-fb9e9bf76934" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Structure :</strong> Chaque commit contient :
+            <ul id="05122358-59a7-4000-bb36-d863bdf572f4" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Un identifiant unique (hash SHA-1)
+              </li>
+            </ul>
+            <ul id="069db96d-841b-4781-827b-5cbf6af3253c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Un message décrivant les changements
+              </li>
+            </ul>
+            <ul id="14b3795a-1b94-4a5a-bc08-e20229a7743c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Des métadonnées (auteur, date, etc.)
+              </li>
+            </ul>
+            <ul id="a6df3751-b5f4-4c86-9b7a-0b4e9f4caaf0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Un pointeur vers le commit parent
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="264c3fbc-c86f-4175-af72-1eeeb9cd80d8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Création :</strong> Un commit est créé avec la commande
+            &quot;git commit&quot; après avoir ajouté des modifications à la
+            staging area avec &quot;git add&quot;.
+          </li>
+        </ul>
+        <ul id="9c23411c-0e02-4324-adba-576ef549e453" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Importance :</strong>
+            <ul id="bdb194d6-6672-4cc1-8d05-6117922da42b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Historique : Chaque commit forme un point de l&#x27;historique
+                du projet.
+              </li>
+            </ul>
+            <ul id="651b7601-a821-40db-bedb-be80eb5c389b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Traçabilité : Permet de suivre l&#x27;évolution du code et les
+                décisions prises.
+              </li>
+            </ul>
+            <ul id="1fd3f962-8225-4c31-807b-d21464b9f320" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Réversibilité : Offre la possibilité de revenir à des états
+                antérieurs du projet.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="dbcd2a57-6923-4783-8a79-5493682a27d2" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="65b280d8-2029-4948-8c7d-c7dc6e7b0971" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Messages clairs et concis décrivant les changements
+              </li>
+            </ul>
+            <ul id="d9538031-576a-42dc-864a-6ebd2f4b4714" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commits atomiques (une seule fonctionnalité ou correction par
+                commit)
+              </li>
+            </ul>
+            <ul id="66c577d7-a68d-4a1b-87c2-9eb6f9c011a7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commits fréquents pour faciliter le suivi et la gestion des
+                modifications
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="f5a3c425-f447-4ce9-b32b-dd4ef9a91eec" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Manipulation :</strong> Les commits peuvent être visualisés,
+            comparés, modifiés (avec précaution), et utilisés pour naviguer dans
+            l&#x27;historique du projet.
+          </li>
+        </ul>
+        <p id="13453edc-fe0f-4b31-bf1c-65336a36fd2a" class="">
+          Les commits sont essentiels pour comprendre l&#x27;évolution d&#x27;un
+          projet, collaborer efficacement, et maintenir un historique clair et
+          organisé du développement.
+        </p>
+        <h2 id="19789bd3-b5b0-4221-900d-96afa4884fb8" class="">
+          2.3. Branches
+        </h2>
+        <p id="5473ea10-ae04-4241-97ad-81bcccdd6099" class="">
+          Les branches sont un concept fondamental dans Git, permettant le
+          développement parallèle et la gestion efficace des fonctionnalités.
+          Voici un résumé détaillé du concept de branches :
+        </p>
+        <ul id="06eab9e4-1411-496c-96ca-08d4e0abf2c9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Une branche est une ligne de
+            développement indépendante qui diverge du flux principal
+            (généralement appelé &quot;master&quot; ou &quot;main&quot;).
+          </li>
+        </ul>
+        <ul id="a40d1ce0-33e6-4554-8d16-649ae4dbc898" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong> Techniquement, une branche est un
+            pointeur léger et mobile vers un commit spécifique.
+          </li>
+        </ul>
+        <ul id="50575040-4942-46a2-8f5d-8ea92c5d31b3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Utilité :</strong>
+            <ul id="d05c2670-788d-4b27-b7a4-e110d6e83bdc" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Développement parallèle de fonctionnalités
+              </li>
+            </ul>
+            <ul id="9411e426-af69-44f8-9531-d63674b82bba" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Isolement des modifications
+              </li>
+            </ul>
+            <ul id="e13f209a-0d06-4f49-9f8e-bd84138f120e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Expérimentation sans risque
+              </li>
+            </ul>
+            <ul id="d4c7f8c8-8ab2-487e-9080-6bceb38ee2e8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Gestion des versions et des releases
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="835b3e70-0e81-48cb-980c-99e49cb2711f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Types de branches courants :</strong>
+            <ul id="a03506dd-ff12-442e-b89d-88661544c48c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Master/Main : Branche principale, stable
+              </li>
+            </ul>
+            <ul id="6786cd08-d393-4780-a4f0-78fcfa3f387f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Feature : Pour développer de nouvelles fonctionnalités
+              </li>
+            </ul>
+            <ul id="4a31205c-e59b-49ea-8bf4-aff63b56e0cf" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Hotfix : Pour des corrections rapides de bugs critiques
+              </li>
+            </ul>
+            <ul id="3ffa470e-ae26-4cc2-8e97-4e1202686295" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Release : Pour préparer les versions de production
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="f8348cce-5a0c-471f-8755-552a45b27e18" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Opérations clés :</strong>
+            <ul id="9dbb8837-2456-4fbb-8473-dc81755c6c16" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Création : git branch [nom] ou git checkout -b [nom]
+              </li>
+            </ul>
+            <ul id="78bcd7d8-bc84-47d4-9d54-9300ace98c47" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Changement : git checkout [nom]
+              </li>
+            </ul>
+            <ul id="ea3b953c-5bbf-4a15-8075-3a372300fd1f" class="bulleted-list">
+              <li style="list-style-type: circle">Fusion : git merge [nom]</li>
+            </ul>
+            <ul id="783134cf-e4de-482e-bdd0-911b36c43c05" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Suppression : git branch -d [nom]
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="2139bca1-8f9c-4744-8b41-0c331ceeb355" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="098fde58-506d-48e7-845d-760282a8aaa5" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Flexibilité dans le développement
+              </li>
+            </ul>
+            <ul id="b17a7ae4-03cc-429f-973d-8512e351c99f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la collaboration en équipe
+              </li>
+            </ul>
+            <ul id="a44cb9d9-39d3-4fbf-82b3-2921582b9d3e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet de gérer plusieurs versions simultanément
+              </li>
+            </ul>
+            <ul id="f1c117ae-2829-4d17-851a-657777e5e13b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Simplifie les tests et le débogage
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="e72821b0-79f0-47b3-a6e6-2f981affdae4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="e9327989-1d01-473c-99b4-6a0670254077" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Nommer clairement les branches
+              </li>
+            </ul>
+            <ul id="842b081c-a954-4e88-b8ac-cc91d07840e3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Garder les branches à jour avec la branche principale
+              </li>
+            </ul>
+            <ul id="ce952e7a-1d1f-47aa-9649-f08004bf3b3d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Nettoyer régulièrement les branches obsolètes
+              </li>
+            </ul>
+            <ul id="286ecb57-1f47-42ed-bebb-9d24bf0b807f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des stratégies de branchement cohérentes (ex: GitFlow)
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="09526d47-a43d-4a62-8717-514a978b6953" class="">
+          Les branches sont un outil puissant qui offre flexibilité et contrôle
+          dans le développement de logiciels, permettant aux équipes de
+          travailler efficacement sur différents aspects d&#x27;un projet en
+          parallèle.
+        </p>
+        <h2 id="cf7aa2a1-92b5-47f9-8370-54ae1fe9063a" class="">
+          2.4. Fusion (merge)
+        </h2>
+        <p id="16d2f9c0-e1af-43b1-8cab-ee7c18c0bd43" class="">
+          La fusion (merge) est une opération fondamentale dans Git qui permet
+          de combiner les modifications de différentes branches. Voici un résumé
+          détaillé du concept de fusion :
+        </p>
+        <ul id="412f8107-dbe5-4513-9087-daf18b56d74b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> La fusion est le processus
+            d&#x27;intégration des changements d&#x27;une branche dans une
+            autre, généralement pour incorporer de nouvelles fonctionnalités ou
+            corrections dans la branche principale.
+          </li>
+        </ul>
+        <ul id="a1441836-6cea-4570-a983-f61941efe38d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Types de fusion :</strong>
+            <ul id="7430e504-0a39-43c6-856d-f9b4227e7c76" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Fast-forward : Quand il n&#x27;y a pas de nouveaux commits dans
+                la branche de destination depuis la création de la branche
+                source.
+              </li>
+            </ul>
+            <ul id="8aa22efa-e93e-4986-9187-a2592768aaf8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Merge commit : Crée un nouveau commit qui combine les
+                historiques des deux branches.
+              </li>
+            </ul>
+            <ul id="5afe28b9-8a35-4e64-84a8-ccfbb3b8e329" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Squash merge : Condense tous les commits de la branche source en
+                un seul avant la fusion.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="165bf626-3f46-4c2a-b2fe-7c92e8c47e0f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Processus :</strong>
+            <ul id="b28e72ec-6c92-47c8-aa23-2b4607b7b12c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Git compare les commits les plus récents des deux branches.
+              </li>
+            </ul>
+            <ul id="e65e264f-c764-4ef2-8508-bca4dcbdbcfd" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Il identifie les modifications à combiner.
+              </li>
+            </ul>
+            <ul id="c94bdb6e-4272-41f8-bb23-63be0e94bfa8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Il crée un nouveau commit de fusion si nécessaire.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="6fee4f28-839f-4fda-8e1d-8e67303090b3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Conflits :</strong> Peuvent survenir lorsque les mêmes
+            lignes de code ont été modifiées dans les deux branches. Nécessitent
+            une résolution manuelle.
+          </li>
+        </ul>
+        <ul id="671fc83f-01a0-4ffe-bbd6-8b87d8f27848" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="aaa238d5-1fc0-4236-99b3-f9d71137333a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Intègre les travaux de différentes branches.
+              </li>
+            </ul>
+            <ul id="723552ed-05f0-495f-9227-dff3f6a2f242" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Maintient l&#x27;historique complet du développement.
+              </li>
+            </ul>
+            <ul id="15003162-a8ea-46a4-9396-70ff3c71b038" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la collaboration en équipe.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="c3773a89-3980-487b-b331-bb9349ec846e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="9accfd1c-f6f2-46ca-8a08-c613c55b52f5" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Fusionner régulièrement la branche principale dans les branches
+                de fonctionnalités.
+              </li>
+            </ul>
+            <ul id="c6b2bdb8-4113-498e-9609-6d21a5fb1f6f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Tester soigneusement après chaque fusion.
+              </li>
+            </ul>
+            <ul id="5136dd43-0369-4038-a41b-c487984485ae" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des outils de visualisation pour comprendre
+                l&#x27;historique des fusions.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="aec417ff-6636-4a71-b887-3509daacc9e2" class="">
+          La fusion est une opération cruciale dans le flux de travail Git,
+          permettant d&#x27;intégrer efficacement les changements et de
+          maintenir un historique de projet cohérent.
+        </p>
+        <h2 id="a5819bfd-77bb-4a02-abbf-80e2a0747d81" class="">2.5. Fork</h2>
+        <p id="c2380c3a-236d-4104-802c-c0ad366e8d64" class="">
+          Un fork dans Git est une copie indépendante d&#x27;un dépôt existant.
+          Voici un résumé détaillé du concept de fork :
+        </p>
+        <ul id="16d44315-319d-47b0-9033-591df8318f3b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Un fork est une copie personnelle
+            d&#x27;un dépôt d&#x27;un autre utilisateur, généralement hébergé
+            sur une plateforme comme GitHub ou GitLab.
+          </li>
+        </ul>
+        <ul id="cbef9cb4-dac4-4400-b152-4230cb2ef3f2" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Utilisation :</strong> Principalement utilisé pour
+            contribuer à des projets open-source ou pour utiliser un projet
+            existant comme point de départ pour un nouveau développement.
+          </li>
+        </ul>
+        <ul id="18889309-c07c-4996-a6bc-edea35f04446" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="99dfa905-1bfe-466b-882c-68376da246cd" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Crée une copie exacte du dépôt original à un moment donné.
+              </li>
+            </ul>
+            <ul id="daa866d2-08a4-4a34-b7dd-2a10073a31ee" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet de travailler sur cette copie sans affecter le dépôt
+                original.
+              </li>
+            </ul>
+            <ul id="eb353d50-44ea-4c28-bfea-e9123773ca6f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la proposition de modifications via des pull requests.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="46657461-cf60-4298-9c38-f837968df1e7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="5548c845-7668-482c-868e-5c4b4302b93b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Expérimentation sans risque pour le projet original.
+              </li>
+            </ul>
+            <ul id="d2b69adf-6748-47dc-a9ee-8867c2f3acaa" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la contribution à des projets tiers.
+              </li>
+            </ul>
+            <ul id="3522448c-f358-45ec-947b-1f12b93abc57" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet de personnaliser des projets existants pour des besoins
+                spécifiques.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="d7733b8e-42d0-4e83-b811-39cf9706845b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Processus typique :</strong>
+            <ul id="edb48fd7-9425-454f-a793-17b935ccf5d7" class="bulleted-list">
+              <li style="list-style-type: circle">Forker le dépôt original.</li>
+            </ul>
+            <ul id="672fd1bd-25f4-466d-b280-feef361709d0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Cloner le fork localement.
+              </li>
+            </ul>
+            <ul id="b16c2067-7152-4e77-8d54-d2e1a2dbce51" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Créer une branche pour les modifications.
+              </li>
+            </ul>
+            <ul id="e05f6174-c7ed-413d-b044-4bc45c93da85" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Pousser les changements vers le fork.
+              </li>
+            </ul>
+            <ul id="cbb22870-4f73-4eb5-b5e3-f9ce2f65119f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Créer une pull request vers le dépôt original.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="950211fe-de8c-475b-97ef-57f0f5db3463" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Synchronisation :</strong> Les forks peuvent être mis à jour
+            avec les changements du dépôt original via des pulls ou des merges.
+          </li>
+        </ul>
+        <ul id="22f87e88-9135-4fb9-9d5e-f51a9dbfb180" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Différence avec le clonage :</strong> Un fork crée une copie
+            sur le serveur, tandis qu&#x27;un clone est une copie locale.
+          </li>
+        </ul>
+        <p id="da0f5724-3e41-4200-b143-0f9bf18aa7bf" class="">
+          Le forking est un mécanisme puissant dans l&#x27;écosystème Git,
+          favorisant la collaboration ouverte et l&#x27;innovation dans le
+          développement logiciel.
+        </p>
+        <h1 id="4b75a975-d22e-4d5d-b54a-09aa4ed27835" class="">
+          3. Commandes de base
+        </h1>
+        <h2 id="e2f1251b-7775-4073-8f8d-726371166307" class="">
+          3.1. git init
+        </h2>
+        <p id="9dd9b7c6-ab37-4002-8b6e-c091eb1a7ff3" class="">
+          La commande &quot;git init&quot; est utilisée pour initialiser un
+          nouveau dépôt Git. Voici un résumé détaillé de cette commande
+          fondamentale :
+        </p>
+        <ul id="ef6c25a9-a1aa-4e2d-91f4-3034471e9de1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Créer un nouveau dépôt Git vide ou
+            transformer un répertoire existant en un dépôt Git.
+          </li>
+        </ul>
+        <ul id="f313ea4d-5382-4adb-8927-72b517757634" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Utilisation :</strong> Exécutez &quot;git init&quot; dans le
+            répertoire que vous souhaitez versionner.
+          </li>
+        </ul>
+        <ul id="5c249a6b-63f2-4afc-9a06-a14f31b87832" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Résultat :</strong> Crée un sous-répertoire caché
+            &quot;.git&quot; contenant toute la structure nécessaire pour le
+            dépôt Git.
+          </li>
+        </ul>
+        <ul id="7aaa67c6-f045-4f74-b62f-05f49a0d67fd" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Contenu du .git :</strong> Inclut des sous-répertoires pour
+            les objets, les références, et des fichiers de configuration.
+          </li>
+        </ul>
+        <ul id="bbc76b9c-30f5-40ff-82fb-f259bf08f53b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>État initial :</strong> Le dépôt est vide, sans commits ni
+            branches (à part la branche par défaut, généralement
+            &#x27;master&#x27; ou &#x27;main&#x27;).
+          </li>
+        </ul>
+        <ul id="d917dbd1-e1e2-4c02-b2f0-d1a5d8382d1f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Options courantes :</strong>
+            <ul id="0fc9631b-90f9-4bfa-9ecc-7da81848ca70" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git init --bare&quot; : Crée un dépôt nu, généralement
+                utilisé comme dépôt central sur un serveur.
+              </li>
+            </ul>
+            <ul id="e7085a85-6421-4b7e-9a6c-17bfa9540286" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git init [directory]&quot; : Initialise un dépôt dans le
+                répertoire spécifié.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="a207704f-8043-4395-ab59-ba7058cf5e2c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="f89af2e0-5d8e-4b0d-b533-364dbbbdeaa8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Initialiser le dépôt au début du projet.
+              </li>
+            </ul>
+            <ul id="97083345-33db-48f9-9657-d51d8d3380d8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Ajouter immédiatement un fichier .gitignore pour exclure les
+                fichiers non nécessaires.
+              </li>
+            </ul>
+            <ul id="ecec9fde-8d0b-4601-a934-efaef448bb90" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Faire un premier commit rapidement pour établir la structure
+                initiale du projet.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="5feab3e5-3cbf-49d4-a13b-df6a03f3717c" class="">
+          La commande &quot;git init&quot; est le point de départ de tout projet
+          Git, permettant de mettre en place la structure nécessaire pour le
+          contrôle de version.
+        </p>
+        <h2 id="d8c5b949-01a2-4772-a7db-a4b6c87b9f71" class="">
+          3.2. git clone
+        </h2>
+        <p id="b5a99f90-fc93-4192-bb8d-1575bb3b9a9b" class="">
+          La commande &quot;git clone&quot; est utilisée pour créer une copie
+          locale d&#x27;un dépôt Git existant. Voici un résumé détaillé de cette
+          commande importante :
+        </p>
+        <ul id="19d799b2-318d-49f2-b973-c761e0c79879" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Créer une copie complète d&#x27;un dépôt
+            Git, y compris tout l&#x27;historique et toutes les branches.
+          </li>
+        </ul>
+        <ul id="b80f5a80-f45e-4270-bd2b-ad2534e8bc58" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Syntaxe :</strong> git clone [URL]
+          </li>
+        </ul>
+        <ul id="ae3ac701-2d2c-4ecf-bbae-ae7120747b2c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="4f9bb429-1d76-4ebb-8d15-b404c5baa5cf" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Copie l&#x27;intégralité du dépôt distant vers un nouveau
+                répertoire local.
+              </li>
+            </ul>
+            <ul id="7bc39eeb-186a-408c-8bec-0206eb68c170" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Configure automatiquement le dépôt distant comme
+                &quot;origin&quot;.
+              </li>
+            </ul>
+            <ul id="96302171-0574-4ef8-a549-d6bebe76e389" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Crée une branche locale &quot;master&quot; (ou &quot;main&quot;)
+                qui suit la branche distante.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="c17d06b5-5d1c-4f50-8a73-44c6817d84e1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Options courantes :</strong>
+            <ul id="2ac7331f-eaac-4168-84a6-ecda6d4c42cc" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--branch [name]&quot; : Clone une branche spécifique.
+              </li>
+            </ul>
+            <ul id="3dbf3a3a-7ba0-4363-9727-fde86feca805" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--depth [number]&quot; : Crée un clone superficiel avec un
+                historique limité.
+              </li>
+            </ul>
+            <ul id="e42808e9-e7ec-488f-a253-670ed720af48" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--bare&quot; : Crée un clone nu, sans copie de travail.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="d4f60bcd-4684-4166-bbea-5ead50f586c7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="58aeb02d-380d-417d-b5aa-2854b4d98632" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Obtenir rapidement une copie complète d&#x27;un projet.
+              </li>
+            </ul>
+            <ul id="0cfc8384-6b00-4443-ba92-26be9fa20094" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la collaboration en permettant de travailler sur une
+                copie locale.
+              </li>
+            </ul>
+            <ul id="b821745b-e74d-4427-beba-1eaed0f0fdfe" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet de contribuer à des projets open-source.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="38da1048-3c6b-4943-8eea-18c55df5c319" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="789e01e8-5abf-44c9-874b-942f7a440157" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Vérifier l&#x27;URL du dépôt avant de cloner.
+              </li>
+            </ul>
+            <ul id="7fdc3634-0d41-470a-8021-76166524c2ce" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser HTTPS pour cloner des dépôts publics, SSH pour les
+                dépôts privés.
+              </li>
+            </ul>
+            <ul id="a0c1d298-f826-4b21-b2d0-dbc9be0ece12" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Considérer l&#x27;utilisation de &quot;--depth&quot; pour les
+                grands dépôts si l&#x27;historique complet n&#x27;est pas
+                nécessaire.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="7f2c7515-ecca-453f-9f23-ab01ed8e4688" class="">
+          La commande &quot;git clone&quot; est essentielle pour commencer à
+          travailler sur un projet existant ou pour créer une copie de
+          sauvegarde d&#x27;un dépôt distant.
+        </p>
+        <h2 id="b4bee4ab-9cf8-491f-b704-b3c02c75eba2" class="">3.3. git add</h2>
+        <p id="b145ab6b-2dd7-41bc-9d1f-2ba9bb62ef38" class="">
+          La commande &quot;git add&quot; est une étape cruciale dans le
+          processus de versionnage avec Git. Voici un résumé détaillé de cette
+          commande :
+        </p>
+        <ul id="2e4196ac-970c-455b-bd24-04f5fc52ccee" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Ajouter des fichiers ou des
+            modifications à l&#x27;index (staging area) en préparation pour un
+            commit.
+          </li>
+        </ul>
+        <ul id="f2906ced-719a-4d20-aa97-f7af330bf168" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Syntaxe :</strong> git add [fichier(s) ou répertoire(s)]
+          </li>
+        </ul>
+        <ul id="e56867f6-b068-467d-9b91-457467de60d1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="f560e6dd-4c9e-4fe0-bb5f-dc8dd336607e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Sélectionne les modifications à inclure dans le prochain commit.
+              </li>
+            </ul>
+            <ul id="2ccc5655-7d30-4425-8996-7bb02c3b08d8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Ne modifie pas le dépôt tant qu&#x27;un commit n&#x27;est pas
+                effectué.
+              </li>
+            </ul>
+            <ul id="ae400589-fda2-4eff-8415-d8eb50cb2018" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Peut être utilisé plusieurs fois avant un commit.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="c5e8ddeb-2e4c-4cd6-9e38-898be8f8288f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Options courantes :</strong>
+            <ul id="2f7545d6-b17b-44b4-905e-de5cacf8f32d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git add .&quot; : Ajoute tous les fichiers modifiés et
+                nouveaux.
+              </li>
+            </ul>
+            <ul id="05b4676b-1d5b-42d4-88da-18bfbba8a25d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git add -u&quot; : Ajoute uniquement les fichiers modifiés
+                et supprimés, pas les nouveaux.
+              </li>
+            </ul>
+            <ul id="420fa1a6-bf1d-486f-b2bd-8283f2a83c6e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git add -p&quot; : Mode interactif pour choisir des
+                parties spécifiques à ajouter.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="f1e22665-9167-4d0f-a5dd-9b0cd9e18014" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="eb3b7da6-17cf-4bf7-87ee-27f635357120" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet un contrôle précis sur ce qui sera inclus dans le
+                prochain commit.
+              </li>
+            </ul>
+            <ul id="f04c625f-647a-455d-aec6-9c2c22ca9276" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la création de commits logiques et cohérents.
+              </li>
+            </ul>
+            <ul id="01b09c63-378a-4736-8eeb-e355d0d4a3b8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Offre la possibilité de revoir les changements avant de les
+                valider.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="ada5256c-e5c3-4823-aa18-446279364531" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="af64e2eb-9d07-4405-b00b-fe12a2876d8a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Ajouter les fichiers de manière sélective plutôt que
+                d&#x27;utiliser systématiquement &quot;git add .&quot;
+              </li>
+            </ul>
+            <ul id="299a7d53-21df-46af-9b90-6341f3691012" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Vérifier l&#x27;état avec &quot;git status&quot; avant et après
+                l&#x27;utilisation de &quot;git add&quot;.
+              </li>
+            </ul>
+            <ul id="b2de1bf3-09b1-4dc8-901a-b2138092a917" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser &quot;git diff --staged&quot; pour revoir les
+                modifications ajoutées.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="7d30c855-7e50-406d-9b63-2bb08e9ffec4" class="">
+          La commande &quot;git add&quot; est essentielle pour préparer les
+          modifications avant un commit, permettant un contrôle fin sur le
+          contenu de chaque instantané du projet.
+        </p>
+        <h2 id="1e81d680-f270-44a0-a8cf-34493b1c12cb" class="">
+          3.4. git commit
+        </h2>
+        <p id="56753747-c402-4ab8-b4c7-626e23432cab" class="">
+          La commande &quot;git commit&quot; est une étape fondamentale dans le
+          processus de versionnage avec Git. Voici un résumé détaillé de cette
+          commande :
+        </p>
+        <ul id="f38cf9e1-3404-4a72-8208-e59ccffaf6f0" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Enregistrer les modifications ajoutées à
+            l&#x27;index dans l&#x27;historique du dépôt.
+          </li>
+        </ul>
+        <ul id="0a4b2481-4389-4be9-b391-fcdf864a7d83" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Syntaxe :</strong> git commit -m &quot;message de
+            commit&quot;
+          </li>
+        </ul>
+        <ul id="5b757951-d0d9-4cfa-8dc6-6eaa9da68100" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="6a43aed8-4fde-4f1f-830d-6c7151a19062" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Crée un nouvel objet commit dans le dépôt Git.
+              </li>
+            </ul>
+            <ul id="b3f0d2f5-4feb-4460-a07c-7f31793dab63" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Enregistre un instantané des fichiers dans l&#x27;index.
+              </li>
+            </ul>
+            <ul id="b2eb1cd6-7e41-4df2-97f5-aed7933e3533" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Ajoute le commit à la branche courante.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="f9fc2fd0-39dc-47bf-a399-5c398020ffb3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Options courantes :</strong>
+            <ul id="e56191ec-1276-4c72-afa2-1dc2942588a3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;-m&quot; : Permet d&#x27;ajouter un message de commit
+                directement dans la commande.
+              </li>
+            </ul>
+            <ul id="095b7305-a789-441f-87d1-fc7a414676a9" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;-a&quot; : Ajoute automatiquement les modifications des
+                fichiers déjà suivis.
+              </li>
+            </ul>
+            <ul id="c68de811-be2e-4577-b5ce-3e14c47a668c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--amend&quot; : Modifie le dernier commit au lieu
+                d&#x27;en créer un nouveau.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="ce48d2fe-749c-45c6-96d4-aa5eea2bc883" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="3143fa38-f86c-4590-b86f-faaa8f053d2d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Écrire des messages de commit clairs et descriptifs.
+              </li>
+            </ul>
+            <ul id="06397543-e0b7-4e92-85d6-3ecfacc32546" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Faire des commits fréquents et logiques.
+              </li>
+            </ul>
+            <ul id="80843382-e6ca-4f5b-9c2d-ff663cd1b50c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Vérifier l&#x27;état du dépôt avant de commiter avec &quot;git
+                status&quot;.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="b465dc35-2b57-4032-8538-2d3b18547533" class="">
+          La commande &quot;git commit&quot; est cruciale pour créer un
+          historique significatif du projet, permettant de suivre
+          l&#x27;évolution du code et de revenir à des états antérieurs si
+          nécessaire.
+        </p>
+        <h2 id="cd598e5c-29c4-4594-bdea-2c493f1dbec1" class="">
+          3.5. git push
+        </h2>
+        <p id="2e1ccb7e-eab7-4941-81b0-c162f99cfd46" class="">
+          La commande &quot;git push&quot; est utilisée pour envoyer les commits
+          locaux vers un dépôt distant. Voici un résumé détaillé de cette
+          commande importante :
+        </p>
+        <ul id="4408b915-27b4-4b60-b5d9-24897e69a887" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Synchroniser le dépôt local avec un
+            dépôt distant en y envoyant les nouveaux commits.
+          </li>
+        </ul>
+        <ul id="716b7902-9195-496a-b25e-2409640dd8bc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Syntaxe :</strong> git push [remote] [branch]
+          </li>
+        </ul>
+        <p id="a0410499-dc4e-4043-a1df-39620a3cb6d9" class="">
+          Dans le paramètre [remote], vous devez spécifier le nom du dépôt
+          distant vers lequel vous souhaitez pousser vos modifications.
+          Généralement, ce nom est &quot;origin&quot; par défaut, qui représente
+          le dépôt à partir duquel vous avez cloné votre projet. Cependant, vous
+          pouvez avoir plusieurs dépôts distants configurés avec différents
+          noms.
+        </p>
+        <ul id="e4d0c415-5260-47c3-b14d-ddc36d69c60f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Exemples :</strong>
+            <ul id="1cff96ac-f006-461f-899e-5716ccbd89c7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git push origin master&quot; : Pousse la branche master
+                vers le dépôt distant nommé origin.
+              </li>
+            </ul>
+            <ul id="5e015aea-6f6d-4a44-8212-f762a4725467" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git push upstream feature-branch&quot; : Pousse une
+                branche nommée feature-branch vers un dépôt distant nommé
+                upstream.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="a004fcc0-a659-4b4b-bcb2-28bbd57ac167" class="">
+          Si vous omettez [remote] et [branch], Git utilisera par défaut la
+          branche actuelle et le dépôt distant associé à cette branche.
+        </p>
+        <ul id="521f2d68-aa81-47d4-8a2e-c0a837efc147" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="e8ad3fd3-2e47-4bf4-8649-9f817889d236" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Envoie les commits de la branche locale spécifiée vers la
+                branche correspondante du dépôt distant.
+              </li>
+            </ul>
+            <ul id="35c80d7d-1557-40f4-aefb-be9a5527eb9f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Met à jour les références distantes pour refléter le nouvel
+                état.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="685fad92-d245-4c4e-9614-4cb7cd52d5a9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Options courantes :</strong>
+            <ul id="4e8ad05c-abfe-4225-aa74-8a7a2e23b294" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--all&quot; : Pousse toutes les branches locales.
+              </li>
+            </ul>
+            <ul id="e8dd22f1-bbbc-48a3-a8d3-f2daa7723164" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--tags&quot; : Envoie également les tags.
+              </li>
+            </ul>
+            <ul id="d2348a45-b642-4b98-8ab8-cbc6b78efd67" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;-f&quot; ou &quot;--force&quot; : Force le push même en
+                cas de conflits (à utiliser avec précaution).
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="8dface5c-5f76-464f-ad13-77f12e791cb2" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="7bdc89fb-01d0-451e-b6d0-bf6824da1306" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Toujours pull avant de push pour éviter les conflits.
+              </li>
+            </ul>
+            <ul id="55874db7-b5db-4016-8ddd-d5972c293360" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Vérifier deux fois avant d&#x27;utiliser l&#x27;option --force.
+              </li>
+            </ul>
+            <ul id="44b767b2-f214-4f7a-a1ce-a568f09cf2ce" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des branches de fonctionnalités pour un meilleur
+                contrôle.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="4063ac73-551f-4d4c-ac79-3f7c0df23073" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Cas d&#x27;utilisation :</strong>
+            <ul id="7fb3bd07-16c1-48f1-83a7-7e7a9189aa66" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Partager vos modifications avec l&#x27;équipe.
+              </li>
+            </ul>
+            <ul id="29f80a5e-85df-47bd-9cbb-dcbc7dc2f519" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Sauvegarder votre travail sur un serveur distant.
+              </li>
+            </ul>
+            <ul id="24c88875-b69d-412e-a0fe-d1b4e7750848" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Mettre à jour un dépôt public avec vos contributions.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="9f50d015-6f0f-4176-a0f3-d15173690afe" class="">
+          La commande &quot;git push&quot; est essentielle pour la
+          collaboration, permettant de partager les modifications locales avec
+          d&#x27;autres développeurs ou de sauvegarder le travail sur un serveur
+          distant.
+        </p>
+        <h2 id="2683e0a2-c113-49c4-b54e-5e771693414a" class="">3.6 git pull</h2>
+        <p id="956eba5b-99eb-42bd-b602-69140764dcdb" class="">
+          La commande &quot;git pull&quot; est utilisée pour mettre à jour votre
+          branche locale avec les modifications du dépôt distant. Voici un
+          résumé détaillé de cette commande importante :
+        </p>
+        <ul id="0fe0c794-ec2f-4097-90c5-80fe09135cf9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Récupérer et intégrer les changements
+            d&#x27;un dépôt distant dans votre branche locale.
+          </li>
+        </ul>
+        <ul id="1c146617-39ef-459c-b767-59a2d5fd506f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Syntaxe :</strong> git pull [remote] [branch]
+          </li>
+        </ul>
+        <ul id="a027f8ac-c72c-45d3-ad72-1e6fb9ecb858" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="8d5f31a9-1688-46c9-bb42-d1090b53165e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Exécute d&#x27;abord &quot;git fetch&quot; pour récupérer les
+                modifications du dépôt distant.
+              </li>
+            </ul>
+            <ul id="2762c971-5e8c-4ee5-93f9-4edc5b467421" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Puis effectue un &quot;git merge&quot; pour intégrer ces
+                changements dans la branche locale.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="57682873-5d48-4e7c-8321-50d75cb9f81f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Options courantes :</strong>
+            <ul id="fbc2dc35-c26c-4d75-bad9-298672f24cca" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--rebase&quot; : Applique les commits locaux par-dessus
+                les commits distants.
+              </li>
+            </ul>
+            <ul id="8b3725f4-fa8d-47bb-b0fd-42875181413f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--no-commit&quot; : Récupère les changements sans créer
+                automatiquement un commit de fusion.
+              </li>
+            </ul>
+            <ul id="7beea541-af8a-4599-8265-308a0880846c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;--ff-only&quot; : N&#x27;effectue la fusion que si elle
+                peut être réalisée par avance rapide.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="2085430b-af13-4674-83fe-177bd0d88d7d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="11363f98-513c-44d5-8f35-a6ffc137d9fb" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Toujours vérifier l&#x27;état de votre dépôt local avant de
+                pull.
+              </li>
+            </ul>
+            <ul id="1917274a-199f-4243-95ea-1fa244534b5f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser &quot;git pull --rebase&quot; pour maintenir un
+                historique linéaire.
+              </li>
+            </ul>
+            <ul id="7136e276-40c1-4c21-bf3e-17aaad31267c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Résoudre rapidement les conflits s&#x27;ils surviennent.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="47268f8d-4805-488e-aaf2-249df561d3f5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="6d9d80ed-f1bc-44ee-9efd-9ff7408a5e69" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Maintient votre dépôt local à jour avec le travail de
+                l&#x27;équipe.
+              </li>
+            </ul>
+            <ul id="c5a5f308-706f-4933-bcef-1cce920c46a4" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite l&#x27;intégration continue des modifications.
+              </li>
+            </ul>
+            <ul id="ca992b13-c237-481f-ae26-6664cc5f6eaf" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Réduit les risques de conflits majeurs lors des fusions
+                ultérieures.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="c55070f3-23bc-4e08-9c64-0d63588fd1c2" class="">
+          La commande &quot;git pull&quot; est essentielle pour la
+          collaboration, permettant de synchroniser efficacement votre travail
+          local avec les dernières modifications du projet.
+        </p>
+        <h1 id="81dd48a0-2379-4b8d-a67a-769235e241f9" class="">
+          4. Travailler avec des branches
+        </h1>
+        <h2 id="f633998e-2cd0-4547-8605-85ab06d880d5" class="">
+          4.1. Créer et changer de branche
+        </h2>
+        <p id="68c2d4d9-e681-4f09-b5bb-0c58bd43fb5f" class="">
+          Les branches dans Git sont un outil puissant pour le développement
+          parallèle et la gestion des fonctionnalités. Voici un résumé détaillé
+          sur la création et le changement de branches :
+        </p>
+        <ul id="91a4c959-dd4c-4c93-87bc-c7af09b804ca" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Créer une nouvelle branche :</strong>
+            <ul id="ac281681-b2fc-4836-ac27-652a337baa4b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commande : git branch [nom-de-la-branche]
+              </li>
+            </ul>
+            <ul id="30a957eb-eda1-4e0e-945f-aaaa63ceb052" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Crée une nouvelle branche basée sur le commit actuel
+              </li>
+            </ul>
+            <ul id="1723bf76-6fb2-4c13-8250-9f44b64cd93b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Ne bascule pas automatiquement sur la nouvelle branche
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="d9f65caa-41fe-4919-b9b9-bbccfb931a0a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Changer de branche :</strong>
+            <ul id="8858c8b6-bc59-422e-b0b2-7473035390b7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commande : git checkout [nom-de-la-branche]
+              </li>
+            </ul>
+            <ul id="23e5b585-6572-45c3-80c2-5ab80f6458ea" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Bascule vers la branche spécifiée
+              </li>
+            </ul>
+            <ul id="bd7e7136-5675-4ae8-be89-40b331b68f4e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Met à jour les fichiers de travail pour refléter l&#x27;état de
+                la branche
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="e553f8de-ec9e-4900-8471-e72b8cfaac6b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Créer et basculer en une seule commande :</strong>
+            <ul id="57dad478-dc51-4541-8284-d12d893022ab" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commande : git checkout -b [nom-de-la-branche]
+              </li>
+            </ul>
+            <ul id="50d52054-1cf6-44f3-bbf8-7d114c83e726" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Crée une nouvelle branche et bascule immédiatement dessus
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="e203c3e1-1b09-41e5-9c5d-fad7afd514e4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Lister les branches :</strong>
+            <ul id="e9f6b53d-f2e5-413a-bc91-f81dcb38464d" class="bulleted-list">
+              <li style="list-style-type: circle">Commande : git branch</li>
+            </ul>
+            <ul id="5a83a1aa-aee2-4d35-90b2-c4e52b3e311b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Affiche toutes les branches locales, avec une * à côté de la
+                branche actuelle
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="35c755ec-f3bd-4a56-bc9f-6c0054781448" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="548cdc6f-7b1c-423f-8e59-95f8818ab263" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des noms descriptifs pour les branches (ex:
+                feature/login-page)
+              </li>
+            </ul>
+            <ul id="fd30ef2f-fe0f-41d3-a794-3adf6d1fcd1d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Créer une nouvelle branche pour chaque fonctionnalité ou
+                correction de bug
+              </li>
+            </ul>
+            <ul id="0ccd49c0-e2e6-4764-a0aa-61a8f69585a5" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Garder les branches à jour avec la branche principale (souvent
+                &#x27;main&#x27; ou &#x27;master&#x27;)
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="9c3dde7c-a40d-4881-bc54-4852be3d28e9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages de l&#x27;utilisation des branches :</strong>
+            <ul id="480a553c-271d-4778-98f0-0b7eaf0d13ab" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet le développement parallèle de fonctionnalités
+              </li>
+            </ul>
+            <ul id="e4ba039e-f498-43b8-b682-63ed61186e3c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite l&#x27;expérimentation sans affecter le code principal
+              </li>
+            </ul>
+            <ul id="eeb04ebc-dc0b-4fdc-ba3a-1f084c442417" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Améliore la collaboration en isolant les changements
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="2441dadf-4a4c-42c2-8c48-f10c32a5157e" class="">
+          La maîtrise de la création et du changement de branches est
+          essentielle pour un flux de travail Git efficace et une gestion de
+          projet réussie.
+        </p>
+        <h2 id="35e8e1d6-7214-4d10-9a85-0f69f47a2472" class="">
+          4.2. Fusionner des branches
+        </h2>
+        <p id="21a55e1e-e738-4501-a5bf-77caf098805a" class="">
+          La fusion de branches est une opération cruciale dans Git qui permet
+          de combiner les modifications de différentes branches. Voici un résumé
+          détaillé de ce processus :
+        </p>
+        <ul id="1216d7a1-fb32-4e58-b95f-d363e61a9c86" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Intégrer les changements d&#x27;une
+            branche dans une autre, généralement pour incorporer des nouvelles
+            fonctionnalités ou des corrections de bugs dans la branche
+            principale.
+          </li>
+        </ul>
+        <ul id="d347a3b2-7c8e-43f1-af28-961da41d2270" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Commande principale :</strong> git merge
+            [nom-de-la-branche-source]
+          </li>
+        </ul>
+        <ul id="b7385fdb-7ed8-419c-9307-591176da4cdc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Types de fusion :</strong>
+            <ul id="b4fcaa83-b33d-4d8a-8dca-1ce8cd5b34e6" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Fast-forward : Quand il n&#x27;y a pas de nouveaux commits dans
+                la branche de destination.
+              </li>
+            </ul>
+            <ul id="f6b5e52e-c87f-46aa-adfd-b9609a38da9a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Recursive : Crée un nouveau commit de fusion quand les deux
+                branches ont divergé.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="d0a25386-f03d-4531-b1df-8b7bff1a03c3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Étapes du processus :</strong>
+            <ul id="5c8b5cf4-bf12-4aee-9d2d-e9d13a4db749" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Se positionner sur la branche de destination (git checkout
+                [branche-destination])
+              </li>
+            </ul>
+            <ul id="a60a9373-6184-478b-bbc7-4e0076f0d181" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Exécuter la commande de fusion (git merge [branche-source])
+              </li>
+            </ul>
+            <ul id="6e65e27f-63c0-4660-b053-8c8cea968151" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Résoudre les conflits éventuels
+              </li>
+            </ul>
+            <ul id="6263e56d-017f-4b3f-b3c0-6b3849dc5d0f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commiter la fusion si nécessaire
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="10bfd5cb-d552-4828-b57a-e805f5880bad" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Gestion des conflits :</strong>
+            <ul id="5e944ae4-ba09-455c-94d0-7bef201085dc" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Git marque les zones de conflit dans les fichiers
+              </li>
+            </ul>
+            <ul id="58cafded-9d21-4f42-9059-bf1be969f835" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Éditer manuellement les fichiers pour résoudre les conflits
+              </li>
+            </ul>
+            <ul id="c02c2cc6-2081-409b-b324-30819d137d6d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser git add pour marquer les conflits comme résolus
+              </li>
+            </ul>
+            <ul id="9d6507a4-73a5-47ab-9f61-ff2f85bf8318" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Finaliser avec git commit pour terminer la fusion
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="083c49b6-746e-40e8-a392-3327c4427b65" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="29ede963-5257-49ee-85bf-cb2e44629459" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Toujours pull la branche de destination avant de fusionner
+              </li>
+            </ul>
+            <ul id="ad6f8c82-4d64-409d-aa13-b5539b638b2c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Tester soigneusement après la fusion
+              </li>
+            </ul>
+            <ul id="3c31e678-a33d-4b8d-8e1b-843e8b26223c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des branches de fonctionnalités pour isoler les
+                développements
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="2a1b2094-3a5e-47ca-bb3e-8f228d71ae41" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Outils utiles :</strong>
+            <ul id="68d6fbf6-6df8-4b8c-84b0-8b36d9fd53c0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git mergetool : Pour résoudre visuellement les conflits
+              </li>
+            </ul>
+            <ul id="e72f8d62-9ecc-4c81-baa1-6d2089fde0bf" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git diff : Pour voir les différences avant la fusion
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="b23339bc-4907-4b38-b203-1c7d47699e26" class="">
+          La fusion de branches est une compétence essentielle pour maintenir un
+          flux de travail Git efficace et gérer efficacement le développement
+          collaboratif de projets.
+        </p>
+        <h2 id="a948a919-a5e6-487e-88ef-1993a755c15f" class="">
+          4.3. Résoudre les conflits
+        </h2>
+        <p id="fa4e7ad0-5f31-46e3-b89b-b1a8f5675364" class="">
+          La résolution des conflits est une étape cruciale lors de la fusion de
+          branches dans Git. Voici un résumé détaillé de ce processus :
+        </p>
+        <ul id="9fdfa33f-6f96-4431-8088-1027262d7571" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Qu&#x27;est-ce qu&#x27;un conflit ?</strong> Un conflit
+            survient lorsque Git ne peut pas automatiquement fusionner des
+            modifications car elles affectent les mêmes parties d&#x27;un
+            fichier de manière différente.
+          </li>
+        </ul>
+        <ul id="3c593d85-e8a7-4c9a-bb55-996c4f56943b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Identification des conflits :</strong>
+            <ul id="96b63049-0a70-4957-950e-e2a9fc701d02" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Git marque les zones de conflit dans les fichiers concernés.
+              </li>
+            </ul>
+            <ul id="d8d69d62-b985-43c2-9199-d1807d8d8526" class="bulleted-list">
+              <li style="list-style-type: circle">
+                La commande &quot;git status&quot; indique quels fichiers sont
+                en conflit.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="f8d7cbd4-fcd1-4839-b1b1-5c4f3c28ccba" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Résolution manuelle :</strong>
+            <ul id="a4bbfdc0-5ae0-4c5a-9d6a-885e1f65ff32" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Ouvrir les fichiers en conflit et localiser les marqueurs de
+                conflit (&lt;&lt;&lt;&lt;&lt;&lt;, =======,
+                &gt;&gt;&gt;&gt;&gt;&gt;&gt;).
+              </li>
+            </ul>
+            <ul id="2f3d83d7-25ac-4af2-bd5c-9281e7b99c77" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Éditer le contenu pour choisir les modifications à conserver ou
+                les combiner.
+              </li>
+            </ul>
+            <ul id="fea9d764-9c5b-4613-9876-f68f85e2ec77" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Supprimer les marqueurs de conflit une fois la résolution
+                effectuée.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="81949884-c2e2-4888-8d44-b4475153fba5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Utilisation d&#x27;outils :</strong>
+            <ul id="80cba4bc-c313-44d3-b5c7-588ff4dff03e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                &quot;git mergetool&quot; pour une résolution visuelle des
+                conflits.
+              </li>
+            </ul>
+            <ul id="86aaff2f-3a54-4f06-b98d-69c270f61262" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Éditeurs de code intégrés avec fonctionnalités de résolution de
+                conflits.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="e4f8cfd5-ee09-4e85-95af-e3ee7783ca9b" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Finalisation de la résolution :</strong>
+            <ul id="5f6e9a34-1e7a-42a3-a6f0-f038e8ea90f0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser &quot;git add&quot; pour marquer les fichiers comme
+                résolus.
+              </li>
+            </ul>
+            <ul id="d9de0aeb-528b-4dc5-bbe0-9b427c020c58" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Exécuter &quot;git commit&quot; pour terminer la fusion et créer
+                un commit de merge.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="8ec79678-171c-4a03-8b4b-7f0a10e764fb" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="8ad85fde-c208-4015-bd9c-f8a6be97c639" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Communiquer avec l&#x27;équipe avant de résoudre des conflits
+                majeurs.
+              </li>
+            </ul>
+            <ul id="543f3c27-8b01-407e-9872-3af2d027e7aa" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Tester soigneusement après la résolution pour s&#x27;assurer que
+                le code fonctionne correctement.
+              </li>
+            </ul>
+            <ul id="c6ee0e58-da35-4583-b107-afcc5cf3070b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Documenter les décisions prises lors de la résolution des
+                conflits importants.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="7603ed12-2e03-433b-ae34-94e9480caffe" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Prévention des conflits :</strong>
+            <ul id="421792b4-fe6e-4990-9083-8a57421c08f3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Mettre à jour fréquemment les branches avec la branche
+                principale.
+              </li>
+            </ul>
+            <ul id="3356ead5-db4a-4397-8ddc-de27f7e1db00" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des branches de fonctionnalités pour isoler les
+                développements.
+              </li>
+            </ul>
+            <ul id="b4d556cb-4601-4401-9b8e-49c951dfa278" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Coordonner le travail de l&#x27;équipe pour minimiser les
+                modifications simultanées sur les mêmes fichiers.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="85427c08-1e56-4f45-8270-6a7520beae9b" class="">
+          La résolution efficace des conflits est une compétence essentielle
+          pour tout développeur utilisant Git, permettant de maintenir
+          l&#x27;intégrité du code et de faciliter la collaboration au sein de
+          l&#x27;équipe.
+        </p>
+        <h2 id="d3c9118b-2005-4fab-bedf-9851f01df1ab" class="">
+          5. Collaboration avec Git
+        </h2>
+        <h2 id="2d7b67f2-9687-4a29-b784-fa77f56b5608" class="">
+          5.1. Travailler avec des dépôts distants
+        </h2>
+        <p id="7d53e1ab-10e9-4286-8c7a-f289fc8bd923" class="">
+          Travailler avec des dépôts distants est un aspect fondamental de la
+          collaboration avec Git. Voici un résumé détaillé de ce concept
+          important :
+        </p>
+        <ul id="961f6f32-974d-4640-8d77-0f31e3f13255" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Un dépôt distant est une version du
+            projet hébergée sur un serveur, permettant la collaboration entre
+            plusieurs développeurs.
+          </li>
+        </ul>
+        <ul id="400030b6-0df0-42fa-9652-f76d3c3999e8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Commandes principales :</strong>
+            <ul id="a8216a6e-1e1c-4636-bdfa-cfa3e3f89412" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git remote : Gère les connexions aux dépôts distants
+              </li>
+            </ul>
+            <ul id="f4d09efd-aadf-4de5-a56a-96ae39904edc" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git fetch : Récupère les modifications du dépôt distant sans les
+                fusionner
+              </li>
+            </ul>
+            <ul id="59f89568-d7d0-4597-9678-89fa06ec16d8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git pull : Récupère et fusionne les modifications du dépôt
+                distant
+              </li>
+            </ul>
+            <ul id="b3c2911b-407c-4f4c-b54f-3f7e208381fd" class="bulleted-list">
+              <li style="list-style-type: circle">
+                git push : Envoie les commits locaux vers le dépôt distant
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="bca0a111-3a28-4fc0-9117-6d9faba12f92" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="70609801-f38b-4e4b-8842-18546bdd275e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la collaboration entre développeurs
+              </li>
+            </ul>
+            <ul id="adaabf34-90a6-4ca3-8318-4a162b67c3a9" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet la sauvegarde du code sur un serveur central
+              </li>
+            </ul>
+            <ul id="0af310bd-73a7-4459-9183-ee7f18fd4dd1" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Offre un point de référence commun pour l&#x27;équipe
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="20a7a356-4888-46b7-a51d-e01f864d49d8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="beece105-64f9-4506-b13f-f68b501ba5ae" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Synchroniser régulièrement avec le dépôt distant (git pull)
+              </li>
+            </ul>
+            <ul id="d20cf251-e62e-4659-aeae-b00ec6f9ea0e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Résoudre les conflits rapidement
+              </li>
+            </ul>
+            <ul id="89c8aefe-12fc-4fe0-b5f8-e97c6f2a088c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des branches pour isoler les fonctionnalités en
+                développement
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="8f1cc042-25c4-46f8-b57d-91f3c286b01e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Plateformes populaires :</strong> GitHub, GitLab, Bitbucket
+          </li>
+        </ul>
+        <ul id="d8c837c8-9952-4197-905c-a0612beff4a9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Sécurité :</strong> Utilisation de SSH ou HTTPS pour
+            sécuriser les connexions
+          </li>
+        </ul>
+        <p id="d74e49c8-e2af-47b2-a8b4-695fe662c4d1" class="">
+          Maîtriser le travail avec des dépôts distants est essentiel pour une
+          collaboration efficace et une gestion de projet réussie avec Git.
+        </p>
+        <h2 id="db4dc50c-a9d9-4316-876f-5e5875867bb6" class="">
+          5.2. Fork et Pull requests
+        </h2>
+        <p id="6c197f00-1b86-4c68-808a-2822b69d0379" class="">
+          Les forks et les pull requests sont des concepts essentiels dans la
+          collaboration avec Git, particulièrement sur des plateformes comme
+          GitHub. Voici un résumé détaillé :
+        </p>
+        <ul id="be1e40bd-4924-4e29-aa65-bb8129430b51" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fork :</strong>
+            <ul id="4d34a547-5559-428c-8b13-e27c09934a05" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Un fork est une copie personnelle d&#x27;un dépôt existant.
+              </li>
+            </ul>
+            <ul id="403085db-a301-48e3-a235-8d85f250429e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Il permet de travailler librement sur un projet sans affecter le
+                dépôt original.
+              </li>
+            </ul>
+            <ul id="54077d1f-4117-44af-9c61-8e1265f05c80" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utile pour contribuer à des projets open-source ou expérimenter
+                des modifications.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="24542c89-7b05-4fc6-b9e1-7229f7c2fb02" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Pull Request (PR) :</strong>
+            <ul id="8e750d8a-35e0-4b1a-98ed-1804cb576481" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Une demande pour fusionner des modifications d&#x27;une branche
+                à une autre, souvent entre forks.
+              </li>
+            </ul>
+            <ul id="227f4b3a-7a66-4456-97ce-80d7f125c541" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la révision de code et la discussion avant
+                l&#x27;intégration des changements.
+              </li>
+            </ul>
+            <ul id="bf07c049-3653-41d9-a0a3-88e1adb506d9" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet aux mainteneurs du projet de contrôler les contributions.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="aa923415-2441-4ad2-92bb-209fc83169f4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Processus typique :</strong>
+            <ul id="34c6cb93-35e8-4a4f-9a08-d0807de7faf1" class="bulleted-list">
+              <li style="list-style-type: circle">
+                1. Forker le dépôt original
+              </li>
+            </ul>
+            <ul id="4394ca40-f66a-4af3-a608-322e8f250845" class="bulleted-list">
+              <li style="list-style-type: circle">
+                2. Cloner le fork localement
+              </li>
+            </ul>
+            <ul id="5a7baca4-574f-46a6-89b8-e11421c342dc" class="bulleted-list">
+              <li style="list-style-type: circle">
+                3. Créer une branche pour les modifications
+              </li>
+            </ul>
+            <ul id="7972f95d-d908-4a8f-bc69-51a05cc2d94c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                4. Effectuer et commiter les changements
+              </li>
+            </ul>
+            <ul id="a310116a-b6b4-4538-83c5-954d6675bcc6" class="bulleted-list">
+              <li style="list-style-type: circle">
+                5. Pousser la branche sur le fork
+              </li>
+            </ul>
+            <ul id="08bba0bf-685e-4c67-ba09-bf8ec09bbdff" class="bulleted-list">
+              <li style="list-style-type: circle">
+                6. Créer une pull request vers le dépôt original
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="57986d9a-3db8-45a7-b281-a5c2878015f8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="0cb2ae62-714c-41a7-b4fd-5f24d197f39c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Encourage la collaboration ouverte
+              </li>
+            </ul>
+            <ul id="539a648b-7093-456d-8ac7-138298b72f07" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Maintient la qualité du code grâce aux révisions
+              </li>
+            </ul>
+            <ul id="64b9eddf-6594-4f77-a5ff-e14699b563ff" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet de tester les modifications avant l&#x27;intégration
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="b752e98d-21ab-4ed1-84f3-867e0830be09" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="e1651698-5693-47ca-9bc8-0de0d4649e36" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Décrire clairement l&#x27;objectif de la pull request
+              </li>
+            </ul>
+            <ul id="76e3e177-a88e-4b14-b30e-3a170baa2d9c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Maintenir les PR de taille raisonnable pour faciliter la
+                révision
+              </li>
+            </ul>
+            <ul id="c25786c4-a04e-4c31-9dab-08f3a90c67c8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Répondre promptement aux commentaires et suggestions
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="176422c6-a4fa-487b-8af5-91ea85ee6cd2" class="">
+          Les forks et les pull requests sont des outils puissants qui
+          facilitent la collaboration distribuée et maintiennent la qualité du
+          code dans les projets Git.
+        </p>
+        <h2 id="41d44b03-a807-4e4c-8302-340141964dda" class="">
+          5.3. Code review
+        </h2>
+        <p id="e4eb6257-5e07-49b0-b05f-c12ac0793672" class="">
+          La revue de code (code review) est une pratique essentielle dans le
+          développement logiciel collaboratif. Voici un résumé détaillé de ce
+          processus important :
+        </p>
+        <ul id="d5bc5796-f7d0-4708-828f-6b621d68aa05" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> La revue de code est un examen
+            systématique du code source par d&#x27;autres développeurs que
+            l&#x27;auteur original.
+          </li>
+        </ul>
+        <ul id="a7d079f6-e16c-448f-b3b2-f20a372b0ef0" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectifs :</strong>
+            <ul id="76794e10-7ca9-4b66-8110-bf7c3c70be78" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Améliorer la qualité du code
+              </li>
+            </ul>
+            <ul id="e0314026-6d8a-4989-9d81-72bbf3edb24c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Détecter les bugs et les vulnérabilités
+              </li>
+            </ul>
+            <ul id="5f2c37eb-3a60-48fd-9795-6ef78c1e7ed3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Assurer la cohérence du style de codage
+              </li>
+            </ul>
+            <ul id="dd7b5ebe-fcfd-43b5-bd81-52c86d242d41" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Partager les connaissances au sein de l&#x27;équipe
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="199f80c2-0f9c-4556-a3a5-2c0830185ab3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Processus typique :</strong>
+            <ul id="c3a3c59e-a4ba-4aa6-a6e1-a3001734519c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                1. Le développeur soumet son code pour révision (souvent via une
+                pull request)
+              </li>
+            </ul>
+            <ul id="3c3627a4-976c-40d3-9c01-2972a9f76bda" class="bulleted-list">
+              <li style="list-style-type: circle">
+                2. Un ou plusieurs pairs examinent le code
+              </li>
+            </ul>
+            <ul id="8fe5556d-8e92-4a97-afd1-743e0c946193" class="bulleted-list">
+              <li style="list-style-type: circle">
+                3. Les réviseurs laissent des commentaires et des suggestions
+              </li>
+            </ul>
+            <ul id="159503ec-12bd-409d-9368-8c56087e4bbe" class="bulleted-list">
+              <li style="list-style-type: circle">
+                4. L&#x27;auteur apporte des modifications en fonction des
+                retours
+              </li>
+            </ul>
+            <ul id="f7946aac-788e-41fe-9053-f283042d7fd8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                5. Le processus se répète jusqu&#x27;à ce que le code soit
+                approuvé
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="99856aec-d005-4176-8207-24e086a53ec9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="48619e76-5793-44ec-9d7f-2444630c7935" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Être constructif et respectueux dans les commentaires
+              </li>
+            </ul>
+            <ul id="b923b5d5-82bb-4edf-89cc-624cf869da61" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Se concentrer sur les problèmes importants plutôt que sur les
+                détails mineurs
+              </li>
+            </ul>
+            <ul id="8174444f-b4b4-4905-a276-ecace035e79f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des outils automatisés pour vérifier le style et les
+                erreurs courantes
+              </li>
+            </ul>
+            <ul id="65942084-42b2-4f5c-84d0-4410e12085bc" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Limiter la taille des révisions pour maintenir l&#x27;efficacité
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="d32248ee-f7cb-4add-97f9-564fe37c7dcc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="3a1b44a1-e467-48c5-a532-e45116f81bf8" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Amélioration continue de la qualité du code
+              </li>
+            </ul>
+            <ul id="50129c64-86de-462f-aa50-1dcc087f5713" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Réduction des bugs et des problèmes de maintenance
+              </li>
+            </ul>
+            <ul id="47d96e93-ddc3-4557-83ac-a8094dce4519" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Transfert de connaissances au sein de l&#x27;équipe
+              </li>
+            </ul>
+            <ul id="654adccb-5f03-425e-864f-6682611dd00f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Renforcement de la responsabilité collective sur le code
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="788f8905-f8db-4fe0-a0ba-9c20965aebbc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Outils courants :</strong> GitHub Pull Requests, GitLab
+            Merge Requests, Gerrit, Crucible
+          </li>
+        </ul>
+        <p id="2c85dd7f-7e29-478a-9657-e97aa7a3e60c" class="">
+          La revue de code est un élément clé d&#x27;un processus de
+          développement mature et contribue significativement à la qualité
+          globale du logiciel produit.
+        </p>
+        <h1 id="302f3a1a-4e2d-4c24-897f-155637758bd4" class="">
+          6. Bonnes pratiques
+        </h1>
+        <h2 id="98511a05-bde7-4532-ae52-ba7a1e1f6060" class="">
+          6.1. Conventions de nommage
+        </h2>
+        <p id="62f90f69-82e3-406a-803b-099a108044c4" class="">
+          Les conventions de nommage sont des règles établies pour nommer de
+          manière cohérente les éléments dans un projet Git. Voici un résumé
+          détaillé de leur importance et de leur application :
+        </p>
+        <ul id="99a131cf-bf0f-42a5-ae05-f91f06fc7442" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Importance :</strong>
+            <ul id="ab62942e-80ec-4715-b69d-2d87776af600" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Améliore la lisibilité et la compréhension du code
+              </li>
+            </ul>
+            <ul id="eeb8aff5-38e0-478a-87f8-7ecf14cc169f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la maintenance et la collaboration
+              </li>
+            </ul>
+            <ul id="4b1605ce-2f99-4dd0-a791-6b50aa19689d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Réduit les conflits et les erreurs
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="c422c43a-7a8d-4ab6-beda-1cb6bf9516f1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Conventions courantes :</strong>
+            <ul id="25dba5fa-c5b2-4e98-a656-4b9d9583248d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Branches : feature/, bugfix/, hotfix/, release/
+              </li>
+            </ul>
+            <ul id="1595b3ac-7c20-4e42-b784-b52ceda9c431" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commits : type(scope): description concise
+              </li>
+            </ul>
+            <ul id="0f6e0640-176d-443b-8d9e-69355fb5c066" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Tags : v1.0.0, v2.1.3 (suivant le versionnage sémantique)
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="e0aa5a0e-c009-4c41-8f33-854402968328" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="482294f7-cdd9-4d5c-8e8f-c32e484274a5" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des noms descriptifs et concis
+              </li>
+            </ul>
+            <ul id="36486106-f702-4c8b-aafe-b8cbe01515a0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Éviter les caractères spéciaux et les espaces
+              </li>
+            </ul>
+            <ul id="d28d7f60-e00d-4d89-ad9a-521140af0a10" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Être cohérent dans l&#x27;ensemble du projet
+              </li>
+            </ul>
+            <ul id="0b2dadc0-33a8-45bb-9dde-49fbfc7c8cac" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Documenter les conventions adoptées
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="4061b906-6db9-45d1-a82b-2442539975d6" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Exemples :</strong>
+            <ul id="788e7815-1759-4b11-9e2b-cde4c50775da" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Branch : feature/add-login-page
+              </li>
+            </ul>
+            <ul id="a39bccba-4561-4f55-850b-6383ed719d7a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Commit : feat(auth): implement user authentication
+              </li>
+            </ul>
+            <ul id="668793ff-5383-4763-9b54-58d719339dec" class="bulleted-list">
+              <li style="list-style-type: circle">Tag : v1.2.0</li>
+            </ul>
+          </li>
+        </ul>
+        <p id="06f33533-01ae-4bb8-97e7-3e75681c4947" class="">
+          L&#x27;adoption de conventions de nommage claires et cohérentes
+          contribue grandement à la qualité et à l&#x27;efficacité du
+          développement avec Git.
+        </p>
+        <h2 id="84345c33-f51a-4510-aec5-3add0d80e983" class="">
+          6.2. Gestion des commits
+        </h2>
+        <p id="5b006ab1-64a3-4962-9cfe-537d63c88100" class="">
+          La gestion efficace des commits est cruciale pour maintenir un
+          historique clair et utile dans Git. Voici un résumé détaillé de ce
+          concept important :
+        </p>
+        <ul id="5c70103f-22b7-4395-a8f8-a010d7321f60" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Importance des commits bien gérés :</strong>
+            <ul id="d83bbfd1-d6dd-4a63-8b29-86e67325e9fa" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilitent la compréhension de l&#x27;évolution du projet
+              </li>
+            </ul>
+            <ul id="796e82a6-ca20-4bd1-bfd0-42e63ac271f3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Simplifient le débogage et les revues de code
+              </li>
+            </ul>
+            <ul id="c3389c8a-6922-45e6-92eb-ab8a8414955d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Améliorent la collaboration au sein de l&#x27;équipe
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="9f814677-fa70-46ea-a6ac-31ef58c95a28" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="bd018d77-418b-4764-8ff5-7ee2713f23d2" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Créer des commits atomiques (une seule fonctionnalité ou
+                correction par commit)
+              </li>
+            </ul>
+            <ul id="56475b38-e114-4fc2-b3c4-a7a01a08b95f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Rédiger des messages de commit clairs et descriptifs
+              </li>
+            </ul>
+            <ul id="d856f8b4-d2f5-4ab7-87b3-4762ad70ea1d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser le présent de l&#x27;impératif pour les messages (ex:
+                &quot;Add feature&quot; plutôt que &quot;Added feature&quot;)
+              </li>
+            </ul>
+            <ul id="09bc85e0-8ad8-465e-918e-cb0905f60ea0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Séparer le sujet du corps du message par une ligne vide
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="799d1b87-0af7-4d9e-80ba-960943d1ebcc" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Structure d&#x27;un bon message de commit :</strong>
+            <ul id="1893a8d8-7f8a-49c7-9212-a82e5e371a95" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Sujet : résumé concis (50 caractères max)
+              </li>
+            </ul>
+            <ul id="3719dfd5-97c2-4299-896c-f3138c4b4856" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Corps : description détaillée des changements et de leur raison
+              </li>
+            </ul>
+            <ul id="cfdb923d-0290-490f-a5c1-466652f1355a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Référence : lien vers un ticket ou une issue si applicable
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="87e53529-e8a9-41ea-a94b-2e311005203a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Techniques avancées :</strong>
+            <ul id="0ba15c8c-49e7-4ce5-8f50-6d569b1294c9" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser &quot;git commit --amend&quot; pour modifier le dernier
+                commit
+              </li>
+            </ul>
+            <ul id="bcc8bed4-0c5f-4835-90c9-98fd1a517326" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Employer &quot;git rebase -i&quot; pour réorganiser, combiner ou
+                modifier l&#x27;historique des commits
+              </li>
+            </ul>
+            <ul id="e969d1a3-acc0-4bcb-b10c-0ed6f2d6a2e0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Appliquer &quot;git cherry-pick&quot; pour sélectionner des
+                commits spécifiques
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="c9f43ae0-3d6e-4f82-ae3e-3ead292a5137" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Outils utiles :</strong>
+            <ul id="f6d7069a-860c-45f6-948e-67162162a65b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Hooks pre-commit pour vérifier le code avant le commit
+              </li>
+            </ul>
+            <ul id="6e7667ab-8991-4e51-9637-18ad32d54a69" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Templates de message de commit pour assurer la cohérence
+              </li>
+            </ul>
+            <ul id="64356e9e-97d8-441c-9b60-c2634e9175d6" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Outils d&#x27;analyse de l&#x27;historique comme &quot;git
+                log&quot; et ses options
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="a96fa9b1-c1f5-48b7-ae45-55c8e286df6a" class="">
+          Une gestion soignée des commits contribue à un flux de travail Git
+          plus efficace et à une meilleure collaboration au sein de
+          l&#x27;équipe de développement.
+        </p>
+        <h2 id="b54d6f11-3eb9-47cb-8d95-07fa342c8440" class="">
+          6.3. Utilisation du .gitignore
+        </h2>
+        <p id="fc074cf7-ab6e-43aa-8252-5a2f89672296" class="">
+          Le fichier .gitignore est un outil essentiel dans la gestion des
+          projets Git. Voici un résumé détaillé de son utilisation et de son
+          importance :
+        </p>
+        <ul id="82fef4e2-31ae-4729-9ec8-cdec7a94a3e1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Un fichier .gitignore spécifie les
+            fichiers et dossiers intentionnellement non suivis que Git doit
+            ignorer.
+          </li>
+        </ul>
+        <ul id="c03f4af5-0495-40a8-a4cf-85d819ffc679" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Importance :</strong>
+            <ul id="a9d5aaf9-eaad-4a58-abbf-fff4dbbce167" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Évite d&#x27;inclure des fichiers non nécessaires dans le dépôt
+              </li>
+            </ul>
+            <ul id="c200b47c-7467-4274-a0f4-86e6656e71a7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Réduit la taille du dépôt et accélère les opérations Git
+              </li>
+            </ul>
+            <ul id="2866bb53-1ad1-4fe9-bc87-89e9e1c9a207" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Protège les informations sensibles (comme les clés API)
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="0cfd4437-d5bd-4bb1-bbde-6e0015c8fa15" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Contenu typique :</strong>
+            <ul id="abddb30f-f06f-4081-8020-7253cc1028d7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Fichiers de configuration spécifiques à l&#x27;environnement
+              </li>
+            </ul>
+            <ul id="793dc5d2-2d1b-45d2-8303-bbdec5cbc424" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Fichiers générés automatiquement (logs, caches)
+              </li>
+            </ul>
+            <ul id="51ad39a7-4864-4ec0-9733-b3600d3aced5" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Dossiers de dépendances (node_modules, vendor)
+              </li>
+            </ul>
+            <ul id="ea19e5e6-5d68-4b43-bdf9-6e1247898faa" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Fichiers système (.DS_Store, Thumbs.db)
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="1b7dbb64-b202-41d8-a200-2d9474cd71f0" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Syntaxe de base :</strong>
+            <ul id="70c05156-7195-4788-b787-2ac0372b257d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                <em> pour ignorer tous les fichiers d&#x27;un certain type (</em
+                >.log)
+              </li>
+            </ul>
+            <ul id="d8816948-1835-4d99-b624-002b64d265c7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                / pour spécifier un chemin relatif au .gitignore
+              </li>
+            </ul>
+            <ul id="76ee88c0-d8cf-43c2-8a82-5d78cca989dc" class="bulleted-list">
+              <li style="list-style-type: circle">
+                ! pour créer une exception à une règle
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="8a2b8cd1-c8d1-430f-8e38-28ab51858868" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="a86ca3ab-3e5d-4eda-8ee1-04e14004761c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Créer un .gitignore dès le début du projet
+              </li>
+            </ul>
+            <ul id="5f141433-0c41-4c1c-897a-d7e843989793" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des modèles .gitignore spécifiques au langage ou au
+                framework
+              </li>
+            </ul>
+            <ul id="c5c71ea6-fa88-428e-92b5-95ad5a2d1468" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Vérifier régulièrement et mettre à jour le .gitignore
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="10f425d8-193f-4f11-bdf0-a321d8c25343" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Outils et ressources :</strong>
+            <ul id="e6c89a48-a939-4a5c-9ed4-1249549c933f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                gitignore.io pour générer des fichiers .gitignore
+              </li>
+            </ul>
+            <ul id="23f9a7f8-ce0b-4e9d-b80f-5a26578e00e6" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Modèles GitHub pour des configurations courantes
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="a8ce02b7-4d03-4ee8-a006-2549fcde2924" class="">
+          Une utilisation judicieuse du .gitignore contribue à maintenir un
+          dépôt Git propre, sécurisé et efficace, facilitant ainsi la
+          collaboration et la gestion du projet.
+        </p>
+        <h1 id="757f1083-c293-44a0-ab50-0783150a538c" class="">
+          7. Outils et interfaces graphiques
+        </h1>
+        <h2 id="9e7535f6-2b6d-4cf6-bdf1-731cafab5075" class="">
+          7.1. GitHub Desktop
+        </h2>
+        <p id="a9d265cd-6b61-49a9-bdd6-551f3814ac17" class="">
+          GitHub Desktop est une application de bureau gratuite et open-source
+          développée par GitHub pour simplifier l&#x27;utilisation de Git et
+          GitHub. Voici un résumé détaillé de ses caractéristiques et avantages
+          :
+        </p>
+        <ul id="afeebe29-a803-4737-b4dd-594beb5569cb" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Interface graphique intuitive :</strong> Offre une
+            visualisation claire des changements, branches et historique des
+            commits.
+          </li>
+        </ul>
+        <ul id="587cbc78-e47d-437d-871c-dee374704b72" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Intégration avec GitHub :</strong> Facilite la
+            synchronisation avec les dépôts GitHub, y compris la création de
+            pull requests.
+          </li>
+        </ul>
+        <ul id="62348c83-07f5-44fa-979e-ab1d323a311c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Gestion simplifiée des branches :</strong> Permet de créer,
+            fusionner et supprimer des branches facilement.
+          </li>
+        </ul>
+        <ul id="ae38c19b-edfd-4e16-83fd-2cc26f553ac2" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Visualisation des différences :</strong> Affiche clairement
+            les modifications entre les versions des fichiers.
+          </li>
+        </ul>
+        <ul id="aa9adb56-8c40-4998-ae8c-128506407d98" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Résolution de conflits :</strong> Propose une interface
+            conviviale pour résoudre les conflits de fusion.
+          </li>
+        </ul>
+        <ul id="c8bdcae8-f160-4ecb-a2e9-580568e59aa9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Commandes Git simplifiées :</strong> Transforme les
+            opérations Git complexes en actions simples via l&#x27;interface.
+          </li>
+        </ul>
+        <ul id="5b7cd6ac-1b35-456c-8496-593eaaca4c4a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Compatibilité multiplateforme :</strong> Disponible pour
+            Windows, macOS et Linux.
+          </li>
+        </ul>
+        <ul id="15877c67-8a0e-40d1-8e00-36ab77d9d671" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Intégration de l&#x27;éditeur :</strong> Permet
+            d&#x27;ouvrir les fichiers directement dans l&#x27;éditeur de code
+            préféré.
+          </li>
+        </ul>
+        <ul id="104c8dce-3e93-4465-9e6d-5b95f97ba07f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Historique de commits :</strong> Offre une vue détaillée de
+            l&#x27;historique des commits avec possibilité de recherche.
+          </li>
+        </ul>
+        <ul id="589852c9-c2d4-4da7-86ba-bc68247a33a6" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Support des grands fichiers :</strong> Intègre Git LFS
+            (Large File Storage) pour gérer efficacement les fichiers
+            volumineux.
+          </li>
+        </ul>
+        <p id="6cfa86b1-2606-49c8-a870-5e212edd3220" class="">
+          GitHub Desktop est particulièrement utile pour les débutants en Git ou
+          ceux qui préfèrent une interface visuelle à la ligne de commande. Il
+          simplifie de nombreuses tâches Git courantes tout en offrant une
+          transition en douceur vers des opérations Git plus avancées.
+        </p>
+        <h2 id="9319b3ae-02f7-4993-b214-76b3f137dff3" class="">
+          7.2. GitKraken
+        </h2>
+        <p id="a8d559c0-4045-47d5-ac0c-7e7dbc88cfb5" class="">
+          GitKraken est une interface graphique Git populaire et puissante.
+          Voici un résumé détaillé de ses caractéristiques principales :
+        </p>
+        <ul id="d0593bd1-e6c0-42a1-8c71-b59ff97282e4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Interface utilisateur intuitive :</strong> Design moderne et
+            facile à naviguer, avec une visualisation graphique claire de
+            l&#x27;historique Git.
+          </li>
+        </ul>
+        <ul id="d7747fff-feed-420f-86b0-f3948a536e8c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Compatibilité multiplateforme :</strong> Disponible pour
+            Windows, macOS et Linux.
+          </li>
+        </ul>
+        <ul id="bc6a0836-9c5c-47ad-aacd-85c727632d1e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Intégration avec les services Git :</strong> Supporte
+            GitHub, GitLab, Bitbucket et Azure DevOps.
+          </li>
+        </ul>
+        <ul id="1c28de2e-cd19-4cbf-9980-24a29407c8df" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Gestion avancée des branches :</strong> Création, fusion et
+            suppression de branches simplifiées avec une visualisation
+            graphique.
+          </li>
+        </ul>
+        <ul id="6f9bf6d4-4225-421c-bb18-36d2bf7f0fe8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Résolution de conflits intégrée :</strong> Outil intégré
+            pour gérer et résoudre les conflits de fusion.
+          </li>
+        </ul>
+        <ul id="9f977554-e2df-434f-9190-e5b5c895c077" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Outil de fusion et rebase :</strong> Interface visuelle pour
+            les opérations de fusion et de rebase.
+          </li>
+        </ul>
+        <ul id="3327e678-b16f-4647-9221-f0bfd8fdc3d7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Gestion des sous-modules :</strong> Support complet pour la
+            gestion des sous-modules Git.
+          </li>
+        </ul>
+        <ul id="6f003251-3e77-4112-976c-89de835f2656" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Profils et préférences :</strong> Possibilité de configurer
+            plusieurs profils Git et de personnaliser l&#x27;interface.
+          </li>
+        </ul>
+        <ul id="a4844846-0032-4db8-b9da-53cfd4ea0581" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Intégration GitFlow :</strong> Support intégré pour le
+            workflow GitFlow.
+          </li>
+        </ul>
+        <ul id="c06bfb87-8834-4331-98f1-1c670e52b07c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnalités de productivité :</strong> Comme le
+            glisser-déposer pour le staging, les raccourcis clavier, et les
+            onglets multiples.
+          </li>
+        </ul>
+        <p id="c96e3724-3891-4c4e-9fcd-a72fd847bed0" class="">
+          GitKraken offre une expérience Git visuelle riche, adaptée aussi bien
+          aux débutants qu&#x27;aux utilisateurs avancés, facilitant la gestion
+          de projets complexes et la collaboration en équipe.
+        </p>
+        <h2 id="8881f339-d962-4b6e-abab-f278ebb04717" class="">
+          7.3. SourceTree
+        </h2>
+        <p id="19895c73-98c4-4527-b120-b473d8997b87" class="">
+          SourceTree est une interface graphique Git gratuite développée par
+          Atlassian. Voici un résumé détaillé de ses principales
+          caractéristiques :
+        </p>
+        <ul id="5128bfc4-ff74-42ac-899a-d23f2f045722" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Interface visuelle intuitive :</strong> Offre une
+            représentation graphique claire de l&#x27;historique des commits et
+            des branches.
+          </li>
+        </ul>
+        <ul id="485b26dd-16dd-4c69-a2c4-0cc7094363c3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Compatibilité multiplateforme :</strong> Disponible pour
+            Windows et macOS.
+          </li>
+        </ul>
+        <ul id="3c923036-2dab-48ec-aa54-e463070fd0dd" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Intégration avec les services Git :</strong> Supporte
+            GitHub, Bitbucket, et GitLab.
+          </li>
+        </ul>
+        <ul id="f2ac0d41-6845-4e3f-9733-6c3776e76e13" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Gestion avancée des branches :</strong> Facilite la
+            création, la fusion et la suppression des branches.
+          </li>
+        </ul>
+        <ul id="4545fdd0-8879-4399-bba5-4a83310b01c9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Visualisation des différences :</strong> Permet de comparer
+            facilement les versions des fichiers.
+          </li>
+        </ul>
+        <ul id="f6b04fc7-49fd-4ab1-b55f-4aa3d02d40cf" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Support de Git Flow :</strong> Intègre le workflow Git Flow
+            pour une gestion efficace des versions.
+          </li>
+        </ul>
+        <ul id="924bb3cc-71f5-430f-b764-828c351fe6e5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Résolution de conflits :</strong> Propose des outils
+            intégrés pour résoudre les conflits de fusion.
+          </li>
+        </ul>
+        <ul id="ce959f97-1519-4128-af31-1028e758f67f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Recherche avancée :</strong> Permet de rechercher rapidement
+            dans l&#x27;historique des commits.
+          </li>
+        </ul>
+        <ul id="80bfbac8-0d5f-4461-b539-bd55fc98191f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Support des sous-modules :</strong> Gère efficacement les
+            sous-modules Git.
+          </li>
+        </ul>
+        <ul id="f57595af-1630-4fa5-9748-847d6cef7f36" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Personnalisation :</strong> Offre des options de
+            personnalisation de l&#x27;interface et des raccourcis clavier.
+          </li>
+        </ul>
+        <p id="1e488a97-25eb-4327-a5e8-a906c799e002" class="">
+          SourceTree est particulièrement apprécié pour sa puissance et sa
+          flexibilité, convenant aussi bien aux débutants qu&#x27;aux
+          utilisateurs expérimentés de Git. Il simplifie la gestion de projets
+          complexes tout en offrant des fonctionnalités avancées pour les
+          développeurs chevronnés.
+        </p>
+        <h1 id="dd9d8427-0c9c-41b4-aa0a-d56a927a26c7" class="">
+          8. Concepts avancés
+        </h1>
+        <h2 id="bb5140b4-37a6-4634-8113-260713dfffa9" class="">8.1. Rebase</h2>
+        <p id="68c5bf1b-aeb7-4abe-91b0-e9f36df60ed8" class="">
+          Le rebase est une opération Git avancée qui permet de réorganiser
+          l&#x27;historique des commits. Voici un résumé détaillé de ses
+          caractéristiques et utilisations :
+        </p>
+        <ul id="c19d2e4e-7fcf-4808-831f-d641b7e7318e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Le rebase consiste à déplacer ou
+            combiner une séquence de commits vers une nouvelle base.
+          </li>
+        </ul>
+        <ul id="5056c36a-e7d4-4c4f-ad72-ba53bc1e7f93" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif principal :</strong> Maintenir un historique de
+            projet linéaire et propre.
+          </li>
+        </ul>
+        <ul id="ebaa9255-fc91-4b8b-8071-21ef53cf7125" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="e0025a76-4a46-41c8-ba20-c90f009aaf32" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Déplace la branche entière pour la faire commencer à partir de
+                la fin d&#x27;une autre branche
+              </li>
+            </ul>
+            <ul id="b72a0b94-2efe-4457-aca9-d500e761710e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Rejoue les commits un par un sur la nouvelle base
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="8ed85c77-34dc-491b-bbc7-de8075dec4c5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="c62e087a-134b-433f-960d-b19ce640bb87" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Historique plus clair et linéaire
+              </li>
+            </ul>
+            <ul id="ebfd9b36-c55b-4d93-9c47-20c948ce3ca3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilite la recherche de bugs avec git bisect
+              </li>
+            </ul>
+            <ul id="08388a11-c337-433e-9151-530b219b5b52" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet d&#x27;intégrer les derniers changements de la branche
+                principale
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="7acd879d-ff26-46b4-b64b-66f463a6d1f8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Précautions :</strong>
+            <ul id="32afe9e7-d11e-4ea9-851b-eaade27dc09a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Ne jamais rebaser des commits publiés sur des branches publiques
+              </li>
+            </ul>
+            <ul id="79763550-dff2-442d-8afb-4effb1f73b3a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Peut causer des conflits qui doivent être résolus manuellement
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="d707b247-4a0d-479c-b0e0-134738407dc8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Types de rebase :</strong>
+            <ul id="fa1ec5a5-6a16-4e0e-9a25-0e2707ef117e" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Rebase standard : déplace les commits vers une nouvelle base
+              </li>
+            </ul>
+            <ul id="45dd4b2c-580a-44c1-85b2-1b82f20aa0db" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Rebase interactif : permet de modifier, réorganiser ou supprimer
+                des commits
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="083e1d17-5949-489d-9b63-0dc90156eb88" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Commandes clés :</strong>
+            <ul id="1158d88f-bb2c-4c23-9e17-b8e954441e9f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                <code>git rebase &lt;base&gt;</code> : pour un rebase standard
+              </li>
+            </ul>
+            <ul id="5cc38a9d-697e-43f4-9a3f-218b8e06df86" class="bulleted-list">
+              <li style="list-style-type: circle">
+                <code>git rebase -i &lt;base&gt;</code> : pour un rebase
+                interactif
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="9abf0c35-5fd3-411d-8e6a-dc9319cddd28" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Alternatives :</strong> La fusion (merge) est souvent
+            utilisée comme alternative au rebase, préservant l&#x27;historique
+            complet mais créant une structure moins linéaire.
+          </li>
+        </ul>
+        <p id="133cbb77-6776-47c1-9d93-cb488e47a33b" class="">
+          Le rebase est un outil puissant pour maintenir un historique Git
+          propre et linéaire, mais il doit être utilisé avec précaution,
+          particulièrement dans des projets collaboratifs.
+        </p>
+        <h2 id="6bc1292f-1c25-40f5-b779-bd1739190979" class="">
+          8.2. Cherry-pick
+        </h2>
+        <p id="13a235a9-a9af-4f99-b74f-f93d873e5990" class="">
+          Le cherry-pick est une opération Git avancée qui permet de
+          sélectionner et d&#x27;appliquer des commits spécifiques d&#x27;une
+          branche à une autre. Voici un résumé détaillé de ses caractéristiques
+          et utilisations :
+        </p>
+        <ul id="0dbc40d7-22d9-4939-acd5-12c0998ff01a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Cherry-pick consiste à appliquer les
+            changements d&#x27;un commit spécifique à la branche actuelle.
+          </li>
+        </ul>
+        <ul id="09944b55-44d5-477c-89cf-5a0f07e6ce60" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif principal :</strong> Sélectionner des modifications
+            précises sans fusionner des branches entières.
+          </li>
+        </ul>
+        <ul id="85374932-1b52-418e-8520-b523187d477e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong>
+            <ul id="d8bb69ed-8157-4c76-beef-22331d8f6347" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Identifie les changements introduits par un commit spécifique
+              </li>
+            </ul>
+            <ul id="30a12891-0130-4eab-af6a-5bfb68a955d3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Applique ces changements à la branche actuelle sous forme
+                d&#x27;un nouveau commit
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="8a9f1635-4486-4d31-8292-e9b2904ff898" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="ff2588a7-f473-4ce4-8c80-0456ced2893a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Flexibilité dans l&#x27;intégration de fonctionnalités
+                spécifiques
+              </li>
+            </ul>
+            <ul id="f77fdada-e582-4ebf-9ee0-7b6c1a6fda56" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utile pour backporter des corrections de bugs
+              </li>
+            </ul>
+            <ul id="6795c6f8-7286-42c8-afff-c5f355318238" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Permet de sélectionner précisément les modifications à intégrer
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="c38a3821-a8ee-47a4-9772-0d0369d5beda" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Précautions :</strong>
+            <ul id="ebb8f8e5-7924-4bfc-86ce-6e3c864bc9c7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Peut créer des doublons de commits si mal utilisé
+              </li>
+            </ul>
+            <ul id="0936dd72-6ae3-419a-b948-5741d7ab85f9" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Risque de conflits si les changements ne s&#x27;appliquent pas
+                proprement
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="7649ea3f-dd37-45e2-ad7c-bfb868820a2e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Commande clé :</strong>
+            <code>git cherry-pick &lt;commit-hash&gt;</code>
+          </li>
+        </ul>
+        <ul id="964d06e2-12b4-4d45-ab8a-d42a224733c5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Options utiles :</strong>
+            <ul id="b8e19338-e1d5-42e4-b002-0fdeeef68827" class="bulleted-list">
+              <li style="list-style-type: circle">
+                <code>-n</code> ou <code>--no-commit</code> : applique les
+                changements sans créer un nouveau commit
+              </li>
+            </ul>
+            <ul id="296152de-29aa-4154-a95e-0f3358b9b523" class="bulleted-list">
+              <li style="list-style-type: circle">
+                <code>-x</code> : ajoute une référence au commit original dans
+                le message du nouveau commit
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="076c4b1e-e75b-4e8c-bbb6-496e68110f1d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Alternatives :</strong> Merge ou rebase peuvent être
+            utilisés pour intégrer des changements plus larges entre branches.
+          </li>
+        </ul>
+        <p id="16071302-6baa-40ed-a7f1-84ddd9f44d31" class="">
+          Le cherry-pick est un outil puissant pour une gestion fine des
+          commits, permettant une grande flexibilité dans l&#x27;intégration de
+          modifications spécifiques. Cependant, il doit être utilisé
+          judicieusement pour maintenir la cohérence de l&#x27;historique du
+          projet.
+        </p>
+        <h2 id="57d8819a-1821-4d78-8427-028a47ecc8cd" class="">8.3. Hooks</h2>
+        <p id="8d13add1-401a-43a7-9dcb-10da13c974bd" class="">
+          Les hooks Git sont des scripts personnalisés qui s&#x27;exécutent
+          automatiquement à certains moments du workflow Git. Voici un résumé
+          détaillé de leurs caractéristiques et utilisations :
+        </p>
+        <ul id="2ee2513c-42eb-4394-8fec-631cd3c12a0f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Les hooks sont des programmes
+            exécutables déclenchés par des événements spécifiques dans le
+            processus Git.
+          </li>
+        </ul>
+        <ul id="d8ca6858-55dd-4bcb-bb0c-bfd09dda6846" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif principal :</strong> Automatiser des tâches,
+            appliquer des politiques de projet, et effectuer des vérifications
+            personnalisées.
+          </li>
+        </ul>
+        <ul id="235182bc-1ddf-4ecc-9c2c-d294ac141af2" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Types de hooks :</strong>
+            <ul id="331f0b3b-db24-4290-8705-23124c5f846a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Hooks côté client : s&#x27;exécutent sur la machine locale
+                (pre-commit, post-commit, etc.)
+              </li>
+            </ul>
+            <ul id="875c54f5-e48f-4b05-bf69-6fb4d262aecf" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Hooks côté serveur : s&#x27;exécutent sur le serveur Git
+                (pre-receive, post-receive, etc.)
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="01606a8d-02aa-41a9-baf4-d24960088cdf" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Exemples d&#x27;utilisation :</strong>
+            <ul id="a4298377-af53-4b90-8bc9-ee83ea62163f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Vérification du format du message de commit
+              </li>
+            </ul>
+            <ul id="65159a14-8f4a-41da-92ab-90b7b0992b39" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Exécution de tests automatisés avant un push
+              </li>
+            </ul>
+            <ul id="954534fb-daa4-40e4-b83a-918cbcbe6895" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Notification d&#x27;équipe après un push
+              </li>
+            </ul>
+            <ul id="1d91834c-9afd-4de9-8812-f75f430683e3" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Déploiement automatique après un push réussi
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="6e98ccfc-f621-47d5-bed1-7d8d819f5bbd" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Mise en place :</strong> Les hooks sont stockés dans le
+            répertoire <code>.git/hooks/</code> de chaque projet Git.
+          </li>
+        </ul>
+        <ul id="bdb623e4-c506-4308-84f0-6bfff821dcdb" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Personnalisation :</strong> Les hooks peuvent être écrits
+            dans n&#x27;importe quel langage de script exécutable (bash, Python,
+            Ruby, etc.).
+          </li>
+        </ul>
+        <ul id="5572ff8c-a485-457c-b50a-c377044815d5" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="827bbbde-96a3-4eb4-9ed8-d5b7ae3d8c38" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Amélioration de la qualité du code
+              </li>
+            </ul>
+            <ul id="f9b58a70-b501-421d-b7f9-a33b6eef7c71" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Automatisation des processus de développement
+              </li>
+            </ul>
+            <ul id="1bffe3d0-019a-4ed6-9778-151f8a9df8a7" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Application cohérente des politiques de projet
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="cbc4fb3b-175f-47c3-9dd5-e04f687f5701" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Limitations :</strong>
+            <ul id="f49e6c26-d9be-4547-80ce-d354979abcd0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Les hooks côté client peuvent être contournés par les
+                utilisateurs
+              </li>
+            </ul>
+            <ul id="8aef582f-5e5e-48fd-92c1-7757ba9dd0c0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Nécessitent une configuration et une maintenance
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="acb16199-e963-4cec-bffd-39dd270fd926" class="">
+          Les hooks Git offrent une grande flexibilité pour personnaliser et
+          automatiser le workflow de développement, permettant d&#x27;améliorer
+          la productivité et la qualité du code dans les projets Git.
+        </p>
+        <p id="11384eed-7b66-800f-8506-f5a9ad828ff1" class=""></p>
+        <h2 id="9ca8c40b-942a-4391-97cf-570e7c65f723" class="">
+          8.4. Intégration Continue (CI)
+        </h2>
+        <p id="a4f878f5-85db-454b-86c3-ce19d90aa50e" class="">
+          L&#x27;intégration continue (CI) est une pratique de développement
+          logiciel qui s&#x27;intègre parfaitement avec Git. Voici un résumé
+          détaillé de ses caractéristiques et avantages :
+        </p>
+        <ul id="c836a3be-5260-4315-b720-45022091e5af" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> L&#x27;intégration continue est une
+            pratique consistant à fusionner fréquemment les modifications de
+            code dans un dépôt central, suivi d&#x27;une série de tests
+            automatisés.
+          </li>
+        </ul>
+        <ul id="ce774bb4-632c-4990-968b-26934f5bce85" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif principal :</strong> Détecter et résoudre
+            rapidement les problèmes d&#x27;intégration, améliorer la qualité du
+            code et accélérer le cycle de développement.
+          </li>
+        </ul>
+        <ul id="c7ec3310-3814-41c1-b98f-d7716a87634a" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement avec Git :</strong>
+            <ul id="11f014a8-6aad-44fc-b49e-14f99a47d66d" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Les développeurs poussent fréquemment leurs changements sur le
+                dépôt Git.
+              </li>
+            </ul>
+            <ul id="dad34265-ba5f-40da-9779-02dab6789957" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Un serveur CI surveille le dépôt et déclenche automatiquement
+                des builds et des tests à chaque nouveau commit.
+              </li>
+            </ul>
+            <ul id="488e63bd-4187-4f21-9442-305385a8a0cb" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Les résultats des tests sont rapidement communiqués à
+                l&#x27;équipe.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="c291ad0f-1298-4ed8-a9bb-59a585707656" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="9e186f15-cff9-4fbf-9753-c430f5e2af9c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Détection précoce des bugs et des conflits
+              </li>
+            </ul>
+            <ul id="2b9b37a4-2d2e-4e93-b69e-077a94d6df26" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Amélioration de la qualité du code
+              </li>
+            </ul>
+            <ul id="54158ef0-e4f9-44a5-8d29-5931b2ede5ba" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Réduction du temps d&#x27;intégration
+              </li>
+            </ul>
+            <ul id="aa95039b-1472-42bd-b05c-984517bae9ae" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Facilitation du déploiement continu
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="28c37933-b55f-46a8-a4ab-a270c18945f9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Outils populaires :</strong> Jenkins, Travis CI, GitLab
+            CI/CD, GitHub Actions, CircleCI
+          </li>
+        </ul>
+        <ul id="d3f1d51a-90a9-46aa-81d3-7dd633fb8799" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Bonnes pratiques :</strong>
+            <ul id="00580802-b954-4fad-8949-84cf1af5626c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Maintenir un dépôt Git principal toujours fonctionnel
+              </li>
+            </ul>
+            <ul id="bdd3f4f5-5ec0-411d-baca-a6c3e29deb58" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Automatiser les tests unitaires, d&#x27;intégration et de
+                performance
+              </li>
+            </ul>
+            <ul id="ceb47265-f425-4871-9020-0c27eb25a0ab" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Utiliser des environnements de test similaires à la production
+              </li>
+            </ul>
+            <ul id="25019eba-810b-44cc-ab98-7f4c132ee16f" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Configurer des notifications pour les échecs de build
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="af30599f-e833-42f1-9f77-d365c773ed0a" class="">
+          L&#x27;intégration continue, combinée avec Git, permet aux équipes de
+          développement de travailler plus efficacement, de maintenir un code de
+          haute qualité et de livrer des logiciels plus rapidement et plus
+          fiablement.
+        </p>
+        <p id="11384eed-7b66-80f2-a2a7-c246b38e5706" class=""></p>
+        <h1 id="11384eed-7b66-80a3-af9e-e9eb93bbb883" class="">Gitmoji</h1>
+        <p id="90ffdbfd-dc8b-454c-8764-33bb4a518d50" class="">
+          Gitmoji est un système de convention pour les messages de commit Git
+          utilisant des emojis.
+        </p>
+        <p id="11384eed-7b66-809c-a507-d326b38e01fe" class=""></p>
+        <p id="11384eed-7b66-8050-b120-dd9a7add681b" class="">
+          Voici ce qu&#x27;il faut savoir :
+        </p>
+        <ul id="f36c721a-cb32-4769-808c-d15633d8e22f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Définition :</strong> Système standardisé d&#x27;emojis pour
+            les messages de commit Git.
+          </li>
+        </ul>
+        <ul id="10180a87-7669-4c79-b1b1-8f3b6172309e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Objectif :</strong> Rendre les messages de commit plus
+            expressifs et facilement compréhensibles.
+          </li>
+        </ul>
+        <ul id="7dd7dc2e-144e-479f-b8c3-290dabfb54bd" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Fonctionnement :</strong> Chaque emoji représente un type
+            spécifique de modification.
+          </li>
+        </ul>
+        <ul id="25743241-9fc7-4d77-8a43-1fab89a76ee0" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Emojis couramment utilisés :</strong>
+            <ul id="b9398109-75d2-4a6a-9827-28e81b243aef" class="bulleted-list">
+              <li style="list-style-type: circle">
+                🐛 (bug) : Correction de bug
+              </li>
+            </ul>
+            <ul id="5c8d6a3f-5933-4ff1-87ef-1d414b42b76b" class="bulleted-list">
+              <li style="list-style-type: circle">
+                ✨ (sparkles) : Nouvelle fonctionnalité
+              </li>
+            </ul>
+            <ul id="ffb5dffd-9cfd-4953-8ddf-471bc0779acf" class="bulleted-list">
+              <li style="list-style-type: circle">
+                🎨 (art) : Amélioration de la structure/format du code
+              </li>
+            </ul>
+            <ul id="6d779cd8-b36b-4289-aae2-37e82ee91eb0" class="bulleted-list">
+              <li style="list-style-type: circle">
+                📝 (memo) : Mise à jour de la documentation
+              </li>
+            </ul>
+            <ul id="057aec92-e9ac-430e-a752-1f35475d6b5c" class="bulleted-list">
+              <li style="list-style-type: circle">
+                🔥 (fire) : Suppression de code ou de fichiers
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="ffacf4f5-466e-44f6-93f4-4060f0a562ce" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Avantages :</strong>
+            <ul id="226fde37-b0f6-48a9-9219-5ea28c4d9e25" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Identification rapide du type de changement
+              </li>
+            </ul>
+            <ul id="cd881d99-f953-41c6-be7c-8541b5e3f6da" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Standardisation de la communication
+              </li>
+            </ul>
+            <ul id="9ac7edd6-8602-41e0-b8c9-3e19b09c2f89" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Historique Git plus visuel et expressif
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="3ae779a7-dbad-4690-86fc-1b38f9ed1042" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Mise en place :</strong> Peut être utilisé manuellement ou
+            avec des outils CLI et des extensions pour éditeurs.
+          </li>
+        </ul>
+        <ul id="8d0ab182-b832-4504-8a24-ca97980ee518" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Adoption :</strong> Populaire dans la communauté
+            open-source, mais pas universellement adopté.
+          </li>
+        </ul>
+        <ul id="fec0e11b-6749-4f0f-b0ed-16ea484c06d2" class="bulleted-list">
+          <li style="list-style-type: disc">
+            <strong>Considérations :</strong>
+            <ul id="9deca388-66a6-4426-b9c1-84c20eb88a2a" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Nécessite un apprentissage initial des significations des emojis
+              </li>
+            </ul>
+            <ul id="d21535e3-6601-4793-9684-d96c87f3a041" class="bulleted-list">
+              <li style="list-style-type: circle">
+                Peut ne pas convenir à tous les styles de développement ou
+                cultures d&#x27;entreprise
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p id="67693859-1ac3-4b21-a0b0-56ec15837886" class="">
+          Gitmoji offre une approche ludique et visuelle pour améliorer la
+          communication dans les projets Git, mais son utilisation reste
+          optionnelle et dépend des préférences de l&#x27;équipe ou du projet.
+        </p>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>
