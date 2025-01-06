@@ -1,0 +1,1136 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cahier des charges</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="160f1cb3-0b6f-4f4c-a49c-87d78bf76bb2" class="page sans">
+      <header>
+        <h1 class="page-title">Cahier des charges</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <h1 id="a3694f11-260b-4e85-afd4-b365914b47c6" class="">Introduction</h1>
+        <p id="dbfae42c-9d1a-4929-9525-c22f72ce1dce" class="">
+          Un cahier des charges est un document essentiel dans la gestion de
+          projet, servant de base pour la planification, l&#x27;exécution et
+          l&#x27;évaluation d&#x27;un projet. Voici un tutoriel détaillé sur les
+          étapes de sa rédaction, suivi d&#x27;un exemple concret.
+        </p>
+        <h2 id="1d9a239a-4efa-457b-a8c0-404f04aea177" class="">
+          1. Définition du projet
+        </h2>
+        <p id="2412f7e9-81c4-43e4-bf45-7f39823e9787" class="">
+          Pourquoi ? Cette étape pose les fondations du projet et clarifie ses
+          objectifs.
+        </p>
+        <ul id="7288efc8-23a9-4fa6-8ec6-8159f788c656" class="bulleted-list">
+          <li style="list-style-type: disc">Décrire brièvement le projet</li>
+        </ul>
+        <ul id="5255d04c-b3b4-4cb0-9179-6b09faeae634" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Définir les objectifs principaux
+          </li>
+        </ul>
+        <ul id="c1ffd4d7-042e-4ebd-b5a9-6bc71866d3ec" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Identifier les parties prenantes
+          </li>
+        </ul>
+        <h2 id="52f275fd-32b0-41a6-b7a5-0b4586de306e" class="">
+          2. Analyse des besoins
+        </h2>
+        <p id="528e9ecb-0934-4de0-951c-c4cbe4d9847a" class="">
+          Pourquoi ? Pour s&#x27;assurer que le projet répond aux attentes des
+          utilisateurs et des parties prenantes.
+        </p>
+        <ul id="22098557-3174-44c7-a20c-23e306525694" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Identifier les besoins fonctionnels
+          </li>
+        </ul>
+        <ul id="e08c1f05-a2d9-4385-9bba-15ac88b3fac4" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Déterminer les besoins non fonctionnels (performance, sécurité,
+            etc.)
+          </li>
+        </ul>
+        <ul id="7ae23b40-2b4e-4a7c-a8b0-62d4f50b9f9a" class="bulleted-list">
+          <li style="list-style-type: disc">Prioriser les besoins</li>
+        </ul>
+        <h2 id="7fad1d65-fa97-4dbc-8734-bade355127cf" class="">
+          3. Spécifications techniques
+        </h2>
+        <p id="c1ed2034-edb7-492f-a217-35a94ad13261" class="">
+          Pourquoi ? Pour définir les aspects techniques nécessaires à la
+          réalisation du projet.
+        </p>
+        <ul id="a82a7b32-abf7-4606-9f80-36f527d4fc08" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Décrire l&#x27;architecture technique
+          </li>
+        </ul>
+        <ul id="014af2e7-5b98-40ff-956f-65d89c365dda" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Lister les technologies à utiliser
+          </li>
+        </ul>
+        <ul id="e4002da6-cc64-4dfb-9835-4bb1eba61d5d" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Définir les contraintes techniques
+          </li>
+        </ul>
+        <h2 id="8fcd89ba-06ae-45b2-9e1e-5ac57072239a" class="">4. Livrables</h2>
+        <p id="b796de26-1654-4033-b58f-a2a2ecdce657" class="">
+          Pourquoi ? Pour clarifier ce qui doit être produit à la fin du projet.
+        </p>
+        <ul id="e860df53-979e-4806-acc5-38bf1a75e3c1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Énumérer tous les livrables attendus
+          </li>
+        </ul>
+        <ul id="f72252ab-c0b6-4880-8f5f-02e5a4014a56" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Décrire chaque livrable en détail
+          </li>
+        </ul>
+        <ul id="6f97d41a-292d-4edd-a57c-d9c10ac33ed9" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Spécifier les critères d&#x27;acceptation pour chaque livrable
+          </li>
+        </ul>
+        <h2 id="7d449fff-e900-4df3-9cd1-5ef0674c8835" class="">
+          5. Planning et délais
+        </h2>
+        <p id="62b1278f-96b9-4c48-a841-29c963079b59" class="">
+          Pourquoi ? Pour établir un calendrier réaliste et gérer les attentes.
+        </p>
+        <ul id="37b60a78-546d-47da-9fb4-30fa0571482f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Définir les principales étapes du projet
+          </li>
+        </ul>
+        <ul id="ddbba92f-ccfb-4bf8-9fbe-2cfc31c5fcc1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Estimer la durée de chaque étape
+          </li>
+        </ul>
+        <ul id="536c6732-3c8e-4b9c-9f40-49812a5de211" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Identifier les jalons importants
+          </li>
+        </ul>
+        <h2 id="0813c612-7238-411a-a7c3-2a98ea08be10" class="">6. Budget</h2>
+        <p id="4d7d5d8f-7552-4caa-b826-4180a8b9250e" class="">
+          Pourquoi ? Pour assurer une gestion financière saine du projet.
+        </p>
+        <ul id="b28d8813-aeae-4834-924a-326e2e7a0fd7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Estimer les coûts pour chaque aspect du projet
+          </li>
+        </ul>
+        <ul id="4281f43b-a413-4e91-9144-6e50ec1f734f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Inclure une marge pour les imprévus
+          </li>
+        </ul>
+        <ul id="1fd7d476-2f59-4e94-a986-0ad12b3ff22f" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Détailler la répartition du budget
+          </li>
+        </ul>
+        <h2 id="7a027c14-a15f-4706-bfc9-b8fb6acc1443" class="">
+          7. Gestion des risques
+        </h2>
+        <p id="9cbc3dd1-eb2b-4dfb-97e2-5b0aa34ec05f" class="">
+          Pourquoi ? Pour anticiper les problèmes potentiels et préparer des
+          solutions.
+        </p>
+        <ul id="129d13a9-93ae-4b39-a64e-6507f4af16ea" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Identifier les risques possibles
+          </li>
+        </ul>
+        <ul id="e69d0c22-9c89-4035-bf75-9a453a3d5763" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Évaluer l&#x27;impact et la probabilité de chaque risque
+          </li>
+        </ul>
+        <ul id="97fc7b0f-12da-4b79-8bca-0990fe77d679" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Proposer des stratégies d&#x27;atténuation
+          </li>
+        </ul>
+        <h2 id="052fa3f0-b799-41d0-a32c-efd5eb416a69" class="">
+          8. Critères de succès
+        </h2>
+        <p id="09d098c2-9ddc-409f-9043-7b72f09606e0" class="">
+          Pourquoi ? Pour définir clairement ce qui constitue la réussite du
+          projet.
+        </p>
+        <ul id="61d61e67-6559-4dce-90db-d4f765b8d3ce" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Établir des indicateurs de performance clés (KPI)
+          </li>
+        </ul>
+        <ul id="0d4cfead-0ea6-4a08-98ca-160ad3220b3c" class="bulleted-list">
+          <li style="list-style-type: disc">Définir les critères de qualité</li>
+        </ul>
+        <ul id="0caf8800-9760-4c10-9cc9-c6868d9dd93c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Spécifier les attentes en termes de satisfaction client/utilisateur
+          </li>
+        </ul>
+        <h2 id="b9534f77-f891-41aa-b33c-91677a4a8f67" class="">
+          Exemple concret : Cahier des charges pour une application mobile de
+          gestion de tâches
+        </h2>
+        <h3 id="99f4a1a1-ce01-45a2-9986-4cec2137bf19" class="">
+          1. Définition du projet
+        </h3>
+        <p id="40821842-88c0-4d0f-938f-4ac109de644e" class="">
+          Développement d&#x27;une application mobile de gestion de tâches
+          nommée &quot;TaskMaster&quot; pour les systèmes iOS et Android.
+        </p>
+        <ul id="92a4b00a-c1c3-482b-9a7b-f0793643e53e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Objectif : Aider les utilisateurs à organiser et suivre leurs tâches
+            quotidiennes
+          </li>
+        </ul>
+        <ul id="b9b5e3e9-3132-4e34-905a-ad2129194dc1" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Parties prenantes : Équipe de développement, designers UX/UI,
+            testeurs, investisseurs
+          </li>
+        </ul>
+        <h3 id="5e93a0ce-d76b-4f6d-8931-63d6797347a6" class="">
+          2. Analyse des besoins
+        </h3>
+        <p id="7636c9b3-ce2d-4469-b58b-3c190e3eef05" class="">
+          Besoins fonctionnels :
+        </p>
+        <ul id="e55cdecc-e545-4838-9d20-c7ec2e2e2c8c" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Création, modification et suppression de tâches
+          </li>
+        </ul>
+        <ul id="3b522774-0f02-4295-b685-b0f3f705e74e" class="bulleted-list">
+          <li style="list-style-type: disc">Catégorisation des tâches</li>
+        </ul>
+        <ul id="a6425574-dbff-4a15-92f6-65fc8f5809e3" class="bulleted-list">
+          <li style="list-style-type: disc">Rappels et notifications</li>
+        </ul>
+        <p id="f61c5227-874d-4875-902d-1a8edbd6c543" class="">
+          Besoins non fonctionnels :
+        </p>
+        <ul id="6e60175e-149b-4d0a-9e91-83d46be95589" class="bulleted-list">
+          <li style="list-style-type: disc">Interface utilisateur intuitive</li>
+        </ul>
+        <ul id="daa533a9-7e13-4e46-80f3-83b570b52877" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Temps de réponse rapide (&lt; 2 secondes)
+          </li>
+        </ul>
+        <ul id="6a29f7f6-0a1c-4809-8f53-50be4652dc2e" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Sécurisation des données utilisateur
+          </li>
+        </ul>
+        <h3 id="edeb03fd-3d2a-49f5-b163-d1e0b529500a" class="">
+          3. Spécifications techniques
+        </h3>
+        <ul id="174a74bb-924c-4fda-8722-d574cdd0f769" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Architecture : Application native pour iOS et Android
+          </li>
+        </ul>
+        <ul id="bb95bc3f-be80-4d5e-ae88-49117fd499f3" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Technologies : Swift pour iOS, Kotlin pour Android
+          </li>
+        </ul>
+        <ul id="fbdaead7-daa5-4c28-bd7d-d2eb0962dcb8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Base de données : SQLite locale avec synchronisation cloud
+          </li>
+        </ul>
+        <h3 id="fa6a7e15-34f7-4e69-9215-19318f35ece6" class="">4. Livrables</h3>
+        <ul id="b55ff396-26ca-4337-b5f5-faabec61fec8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Application mobile pour iOS et Android
+          </li>
+        </ul>
+        <ul id="1eb9c954-19e2-4dec-b968-a63f5ca87e12" class="bulleted-list">
+          <li style="list-style-type: disc">Documentation utilisateur</li>
+        </ul>
+        <ul id="d3219b53-ce9b-47a7-a183-8b925ef50eda" class="bulleted-list">
+          <li style="list-style-type: disc">Code source commenté</li>
+        </ul>
+        <h3 id="fbd3d5ca-26e7-4481-a0cb-c092f792e3b0" class="">
+          5. Planning et délais
+        </h3>
+        <ul id="46059efd-0023-47ab-8ffa-9bed84488bb7" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Conception et design : 4 semaines
+          </li>
+        </ul>
+        <ul id="37026531-be80-4f86-80a5-7650ff58c68e" class="bulleted-list">
+          <li style="list-style-type: disc">Développement : 12 semaines</li>
+        </ul>
+        <ul id="de8a999e-ce5f-489c-8bbb-ff5724101e20" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Tests et corrections : 4 semaines
+          </li>
+        </ul>
+        <ul id="a5dcad40-4197-4bd1-9ca7-27e0008a5251" class="bulleted-list">
+          <li style="list-style-type: disc">Déploiement : 2 semaines</li>
+        </ul>
+        <h3 id="23b582b4-dd15-427f-aa18-632dac081040" class="">6. Budget</h3>
+        <ul id="ca15e73e-9dfb-4a8a-9113-1197cecd5d0f" class="bulleted-list">
+          <li style="list-style-type: disc">Développement : 60 000 €</li>
+        </ul>
+        <ul id="224a3d31-c430-41c4-a67a-a6db99d69c8c" class="bulleted-list">
+          <li style="list-style-type: disc">Design : 15 000 €</li>
+        </ul>
+        <ul id="fc76bfee-fc72-4cf4-b354-54a6a04ae997" class="bulleted-list">
+          <li style="list-style-type: disc">Tests : 10 000 €</li>
+        </ul>
+        <ul id="6c6624b8-5f28-4a4d-b517-1772a5e24ac1" class="bulleted-list">
+          <li style="list-style-type: disc">Marketing : 15 000 €</li>
+        </ul>
+        <ul id="653afa92-db01-4fc6-b5ad-b6f8eca02e39" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Total : 100 000 € (incluant 10% pour imprévus)
+          </li>
+        </ul>
+        <h3 id="59c3568f-773e-4006-bf0b-eb1ee91cde60" class="">
+          7. Gestion des risques
+        </h3>
+        <ul id="65702840-7d88-4add-a52c-3f5c2f1667be" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Risque : Retard dans le développement
+          </li>
+        </ul>
+        <ul id="ab21b592-879d-4a57-b79a-95132de14923" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Impact : Moyen / Probabilité : Moyenne
+          </li>
+        </ul>
+        <ul id="254c1540-769d-45d9-b2ff-51ffc3480e80" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Atténuation : Planification agile avec sprints et révisions
+            régulières
+          </li>
+        </ul>
+        <h3 id="8c6c5984-510e-4486-a012-9abe3cd702e1" class="">
+          8. Critères de succès
+        </h3>
+        <ul id="9a7af95a-5858-42a7-924b-c6944d4140b8" class="bulleted-list">
+          <li style="list-style-type: disc">
+            100 000 téléchargements dans les 6 mois suivant le lancement
+          </li>
+        </ul>
+        <ul id="c4e11a31-0d80-41f6-8939-c1809dd60553" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Note moyenne de 4,5/5 sur les stores d&#x27;applications
+          </li>
+        </ul>
+        <ul id="cae139c2-2feb-4c2c-b906-69985de64942" class="bulleted-list">
+          <li style="list-style-type: disc">
+            Taux de rétention de 60% après 30 jours
+          </li>
+        </ul>
+        <p id="39459d3f-5eaf-4692-9162-55569567129b" class="">
+          Ce cahier des charges servira de guide tout au long du développement
+          de l&#x27;application TaskMaster, assurant une vision claire et
+          partagée du projet pour toutes les parties prenantes.
+        </p>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>

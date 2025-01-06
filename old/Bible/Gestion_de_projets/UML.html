@@ -1,0 +1,1411 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>UML</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="3aa623f9-a417-44e0-83a7-4844804da873" class="page sans">
+      <header>
+        <h1 class="page-title">UML</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <p id="504e0bb7-63e1-4d0d-822d-26ebe2c9bbf6" class="">
+          UML (Unified Modeling Language) est un langage de modélisation
+          graphique utilisé en développement logiciel pour visualiser,
+          spécifier, construire et documenter les systèmes. Voici un guide
+          détaillé sur les principaux diagrammes UML avec des exemples concrets.
+        </p>
+        <h2 id="27281363-4357-46e7-a2fb-3e63b739c233" class="">
+          1. Diagramme de cas d&#x27;utilisation
+        </h2>
+        <p id="1ff1f14a-fd7f-4042-913e-2f864109379a" class="">
+          Le diagramme de cas d&#x27;utilisation représente les interactions
+          entre les utilisateurs (acteurs) et le système.
+        </p>
+        <p id="d0048d37-6b51-4ee3-8f03-b619e8798676" class="">
+          Exemple concret : Système de bibliothèque
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="51e0c07d-b575-40e8-ad8a-eb16125684ef"
+          class="code"
+        ><code class="language-Mermaid">graph TD
+    A[Lecteur] --&gt;|Emprunte un livre| B((Système de bibliothèque))
+    A --&gt;|Retourne un livre| B
+    C[Bibliothécaire] --&gt;|Gère les livres| B
+    C --&gt;|Gère les membres| B</code></pre>
+        <h2 id="2f96f9ae-cf7e-46cf-bb9e-53e6717373f3" class="">
+          2. Diagramme de classes
+        </h2>
+        <p id="37efb6b2-2831-4655-b60d-6929ab862dff" class="">
+          Le diagramme de classes montre la structure statique du système,
+          décrivant les classes, leurs attributs, méthodes et relations.
+        </p>
+        <p id="28597240-513a-442b-b953-69c4f918762c" class="">
+          Exemple concret : Système de gestion d&#x27;une école
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="f25725e8-8311-4f2b-8683-85772dc58415"
+          class="code"
+        ><code class="language-Mermaid">classDiagram
+    class Etudiant {
+        -int id
+        -String nom
+        -String prenom
+        +void s&#x27;inscrire()
+        +void passerExamen()
+    }
+    class Cours {
+        -int code
+        -String titre
+        +void ajouterEtudiant()
+        +void donnerNote()
+    }
+    class Professeur {
+        -int id
+        -String nom
+        +void enseignerCours()
+        +void evaluerEtudiants()
+    }
+    Etudiant &quot;1..*&quot; -- &quot;0..*&quot; Cours : suit
+    Professeur &quot;1&quot; -- &quot;1..*&quot; Cours : enseigne</code></pre>
+        <h2 id="56f1982b-bd74-47c8-a582-9e374ba02055" class="">
+          3. Diagramme de séquence
+        </h2>
+        <p id="5907971f-ec15-4e71-b54e-6ea8d63e81f9" class="">
+          Le diagramme de séquence illustre les interactions entre objets dans
+          un scénario particulier du système.
+        </p>
+        <p id="1dcd1b89-0144-4b27-9012-6edb99413119" class="">
+          Exemple concret : Processus de commande en ligne
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="8621a597-21e9-45b3-9bc4-3e039e130b54"
+          class="code"
+        ><code class="language-Mermaid">sequenceDiagram
+    participant Client
+    participant SiteWeb
+    participant Système de paiement
+    participant Entrepôt
+
+    Client-&gt;&gt;SiteWeb: Passer commande
+    SiteWeb-&gt;&gt;Système de paiement: Vérifier paiement
+    Système de paiement--&gt;&gt;SiteWeb: Paiement confirmé
+    SiteWeb-&gt;&gt;Entrepôt: Préparer commande
+    Entrepôt--&gt;&gt;SiteWeb: Commande prête
+    SiteWeb--&gt;&gt;Client: Confirmation de commande</code></pre>
+        <h2 id="8d24f9ba-3c9b-43cb-8c18-727e7827395c" class="">
+          4. Diagramme d&#x27;activité
+        </h2>
+        <p id="8682bc07-9302-4114-867f-b5b5d219c8b0" class="">
+          Le diagramme d&#x27;activité représente le flux de travail ou le
+          processus d&#x27;un système.
+        </p>
+        <p id="96f2fc98-70cf-4b6e-a265-532115429ed5" class="">
+          Exemple concret : Processus de développement logiciel
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="6d145cdf-0bed-46cd-a0c7-b27204ec645d"
+          class="code"
+        ><code class="language-Mermaid">graph TD
+    A[Début] --&gt; B[Analyse des besoins]
+    B --&gt; C[Conception]
+    C --&gt; D[Implémentation]
+    D --&gt; E[Tests]
+    E --&gt; F{Tests réussis?}
+    F --&gt;|Non| D
+    F --&gt;|Oui| G[Déploiement]
+    G --&gt; H[Fin]</code></pre>
+        <h2 id="046a00bf-e511-40a0-9a8b-de0c6d767817" class="">
+          5. Diagramme d&#x27;état
+        </h2>
+        <p id="ff344229-5acc-41b8-925a-9ac4d59147d4" class="">
+          Le diagramme d&#x27;état montre les différents états d&#x27;un objet
+          et les transitions entre ces états.
+        </p>
+        <p id="95b6d45e-6c40-4187-87e2-091f2c06c118" class="">
+          Exemple concret : États d&#x27;une commande en ligne
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="38b8c260-871b-4ab0-a41a-6b2126122689"
+          class="code"
+        ><code class="language-Mermaid">stateDiagram-v2
+    [*] --&gt; En_attente
+    En_attente --&gt; Validée: Paiement reçu
+    Validée --&gt; En_préparation: Traitement commencé
+    En_préparation --&gt; Expédiée: Envoi effectué
+    Expédiée --&gt; Livrée: Réception confirmée
+    Livrée --&gt; [*]</code></pre>
+        <h2 id="bff199cf-81da-4cfc-ab85-dad773a0824a" class="">
+          6. Exemple : Système de distributeur automatique de billets (DAB)
+        </h2>
+        <p id="6f19805e-b201-47e1-b2f1-41915a3efee2" class="">
+          Voici un exemple détaillé d&#x27;un système de distributeur
+          automatique de billets (DAB) utilisant tous les diagrammes UML
+          précédemment mentionnés.
+        </p>
+        <h3 id="739d72e4-4bc3-43e1-aa81-b1640c3b8da8" class="">
+          6.1. Diagramme de cas d&#x27;utilisation
+        </h3>
+        <p id="f8ae37ad-a1b3-4ea8-a96a-f55b9362e5a4" class="">
+          Ce diagramme montre les interactions entre les utilisateurs et le
+          système DAB.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="c9347fa5-0fea-4320-8c8c-998b463424b8"
+          class="code"
+        ><code class="language-Mermaid">graph TD
+    A[Client] --&gt;|Retirer de l&#x27;argent| B((DAB))
+    A --&gt;|Consulter le solde| B
+    A --&gt;|Changer le code PIN| B
+    C[Technicien] --&gt;|Maintenir le DAB| B
+    D[Banque] --&gt;|Gérer les comptes| B</code></pre>
+        <h3 id="5f61a387-2d02-44ef-a001-0b93d5d68ff9" class="">
+          6.2. Diagramme de classes
+        </h3>
+        <p id="0bf0005e-1c02-4b56-9732-e5adf2b7f5db" class="">
+          Ce diagramme montre la structure statique du système DAB.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="c5138b11-1d76-4b8c-abeb-0c3c50c782b5"
+          class="code"
+        ><code class="language-Mermaid">classDiagram
+    class DAB {
+        -int id
+        -float soldeDisponible
+        +retirerArgent()
+        +verifierSolde()
+        +changerPIN()
+    }
+    class Compte {
+        -int numeroCompte
+        -float solde
+        +debiter()
+        +crediter()
+        +verifierSolde()
+    }
+    class Client {
+        -int id
+        -String nom
+        -int codePIN
+        +authentifier()
+    }
+    class Transaction {
+        -int id
+        -Date date
+        -float montant
+        +enregistrer()
+    }
+    DAB &quot;1&quot; -- &quot;1..*&quot; Compte : gère
+    Client &quot;1&quot; -- &quot;1..*&quot; Compte : possède
+    DAB &quot;1&quot; -- &quot;0..*&quot; Transaction : effectue</code></pre>
+        <h3 id="35974f01-f0f7-4acb-b521-8ed5eca70368" class="">
+          6.3. Diagramme de séquence
+        </h3>
+        <p id="9b4e38ed-14a8-446c-b9ee-8b3a58984eb6" class="">
+          Ce diagramme illustre le processus de retrait d&#x27;argent.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="068c4c2a-1bf7-491f-8714-86e5c4be25dd"
+          class="code"
+        ><code class="language-Mermaid">sequenceDiagram
+    participant Client
+    participant DAB
+    participant Compte
+    participant Transaction
+
+    Client-&gt;&gt;DAB: Insérer carte
+    DAB-&gt;&gt;Client: Demander PIN
+    Client-&gt;&gt;DAB: Entrer PIN
+    DAB-&gt;&gt;Compte: Vérifier PIN
+    Compte--&gt;&gt;DAB: PIN valide
+    DAB-&gt;&gt;Client: Demander montant
+    Client-&gt;&gt;DAB: Entrer montant
+    DAB-&gt;&gt;Compte: Vérifier solde
+    Compte--&gt;&gt;DAB: Solde suffisant
+    DAB-&gt;&gt;Compte: Débiter montant
+    DAB-&gt;&gt;Transaction: Enregistrer transaction
+    DAB-&gt;&gt;Client: Distribuer argent</code></pre>
+        <h3 id="db50b13e-8795-44ba-9aa2-b2fad93e4e68" class="">
+          6.4. Diagramme d&#x27;activité
+        </h3>
+        <p id="ad128c53-f1b4-404c-91d7-6b38a2a69e61" class="">
+          Ce diagramme représente le flux de travail du processus de retrait.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="eee8b1ce-b40a-4d82-950f-ad015979d2a3"
+          class="code"
+        ><code class="language-Mermaid">graph TD
+    A[Début] --&gt; B[Insérer carte]
+    B --&gt; C[Entrer PIN]
+    C --&gt; D{PIN correct?}
+    D --&gt;|Non| E[Afficher erreur]
+    E --&gt; C
+    D --&gt;|Oui| F[Choisir opération]
+    F --&gt; G[Entrer montant]
+    G --&gt; H{Solde suffisant?}
+    H --&gt;|Non| I[Afficher solde insuffisant]
+    I --&gt; F
+    H --&gt;|Oui| J[Distribuer argent]
+    J --&gt; K[Imprimer reçu]
+    K --&gt; L[Fin]</code></pre>
+        <h3 id="e1b1383f-ea5b-4190-8ca7-a0e37d1c4d63" class="">
+          6.5. Diagramme d&#x27;état
+        </h3>
+        <p id="332a74d8-53c5-48e1-9db0-acd640a84a94" class="">
+          Ce diagramme montre les différents états du DAB.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="c19e9f51-b1b9-4518-bbc6-e0ad1d299e2c"
+          class="code"
+        ><code class="language-Mermaid">stateDiagram-v2
+    [*] --&gt; Inactif
+    Inactif --&gt; EnAttente: Carte insérée
+    EnAttente --&gt; Authentifié: PIN correct
+    Authentifié --&gt; TraitementTransaction: Opération sélectionnée
+    TraitementTransaction --&gt; DistributionArgent: Transaction validée
+    DistributionArgent --&gt; Inactif: Argent retiré
+    Authentifié --&gt; Inactif: Annulation/Timeout
+    TraitementTransaction --&gt; Authentifié: Transaction échouée</code></pre>
+        <p id="f39bb589-1331-4f92-80a4-cea25ec7365a" class="">
+          Cet exemple complet du système de distributeur automatique de billets
+          (DAB) illustre comment les différents diagrammes UML peuvent être
+          utilisés ensemble pour modéliser un système complexe sous différents
+          angles. Chaque diagramme apporte une perspective unique sur le
+          fonctionnement et la structure du système.
+        </p>
+        <h2 id="6abe3c0b-0c79-47d2-a4bd-19b40868ae43" class="">
+          7. Exemple : Système de gestion de formation numérique
+        </h2>
+        <p id="74e035b6-d0cd-452c-a81b-0b8b08eea00f" class="">
+          Voici un exemple détaillé d&#x27;un système de gestion de formation
+          numérique utilisant les diagrammes UML pour illustrer les différents
+          aspects du système.
+        </p>
+        <h3 id="5cdcdf86-23ed-47c0-894e-9c20fc4225de" class="">
+          7.1. Diagramme de cas d&#x27;utilisation
+        </h3>
+        <p id="0551893e-aabb-4fae-b0f5-d495e1bfd978" class="">
+          Ce diagramme montre les interactions entre les différents acteurs et
+          le système de formation numérique.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="72db8c98-8b85-4eba-a7a2-91228fe5d4df"
+          class="code"
+        ><code class="language-Mermaid">graph TD
+    A[Étudiant] --&gt;|Consulte l&#x27;agenda| B((Système de formation))
+    A --&gt;|Accède aux outils logiciels| B
+    A --&gt;|Soumet des travaux| B
+    C[Professeur] --&gt;|Planifie les cours| B
+    C --&gt;|Évalue les travaux| B
+    D[Administrateur] --&gt;|Gère les comptes| B
+    D --&gt;|Configure les outils| B
+    E[Professionnel invité] --&gt;|Participe à des sessions| B</code></pre>
+        <h3 id="72ee1050-7201-4ae5-a4d8-378c39deb468" class="">
+          7.2. Diagramme de classes
+        </h3>
+        <p id="914ac754-8bf5-440f-8ff8-65b6880cfe79" class="">
+          Ce diagramme représente la structure statique du système de formation
+          numérique.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="9c08c669-2f36-41f5-b3c7-de9a9c6e70c0"
+          class="code"
+        ><code class="language-Mermaid">classDiagram
+    class Utilisateur {
+        -int id
+        -String nom
+        -String email
+        +seConnecter()
+        +seDeconnecter()
+    }
+    class Etudiant {
+        +consulterAgenda()
+        +accederOutils()
+        +soumettreTravail()
+    }
+    class Professeur {
+        +planifierCours()
+        +evaluerTravail()
+    }
+    class Administrateur {
+        +gererComptes()
+        +configurerOutils()
+    }
+    class Cours {
+        -int id
+        -String titre
+        -Date date
+        +ajouterParticipant()
+        +supprimerParticipant()
+    }
+    class OutilLogiciel {
+        -int id
+        -String nom
+        -String version
+        +lancer()
+        +fermer()
+    }
+    Utilisateur &lt;|-- Etudiant
+    Utilisateur &lt;|-- Professeur
+    Utilisateur &lt;|-- Administrateur
+    Etudiant &quot;1..*&quot; -- &quot;0..*&quot; Cours : participe
+    Professeur &quot;1&quot; -- &quot;1..*&quot; Cours : enseigne
+    Cours &quot;1&quot; -- &quot;0..*&quot; OutilLogiciel : utilise</code></pre>
+        <h3 id="4224cfc4-61bb-4487-a2dd-a6ef4854c978" class="">
+          7.3. Diagramme de séquence
+        </h3>
+        <p id="59dd739f-7833-46fe-b85e-2ea8c9e398f2" class="">
+          Ce diagramme illustre le processus de connexion et d&#x27;accès aux
+          outils de formation.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="a5f092ae-a2fe-4e17-b932-38ff579c91dd"
+          class="code"
+        ><code class="language-Mermaid">sequenceDiagram
+    participant U as Utilisateur
+    participant S as Système
+    participant A as Agenda
+    participant O as OutilLogiciel
+
+    U-&gt;&gt;S: Se connecter
+    S-&gt;&gt;U: Demander identifiants
+    U-&gt;&gt;S: Fournir identifiants
+    S-&gt;&gt;S: Vérifier identifiants
+    S-&gt;&gt;U: Connexion réussie
+    U-&gt;&gt;S: Demander agenda
+    S-&gt;&gt;A: Récupérer agenda
+    A--&gt;&gt;S: Renvoyer agenda
+    S-&gt;&gt;U: Afficher agenda
+    U-&gt;&gt;S: Demander accès outil
+    S-&gt;&gt;O: Vérifier autorisation
+    O--&gt;&gt;S: Autorisation confirmée
+    S-&gt;&gt;O: Lancer outil
+    O--&gt;&gt;U: Outil prêt à l&#x27;utilisation</code></pre>
+        <h3 id="d0194deb-b505-4b9f-9df8-69593771daa4" class="">
+          7.4. Diagramme d&#x27;activité
+        </h3>
+        <p id="3500c85f-e99a-49c1-9a75-e5ed44422da9" class="">
+          Ce diagramme représente le flux de travail pour un étudiant
+          participant à un cours en ligne.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="7aa39756-04e9-46f5-8df2-4214ba5547ff"
+          class="code"
+        ><code class="language-Mermaid">graph TD
+    A[Début] --&gt; B[Se connecter au système]
+    B --&gt; C[Consulter l&#x27;agenda]
+    C --&gt; D[Sélectionner un cours]
+    D --&gt; E[Accéder aux ressources du cours]
+    E --&gt; F[Lancer les outils nécessaires]
+    F --&gt; G[Participer au cours]
+    G --&gt; H[Réaliser les exercices]
+    H --&gt; I[Soumettre le travail]
+    I --&gt; J[Se déconnecter]
+    J --&gt; K[Fin]</code></pre>
+        <h3 id="32caf483-6e1d-48ba-af59-65b6aa0bb4a1" class="">
+          7.5. Diagramme d&#x27;état
+        </h3>
+        <p id="00f8165a-3b5d-4b8b-a330-0c569254e54f" class="">
+          Ce diagramme montre les différents états d&#x27;une session
+          utilisateur dans le système de formation.
+        </p>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+          integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+          integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <pre
+          id="12e061c9-a8cf-4e3d-ad8a-ec00928f0ab2"
+          class="code"
+        ><code class="language-Mermaid">stateDiagram-v2
+    [*] --&gt; NonConnecte
+    NonConnecte --&gt; EnAttente: Saisie identifiants
+    EnAttente --&gt; Authentifie: Identifiants valides
+    EnAttente --&gt; NonConnecte: Identifiants invalides
+    Authentifie --&gt; ConsultationAgenda: Accès agenda
+    Authentifie --&gt; UtilisationOutil: Lancement outil
+    ConsultationAgenda --&gt; UtilisationOutil: Sélection cours
+    UtilisationOutil --&gt; SoumissionTravail: Fin exercice
+    SoumissionTravail --&gt; Authentifie: Travail soumis
+    Authentifie --&gt; NonConnecte: Déconnexion
+    NonConnecte --&gt; [*]</code></pre>
+        <p id="525e3acb-9bef-4060-b4b3-8c5a2d9a411a" class=""></p>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>

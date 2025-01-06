@@ -1,0 +1,5207 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CCNA - 4</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI Variable Display", "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-default_background {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-default_background {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-transparentGray {
+        background-color: rgba(227, 226, 224, 0);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="e3587ef0-6219-4aab-ac48-39d0ba8e5151" class="page sans">
+      <header>
+        <h1 class="page-title">CCNA - 4</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            1. WAN (Wide Area Network) Technologies
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-8041-ab26-e8b9d60ea691" class="">
+              <strong
+                >1.1 Comprendre les différents types de connexions WAN</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-80c9-833b-fdafd36c49c1" class="">
+              Les <strong>connexions WAN</strong> permettent de relier
+              différents réseaux locaux (LAN) sur de longues distances. Elles
+              peuvent être mises en place à l&#x27;aide de diverses technologies
+              en fonction des besoins de performance, de coût, et de couverture
+              géographique.
+            </p>
+            <h3 id="15184eed-7b66-806a-86a4-e6066ab67f4b" class="">
+              <strong>Types de connexions WAN courantes</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-800a-bac5-cd4a27159d86"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Connexions Internet (haut débit)</strong> :
+                <ul
+                  id="15184eed-7b66-8069-bb3e-f9c5b7505776"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisation de la technologie
+                    <strong>ADSL</strong> (Asymmetric Digital Subscriber Line)
+                    ou <strong>fibres optiques</strong> pour fournir une
+                    connectivité large bande aux sites distants.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8084-a8ef-c23fa4f627dd"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Connexion par VPN (Virtual Private Network) pour garantir la
+                    sécurité et la confidentialité sur un réseau public.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80c4-a045-d08bb0bcb074"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Idéale pour les petites et moyennes entreprises qui ne
+                    nécessitent pas des performances extrêmement élevées.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-808e-b9b9-d687b0b3ea32"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Liaisons louées (Leased Lines)</strong> :
+                <ul
+                  id="15184eed-7b66-80c5-992e-d5f7c01e0036"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Liaisons dédiées entre deux sites via des connexions point à
+                    point, offrant une bande passante constante et fiable.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80b1-a777-fe5baac097d3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Souvent utilisées par les grandes entreprises pour des
+                    connexions critiques.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8034-b481-e17a8ca07ac5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple : <strong>E1</strong>, <strong>T1</strong>, ou
+                    <strong>MPLS</strong> (Multiprotocol Label Switching).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80e4-a797-cee0986ac1b7"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Frame Relay</strong> :
+                <ul
+                  id="15184eed-7b66-805d-8e19-fb1b587690b3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Ancienne technologie WAN utilisée pour la transmission de
+                    données via des circuits virtuels.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-806b-bb5a-dd929b3011e8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisée principalement pour la connexion de sites distants
+                    via des commutateurs de données.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8074-bbda-c4d55225b116"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>MPLS (Multiprotocol Label Switching)</strong> :
+                <ul
+                  id="15184eed-7b66-80a2-b462-d0023706e39f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Technologie de routage avancée qui améliore la gestion du
+                    trafic en dirigeant les paquets à l&#x27;aide de labels
+                    plutôt qu&#x27;en utilisant des tables de routage
+                    traditionnelles.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8069-9920-da17f430bf52"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet une gestion plus efficace du trafic, une meilleure
+                    qualité de service (QoS), et est souvent utilisée pour la
+                    connectivité de sites d&#x27;entreprise.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ad-b287-de5acecda53b"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>VPN (Virtual Private Network)</strong> :
+                <ul
+                  id="15184eed-7b66-802c-97ff-d579b29dc081"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Connexion sécurisée sur un réseau public (généralement
+                    l&#x27;Internet) pour simuler un réseau privé. Les VPN
+                    peuvent utiliser des technologies comme
+                    <strong>IPSec</strong>, <strong>SSL</strong>, ou
+                    <strong>MPLS</strong> pour assurer la confidentialité et la
+                    sécurité des données.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-805c-896f-ef48b4d60b3a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisés pour connecter des sites distants de manière
+                    sécurisée ou pour permettre aux employés de travailler à
+                    distance.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8010-9821-c4274d9a4cd4"
+              class="numbered-list"
+              start="6"
+            >
+              <li>
+                <strong>Connexions satellite</strong> :
+                <ul
+                  id="15184eed-7b66-805c-adb4-e6b2be26e07f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisées dans des zones géographiques reculées où d’autres
+                    types de connexions WAN ne sont pas disponibles.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-804e-ac45-c24dfafa06b1"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Bien que cela offre une couverture étendue, la latence peut
+                    être plus élevée.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-8096-a15c-cfb903b6f603" class="">
+              <strong
+                >1.2 Connaître les protocoles WAN courants (PPP, Frame Relay,
+                etc.)</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-80b1-bfdf-d4e8cd08dbe1" class="">
+              Les <strong>protocoles WAN</strong> définissent les règles de
+              communication entre les équipements sur un réseau étendu. Il en
+              existe plusieurs, chacun ayant des caractéristiques spécifiques
+              adaptées à différentes architectures de réseau et besoins de
+              performance.
+            </p>
+            <h3 id="15184eed-7b66-80f3-9f29-f47be0a8c515" class="">
+              <strong>Principaux protocoles WAN</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8088-897f-c82a035f9f75"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>PPP (Point-to-Point Protocol)</strong> :
+                <ul
+                  id="15184eed-7b66-80b0-bd64-ed2acd98012b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>PPP</strong> est un protocole de liaison de données
+                    qui permet d&#x27;établir une connexion point à point entre
+                    deux équipements réseau (comme un routeur et un modem).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8095-afb2-e855ab24abe4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisé dans les connexions dial-up, les lignes louées et
+                    les VPN.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80a9-82f4-c09dc3a8a7d3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Caractéristiques</strong> :
+                    <ul
+                      id="15184eed-7b66-80cc-92dd-c9c31aac5eff"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Authentication (PAP, CHAP).
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-8088-aa1e-e3b81b73b3b6"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Encapsulation de différents protocoles de couche réseau
+                        (IP, IPX).
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-805f-81c6-c91dfaab3203"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Compression et gestion des erreurs.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-806f-a989-d773c9e9724e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple de configuration :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8098-bbad-da70f7a14d58"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8015-ab77-d52536717211" class="">
+                          interface Serial0<br />ppp chap chap-name<br />ppp pap
+                          pap-name<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8075-ba15-ca306ab81e60"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Frame Relay</strong> :
+                <ul
+                  id="15184eed-7b66-8034-a7ea-f28edbd6febc"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Frame Relay</strong> est un protocole de commutation
+                    de paquets conçu pour transmettre des données entre des
+                    sites distants sur des circuits virtuels.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80d2-8fed-e53d66726551"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Il utilise des
+                    <strong>DLCI (Data Link Connection Identifiers)</strong>
+                    pour identifier les circuits logiques entre les équipements
+                    de réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-800b-91a0-e3b0c1e7c81c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Il est moins coûteux que les liaisons louées, mais offre une
+                    bande passante partagée, ce qui peut affecter les
+                    performances.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80d5-bf38-da47810eaab5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Caractéristiques</strong> :
+                    <ul
+                      id="15184eed-7b66-80c1-9ca6-cc04132b67c8"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Fonctionne généralement à des débits plus faibles.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-80b9-a33a-d27f72c2b81a"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Moins de surcharge pour les petits réseaux et
+                        applications de faible bande passante.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8051-a978-d9902151e02e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple de configuration :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8058-a398-d14619b7e4eb"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80c8-b2a1-de2eabb5e323" class="">
+                          interface Serial0<br />encapsulation frame-relay<br />frame-relay
+                          map ip 192.168.1.1 102<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8054-a5ca-c6afb621c12f"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>HDLC (High-Level Data Link Control)</strong> :
+                <ul
+                  id="15184eed-7b66-80aa-ab7d-d5d2aecf44e2"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>HDLC</strong> est un protocole de communication en
+                    mode synchronisé, principalement utilisé pour les liaisons
+                    point-à-point.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8096-9df8-da77a4e24d58"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Bien que <strong>HDLC</strong> soit similaire à
+                    <strong>PPP</strong>, il ne dispose pas des options
+                    d&#x27;authentification et de négociation que PPP offre.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80f4-94e0-d2a81a9c473a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Il est souvent utilisé sur les liaisons série entre les
+                    équipements Cisco.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80ba-8a11-ccfd2173e7a0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Caractéristiques</strong> :
+                    <ul
+                      id="15184eed-7b66-80ab-9b05-f4fa9182a578"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Moins de surcharge que PPP (mais sans les avantages
+                        comme l&#x27;authentification).
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80e9-9f59-fbcc9bae3a5b"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>MPLS (Multiprotocol Label Switching)</strong> :
+                <ul
+                  id="15184eed-7b66-8076-aeb1-c12f292e5099"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>MPLS</strong> est une technologie de routage qui
+                    améliore l&#x27;acheminement du trafic réseau par le biais
+                    de labels plutôt que d&#x27;adresses IP.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8050-981c-df5b52888129"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Elle permet une gestion plus rapide et plus efficace du
+                    trafic réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80ad-9b8a-f656d405e6c4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisée dans les architectures WAN modernes, elle améliore
+                    la gestion de la qualité de service (QoS) et assure une
+                    meilleure performance des applications.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-80e3-b4e6-dff64b69347a" class="">
+              <strong
+                >1.3 Savoir configurer et dépanner les connexions WAN</strong
+              >
+            </h2>
+            <h3 id="15184eed-7b66-8037-b945-d666413de8ea" class="">
+              <strong>Configuration des connexions WAN</strong> :
+            </h3>
+            <ul id="15184eed-7b66-801f-a3e9-d0e1979a5086" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Configuration de PPP</strong> sur un routeur Cisco :
+                <ol
+                  type="1"
+                  id="15184eed-7b66-803c-a3f5-fc746e23fe0e"
+                  class="numbered-list"
+                  start="1"
+                >
+                  <li>
+                    <strong>Configurer l&#x27;interface</strong> en mode PPP :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8035-bffe-c0cacfa9c989"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80ce-abca-e1e86d05500a" class="">
+                          interface Serial0<br />encapsulation ppp<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ol>
+                <ol
+                  type="1"
+                  id="15184eed-7b66-8001-969a-c6af68153091"
+                  class="numbered-list"
+                  start="2"
+                >
+                  <li>
+                    <strong
+                      >Configurer les protocoles d&#x27;authentification</strong
+                    >
+                    :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-804a-a3d8-c8f19d2bb268"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8097-8147-f1e0d2826461" class="">
+                          ppp chap chap-name<br />ppp pap pap-name<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ol>
+                <ol
+                  type="1"
+                  id="15184eed-7b66-8005-9eee-fa6ed403f526"
+                  class="numbered-list"
+                  start="3"
+                >
+                  <li>
+                    <strong>Configurer les adresses IP</strong> :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8079-b498-d907a5caa9f4"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-805d-bf63-dee460519da4" class="">
+                          ip address 192.168.1.1 255.255.255.0
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ol>
+                <ol
+                  type="1"
+                  id="15184eed-7b66-8087-94b5-edf8535615cd"
+                  class="numbered-list"
+                  start="4"
+                >
+                  <li>
+                    <strong>Activer l&#x27;interface</strong> :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8042-a5e6-c0cbe6ff2252"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80f5-ad31-d6f59ba33824" class="">
+                          no shutdown
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ol>
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-8001-a4f7-de8d2a1739b0" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Configuration de Frame Relay</strong> :
+                <ol
+                  type="1"
+                  id="15184eed-7b66-801d-b82a-d5259e4bf338"
+                  class="numbered-list"
+                  start="1"
+                >
+                  <li>
+                    <strong>Configurer l&#x27;encapsulation Frame Relay</strong>
+                    :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80bd-a3b5-ea95a6581d8b"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80dd-bb6b-f40c3964a519" class="">
+                          interface Serial0<br />encapsulation frame-relay<br />frame-relay
+                          map ip 192.168.1.1 102<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ol>
+                <ol
+                  type="1"
+                  id="15184eed-7b66-8058-81a8-c42330fb090f"
+                  class="numbered-list"
+                  start="2"
+                >
+                  <li>
+                    <strong>Définir le DLCI</strong> :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80ca-ab05-f788e445b5d4"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-809a-a351-dc97ae24f408" class="">
+                          frame-relay interface-dlci 102
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ol>
+              </li>
+            </ul>
+            <h3 id="15184eed-7b66-8097-8943-e1d533a77621" class="">
+              <strong>Dépannage des connexions WAN</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-800f-b076-dfab7fe97cdd"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Vérifier l&#x27;état de l&#x27;interface</strong> :
+                <ul
+                  id="15184eed-7b66-8091-9629-c507d51fbe8f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisez la commande <code>show interfaces</code> pour
+                    vérifier l&#x27;état de l&#x27;interface WAN et l’état de la
+                    liaison.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8010-b440-d5e77ebeacd4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80fb-93f9-fb77f997c160"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8056-bb36-d2d5aedfb8be" class="">
+                          show interfaces serial 0
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80de-991b-df8db2ac30ab"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Vérifier les erreurs de transmission</strong> :
+                <ul
+                  id="15184eed-7b66-80c2-83f1-eac7694a7a34"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Vérifiez les erreurs de transmission comme les CRC, les
+                    collisions, ou les problèmes de synchronisation.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80c0-bf7e-e0d6b53cf0da"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8041-8762-eeff4d203cac"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8038-b7a0-ea3d1ae3211a" class="">
+                          show controllers serial 0
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80cb-85fe-ff5bc55012ad"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Test de connectivité</strong> :
+                <ul
+                  id="15184eed-7b66-8007-b82e-fbd457dbcf0a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Ping</strong> : Testez la connectivité entre les
+                    périphériques via des tests de ping.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-809c-92c5-ca2b2a8af448"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-800f-bc04-ef04fe3fb6b7"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8090-ba19-f1b42218d28d" class="">
+                          ping 192.168.1.1
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-805e-a89f-ed6216efa97e"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong
+                  >Résoudre les problèmes de protocole de communication</strong
+                >
+                :
+                <ul
+                  id="15184eed-7b66-80b6-a49b-c9a0cbfd73bb"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Si l’interface ne fonctionne pas, vérifiez les paramètres de
+                    protocole (PPP, Frame Relay) et assurez-vous qu&#x27;ils
+                    sont correctement configurés.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8014-ad77-cc4d3d87faa8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisez la commande <code>debug</code> pour analyser plus
+                    en profondeur les problèmes avec PPP ou Frame Relay.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8093-9c5c-c435c16441ba"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple pour PPP :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-808c-8579-e264aa29b1c7"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-8017-94bc-ec65c64ad1c2" class="">
+                          debug ppp negotiation
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            2. Réseaux d&#x27;entreprise
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-80fb-aea9-f288ceb32ceb" class="">
+              <strong
+                >2.1 Conception et mise en œuvre de réseaux d&#x27;entreprise
+                complexes</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-80d5-94c4-ff13bbc21792" class="">
+              La
+              <strong>conception d&#x27;un réseau d&#x27;entreprise</strong>
+              repose sur la mise en place d&#x27;une infrastructure réseau
+              robuste, capable de répondre aux besoins de communication, de
+              collaboration, et d&#x27;accès aux données de l&#x27;organisation,
+              tout en garantissant la sécurité et la gestion efficace du trafic.
+            </p>
+            <h3 id="15184eed-7b66-80d2-9782-fddbf684dcd9" class="">
+              <strong
+                >Éléments clés de la conception d&#x27;un réseau
+                d&#x27;entreprise</strong
+              >
+              :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80e8-99cd-e82c4cb6d078"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Topologie du réseau</strong> :
+                <ul
+                  id="15184eed-7b66-807d-9642-d12c1243d55b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    La <strong>topologie</strong> définit la manière dont les
+                    équipements sont interconnectés. Pour les réseaux
+                    d&#x27;entreprise, les topologies courantes sont :
+                    <ul
+                      id="15184eed-7b66-8050-b8ab-d2e1d813dd7a"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Topologie en étoile</strong> : Chaque
+                        périphérique se connecte à un commutateur central.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-80f0-b906-f23aa8cb8774"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Topologie en arbre</strong> : Plusieurs
+                        commutateurs sont interconnectés en une structure
+                        hiérarchique.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-80b1-9ff7-fc441b0e7dbf"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Topologie en maillage</strong> : Connexions
+                        redondantes entre tous les équipements pour garantir une
+                        haute disponibilité.
+                      </li>
+                    </ul>
+                    <ul
+                      id="15184eed-7b66-80af-8936-f49df356ac37"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        <strong>Topologie hybride</strong> : Combinaison de
+                        plusieurs topologies pour optimiser la résilience et la
+                        performance.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8049-82ca-c6634e59b142"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Commutateurs et routeurs</strong> :
+                <ul
+                  id="15184eed-7b66-80a4-b270-f02570445759"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Commutateurs (Switches)</strong> : Permettent la
+                    commutation de paquets dans un réseau local (LAN). Ils
+                    interconnectent les ordinateurs, serveurs et périphériques
+                    de l’entreprise.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8024-9841-e46c1e7bdfaf"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Routeurs</strong> : Assurent le routage entre
+                    différents réseaux (LAN, WAN, Internet). Ils gèrent
+                    l&#x27;acheminement des paquets d&#x27;une entreprise à un
+                    autre site distant.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-809c-a7e0-fa30b37a12de"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Liaisons WAN et LAN</strong> :
+                <ul
+                  id="15184eed-7b66-8019-98a1-e4eb078190e1"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le réseau <strong>WAN</strong> permet de connecter les
+                    différents sites de l’entreprise (sites distants,
+                    datacenters, etc.).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8002-91c1-d54cf76d1e9d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le réseau <strong>LAN</strong> gère les communications
+                    internes entre les utilisateurs sur un même site.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8057-97b2-c8f22bdd793e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    La connectivité entre LAN et WAN peut être assurée via des
+                    technologies comme MPLS, VPNs, ou des liaisons louées.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8035-9df1-f8fbab547755"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Gestion des adresses IP</strong> :
+                <ul
+                  id="15184eed-7b66-807a-8c26-dba1ca596502"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    La <strong>planification des adresses IP</strong> doit être
+                    structurée pour éviter les conflits et assurer une
+                    communication fluide. Cela inclut la gestion de la
+                    <strong
+                      >plage d&#x27;adresses IP publiques et privées</strong
+                    >, ainsi que la configuration de
+                    <strong>sous-réseaux</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8033-ade8-d775493ccb31"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Sécurité réseau</strong> :
+                <ul
+                  id="15184eed-7b66-800e-8f53-fb9df8ad22df"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    La sécurité est essentielle dans la conception d&#x27;un
+                    réseau d&#x27;entreprise pour protéger les données et les
+                    ressources de l’entreprise. Cela implique l’utilisation de
+                    <strong>pare-feux</strong>, de
+                    <strong>listes de contrôle d’accès (ACL)</strong>, de
+                    <strong>systèmes de détection d’intrusion (IDS/IPS)</strong
+                    >, et d&#x27;<strong>authentification forte</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-802f-961a-f4f83341ac8a"
+              class="numbered-list"
+              start="6"
+            >
+              <li>
+                <strong>Performances et QoS</strong> :
+                <ul
+                  id="15184eed-7b66-8054-b398-f47e1a13fed4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Il est important de mettre en œuvre des mécanismes de
+                    gestion de la <strong>qualité de service (QoS)</strong> pour
+                    garantir des performances optimales, surtout pour les
+                    applications critiques (VoIP, vidéo, etc.).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-8038-b1f9-fbe0f0865c05" class="">
+              <strong>2.2 Comprendre les concepts de hiérarchie réseau</strong>
+            </h2>
+            <p id="15184eed-7b66-8050-87f5-f9dc375f7206" class="">
+              La <strong>hiérarchie du réseau</strong> dans une entreprise est
+              un concept qui permet de structurer le réseau de manière logique,
+              en fonction de la taille et de la complexité des opérations de
+              l’entreprise. Une hiérarchie bien pensée améliore la gestion, le
+              dépannage et l&#x27;évolutivité du réseau.
+            </p>
+            <h3 id="15184eed-7b66-8015-b89f-d5b949cc4a96" class="">
+              <strong>Niveaux de la hiérarchie du réseau</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80cd-9f49-d08e35a419f8"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Couche d&#x27;accès (Access Layer)</strong> :
+                <ul
+                  id="15184eed-7b66-80d7-8af0-c4178c88891e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    C&#x27;est le point d&#x27;entrée pour les périphériques
+                    utilisateurs (ordinateurs, imprimantes, etc.) dans le
+                    réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-808b-a50b-cf4ceff8ab89"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les commutateurs de <strong>couche 2</strong> sont souvent
+                    utilisés pour connecter directement les appareils aux
+                    ressources du réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80a0-aeb9-e855a07753cd"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    L&#x27;objectif est de fournir un accès rapide aux
+                    utilisateurs tout en isolant les segments de réseau et en
+                    appliquant des politiques de sécurité et de gestion.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-807b-9ad0-e483ad2c3668"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Couche de distribution (Distribution Layer)</strong> :
+                <ul
+                  id="15184eed-7b66-802c-a190-d2136bf4df4c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Elle assure le
+                    <strong>routage entre les sous-réseaux</strong> et permet
+                    l&#x27;agrégation du trafic des différentes couches
+                    d&#x27;accès.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8004-a162-f504c577a9bb"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    C&#x27;est également ici que sont appliquées les politiques
+                    de sécurité avancées (pare-feux, ACLs) et que les réseaux
+                    peuvent être connectés à des réseaux externes (Internet,
+                    WAN).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8056-aba6-cdda540ad85a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les commutateurs et routeurs de
+                    <strong>couche 3</strong> sont utilisés pour cette couche,
+                    permettant l&#x27;acheminement du trafic entre les
+                    différents segments de réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8050-97ce-d81ffe63540e"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Couche de noyau (Core Layer)</strong> :
+                <ul
+                  id="15184eed-7b66-8015-9f32-ed42294a08eb"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    C&#x27;est la couche centrale du réseau, responsable du
+                    <strong>routage à haute vitesse</strong> et de la gestion
+                    des <strong>liens WAN</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-806f-8fd5-dc4058c410e4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    La couche de noyau connecte tous les autres niveaux du
+                    réseau et assure un haut niveau de résilience et de
+                    disponibilité.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80a7-bef9-fdee2abf007e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Elle est composée d&#x27;équipements
+                    <strong>haut de gamme</strong>, comme des routeurs très
+                    performants, qui assurent une bande passante optimale.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80dc-b126-ca750387757d"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Couche de gestion et d&#x27;intégration</strong> :
+                <ul
+                  id="15184eed-7b66-80d3-9764-cad4109c5a91"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Ce niveau inclut les outils de
+                    <strong>surveillance</strong>, de
+                    <strong>gestion</strong> et d&#x27;<strong
+                      >automatisation</strong
+                    >
+                    qui permettent aux administrateurs de superviser et de gérer
+                    l&#x27;ensemble du réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-806d-87c7-f8d91f1acd05"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Cela inclut des
+                    <strong>systèmes de gestion réseau (NMS)</strong> pour
+                    assurer la sécurité, le monitoring et la gestion des
+                    configurations.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-8008-9d61-ebdd80fccd96" class="">
+              <strong
+                >2.3 Maîtriser la redondance et la haute disponibilité</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-8011-a408-c5ab8dde01a3" class="">
+              La <strong>redondance</strong> et la
+              <strong>haute disponibilité (HA)</strong> sont essentielles pour
+              garantir que le réseau d&#x27;entreprise reste fonctionnel même en
+              cas de défaillance d&#x27;un composant. Ces stratégies permettent
+              de minimiser les interruptions et d&#x27;assurer la continuité des
+              services critiques.
+            </p>
+            <h3 id="15184eed-7b66-80f8-bf3b-e1d75f218d8b" class="">
+              <strong
+                >Concepts clés de redondance et haute disponibilité</strong
+              >
+              :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8051-a15e-d878ca5b4630"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Redondance des liens</strong> :
+                <ul
+                  id="15184eed-7b66-8003-8f2b-f7daadb9d726"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Mettre en place des <strong>liens redondants</strong> entre
+                    les sites et les équipements clés pour assurer la continuité
+                    en cas de panne d&#x27;un lien.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8073-8b44-ddba8cfb9c41"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    L&#x27;utilisation de
+                    <strong>protocoles de routage dynamique</strong> (comme OSPF
+                    ou EIGRP) permet de rediriger le trafic automatiquement en
+                    cas de défaillance d&#x27;un lien.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80b8-aa39-cadc16cf0c27"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Redondance des équipements</strong> :
+                <ul
+                  id="15184eed-7b66-80e1-8475-dea9c29ea503"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Disposer de
+                    <strong>matériel redondant</strong> (commutateurs, routeurs,
+                    serveurs) permet de minimiser les risques liés à la panne
+                    d&#x27;un composant critique.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8016-a8c3-edaf2028df62"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Par exemple, les <strong>commutateurs en pile</strong> ou
+                    les
+                    <strong>serveurs avec des disques durs en miroir</strong>
+                    (RAID) assurent la disponibilité des ressources.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8030-917a-d3e1c34029db"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Protocole Spanning Tree (STP)</strong> :
+                <ul
+                  id="15184eed-7b66-8069-83c8-f5271a632a2b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>STP</strong> permet de prévenir les
+                    <strong>boucles de commutation</strong> dans les réseaux de
+                    commutateurs en activant des liens de secours lorsque les
+                    liens principaux échouent.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80a6-9676-d5b66d59d53f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Des variantes comme
+                    <strong>RSTP (Rapid Spanning Tree Protocol)</strong> ou
+                    <strong>MSTP (Multiple Spanning Tree Protocol)</strong>
+                    permettent d&#x27;améliorer la rapidité et la flexibilité du
+                    processus de reconvergence du réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-804a-a4fb-d2e0b9666dd5"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Virtualisation des services</strong> :
+                <ul
+                  id="15184eed-7b66-8037-a7e3-ff6446d930d3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>VRRP (Virtual Router Redundancy Protocol)</strong>
+                    ou <strong>HSRP (Hot Standby Router Protocol)</strong> sont
+                    des protocoles utilisés pour fournir une
+                    <strong>redondance de passerelle</strong> et garantir que le
+                    trafic peut être redirigé vers un autre routeur si le
+                    routeur principal tombe en panne.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8019-8e1e-fe1f92b587c7"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Serveurs DNS redondants</strong> :
+                <ul
+                  id="15184eed-7b66-8035-aa3e-cf534b4cf3cb"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Mettre en place plusieurs serveurs
+                    <strong>DNS redondants</strong> permet d&#x27;assurer que
+                    les requêtes DNS sont traitées même en cas de défaillance
+                    d’un serveur DNS principal.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8037-a7bd-fff015878d6d"
+              class="numbered-list"
+              start="6"
+            >
+              <li>
+                <strong>Gestion de la disponibilité des applications</strong> :
+                <ul
+                  id="15184eed-7b66-80fd-b9ab-d135f0bce04c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Mettre en œuvre des solutions de
+                    <strong>réplication des applications</strong> et de
+                    <strong>basculabilité automatique</strong> (auto-scaling)
+                    sur les serveurs pour éviter des pannes d’application
+                    critiques, surtout pour les services web et les bases de
+                    données.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80e9-b426-e60cd5972a7c"
+              class="numbered-list"
+              start="7"
+            >
+              <li>
+                <strong>Surveillance continue</strong> :
+                <ul
+                  id="15184eed-7b66-8064-9e42-e2d50e9d8c19"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    L&#x27;<strong
+                      >utilisation de systèmes de monitoring</strong
+                    >
+                    avancés permet de détecter rapidement les problèmes de
+                    disponibilité et de prendre des mesures pour y remédier
+                    avant qu&#x27;ils n&#x27;affectent l&#x27;ensemble du
+                    réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            3. Sécurité réseau
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-8072-bf80-e75601642fb8" class="">
+              <strong>3.1 Connaître les menaces de sécurité courantes</strong>
+            </h2>
+            <p id="15184eed-7b66-80df-bbea-eda3434c213f" class="">
+              Les menaces de sécurité réseau sont variées et en constante
+              évolution. Les professionnels de la sécurité réseau doivent être
+              capables de détecter, analyser et se défendre contre ces menaces
+              pour maintenir un environnement sécurisé.
+            </p>
+            <h3 id="15184eed-7b66-80f4-9cb4-f8f76ac020e6" class="">
+              <strong>Types de menaces courantes</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8082-8171-fc5567452996"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Malwares (logiciels malveillants)</strong> :
+                <ul
+                  id="15184eed-7b66-8008-844f-d9cd5afbef04"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Virus</strong> : Programmes capables de se répliquer
+                    et infecter d&#x27;autres systèmes.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80fe-a6a4-e790835d2924"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Vers</strong> : Malwares autonomes qui se propagent
+                    sans intervention humaine.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-805c-804b-eaddf6aa4976"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Trojan (chevaux de Troie)</strong> : Malwares
+                    déguisés en programmes légitimes pour infecter les systèmes
+                    à l&#x27;insu de l&#x27;utilisateur.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80a1-a959-e405e94983fa"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Ransomware</strong> : Malware qui chiffre les
+                    fichiers d&#x27;un utilisateur et demande une rançon pour
+                    les débloquer.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80d6-a5f7-f7bd85541abb"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Attaques par déni de service (DoS/DDoS)</strong> :
+                <ul
+                  id="15184eed-7b66-803e-ad58-e9044cf5c13e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>DoS</strong> (Denial of Service) vise à rendre un
+                    système, un serveur ou un réseau indisponible en
+                    l&#x27;inondant de requêtes.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-800f-affa-e81e3b4d3771"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>DDoS</strong> (Distributed Denial of Service)
+                    utilise plusieurs machines pour amplifier l&#x27;attaque,
+                    rendant la défense plus difficile.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8009-b59e-e8e7786b7221"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Intrusions et piratage</strong> :
+                <ul
+                  id="15184eed-7b66-803b-80f7-caf2e3f7d568"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Phishing</strong> : Attaque de type
+                    &quot;hameçonnage&quot; où les attaquants cherchent à
+                    obtenir des informations personnelles ou professionnelles
+                    par des faux messages (emails, sites web, etc.).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80ad-93b2-c2f4f1c58f1a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Exploitation des vulnérabilités</strong> : Les
+                    attaquants profitent de failles dans les systèmes ou
+                    applications pour accéder à des données sensibles.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80b3-b8fa-d818342be377"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Exploitation des mots de passe faibles</strong> :
+                    Les attaques de force brute ou par dictionnaire sont
+                    utilisées pour deviner des mots de passe simples ou communs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80f8-b79b-c8c9eabbbd71"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Spyware et Keyloggers</strong> :
+                <ul
+                  id="15184eed-7b66-8007-bc95-feee1b11e23f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Spyware</strong> : Logiciel malveillant qui collecte
+                    discrètement des informations sur l&#x27;utilisateur
+                    (données personnelles, historiques de navigation).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80a0-9505-ec3e4f98f4b6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Keyloggers</strong> : Enregistre les frappes au
+                    clavier pour capturer des informations sensibles telles que
+                    des mots de passe.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8093-b0dc-f664ade64003"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Exploitation des protocoles réseau</strong> :
+                <ul
+                  id="15184eed-7b66-804c-941f-dc3b5e134362"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Attaques de man-in-the-middle (MITM)</strong> :
+                    L&#x27;attaquant intercepte ou modifie les communications
+                    entre deux parties sans que celles-ci s&#x27;en aperçoivent.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-807a-94e5-f9f2e9f8b63e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>ARP Spoofing</strong> : Technique utilisée pour
+                    associer une adresse MAC incorrecte à une adresse IP
+                    légitime, perturbant ainsi le trafic réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-809d-8ec8-cdc5d28369bd" class="">
+              <strong
+                >3.2 Savoir mettre en place des politiques de sécurité</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-80b1-98c1-ccf31c15753d" class="">
+              Les <strong>politiques de sécurité</strong> sont essentielles pour
+              définir les règles, les pratiques et les mesures préventives à
+              mettre en place dans l&#x27;organisation afin de protéger les
+              systèmes réseau.
+            </p>
+            <h3 id="15184eed-7b66-807e-b00b-db5022f6fa0e" class="">
+              <strong>Principales politiques de sécurité réseau</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80d5-a32b-df022d73a60c"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Contrôle d&#x27;accès et authentification</strong> :
+                <ul
+                  id="15184eed-7b66-8045-a942-d6b0047e3700"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Authentification forte</strong> : Utilisation de
+                    méthodes d&#x27;authentification multiples, comme la
+                    combinaison de mots de passe et de cartes à puce, ou
+                    l&#x27;authentification biométrique.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8059-819d-d64d72894add"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong
+                      >Contrôles d&#x27;accès basés sur les rôles (RBAC)</strong
+                    >
+                    : Les utilisateurs ont accès uniquement aux ressources
+                    nécessaires à leur fonction. L&#x27;accès est limité par des
+                    niveaux de privilèges.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ee-8888-fb9dbb8d67ef"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Gestion des mots de passe</strong> :
+                <ul
+                  id="15184eed-7b66-801e-ac5e-cb1983445105"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Politiques de complexité des mots de passe</strong>
+                    : Encourager l’utilisation de mots de passe complexes
+                    (longueur, caractères spéciaux, majuscules/minuscules,
+                    chiffres) et leur renouvellement périodique.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8028-b21b-e019668c5b3c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Interdiction des mots de passe par défaut</strong> :
+                    Remplacer tous les mots de passe par défaut sur les
+                    équipements réseau et les serveurs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8028-882b-f7a47be9acab"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Segmentation du réseau</strong> :
+                <ul
+                  id="15184eed-7b66-805f-9869-ec7d7b5794f3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Séparer les réseaux en sous-réseaux pour limiter
+                    l&#x27;accès aux ressources sensibles et restreindre la
+                    propagation des attaques.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8032-94b7-dd27ff2c6cd5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Par exemple, l&#x27;utilisation de
+                    <strong>VLANs</strong> permet de diviser le réseau local en
+                    segments logiques pour réduire l&#x27;impact des intrusions.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8053-a51f-f8f7f0b4eed7"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Surveillance et audits</strong> :
+                <ul
+                  id="15184eed-7b66-8084-92e5-db4ea262a32e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Surveillance continue</strong> des journaux de
+                    sécurité (logs) pour détecter les tentatives
+                    d&#x27;intrusion ou d&#x27;accès non autorisés.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80be-8878-ebbc1e3acfe5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Mise en place de
+                    <strong
+                      >systèmes de détection d&#x27;intrusion (IDS/IPS)</strong
+                    >
+                    pour analyser et alerter en cas d&#x27;activité suspecte.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80cb-bc90-e399ed577922"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Sécurisation des points d&#x27;accès</strong> :
+                <ul
+                  id="15184eed-7b66-8087-aa16-e0f3890506d8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Appliquer des politiques strictes sur les
+                    <strong>points d&#x27;accès sans fil</strong> (Wi-Fi), comme
+                    la mise en place de <strong>WPA3</strong>, l’utilisation de
+                    <strong>VPNs</strong> pour l&#x27;accès distant et le
+                    filtrage des appareils non autorisés.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-8002-9144-cfd2197ea49c" class="">
+              <strong>3.3 Configurer les pare-feu et les VPN</strong>
+            </h2>
+            <p id="15184eed-7b66-8027-ad3b-d59b21a88039" class="">
+              Les <strong>pare-feu</strong> et les <strong>VPN</strong> sont
+              deux des outils les plus puissants pour sécuriser le réseau
+              d&#x27;entreprise. Ils servent à contrôler l&#x27;accès au réseau
+              et à protéger les communications des utilisateurs.
+            </p>
+            <h3 id="15184eed-7b66-8048-aece-c6c38e6d3a8d" class="">
+              <strong>Pare-feu (Firewalls)</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8003-af99-de481028a7ce"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Fonctionnement des pare-feu</strong> :
+                <ul
+                  id="15184eed-7b66-80b4-b51d-f9c82588c1b0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Un <strong>pare-feu</strong> est un dispositif qui filtre le
+                    trafic réseau entrant et sortant en fonction de règles de
+                    sécurité définies par l&#x27;administrateur.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80b3-bd39-f73084bc2348"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Il peut être <strong>matériel</strong> ou
+                    <strong>logiciel</strong>, et il peut fonctionner à
+                    différents niveaux du modèle OSI, de la couche 3 (routage) à
+                    la couche 7 (application).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8093-a41f-f26011b9ee3d"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Types de pare-feu</strong> :
+                <ul
+                  id="15184eed-7b66-8088-a79b-d7f51ffb4cba"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Pare-feu filtrage de paquets</strong> : Examine
+                    chaque paquet entrant ou sortant du réseau pour décider de
+                    le permettre ou de le bloquer selon les règles de filtrage.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8082-9daa-f7bc69fe121b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Pare-feu à inspection dynamique</strong> : Analyse
+                    non seulement les paquets, mais aussi l&#x27;état de la
+                    connexion (par exemple, si la connexion est légitime ou
+                    non).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80f6-bd03-d880c67e05ce"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Pare-feu proxy</strong> : Intercepte les requêtes et
+                    les renvoie sous forme modifiée pour masquer l&#x27;identité
+                    des utilisateurs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8083-a57e-fc452f046dc3"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Configuration d&#x27;un pare-feu</strong> :
+                <ul
+                  id="15184eed-7b66-8092-bb16-d86274749d37"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Définir des <strong>règles de filtrage</strong> basées sur
+                    des critères comme l&#x27;adresse IP source/destination, le
+                    protocole, le port, et l&#x27;état de la connexion.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-806d-a5d7-d21fa4448da2"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Créer des <strong>zones DMZ</strong> (demilitarized zone)
+                    pour séparer les services accessibles depuis l’extérieur
+                    (serveurs web, de messagerie, etc.) du réseau interne
+                    sécurisé.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-8007-b0c3-e928cc87acd4" class="">
+              <strong>VPN (Virtual Private Network)</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8091-9e97-f2e3732699ca"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Fonctionnement des VPN</strong> :
+                <ul
+                  id="15184eed-7b66-80bb-abb3-f6aa33bdb186"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Un <strong>VPN</strong> crée un tunnel sécurisé entre un
+                    utilisateur (ou un site distant) et le réseau
+                    d&#x27;entreprise, permettant des communications sécurisées
+                    sur Internet ou un autre réseau public.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-801f-b3c5-f508892da18b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le VPN chiffre les données pour garantir la confidentialité
+                    et empêcher les interceptions par des parties non
+                    autorisées.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80dd-9405-dcd007f27882"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Types de VPN</strong> :
+                <ul
+                  id="15184eed-7b66-8006-91b9-c5d7ca302855"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>VPN site-à-site</strong> : Utilisé pour relier deux
+                    sites distants de l&#x27;entreprise via un réseau public
+                    comme Internet.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80f0-8033-e2aafaf60861"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>VPN client-à-site</strong> : Permet aux employés
+                    distants de se connecter au réseau d&#x27;entreprise depuis
+                    n&#x27;importe quel emplacement sécurisé.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8090-a1c8-e29b76ccef9d"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Protocoles VPN</strong> :
+                <ul
+                  id="15184eed-7b66-8067-9961-c4d14a72eaf2"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>IPsec (Internet Protocol Security)</strong> :
+                    Utilisé pour sécuriser les communications entre les
+                    différents points d&#x27;un réseau IP en chiffrant le
+                    trafic.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-800c-abea-f0d2574d244d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>SSL/TLS VPN</strong> : Utilisé pour offrir un accès
+                    sécurisé aux applications via des navigateurs web sans
+                    nécessiter de configuration client complexe.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-806e-ac9b-d69b7e1c87af"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Configuration d&#x27;un VPN</strong> :
+                <ul
+                  id="15184eed-7b66-8080-a293-ca0014de2970"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configurer des <strong>tunnels VPN</strong> pour permettre
+                    la communication sécurisée entre sites ou entre un
+                    utilisateur distant et l&#x27;entreprise.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8041-bf38-ea59ba1d54b0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Appliquer des <strong>protocoles de chiffrement</strong> et
+                    d’<strong>authentification</strong> (ex : pré-partage de
+                    clé, certificat, authentification par mot de passe).
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-809d-91ad-e39a0f543fa6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Gérer les <strong>adresses IP privées</strong> utilisées
+                    dans les tunnels VPN et s&#x27;assurer que les politiques de
+                    sécurité sont appliquées à tous les points d&#x27;accès.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            4. Qualité de service (QoS)
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-8057-aef4-ed88c4b54ef3" class="">
+              <strong
+                >4.1 Comprendre l&#x27;importance de la QoS dans les réseaux
+                modernes</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-80aa-b763-c629df6e490a" class="">
+              La <strong>QoS</strong> est essentielle dans les réseaux modernes,
+              car elle permet de répondre aux besoins de performance spécifiques
+              de diverses applications qui partagent les mêmes ressources
+              réseau. Dans un environnement où les réseaux transportent une
+              diversité de services (voix, vidéo, données), la gestion du trafic
+              devient critique pour maintenir un niveau de performance constant
+              et éviter les problèmes de congestion.
+            </p>
+            <h3 id="15184eed-7b66-80f8-98aa-c896712058ac" class="">
+              <strong>Rôle de la QoS dans les réseaux modernes</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-805f-a8c6-cc9b5939b225"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong
+                  >Optimisation des performances pour des applications
+                  spécifiques</strong
+                >
+                :
+                <ul
+                  id="15184eed-7b66-80d8-bab4-fefac8d65c26"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Certaines applications (par exemple, la VoIP, les
+                    visioconférences) sont sensibles à la latence et à la perte
+                    de paquets. La QoS assure la priorisation de ces types de
+                    trafic afin de garantir leur bon fonctionnement, même dans
+                    des conditions de forte utilisation du réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8094-a489-eebe6b8add94"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Des applications comme le
+                    <strong>streaming vidéo</strong> ou le
+                    <strong>jeu en ligne</strong> bénéficient également
+                    d&#x27;une QoS adéquate pour minimiser les interruptions et
+                    les coupures.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8018-954e-fda2717f975d"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Gestion de la congestion</strong> :
+                <ul
+                  id="15184eed-7b66-80ba-bea0-cd7178124bb0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    La <strong>congestion du réseau</strong> survient lorsque la
+                    demande de bande passante dépasse la capacité du réseau. La
+                    QoS permet de gérer cette congestion en attribuant des
+                    priorités plus élevées aux applications critiques et en
+                    réduisant l&#x27;impact sur les services non sensibles.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-804f-bd88-f02ec441bfb4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Cela permet de garantir que les applications essentielles
+                    fonctionnent correctement, même en cas de surcharge du
+                    réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80db-a044-c267cab9b2d5"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Contrôle de la bande passante</strong> :
+                <ul
+                  id="15184eed-7b66-80b3-b090-ca8f5b5a6222"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    La QoS permet de définir des limites de bande passante pour
+                    différentes applications ou types de trafic, ce qui permet
+                    de contrôler la quantité de ressources utilisées par chaque
+                    service, tout en s&#x27;assurant qu&#x27;aucune application
+                    ne monopolise le réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8015-9168-d8e74b5fc435"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Amélioration de l&#x27;expérience utilisateur</strong> :
+                <ul
+                  id="15184eed-7b66-80ab-81c8-dc98a33aee1f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Grâce à la QoS, les utilisateurs bénéficient d’une
+                    expérience fluide et sans coupures, ce qui est crucial pour
+                    des services comme les appels vidéo ou la VoIP, qui sont
+                    fortement affectés par la latence et la gigue (variation de
+                    délai).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ed-9059-d3bc69e56525"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Réseaux complexes et cloud computing</strong> :
+                <ul
+                  id="15184eed-7b66-8071-a8ec-c7d33369012f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Dans les réseaux modernes intégrant des services cloud, des
+                    applications SaaS, et des réseaux d&#x27;entreprise
+                    hybrides, la QoS devient indispensable pour assurer la
+                    cohérence des services entre les utilisateurs distants et
+                    les ressources cloud.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15184eed-7b66-802d-987d-e004dd5bfb4c" class="">
+              <strong>4.2 Savoir configurer et optimiser la QoS</strong>
+            </h2>
+            <p id="15184eed-7b66-80c8-807f-cec44c578cf1" class="">
+              La configuration et l&#x27;optimisation de la
+              <strong>QoS</strong> nécessitent la mise en place de mécanismes de
+              priorisation du trafic, de gestion de la bande passante, et de
+              contrôle des ressources réseau.
+            </p>
+            <h3 id="15184eed-7b66-80f1-b428-d088bc6a236a" class="">
+              <strong>Principales techniques et mécanismes de QoS</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8015-8e0f-e6c3d0d1d515"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Classification et marquage du trafic</strong> :
+                <ul
+                  id="15184eed-7b66-8061-8d57-dfcf66816abf"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Classification</strong> : Cette étape consiste à
+                    identifier et classer les paquets réseau en fonction de leur
+                    type (par exemple, trafic VoIP, vidéo, ou données). Les
+                    classifications peuvent se baser sur plusieurs critères : le
+                    type d&#x27;application, l&#x27;adresse IP source ou
+                    destination, les ports, etc.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-802b-8894-ff0f018e7723"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Marquage</strong> : Les paquets sont ensuite marqués
+                    avec des <strong>valeurs de priorité</strong>. Les
+                    mécanismes comme
+                    <strong>Differentiated Services Code Point (DSCP)</strong>
+                    ou <strong>IP precedence</strong> sont utilisés pour marquer
+                    les paquets et indiquer leur priorité dans le réseau.
+                    <ul
+                      id="15184eed-7b66-8027-b66f-c09c889b14fe"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: circle">
+                        Par exemple, le trafic VoIP peut être marqué avec une
+                        priorité plus élevée que les emails.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ea-906d-c5e704a5d243"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Politiques de gestion de la bande passante</strong> :
+                <ul
+                  id="15184eed-7b66-80dd-a296-dd56673aa584"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Limitation de la bande passante</strong> : Certaines
+                    applications peuvent être limitées en termes de bande
+                    passante pour garantir que d&#x27;autres applications
+                    critiques disposent des ressources nécessaires.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80fc-a900-fb5b26a40062"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Réservation de bande passante</strong> : Des
+                    mécanismes comme <strong>Traffic Shaping</strong> et
+                    <strong>Traffic Policing</strong> sont utilisés pour
+                    réserver de la bande passante pour des applications
+                    importantes et éviter la congestion du réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80b9-8cdd-e96055fa44c1"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Mécanismes de gestion des files d&#x27;attente</strong>
+                :
+                <ul
+                  id="15184eed-7b66-8001-b38d-d28653f36d56"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les commutateurs et routeurs utilisent des
+                    <strong>files d&#x27;attente</strong> pour gérer les
+                    paquets. La gestion de ces files est essentielle pour
+                    garantir que les paquets prioritaires ne soient pas
+                    retardés.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8010-accd-ed544084c5d3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Fair Queuing (FQ)</strong> et
+                    <strong>Weighted Fair Queuing (WFQ)</strong> sont des
+                    méthodes utilisées pour assurer que chaque type de trafic
+                    obtienne une part équitable des ressources réseau, tout en
+                    donnant une priorité plus élevée aux applications sensibles.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80da-85ca-da38b5d7308f"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Contrôle de la congestion et gestion du retard</strong>
+                :
+                <ul
+                  id="15184eed-7b66-80b4-90ef-fab64421c650"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Redondance des chemins</strong> : La QoS peut aussi
+                    être optimisée en utilisant plusieurs chemins dans le réseau
+                    et en dirigeant le trafic sensible par les chemins les plus
+                    rapides et moins congestionnés.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80c2-a9e0-ce5c8302c55a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>Congestion Avoidance Algorithms</strong> : Des
+                    mécanismes comme
+                    <strong>Random Early Detection (RED)</strong> ou
+                    <strong>Weighted Random Early Detection (WRED)</strong> sont
+                    utilisés pour anticiper et éviter la congestion, en envoyant
+                    un signal d&#x27;avertissement aux émetteurs lorsque le
+                    réseau approche de sa capacité maximale.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-807f-99c0-f8c5d7c17f2e"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong
+                  >Mise en œuvre de la priorité basée sur le type de
+                  trafic</strong
+                >
+                :
+                <ul
+                  id="15184eed-7b66-80f8-af88-d944c4776f58"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>IntServ (Integrated Services)</strong> : Permet de
+                    réserver des ressources réseau spécifiques pour des
+                    applications critiques en fonction de leurs besoins en
+                    termes de bande passante et de latence.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80f7-b611-c2ff5dd71773"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <strong>DiffServ (Differentiated Services)</strong> : Divise
+                    le réseau en différents niveaux de service, permettant une
+                    gestion plus efficace de la QoS pour de grandes quantités de
+                    trafic. Les paquets sont classés en fonction des
+                    <strong>DSCP</strong> (Differentiated Services Code Points)
+                    et traités en fonction de leur priorité.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-80b9-9c7e-f7c7a797bd16" class="">
+              <strong
+                >Exemple de configuration de QoS sur un routeur Cisco</strong
+              >
+              :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80a4-9179-f6d511c56d6c"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Marquage du trafic</strong> :
+                <ul
+                  id="15184eed-7b66-80bb-8753-cecf80a8472f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utiliser les commandes
+                    <strong>&quot;class-map&quot;</strong> et
+                    <strong>&quot;policy-map&quot;</strong> pour définir les
+                    classes de trafic et les politiques de priorité sur un
+                    routeur Cisco.
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-80f9-a841-e16b0ee210e5"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80cc-ab17-de476a9d542d" class="">
+                          class-map match-any VOIP<br />match ip dscp ef<br />
+                        </p>
+                        <p id="15184eed-7b66-80b5-ac33-e908d1fe8559" class="">
+                          policy-map QoS_POLICY<br />class VOIP<br />priority
+                          500<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8072-91d6-eb0a0b772a34"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Dans cet exemple, le trafic avec un
+                    <strong>DSCP (Explicit Forwarding)</strong> de
+                    &quot;ef&quot; (le marquage de priorité pour la VoIP) est
+                    traité avec une priorité plus élevée, garantissant la
+                    qualité des appels VoIP.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8062-a15a-f20d1d1cab01"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Configuration du Traffic Shaping</strong> :
+                <ul
+                  id="15184eed-7b66-8056-9d75-c006559911c6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Pour limiter la bande passante d’un flux particulier, vous
+                    pouvez configurer le <strong>traffic shaping</strong> :
+                    <figure
+                      class="block-color-gray_background callout"
+                      style="white-space: pre-wrap; display: flex"
+                      id="15184eed-7b66-8036-a711-f90f94b30a1d"
+                    >
+                      <div style="width: 100%">
+                        <p id="15184eed-7b66-80fc-a6c4-dffcbbfd61e7" class="">
+                          interface FastEthernet0/1<br />shape average 512000<br />
+                        </p>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80c3-99cf-deef8390c680"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Cela limite le débit à 512 Kbps, pour éviter qu&#x27;un flux
+                    particulier ne prenne trop de ressources et n&#x27;affecte
+                    d&#x27;autres services.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            5. Virtualisation et Cloud Computing
+          </summary>
+          <div class="indented">
+            <h2 id="15184eed-7b66-80a5-b8a9-fb068f6e178a" class="">
+              <strong
+                >5.1 Comprendre les concepts de base de la
+                virtualisation</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-8052-bc81-d99a3d619bec" class="">
+              La <strong>virtualisation</strong> désigne le processus de
+              création de versions virtuelles d&#x27;éléments physiques, comme
+              des serveurs, des systèmes d&#x27;exploitation, des réseaux et des
+              applications. Cela permet d&#x27;optimiser l’utilisation des
+              ressources matérielles et d&#x27;offrir plus de flexibilité dans
+              la gestion des infrastructures.
+            </p>
+            <h3 id="15184eed-7b66-8038-a475-f751e969a48d" class="">
+              <strong>Types de virtualisation</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8069-a464-cbc28600efd8"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Virtualisation des serveurs</strong> :
+                <ul
+                  id="15184eed-7b66-808a-82d9-d08125565cf1"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Elle permet de faire fonctionner plusieurs systèmes
+                    d&#x27;exploitation sur un seul serveur physique. Un
+                    hyperviseur (logiciel de virtualisation) est utilisé pour
+                    gérer plusieurs machines virtuelles (VM) qui partagent les
+                    ressources physiques du serveur.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-803b-a290-d01b6bf7266e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemple d’hyperviseurs : <strong>VMware ESXi</strong>,
+                    <strong>Microsoft Hyper-V</strong>, <strong>KVM</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8016-bb7d-f96c4b97dec0"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Virtualisation des réseaux (SDN)</strong> :
+                <ul
+                  id="15184eed-7b66-801b-b9fe-e97e922d1f7e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Elle sépare la couche de contrôle des réseaux de la couche
+                    physique, permettant une gestion plus flexible et
+                    centralisée du réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80ea-9a81-e5198f3abb35"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Grâce à des outils comme <strong>OpenFlow</strong>, les
+                    administrateurs peuvent configurer, contrôler et surveiller
+                    les réseaux de manière plus dynamique.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8051-8241-f12f4a8387d4"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Virtualisation du stockage</strong> :
+                <ul
+                  id="15184eed-7b66-8057-82d3-d0983324f60e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Cette forme de virtualisation permet de regrouper des
+                    ressources de stockage physiques disparates pour les gérer
+                    comme un seul système cohérent. Cela permet une gestion plus
+                    facile du stockage et une meilleure allocation des
+                    ressources.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-809b-b350-cb82af012fda"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Technologies :
+                    <strong>Storage Area Network (SAN)</strong> et
+                    <strong>Network Attached Storage (NAS)</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-807a-b0d0-cdd3015047b0"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Virtualisation des applications</strong> :
+                <ul
+                  id="15184eed-7b66-80a4-8e20-d024f214db05"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet d’exécuter des applications sur des machines
+                    virtuelles ou des conteneurs, de manière indépendante du
+                    système d&#x27;exploitation sous-jacent. Cela facilite le
+                    déploiement et la gestion des applications sur plusieurs
+                    environnements sans conflit.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8012-a2e4-ef500ebb6f5a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Technologies : <strong>Docker</strong>,
+                    <strong>Kubernetes</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-807a-886b-eebab09e36c3" class="">
+              <strong>Avantages de la virtualisation</strong> :
+            </h3>
+            <ul id="15184eed-7b66-80e2-92c8-f7b7245af728" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Optimisation des ressources</strong> : La virtualisation
+                permet d&#x27;utiliser pleinement les ressources matérielles en
+                exécutant plusieurs machines virtuelles sur un même matériel
+                physique.
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-8026-96f6-c9c76154d66e" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Isolation</strong> : Les environnements virtuels sont
+                isolés les uns des autres, ce qui réduit les risques de conflits
+                et améliore la sécurité.
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-80c9-bebb-d2e79b3995d8" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Évolutivité</strong> : Les environnements virtuels
+                peuvent être facilement créés, dupliqués, et supprimés, ce qui
+                permet une gestion dynamique et évolutive des infrastructures.
+              </li>
+            </ul>
+            <ul id="15184eed-7b66-8073-9184-fa0da239accd" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Gestion simplifiée</strong> : Grâce à des outils de
+                gestion centralisés, la virtualisation facilite la gestion des
+                ressources et des configurations, tout en réduisant les coûts
+                opérationnels.
+              </li>
+            </ul>
+            <h2 id="15184eed-7b66-805c-8ba9-fd7a4c2794a2" class="">
+              <strong
+                >5.2 Connaître les principes du Cloud Computing et son impact
+                sur les réseaux</strong
+              >
+            </h2>
+            <p id="15184eed-7b66-805d-9725-d50fba7f053e" class="">
+              Le <strong>Cloud Computing</strong> désigne la fourniture de
+              ressources informatiques (serveurs, stockage, bases de données,
+              réseaux, logiciels, etc.) via internet, permettant aux
+              utilisateurs d&#x27;accéder à ces ressources de manière flexible,
+              évolutive et pay-as-you-go.
+            </p>
+            <h3 id="15184eed-7b66-807a-8f26-da01669a0b79" class="">
+              <strong>Modèles de services du Cloud Computing</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ad-9915-e9a9c2f4b393"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>IaaS (Infrastructure as a Service)</strong> :
+                <ul
+                  id="15184eed-7b66-80a4-91d9-cdb15f811693"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Fourniture de ressources de base comme des machines
+                    virtuelles, du stockage et des réseaux.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8014-81e9-e301f557ab0e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemples : <strong>Amazon Web Services (AWS)</strong>,
+                    <strong>Microsoft Azure</strong>,
+                    <strong>Google Cloud</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8088-a849-e828196e4f2d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Avantages : Évolutivité instantanée, paiement à
+                    l&#x27;utilisation, absence de gestion matérielle.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80cc-9252-d8416067d982"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>PaaS (Platform as a Service)</strong> :
+                <ul
+                  id="15184eed-7b66-804d-9446-dca4c1ee05f7"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Offre une plateforme pour développer, tester, déployer et
+                    gérer des applications sans avoir à gérer
+                    l&#x27;infrastructure sous-jacente.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-808f-b81e-c7e59d205208"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemples : <strong>Google App Engine</strong>,
+                    <strong>Microsoft Azure App Services</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80cc-96c1-e27ecb1fcf69"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Avantages : Simplification du développement et de la gestion
+                    des applications.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8040-8c96-de948ae3a386"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>SaaS (Software as a Service)</strong> :
+                <ul
+                  id="15184eed-7b66-80bf-a5a1-d573bd2288c8"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Fourniture de logiciels via internet, accessibles depuis
+                    n’importe quel appareil.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8059-9875-d4c0b3cb1e66"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Exemples : <strong>Gmail</strong>,
+                    <strong>Microsoft 365</strong>, <strong>Salesforce</strong>.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-803b-bc31-d1cc7641d011"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Avantages : Accès facile, pas de gestion d’infrastructure,
+                    mises à jour automatiques.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-8014-bc8c-ff79627b4d8d" class="">
+              <strong>Types de Cloud Computing</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-8014-bae1-c868bfa0a126"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Cloud public</strong> :
+                <ul
+                  id="15184eed-7b66-80cf-876c-c43e23fc1790"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les ressources sont fournies par un fournisseur tiers (comme
+                    AWS, Google Cloud, ou Microsoft Azure) et sont partagées
+                    entre plusieurs utilisateurs.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80c6-a0ad-fda25ace4261"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Idéal pour des entreprises ou des utilisateurs cherchant à
+                    réduire les coûts tout en ayant accès à des ressources
+                    évolutives.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8042-b87f-efc511057223"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Cloud privé</strong> :
+                <ul
+                  id="15184eed-7b66-80ea-819a-d3dc2813224c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    L&#x27;infrastructure cloud est dédiée à une seule
+                    organisation, souvent déployée dans ses propres centres de
+                    données ou hébergée par un fournisseur spécialisé.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-80aa-ba0c-e9b16111d934"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Avantages : Contrôle total sur les ressources et la
+                    sécurité, mais coût plus élevé.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80cd-a985-f293637b4755"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Cloud hybride</strong> :
+                <ul
+                  id="15184eed-7b66-80fc-86c2-c39032823c10"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Une combinaison de cloud public et privé, permettant de
+                    déplacer des charges de travail entre les deux
+                    environnements pour plus de flexibilité et
+                    d&#x27;optimisation des coûts.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8026-9683-e0aa5f9bb2bc"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Avantages : Flexibilité, sécurité accrue, et meilleure
+                    gestion des ressources.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15184eed-7b66-80a2-b686-c1c30d41dabb" class="">
+              <strong>Impact du Cloud Computing sur les réseaux</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15184eed-7b66-80aa-b4d8-ca9bc138480f"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong
+                  >Évolution des réseaux vers des environnements plus
+                  dynamiques</strong
+                >
+                :
+                <ul
+                  id="15184eed-7b66-80e0-bfab-d9bf820b9f81"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le cloud a introduit des réseaux plus dynamiques, où la
+                    gestion et la configuration des ressources réseau sont
+                    automatisées.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8040-a427-e981d406905f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Cela a conduit à la nécessité de réseaux plus rapides et
+                    plus flexibles, avec des protocoles comme
+                    <strong>SDN (Software-Defined Networking)</strong> et
+                    <strong>NFV (Network Functions Virtualization)</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-801a-814a-ecaf2db767fe"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Augmentation du trafic réseau</strong> :
+                <ul
+                  id="15184eed-7b66-80db-8321-cb7500529ccb"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le cloud augmente considérablement le volume de trafic
+                    réseau, car de plus en plus de données sont envoyées vers et
+                    depuis les services cloud.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-8084-ad47-efb41b129b76"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Cela nécessite une capacité accrue et une gestion
+                    intelligente du trafic, en particulier pour les entreprises
+                    qui utilisent des services cloud pour des applications
+                    critiques.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80ad-8243-ef45782a58fa"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Sécurisation des données dans le cloud</strong> :
+                <ul
+                  id="15184eed-7b66-80f0-b329-dc7a72cfbc0f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    L’accès aux services cloud et la gestion des données
+                    sensibles dans des environnements partagés posent de
+                    nouveaux défis en matière de sécurité. Les entreprises
+                    doivent sécuriser les connexions réseau vers le cloud avec
+                    des <strong>VPNs</strong> et appliquer des politiques de
+                    sécurité robustes.
+                  </li>
+                </ul>
+                <ul
+                  id="15184eed-7b66-804d-a873-ec59a1df6745"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    L’utilisation de mécanismes comme le chiffrement et
+                    l’authentification multi-facteurs est essentielle pour
+                    protéger les données dans le cloud.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-80af-8337-d735c029f3ec"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Impact sur la gestion du réseau</strong> :
+                <ul
+                  id="15184eed-7b66-8084-93b0-ffafecde268b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le cloud change la manière dont les administrateurs réseaux
+                    gèrent les infrastructures. Au lieu de gérer des équipements
+                    physiques, ils gèrent des ressources virtuelles et utilisent
+                    des outils basés sur le cloud pour automatiser et surveiller
+                    les réseaux.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15184eed-7b66-8011-aceb-cfae83128393"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Latence et bande passante</strong> :
+                <ul
+                  id="15184eed-7b66-80c1-b50a-e2cbbf1d6314"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Le Cloud Computing implique souvent des connexions réseau
+                    distantes et donc une dépendance accrue de la latence et de
+                    la bande passante. Les entreprises doivent optimiser leurs
+                    connexions pour garantir une expérience utilisateur fluide,
+                    surtout pour les applications critiques ou les
+                    environnements hybrides.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            6. Automatisation et programmabilité
+          </summary>
+          <div class="indented">
+            <h2 id="15284eed-7b66-80bc-9a4d-f3800b685c7e" class="">
+              <strong
+                >6.1 Introduction aux concepts d’automatisation réseau</strong
+              >
+            </h2>
+            <p id="15284eed-7b66-8053-b76a-cce4e0e2af0a" class="">
+              L’automatisation réseau désigne l’utilisation de logiciels pour
+              configurer, gérer, tester et exploiter des appareils réseau avec
+              un minimum d’intervention humaine.
+            </p>
+            <h3 id="15284eed-7b66-8036-9a0e-d9b76c559ee7" class="">
+              <strong>Pourquoi automatiser les réseaux ?</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15284eed-7b66-8040-a23c-c6dc37a7fd55"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Réduction des erreurs humaines</strong> :
+                <ul
+                  id="15284eed-7b66-8012-b665-e57726d7ed47"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    L’automatisation diminue les erreurs associées aux
+                    configurations manuelles.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80b3-bdb0-d8f289747619"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les scripts standardisés garantissent la cohérence des
+                    déploiements.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80f4-a573-deadab7bdaf0"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Gains de temps et d’efficacité</strong> :
+                <ul
+                  id="15284eed-7b66-80e2-a284-fada16073576"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les tâches répétitives comme les configurations ou les mises
+                    à jour peuvent être automatisées, libérant les
+                    administrateurs pour se concentrer sur des tâches
+                    stratégiques.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-807b-bb77-c4b347ef58f6"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Évolutivité</strong> :
+                <ul
+                  id="15284eed-7b66-80d4-bb84-c86594dc64fd"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet de gérer des infrastructures complexes, souvent
+                    distribuées sur plusieurs sites, avec des efforts constants,
+                    même en cas d’expansion.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8022-bb68-e687b855eb3d"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong
+                  >Amélioration de la fiabilité et de la performance</strong
+                >
+                :
+                <ul
+                  id="15284eed-7b66-8040-9446-d69d07a22928"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les processus automatisés sont reproductibles et permettent
+                    une surveillance proactive, ce qui améliore la disponibilité
+                    des réseaux.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-801a-87c0-ca3d672fe8bc"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong
+                  >Intégration avec les environnements cloud et
+                  virtualisés</strong
+                >
+                :
+                <ul
+                  id="15284eed-7b66-8031-9b8f-efc2008a8441"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les réseaux doivent s’adapter dynamiquement aux besoins des
+                    environnements cloud, ce qui est facilité par
+                    l’automatisation.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15284eed-7b66-80b3-84c7-cfdef62cef4f" class="">
+              <strong>Exemples de tâches automatisables</strong> :
+            </h3>
+            <ul id="15284eed-7b66-80ea-845a-d981ee6964e4" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Configuration des routeurs et commutateurs.
+              </li>
+            </ul>
+            <ul id="15284eed-7b66-803f-9ea9-e811fe6ef705" class="bulleted-list">
+              <li style="list-style-type: disc">Mise à jour des firmwares.</li>
+            </ul>
+            <ul id="15284eed-7b66-8040-931e-d7a2f4f48815" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Surveillance des performances réseau.
+              </li>
+            </ul>
+            <ul id="15284eed-7b66-80cd-a283-cca5ce293d15" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Détection et résolution automatiques des incidents.
+              </li>
+            </ul>
+            <ul id="15284eed-7b66-8096-a7d9-d01f1ad1df27" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Déploiement de politiques de sécurité (pare-feu, ACL).
+              </li>
+            </ul>
+            <h3 id="15284eed-7b66-803a-89db-c4ec3f813141" class="">
+              <strong
+                >Outils et plateformes populaires pour l’automatisation
+                réseau</strong
+              >
+              :
+            </h3>
+            <ol
+              type="1"
+              id="15284eed-7b66-8008-9fc7-ced7d8f35469"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Ansible</strong> :
+                <ul
+                  id="15284eed-7b66-8066-85c4-c7d7ffb3754a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Outil d’automatisation open source basé sur des fichiers
+                    YAML.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8076-bb00-d9e82023acb6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Idéal pour la configuration et la gestion des équipements
+                    réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8078-96de-c6fb4100f558"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Terraform</strong> :
+                <ul
+                  id="15284eed-7b66-80c6-995b-c53e6c8c3f6a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisé pour provisionner des infrastructures réseau,
+                    notamment dans des environnements cloud.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8059-91c7-d400ffa517ce"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Python</strong> :
+                <ul
+                  id="15284eed-7b66-805d-8e15-d856edd05701"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Langage de programmation largement utilisé pour écrire des
+                    scripts personnalisés d’automatisation.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8016-b02d-ffdba2c28d1a"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Cisco DNA Center et VMware NSX</strong> :
+                <ul
+                  id="15284eed-7b66-80ed-9979-dacf5fb9f0a4"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Plates-formes propriétaires pour l’automatisation et la
+                    gestion centralisée des réseaux.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15284eed-7b66-80ec-adb1-d2d9e61423f6" class="">
+              <strong
+                >6.2 Comprendre les bases de la programmabilité des
+                réseaux</strong
+              >
+            </h2>
+            <p id="15284eed-7b66-80ab-80cf-f7eff9c21e19" class="">
+              La programmabilité des réseaux consiste à utiliser des
+              <strong>API (Interfaces de Programmation d’Applications)</strong>
+              et des scripts pour interagir avec les équipements réseau, les
+              configurer et les surveiller de manière centralisée.
+            </p>
+            <h3 id="15284eed-7b66-8060-aac4-f7be38c05117" class="">
+              <strong
+                >Différence entre automatisation et programmabilité</strong
+              >
+              :
+            </h3>
+            <ul id="15284eed-7b66-80d0-9e80-c8eb6d38cf3b" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Automatisation</strong> : Exécution de tâches
+                répétitives à l’aide de scripts ou d’outils.
+              </li>
+            </ul>
+            <ul id="15284eed-7b66-80ff-b8fd-cd5e11be60a2" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Programmabilité</strong> : Conception et développement
+                de solutions permettant une interaction directe avec les
+                infrastructures via des APIs.
+              </li>
+            </ul>
+            <h3 id="15284eed-7b66-80d1-9165-d45b7ab1a447" class="">
+              <strong>APIs réseau</strong> :
+            </h3>
+            <p id="15284eed-7b66-806c-9b9d-ca27a020515e" class="">
+              Les APIs permettent aux applications de communiquer directement
+              avec les équipements réseau pour les configurer ou récupérer des
+              données. Il existe différents types d’APIs utilisées dans les
+              réseaux programmables :
+            </p>
+            <ol
+              type="1"
+              id="15284eed-7b66-8062-8316-f62adb46af42"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>RESTful APIs</strong> :
+                <ul
+                  id="15284eed-7b66-805f-a57a-fdbbd2ec8585"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Basées sur des protocoles web (HTTP/HTTPS).
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80fb-a740-ebe8a0275dc5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Simplifient l’interaction avec les équipements grâce à des
+                    appels GET, POST, PUT et DELETE.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-803c-9fbe-cb20541a95f6"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>NETCONF (Network Configuration Protocol)</strong> :
+                <ul
+                  id="15284eed-7b66-803b-aab5-c46a02fff6bd"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Protocole standardisé pour la gestion et la configuration
+                    des équipements réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8015-b90e-d1e6a5e5317d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilise XML pour les données et s’intègre avec les modèles
+                    YANG (Yet Another Next Generation).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-805b-b983-fc484aab6025"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>RESTCONF</strong> :
+                <ul
+                  id="15284eed-7b66-8020-a509-fdee732de3f0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Extension de NETCONF qui utilise les principes REST.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80c7-9e8e-ef917e5280b5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet une interaction simplifiée et est souvent utilisée
+                    avec YANG.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80bb-856a-c3446623b9ae"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>gRPC (Google Remote Procedure Call)</strong> :
+                <ul
+                  id="15284eed-7b66-80c9-9ad2-faebd7d1cabf"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Protocole léger et performant pour la communication entre
+                    systèmes.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80dd-9b8a-c46659fa0fb5"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisé dans les architectures modernes pour la
+                    programmabilité.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15284eed-7b66-8022-80dd-e514758b46f8" class="">
+              <strong>Outils pour la programmabilité des réseaux</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15284eed-7b66-805f-afe8-e759685b3d1d"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Python</strong> :
+                <ul
+                  id="15284eed-7b66-801e-b037-fc0ae3d19d16"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Langage privilégié pour interagir avec les APIs réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80b9-b50d-c8a74fa701ff"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Bibliothèques courantes : <code>requests</code>,
+                    <code>ncclient</code>, <code>napalm</code>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8044-a236-e88f2af4ab2f"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Postman</strong> :
+                <ul
+                  id="15284eed-7b66-8051-abf4-d15aaea9604a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Outil graphique pour tester et interagir avec les APIs REST.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8001-a691-d563c0fd86e0"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Cisco DevNet</strong> :
+                <ul
+                  id="15284eed-7b66-8086-a55b-ce9b02eb804f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Plateforme éducative et pratique pour apprendre et tester
+                    les APIs des équipements Cisco.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-806f-b8da-e93eb4b0a925"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong
+                  >Programmabilité avec SDN (Software-Defined
+                  Networking)</strong
+                >
+                :
+                <ul
+                  id="15284eed-7b66-8042-a952-df59ab0673a0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Les réseaux définis par logiciel utilisent des contrôleurs
+                    centralisés pour configurer et gérer dynamiquement les
+                    appareils réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8036-9b28-c14d50a1d385"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Contrôleurs SDN populaires : <strong>OpenDaylight</strong>,
+                    <strong>ONOS</strong>, <strong>Cisco ACI</strong>.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15284eed-7b66-802a-b60f-eba21d664a61" class="">
+              <strong>Exemples d&#x27;applications</strong> :
+            </h3>
+            <ol
+              type="1"
+              id="15284eed-7b66-80a9-afd6-ee6721d832de"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Provisionnement automatique</strong> :
+                <ul
+                  id="15284eed-7b66-8012-9b9e-d5d2f1bfcb23"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Configurer automatiquement de nouveaux équipements ajoutés
+                    au réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80f8-a808-d7c043e1c499"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Surveillance proactive</strong> :
+                <ul
+                  id="15284eed-7b66-803b-aaa4-f656ca708332"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Détecter les anomalies et ajuster les paramètres réseau pour
+                    éviter les interruptions.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-804d-878e-caf44e0b1df6"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Gestion des politiques dynamiques</strong> :
+                <ul
+                  id="15284eed-7b66-805e-a959-df55a3ae7a5f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Modifier les configurations selon les besoins d&#x27;une
+                    application ou des utilisateurs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8008-b109-d9f1a682cbcc"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Programmabilité dans les environnements cloud</strong> :
+                <ul
+                  id="15284eed-7b66-8085-9c05-cfc3fd20d00f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Intégration avec des orchestrateurs comme
+                    <strong>Kubernetes</strong> pour gérer les réseaux des
+                    conteneurs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15284eed-7b66-8006-943a-eb7b4146afb4" class="">
+              <strong>Exemple pratique : Automatisation avec Python</strong>
+            </h3>
+            <p id="15284eed-7b66-8001-9465-cc21e6b46692" class="">
+              Un exemple de script Python pour configurer un routeur via une API
+              RESTful :
+            </p>
+            <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+              integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            ></script>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+              integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+            />
+            <pre
+              id="15284eed-7b66-801d-8f55-f24ed5e26325"
+              class="code"
+            ><code class="language-Python">import requests
+
+# Paramètres de l&#x27;API
+url = &quot;https://router-api.example.com/config&quot;
+headers = {&quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer TOKEN&quot;}
+
+# Données de configuration
+payload = {
+    &quot;hostname&quot;: &quot;Router01&quot;,
+    &quot;interfaces&quot;: [
+        {&quot;name&quot;: &quot;GigabitEthernet0/1&quot;, &quot;ip&quot;: &quot;192.168.1.1&quot;, &quot;netmask&quot;: &quot;255.255.255.0&quot;},
+        {&quot;name&quot;: &quot;GigabitEthernet0/2&quot;, &quot;ip&quot;: &quot;10.0.0.1&quot;, &quot;netmask&quot;: &quot;255.255.0.0&quot;}
+    ]
+}
+
+# Envoi de la requête
+response = requests.post(url, json=payload, headers=headers)
+
+if response.status_code == 200:
+    print(&quot;Configuration réussie!&quot;)
+else:
+    print(f&quot;Erreur : {response.status_code}, {response.text}&quot;)</code></pre>
+          </div>
+        </details>
+        <details open="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            7. Dépannage avancé
+          </summary>
+          <div class="indented">
+            <h2 id="15284eed-7b66-8060-9fa2-e141aa2dfdfe" class="">
+              <strong
+                >7.1 Techniques de dépannage pour les réseaux complexes</strong
+              >
+            </h2>
+            <h3 id="15284eed-7b66-80f7-88e3-cdfdb66caa88" class="">
+              <strong>Méthodologie structurée de dépannage</strong>
+            </h3>
+            <p id="15284eed-7b66-8014-beff-f2a0aa7581aa" class="">
+              Une approche méthodique permet de résoudre les problèmes
+              efficacement :
+            </p>
+            <ol
+              type="1"
+              id="15284eed-7b66-8086-a92e-fbe54770c173"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Identification du problème</strong> :
+                <ul
+                  id="15284eed-7b66-801c-ab9b-de200f125755"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Comprendre les symptômes rapportés par les utilisateurs.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8011-a0de-db7fc92a681b"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Identifier les parties impactées (utilisateurs, services,
+                    zones géographiques).
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8019-9211-f66da7223e68"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Collecte d’informations</strong> :
+                <ul
+                  id="15284eed-7b66-808a-aea6-cd195960d6ce"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Vérifier les journaux système et les messages d&#x27;erreur.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8062-8fc6-dfe0e872f920"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utiliser des outils de surveillance pour recueillir des
+                    métriques réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80a4-bae7-d50d1e57eb65"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Délimitation de la cause</strong> :
+                <ul
+                  id="15284eed-7b66-806d-bb21-d81acf0931e9"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Déterminer si le problème se situe au niveau matériel,
+                    logiciel ou configuration.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-806c-a196-c8147c4b350c"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utiliser une méthode descendante (top-down) ou ascendante
+                    (bottom-up) dans le modèle OSI.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8055-9db2-c13ba97e8878"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Hypothèse et tests</strong> :
+                <ul
+                  id="15284eed-7b66-80da-b7cd-f17aaa3c92a6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Formuler des hypothèses sur la cause.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80a3-8944-ed8926c5b332"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Tester les solutions potentielles dans un environnement
+                    contrôlé.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80c8-a51e-e8c10062a065"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Résolution et validation</strong> :
+                <ul
+                  id="15284eed-7b66-808d-9f64-f2db0e184bfb"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Appliquer la solution et vérifier si le problème est résolu.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-807a-b659-fc96c69cdf9f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Documenter les étapes et les résultats pour référence
+                    future.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15284eed-7b66-8038-999f-d17f540e8856" class="">
+              <strong>Défis courants dans les réseaux complexes</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15284eed-7b66-804c-bb2d-c08750a8fa0f"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Latence ou goulots d&#x27;étranglement</strong> :
+                <ul
+                  id="15284eed-7b66-8025-952b-e57f9f47ce8d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Causés par des erreurs de configuration QoS ou des
+                    surcharges réseau.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-808c-8a2f-ceb67bf8835d"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Nécessitent des analyses approfondies des chemins réseau.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80b1-b975-c534dddae221"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Problèmes de routage</strong> :
+                <ul
+                  id="15284eed-7b66-801c-9e20-e8de1e9d2bc7"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Incluent des boucles de routage, des routes mal configurées
+                    ou des conflits de protocoles.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80fd-8fe4-e184cd856b6d"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Défaillances de redondance</strong> :
+                <ul
+                  id="15284eed-7b66-80bb-8330-f17ea2a5566f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Dysfonctionnements des mécanismes de haute disponibilité,
+                    comme les protocoles HSRP ou VRRP.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80e4-8f05-ca157a3e2139"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Problèmes liés à la virtualisation</strong> :
+                <ul
+                  id="15284eed-7b66-8038-abad-e3f92e320edc"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Incluent les interactions entre les réseaux physiques et
+                    virtuels.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h2 id="15284eed-7b66-80f6-a3e4-d37d0cc9d254" class="">
+              <strong>7.2 Utilisation efficace des outils de diagnostic</strong>
+            </h2>
+            <h3 id="15284eed-7b66-80b6-95e7-c73804d5a318" class="">
+              <strong>Outils de ligne de commande courants</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15284eed-7b66-8023-a57c-c367f87d903f"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>ping</strong> :
+                <ul
+                  id="15284eed-7b66-803b-9da5-e5e5fee63e80"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Vérifie la connectivité de base entre deux hôtes.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8064-92da-de9130b72e35"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Diagnostique les pertes de paquets et la latence.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8002-8a63-d6eb242db694"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>traceroute/tracert</strong> :
+                <ul
+                  id="15284eed-7b66-8020-8dc0-c57ec665cc88"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Identifie le chemin emprunté par les paquets entre la source
+                    et la destination.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80ad-a340-d996bd9577be"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utile pour localiser des points de défaillance ou des
+                    chemins inattendus.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8063-b6a0-e36b6c55a40b"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>show commands</strong> (sur les équipements Cisco ou
+                similaires) :
+                <ul
+                  id="15284eed-7b66-8065-ad4a-f282839ac2ab"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <code>show ip route</code> : Vérifie la table de routage.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-809c-aac9-e2697889bfca"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <code>show interfaces</code> : Affiche l’état des interfaces
+                    et les statistiques (erreurs, collisions, etc.).
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80c9-a5ae-e9d21b72cb40"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <code>show vlan</code> : Vérifie les configurations VLAN.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80e5-b11c-de5c3cdd49c0"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    <code>show spanning-tree</code> : Vérifie le statut du
+                    protocole STP.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8069-804b-e9393e2b72b9"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>netstat</strong> :
+                <ul
+                  id="15284eed-7b66-8056-99a3-db4af8826938"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Fournit des informations sur les connexions réseau actives
+                    et les ports ouverts.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8086-8150-f201a8b2dd0a"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>ipconfig/ifconfig</strong> :
+                <ul
+                  id="15284eed-7b66-8024-bac3-fe7aea420eb3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisé pour vérifier et configurer les interfaces réseau
+                    des hôtes.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80d8-a449-e6492e04417b"
+              class="numbered-list"
+              start="6"
+            >
+              <li>
+                <strong>nslookup/dig</strong> :
+                <ul
+                  id="15284eed-7b66-80de-9594-f3ffe7f1202f"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Diagnostiquent les problèmes liés au DNS.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15284eed-7b66-8046-a0a6-e23882093a90" class="">
+              <strong>Outils spécialisés</strong>
+            </h3>
+            <ol
+              type="1"
+              id="15284eed-7b66-8074-9789-ccb603d32b15"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Wireshark</strong> :
+                <ul
+                  id="15284eed-7b66-809f-80d7-c8db97b5c4d3"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Analyseur de paquets qui capture et examine le trafic réseau
+                    en profondeur.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8023-8cec-d791ec5366cd"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Permet d’identifier des anomalies, des retards ou des
+                    attaques potentielles.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8020-9489-e3c543f85253"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Nmap</strong> :
+                <ul
+                  id="15284eed-7b66-802b-a684-cc096e7c17c9"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Scanne les ports ouverts et les services actifs pour
+                    vérifier la sécurité ou diagnostiquer des problèmes.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-805a-a9c9-ebc96f377561"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>SolarWinds Network Performance Monitor</strong> :
+                <ul
+                  id="15284eed-7b66-8013-a004-fcbb47eed5e7"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Surveille la performance réseau et identifie les goulots
+                    d’étranglement.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80bd-b308-e657815afd50"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>PingPlotter</strong> :
+                <ul
+                  id="15284eed-7b66-805b-b7db-d42b24acf46e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Combine le ping et le traceroute avec des graphiques visuels
+                    pour diagnostiquer les problèmes de connexion.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80af-b814-d7fa0f851b9c"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>SNMP-based Tools</strong> :
+                <ul
+                  id="15284eed-7b66-80fb-9d63-f172c5950b20"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Ex. : <strong>Cacti</strong>, <strong>Nagios</strong> :
+                    Collectent des informations réseau via SNMP pour une
+                    surveillance proactive.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <h3 id="15284eed-7b66-80e9-a1e9-c6de14e24d34" class="">
+              <strong>Approches avancées par couches du modèle OSI</strong>
+            </h3>
+            <h3 id="15284eed-7b66-8097-829b-d8138fdec6b0" class="">
+              <strong>Couche 1 : Physique</strong>
+            </h3>
+            <ul id="15284eed-7b66-80c6-ae6b-fd3292d601ea" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Vérifiez les connexions physiques : câbles, ports, et
+                interfaces.
+              </li>
+            </ul>
+            <ul id="15284eed-7b66-80fe-ae29-e9515b690b25" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Utilisez des outils comme des testeurs de câbles ou des OTDR
+                pour les fibres optiques.
+              </li>
+            </ul>
+            <h3 id="15284eed-7b66-80f3-aee4-de74d15e0258" class="">
+              <strong>Couche 2 : Liaison de données</strong>
+            </h3>
+            <ul id="15284eed-7b66-80a5-a8ef-ffd7c0dadb78" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Vérifiez les VLANs, les STP (Spanning Tree Protocol) et les
+                erreurs sur les interfaces.
+              </li>
+            </ul>
+            <ul id="15284eed-7b66-8070-9c98-d2f9a622ac7c" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Diagnostiquez les boucles ou les conflits MAC.
+              </li>
+            </ul>
+            <h3 id="15284eed-7b66-8032-bb51-dddd05cc2ce9" class="">
+              <strong>Couche 3 : Réseau</strong>
+            </h3>
+            <ul id="15284eed-7b66-80a1-a45a-f9aea864cb2e" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Vérifiez la table de routage, les protocoles de routage (OSPF,
+                EIGRP) et les adresses IP.
+              </li>
+            </ul>
+            <ul id="15284eed-7b66-8051-aaf0-e66b98442096" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Identifiez les conflits ou les routes incorrectes.
+              </li>
+            </ul>
+            <h3 id="15284eed-7b66-808f-ac3b-d00472d40047" class="">
+              <strong>Couche 4 : Transport</strong>
+            </h3>
+            <ul id="15284eed-7b66-8071-9b22-e053cef3072d" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Analysez les sessions TCP/UDP pour repérer les connexions
+                interrompues ou les pertes de paquets.
+              </li>
+            </ul>
+            <h3 id="15284eed-7b66-80b1-8a9d-fdca056f24e0" class="">
+              <strong>Couches 5-7 : Session, Présentation, Application</strong>
+            </h3>
+            <ul id="15284eed-7b66-8062-8a35-d1f57f0d2c7d" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Diagnostiquez les problèmes spécifiques aux applications comme
+                les services web, les DNS ou les bases de données.
+              </li>
+            </ul>
+            <h3 id="15284eed-7b66-80a3-86d7-cacc149a6ff6" class="">
+              <strong
+                >Exemple pratique : Dépannage d&#x27;un problème de connectivité
+                inter-VLAN</strong
+              >
+            </h3>
+            <p id="15284eed-7b66-80cc-8db8-d38f62cd17a5" class="">
+              <strong>Problème :</strong> Les utilisateurs d&#x27;un VLAN ne
+              peuvent pas communiquer avec un autre VLAN.
+            </p>
+            <ol
+              type="1"
+              id="15284eed-7b66-80d0-a3dc-dbd5d7ab271b"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                <strong>Étape 1 : Vérifiez les configurations VLAN</strong> :
+                <ul
+                  id="15284eed-7b66-804e-a14b-e9bc150ce407"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Commande : <code>show vlan brief</code>.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-8082-a3e0-e952f8942fa6"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Assurez-vous que les ports sont assignés au bon VLAN.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80c0-8ece-e0c6799645b3"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                <strong>Étape 2 : Vérifiez les trunks</strong> :
+                <ul
+                  id="15284eed-7b66-800f-8503-e7fd052bbf79"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Commande : <code>show interfaces trunk</code>.
+                  </li>
+                </ul>
+                <ul
+                  id="15284eed-7b66-80a4-87c9-c81ac1993b84"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Assurez-vous que le mode trunk est activé entre les
+                    commutateurs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-8080-afd7-e09bc376f9ef"
+              class="numbered-list"
+              start="3"
+            >
+              <li>
+                <strong>Étape 3 : Vérifiez le routage inter-VLAN</strong> :
+                <ul
+                  id="15284eed-7b66-8097-b7d9-d6051fd97693"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Assurez-vous que le routeur ou le commutateur de couche 3
+                    dispose de sous-interfaces configurées avec les bonnes
+                    adresses IP.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80e6-bcee-e3085eb9b676"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                <strong>Étape 4 : Testez la connectivité</strong> :
+                <ul
+                  id="15284eed-7b66-80b6-ad7b-f3218a28236a"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Utilisez <code>ping</code> pour tester la connectivité entre
+                    les hôtes dans les différents VLANs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="15284eed-7b66-80b1-9db8-cd46b588f67d"
+              class="numbered-list"
+              start="5"
+            >
+              <li>
+                <strong>Étape 5 : Analysez le trafic avec Wireshark</strong> :
+                <ul
+                  id="15284eed-7b66-8038-9bb1-e58c65fb6278"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Identifiez si les paquets sont correctement routés ou
+                    abandonnés.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>
